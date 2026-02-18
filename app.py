@@ -1,10 +1,16 @@
+
 import streamlit as st
 
 # =========================
-# STRIPE LINKS (REPLACE THESE)
+# STRIPE LINKS (SET HERE)
 # =========================
-QUICK_PAY_URL = "https://buy.stripe.com/你的999連結"
-DEEP_PAY_URL  = "https://buy.stripe.com/你的4999連結"
+QUICK_PAY_URL = "https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00"
+DEEP_PAY_URL  = "https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01"
+
+# =========================
+# OPTIONAL CONTACT FORM
+# =========================
+CONTACT_FORM_URL = ""  # 如果有 Google Form 就放連結，沒有就留空
 
 # =========================
 # PAGE CONFIG
@@ -16,19 +22,11 @@ st.set_page_config(
 )
 
 # =========================
-# SIMPLE CSS (clean + consulting-grade)
+# SIMPLE CSS
 # =========================
 st.markdown("""
 <style>
-/* global spacing */
 .block-container {padding-top: 2.2rem; padding-bottom: 2.2rem; max-width: 1200px;}
-/* buttons */
-.stButton>button {
-    width: 100%;
-    padding: 0.9rem 1.0rem;
-    border-radius: 14px;
-    font-weight: 700;
-}
 .small-note {opacity: 0.75; font-size: 0.92rem;}
 .kicker {letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.85rem; opacity: 0.75;}
 .hero {font-size: 2.6rem; font-weight: 800; line-height: 1.05; margin: 0.3rem 0 0.6rem 0;}
@@ -40,14 +38,6 @@ st.markdown("""
     background: rgba(255,255,255,0.03);
 }
 .hr {height: 1px; background: rgba(255,255,255,0.15); margin: 1.2rem 0;}
-.badge {
-    display: inline-block;
-    padding: 0.25rem 0.55rem;
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 999px;
-    font-size: 0.85rem;
-    opacity: 0.85;
-}
 </style>
 """, unsafe_allow_html=True)
 
@@ -97,16 +87,16 @@ with right:
     st.markdown("#### What you get")
     st.markdown("""
 - Baseline vs Post-Implementation comparison  
-- **Net Impact Index (ANI)** = ΔFlow − ΔFriction  
-- Risk classification: **Green / Yellow / Red**  
+- Net Impact Index (ANI) = ΔFlow − ΔFriction  
+- Risk classification (Green / Yellow / Red)  
 - Executive-ready PDF report  
 """)
     st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
     st.markdown("#### Typical outcomes")
     st.markdown("""
-- AI improved throughput, **but** increased hidden rework  
-- AI reduced cycle time, **but** added approval layers  
-- AI lowered cost, **but** raised compliance risk exposure  
+- AI improved throughput, but increased hidden rework  
+- AI reduced cycle time, but added approval layers  
+- AI lowered cost, but raised compliance risks  
 """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -125,13 +115,11 @@ with c1:
 **48-hour performance review** using self-reported operational metrics.
 
 **Deliverables**
-- ANI score (ΔFlow − ΔFriction)
-- Risk classification (Green / Yellow / Red)
+- ANI score (ΔFlow − ΔFriction)  
+- Risk classification (Green / Yellow / Red)  
 - 6–8 page PDF report
 """)
-    st.markdown('<div class="small-note">Best for: teams that need an immediate answer for leadership.</div>', unsafe_allow_html=True)
-    st.write("")
-    # ✅ Stripe Payment Link
+    st.markdown('<div class="small-note">Best for teams needing an immediate leadership answer.</div>', unsafe_allow_html=True)
     st.link_button("Start Diagnostic — $999", QUICK_PAY_URL)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -142,13 +130,11 @@ with c2:
 **Full workflow mapping** to identify where AI created or shifted friction.
 
 **Deliverables**
-- Process map + bottleneck analysis
-- Latency breakdown & shadow labor detection
-- 15–25 page Governance Impact Report
+- Process map + bottleneck analysis  
+- Latency breakdown & shadow labor detection  
+- 15-25 page Governance Impact Report
 """)
-    st.markdown('<div class="small-note">Best for: organizations seeing mixed results after AI deployment.</div>', unsafe_allow_html=True)
-    st.write("")
-    # ✅ Stripe Payment Link
+    st.markdown('<div class="small-note">Best for teams seeing mixed results after AI deployment.</div>', unsafe_allow_html=True)
     st.link_button("Request Deep Audit — $4,999", DEEP_PAY_URL)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -164,9 +150,8 @@ with t1:
     st.markdown("### Method (simple)")
     st.markdown("""
 **ANI = ΔFlow − ΔFriction**
-
-- ΔFlow: time-to-complete, throughput, completion rate  
-- ΔFriction: rework, manual review, added steps, error correction  
+- ΔFlow: speed metrics  
+- ΔFriction: rework, manual review, added steps  
 """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -175,8 +160,8 @@ with t2:
     st.markdown("### What we don’t do")
     st.markdown("""
 - No hype decks  
-- No vague “AI transformation” claims  
-- No vendor marketing language  
+- No vague transformation claims  
+- No vendor marketing language
 """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -184,10 +169,10 @@ with t3:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown("### Who this is for")
     st.markdown("""
-- Public agencies modernizing services  
-- Healthcare / education operations teams  
-- Compliance-heavy organizations  
-- Any team under pressure to justify AI spend  
+Public agencies modernizing services  
+Healthcare or education ops teams  
+Compliance-heavy organizations  
+Teams under pressure to justify AI spend
 """)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -199,10 +184,7 @@ f1, f2 = st.columns([2, 1], gap="large")
 
 with f1:
     st.markdown("### Ready to measure real AI ROI?")
-    st.markdown("""
-Stop guessing.  
-Get a measurable performance shift summary — fast.
-""")
+    st.markdown("Stop guessing. Get a measurable performance shift summary — fast.")
 
 with f2:
     st.markdown('<div class="card">', unsafe_allow_html=True)
@@ -211,6 +193,6 @@ with f2:
 After payment, you will be redirected to the intake form to submit your baseline + post-AI metrics.  
 We’ll confirm scope and delivery timeline by email.
 """)
+    if CONTACT_FORM_URL:
+        st.link_button("Contact / General Inquiry", CONTACT_FORM_URL)
     st.markdown('</div>', unsafe_allow_html=True)
-
-
