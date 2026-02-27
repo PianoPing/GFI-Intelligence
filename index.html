@@ -1,607 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GFI Flow Intelligence</title>
-  <meta name="description" content="Governance Flow Intelligence — quantify structural friction after automation. Executive-grade diagnostics for CFO/COO, risk & compliance, and public-sector leadership.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GFI Flow Intelligence</title>
 
-  <style>
-    :root{
-      --bg:#0b1220;
-      --panel:#0f1b33;
-      --panel2:#0c1730;
-      --text:#e9eefc;
-      --muted:#a9b6d3;
-      --line:rgba(255,255,255,.12);
-      --brand:#3b82f6;
-      --brand2:#60a5fa;
-      --ok:#22c55e;
-      --warn:#f59e0b;
-      --shadow:0 18px 60px rgba(0,0,0,.45);
-      --radius:16px;
-      --radius2:22px;
-      --max:1160px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
-      background:
-        radial-gradient(1200px 700px at 20% 0%, rgba(59,130,246,.22), transparent 60%),
-        radial-gradient(1000px 650px at 90% 10%, rgba(96,165,250,.16), transparent 55%),
-        radial-gradient(900px 600px at 50% 100%, rgba(34,197,94,.10), transparent 60%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
-    a{color:inherit}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
-    .topbar{
-      position:sticky;top:0;z-index:50;
-      background:rgba(11,18,32,.72);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--line);
-    }
-    .topbar-inner{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 0;
-      gap:16px;
-    }
-    .brand{
-      display:flex;align-items:center;gap:12px;min-width:240px;
-      text-decoration:none;
-    }
-    .brand img{height:56px;width:auto;display:block}
-    .brand .name{
-      display:flex;flex-direction:column;gap:2px;
-    }
-    .brand .name b{font-size:16px;letter-spacing:.2px}
-    .brand .name span{font-size:12px;color:var(--muted)}
-    .nav{
-      display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      text-decoration:none;
-      font-size:13px;
-      color:var(--text);
-      transition:.18s ease;
-      white-space:nowrap;
-    }
-    .pill:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.22)}
-    .pill.primary{
-      background:linear-gradient(135deg, rgba(59,130,246,.95), rgba(96,165,250,.9));
-      border-color:rgba(255,255,255,.08);
-      color:#061024;
-      font-weight:700;
-    }
-    .pill.primary:hover{filter:brightness(1.03)}
-    .langswitch{
-      display:flex;align-items:center;gap:8px;
-      padding:6px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(255,255,255,.03);
-    }
-    .langbtn{
-      appearance:none;border:0;cursor:pointer;
-      padding:8px 10px;border-radius:999px;
-      background:transparent;color:var(--muted);
-      font-size:12px;font-weight:700;
-      letter-spacing:.2px;
-      transition:.16s ease;
-    }
-    .langbtn.active{background:rgba(255,255,255,.10);color:var(--text)}
-    .hero{
-      padding:56px 0 28px 0;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.35fr .65fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    .card{
-      background:linear-gradient(180deg, rgba(15,27,51,.92), rgba(12,23,48,.92));
-      border:1px solid var(--line);
-      border-radius:var(--radius2);
-      box-shadow:var(--shadow);
-    }
-    .hero-main{padding:26px 24px 24px 24px}
-    .kicker{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:12px;color:var(--muted);
-      border:1px solid var(--line);
-      padding:7px 10px;border-radius:999px;
-      background:rgba(255,255,255,.03);
-    }
-    .dot{width:7px;height:7px;border-radius:50%;background:var(--brand2);display:inline-block}
-    h1{
-      margin:14px 0 12px 0;
-      font-size:42px;
-      line-height:1.15;
-      letter-spacing:-.5px;
-    }
-    .sub{
-      margin:0 0 18px 0;
-      font-size:16px;
-      color:var(--muted);
-      max-width:62ch;
-    }
-    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 16px;border-radius:12px;
-      text-decoration:none;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      font-weight:700;
-      font-size:14px;
-      transition:.18s ease;
-    }
-    .btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.22)}
-    .btn.primary{
-      background:linear-gradient(135deg, rgba(59,130,246,.95), rgba(96,165,250,.9));
-      color:#061024;border-color:rgba(255,255,255,.08);
-    }
-    .btn.primary:hover{filter:brightness(1.03)}
-    .hero-side{padding:18px}
-    .mini{
-      padding:14px 14px;border-radius:14px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      margin-bottom:10px;
-    }
-    .mini b{display:block;font-size:13px;margin-bottom:6px}
-    .mini p{margin:0;font-size:13px;color:var(--muted)}
-    .section{padding:22px 0}
-    .grid3{
-      display:grid;gap:14px;
-      grid-template-columns:repeat(3,1fr);
-    }
-    .panel{padding:18px;border-radius:var(--radius);border:1px solid var(--line);background:rgba(255,255,255,.03)}
-    .panel h3{margin:0 0 8px 0;font-size:16px}
-    .panel ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
-    .panel li{margin:7px 0}
-    .anchorline{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      margin:18px 0 10px 0;
-    }
-    .anchorline h2{margin:0;font-size:20px;letter-spacing:-.2px}
-    .smallnote{font-size:13px;color:var(--muted)}
-    .pricing{
-      display:grid;gap:14px;
-      grid-template-columns:repeat(3,1fr);
-    }
-    .pricecard{padding:18px;border-radius:var(--radius2);border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02))}
-    .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.03)}
-    .tag .badge{width:8px;height:8px;border-radius:50%;background:var(--ok)}
-    .tag.warn .badge{background:var(--warn)}
-    .tag.blue .badge{background:var(--brand2)}
-    .price{
-      margin:12px 0 8px 0;
-      font-size:30px;font-weight:900;letter-spacing:-.6px;
-    }
-    .price small{font-size:13px;color:var(--muted);font-weight:700}
-    .desc{margin:0 0 12px 0;color:var(--muted);font-size:14px}
-    .pricecard ul{margin:0 0 14px 0;padding-left:18px;color:var(--muted);font-size:14px}
-    .pricecard li{margin:7px 0}
-    .foot{
-      padding:28px 0 40px 0;
-      border-top:1px solid var(--line);
-      margin-top:22px;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .langblock{display:none}
-    .langblock.active{display:block}
-    .split2{
-      display:grid;gap:14px;
-      grid-template-columns:1fr 1fr;
-      align-items:stretch;
-    }
-    .contactbox{
-      padding:18px;border-radius:var(--radius2);
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-    }
-    .contactbox b{display:block;margin-bottom:8px}
-    .contactbox a{color:var(--brand2);text-decoration:none;font-weight:800}
-    .contactbox a:hover{text-decoration:underline}
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr}
-      .grid3{grid-template-columns:1fr}
-      .pricing{grid-template-columns:1fr}
-      .split2{grid-template-columns:1fr}
-      .brand .name{display:none}
-      h1{font-size:34px}
-      .brand img{height:52px}
-    }
-  </style>
+<style>
+:root{
+--bg:#0b1220;
+--text:#e9eefc;
+--muted:#94a3b8;
+--line:rgba(255,255,255,.1);
+--brand:#3b82f6;
+}
+
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+background:var(--bg);
+color:var(--text);
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 40px;
+border-bottom:1px solid var(--line);
+}
+
+.logo img{height:56px}
+
+.lang{
+display:flex;
+gap:8px;
+}
+
+.lang button{
+background:none;
+border:1px solid var(--line);
+color:var(--muted);
+padding:6px 12px;
+border-radius:20px;
+cursor:pointer;
+font-size:12px;
+}
+
+.lang button.active{
+background:var(--brand);
+color:#fff;
+border:none;
+}
+
+main{
+max-width:900px;
+margin:0 auto;
+padding:100px 30px;
+text-align:center;
+}
+
+h1{
+font-size:40px;
+margin-bottom:20px;
+letter-spacing:-0.5px;
+}
+
+p{
+font-size:18px;
+color:var(--muted);
+max-width:650px;
+margin:0 auto 40px auto;
+}
+
+.btn{
+display:inline-block;
+padding:14px 36px;
+background:var(--brand);
+color:#fff;
+text-decoration:none;
+border-radius:8px;
+font-weight:600;
+}
+
+.btn:hover{opacity:.9}
+
+footer{
+margin-top:120px;
+text-align:center;
+color:var(--muted);
+font-size:14px;
+padding-bottom:40px;
+}
+</style>
 </head>
 
 <body>
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="wrap">
-      <div class="topbar-inner">
-        <a class="brand" href="#top" aria-label="GFI Flow Intelligence Home">
-          <img src="https://gfiintel.com/GFILOGO.png" alt="GFI Flow Intelligence Logo">
-          <div class="name">
-            <b>GFI Flow Intelligence</b>
-            <span>Executive-grade workflow friction diagnostics</span>
-          </div>
-        </a>
 
-        <nav class="nav" aria-label="Primary">
-          <div class="langswitch" role="tablist" aria-label="Language">
-            <button class="langbtn active" id="tab-en" data-lang="en" type="button">EN</button>
-            <button class="langbtn" id="tab-zh" data-lang="zh" type="button">中文</button>
-            <button class="langbtn" id="tab-es" data-lang="es" type="button">ES</button>
-          </div>
+<header>
+<div class="logo">
+<img src="https://gfiintel.com/GFILOGO.png">
+</div>
 
-          <a class="pill" href="#how" id="nav-how">How it works</a>
-          <a class="pill" href="#pricing" id="nav-pricing">Pricing</a>
-          <a class="pill" href="mailto:info@gfiintel.com" id="nav-contact">Email</a>
-          <a class="pill primary" href="https://gfi-intelligence.streamlit.app" id="nav-start">Launch Platform</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+<div class="lang">
+<button class="active" onclick="setLang('en')">EN</button>
+<button onclick="setLang('zh')">中文</button>
+<button onclick="setLang('es')">ES</button>
+</div>
+</header>
 
-  <main id="top">
-    <div class="wrap">
-      <!-- HERO -->
-      <section class="hero">
-        <div class="hero-grid">
-          <div class="card hero-main">
-            <div class="kicker"><span class="dot"></span><span id="kicker">For CFO/COO • Risk & Compliance • Public Agencies</span></div>
+<main>
 
-            <!-- EN -->
-            <div class="langblock active" data-lang="en">
-              <h1>Automation should speed execution — not create hidden friction.</h1>
-              <p class="sub">
-                GFI Flow Intelligence quantifies structural friction after automation and surfaces where process load,
-                review loops, and exceptions are silently slowing your organization.
-              </p>
-              <div class="cta-row">
-                <a class="btn primary" href="https://gfi-intelligence.streamlit.app">Launch Diagnostic</a>
-                <a class="btn" href="#pricing">View Pricing</a>
-              </div>
-            </div>
+<div id="en">
+<h1>Structural Friction After Automation</h1>
+<p>
+Automation should accelerate execution.  
+When it slows capital instead, something is structurally wrong.
+</p>
+<a href="https://gfi-intelligence.streamlit.app" class="btn">
+Enter Diagnostic Platform
+</a>
+</div>
 
-            <!-- ZH -->
-            <div class="langblock" data-lang="zh">
-              <h1>自動化應該加速執行，而不是製造看不見的摩擦。</h1>
-              <p class="sub">
-                GFI Flow Intelligence 用量化方式揭露：自動化後流程變慢的真正原因——
-                例外處理、覆核迴圈、流程負載與隱性重工。
-              </p>
-              <div class="cta-row">
-                <a class="btn primary" href="https://gfi-intelligence.streamlit.app">進入診斷平台</a>
-                <a class="btn" href="#pricing">查看價目</a>
-              </div>
-            </div>
+<div id="zh" style="display:none">
+<h1>自動化後的結構性摩擦</h1>
+<p>
+自動化應該讓流程更快。  
+如果反而拖慢資本流動，代表結構出了問題。
+</p>
+<a href="https://gfi-intelligence.streamlit.app" class="btn">
+進入診斷平台
+</a>
+</div>
 
-            <!-- ES -->
-            <div class="langblock" data-lang="es">
-              <h1>La automatización debe acelerar la ejecución — no crear fricción oculta.</h1>
-              <p class="sub">
-                GFI Flow Intelligence cuantifica la fricción estructural después de automatizar y revela dónde los bucles
-                de revisión, excepciones y carga de proceso están ralentizando su operación.
-              </p>
-              <div class="cta-row">
-                <a class="btn primary" href="https://gfi-intelligence.streamlit.app">Iniciar Diagnóstico</a>
-                <a class="btn" href="#pricing">Ver Precios</a>
-              </div>
-            </div>
-          </div>
+<div id="es" style="display:none">
+<h1>Fricción Estructural Tras la Automatización</h1>
+<p>
+La automatización debe acelerar la ejecución.  
+Si ralentiza el capital, existe un problema estructural.
+</p>
+<a href="https://gfi-intelligence.streamlit.app" class="btn">
+Iniciar Diagnóstico
+</a>
+</div>
 
-          <aside class="card hero-side">
-            <div class="mini">
-              <b id="mini1-title">What this is</b>
-              <p id="mini1-text">An executive-grade diagnostic entry point — fast, structured, and decision-focused.</p>
-            </div>
-            <div class="mini">
-              <b id="mini2-title">What you get</b>
-              <p id="mini2-text">Friction signals, risk flags, and a clear next-step path (self-serve or retainer).</p>
-            </div>
-            <div class="mini">
-              <b id="mini3-title">Who it’s for</b>
-              <p id="mini3-text">Leadership teams who need proof: CFO/COO, risk, audit, compliance, and ops owners.</p>
-            </div>
-          </aside>
-        </div>
-      </section>
+</main>
 
-      <!-- VALUE -->
-      <section class="section" id="how">
-        <div class="anchorline">
-          <h2 id="how-title">How it works</h2>
-          <div class="smallnote" id="how-note">Clear. Executive. Actionable.</div>
-        </div>
+<footer>
+© 2026 GFI Flow Intelligence · Boston
+</footer>
 
-        <div class="grid3">
-          <div class="panel">
-            <h3 id="how1-title">1) Run the diagnostic</h3>
-            <ul id="how1-list">
-              <li>Use the platform to capture baseline signals and friction patterns.</li>
-              <li>No long onboarding. No noise.</li>
-            </ul>
-          </div>
+<script>
+function setLang(lang){
+document.getElementById('en').style.display='none';
+document.getElementById('zh').style.display='none';
+document.getElementById('es').style.display='none';
 
-          <div class="panel">
-            <h3 id="how2-title">2) Get a structured output</h3>
-            <ul id="how2-list">
-              <li>Friction flags, failure modes, and priority areas.</li>
-              <li>Decision-ready summary for leadership.</li>
-            </ul>
-          </div>
+document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('active'));
 
-          <div class="panel">
-            <h3 id="how3-title">3) Choose your engagement</h3>
-            <ul id="how3-list">
-              <li>Self-serve quick scan or deep scan retainer.</li>
-              <li>Upgrade only when you need implementation support.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+if(lang==='en'){document.getElementById('en').style.display='block';}
+if(lang==='zh'){document.getElementById('zh').style.display='block';}
+if(lang==='es'){document.getElementById('es').style.display='block';}
 
-      <!-- PRICING -->
-      <section class="section" id="pricing">
-        <div class="anchorline">
-          <h2 id="pricing-title">Pricing</h2>
-          <div class="smallnote" id="pricing-note">Pay once • Get access immediately</div>
-        </div>
+event.target.classList.add('active');
+}
+</script>
 
-        <div class="pricing">
-          <div class="pricecard">
-            <div class="tag blue"><span class="badge"></span><span id="p1-tag">Self-Serve</span></div>
-            <div class="price">$999 <small id="p1-small">Quick Scan</small></div>
-            <p class="desc" id="p1-desc">Fast entry point to quantify friction signals and decide next steps.</p>
-            <ul id="p1-list">
-              <li>Platform access + structured snapshot</li>
-              <li>Executive-ready friction signal output</li>
-              <li>Clear upgrade path if needed</li>
-            </ul>
-            <a class="btn primary" href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" id="p1-buy">Buy $999</a>
-            <div class="smallnote" style="margin-top:10px">
-              <span id="p1-paid">Already paid?</span>
-              <a href="https://gfiintel.com/paid-999" style="color:var(--brand2);text-decoration:none;font-weight:800">Access page</a>
-            </div>
-          </div>
-
-          <div class="pricecard">
-            <div class="tag warn"><span class="badge"></span><span id="p2-tag">Retainer</span></div>
-            <div class="price">$4,999 <small id="p2-small">Deep Scan Deposit</small></div>
-            <p class="desc" id="p2-desc">For organizations that need a deeper diagnostic and a real execution plan.</p>
-            <ul id="p2-list">
-              <li>Deep scan kickoff deposit</li>
-              <li>Prioritized workflow diagnosis scope</li>
-              <li>Leadership briefing + remediation path</li>
-            </ul>
-            <a class="btn primary" href="https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01" id="p2-buy">Pay $4,999</a>
-            <div class="smallnote" style="margin-top:10px">
-              <span id="p2-paid">Already paid?</span>
-              <a href="https://gfiintel.com/paid-4999" style="color:var(--brand2);text-decoration:none;font-weight:800">Access page</a>
-            </div>
-          </div>
-
-          <div class="pricecard">
-            <div class="tag"><span class="badge"></span><span id="p3-tag">Enterprise</span></div>
-            <div class="price">$9,999 <small id="p3-small">Implementation Track</small></div>
-            <p class="desc" id="p3-desc">For high-stakes operations where friction is costing real capital.</p>
-            <ul id="p3-list">
-              <li>Implementation track deposit</li>
-              <li>Risk-control aligned execution roadmap</li>
-              <li>Governance-grade validation outputs</li>
-            </ul>
-            <a class="btn primary" href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" id="p3-buy">Pay $9,999</a>
-            <div class="smallnote" style="margin-top:10px">
-              <span id="p3-paid">Already paid?</span>
-              <a href="https://gfiintel.com/paid-9999" style="color:var(--brand2);text-decoration:none;font-weight:800">Access page</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="section" id="contact">
-        <div class="anchorline">
-          <h2 id="contact-title">Contact</h2>
-          <div class="smallnote" id="contact-note">Executive-only. Direct channel.</div>
-        </div>
-
-        <div class="split2">
-          <div class="contactbox">
-            <b id="c1-title">Email</b>
-            <div style="font-size:15px">
-              <a href="mailto:info@gfiintel.com">info@gfiintel.com</a>
-            </div>
-            <div class="smallnote" style="margin-top:10px" id="c1-note">
-              For CFO/COO, risk/compliance, audit, and public-sector leadership inquiries.
-            </div>
-          </div>
-
-          <div class="contactbox">
-            <b id="c2-title">Launch now</b>
-            <div class="smallnote" id="c2-note" style="margin-bottom:10px">
-              If you want proof first, run the diagnostic platform.
-            </div>
-            <a class="btn primary" href="https://gfi-intelligence.streamlit.app" style="width:100%">Launch Platform</a>
-          </div>
-        </div>
-      </section>
-
-      <footer class="foot">
-        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center">
-          <div>© 2026 GFI Flow Intelligence • Boston, Massachusetts</div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <a class="pill" href="#top">Top</a>
-            <a class="pill" href="#pricing">Pricing</a>
-            <a class="pill" href="mailto:info@gfiintel.com">Email</a>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </main>
-
-  <script>
-    // Language pack (kept minimal, no framework)
-    const L = {
-      en: {
-        navHow: "How it works", navPricing:"Pricing", navContact:"Email", navStart:"Launch Platform",
-        kicker:"For CFO/COO • Risk & Compliance • Public Agencies",
-        mini1t:"What this is", mini1:"An executive-grade diagnostic entry point — fast, structured, and decision-focused.",
-        mini2t:"What you get", mini2:"Friction signals, risk flags, and a clear next-step path (self-serve or retainer).",
-        mini3t:"Who it’s for", mini3:"Leadership teams who need proof: CFO/COO, risk, audit, compliance, and ops owners.",
-        howTitle:"How it works", howNote:"Clear. Executive. Actionable.",
-        h1t:"1) Run the diagnostic", h1l:["Use the platform to capture baseline signals and friction patterns.","No long onboarding. No noise."],
-        h2t:"2) Get a structured output", h2l:["Friction flags, failure modes, and priority areas.","Decision-ready summary for leadership."],
-        h3t:"3) Choose your engagement", h3l:["Self-serve quick scan or deep scan retainer.","Upgrade only when you need implementation support."],
-        pricingTitle:"Pricing", pricingNote:"Pay once • Get access immediately",
-        p1tag:"Self-Serve", p1small:"Quick Scan", p1desc:"Fast entry point to quantify friction signals and decide next steps",
-        p1l:["Platform access + structured snapshot","Executive-ready friction signal output","Clear upgrade path if needed"], p1buy:"Buy $999", pPaid:"Already paid?",
-        p2tag:"Retainer", p2small:"Deep Scan Deposit", p2desc:"For organizations that need a deeper diagnostic and a real execution plan",
-        p2l:["Deep scan kickoff deposit","Prioritized workflow diagnosis scope","Leadership briefing + remediation path"], p2buy:"Pay $4,999",
-        p3tag:"Enterprise", p3small:"Implementation Track", p3desc:"For high-stakes operations where friction is costing real capital",
-        p3l:["Implementation track deposit","Risk-control aligned execution roadmap","Governance-grade validation outputs"], p3buy:"Pay $9,999",
-        contactTitle:"Contact", contactNote:"Executive-only. Direct channel.",
-        c1t:"Email", c1note:"For CFO/COO, risk/compliance, audit, and public-sector leadership inquiries.",
-        c2t:"Launch now", c2note:"If you want proof first, run the diagnostic platform."
-      },
-      zh: {
-        navHow:"運作方式", navPricing:"價目", navContact:"Email", navStart:"進入平台",
-        kicker:"適用：CFO/COO • 風險/合規 • 政府機關",
-        mini1t:"這是什麼", mini1:"高管級入口診斷：快速、有結構、以決策為中心。",
-        mini2t:"你會得到什麼", mini2:"摩擦訊號、風險旗標，以及下一步路徑（自助或押金深掃）。",
-        mini3t:"適用對象", mini3:"需要『可驗證證據』的領導團隊：CFO/COO、風險、內控、稽核、營運主管。",
-        howTitle:"運作方式", howNote:"清楚 • 專業 • 可執行",
-        h1t:"1）進入診斷平台", h1l:["用平台輸入基線訊號與摩擦型態。","不搞長 onboarding，不塞噪音。"],
-        h2t:"2）拿到結構化輸出", h2l:["摩擦旗標、失效模式、優先區。","可直接給主管決策的摘要。"],
-        h3t:"3）選擇服務模式", h3l:["$999 自助快掃 或 $4,999 深掃押金。","需要落地支援再升級。"],
-        pricingTitle:"價目", pricingNote:"一次付款 • 立即取得入口",
-        p1tag:"自助", p1small:"$999 快掃", p1desc:"快速量化摩擦訊號，讓你知道該不該投入深掃",
-        p1l:["平台入口 + 結構化快照","高管可讀的摩擦訊號輸出","需要再升級即可"], p1buy:"付款 $999", pPaid:"已付款？",
-        p2tag:"押金", p2small:"$4,999 深掃押金", p2desc:"給需要更深層診斷與真正執行方案的組織",
-        p2l:["深掃啟動押金","定義診斷範圍與優先流程","高管 briefing + 修正路徑"], p2buy:"付款 $4,999",
-        p3tag:"企業級", p3small:"$9,999 落地軌道", p3desc:"高風險/高成本摩擦場景：需要真正的風控式落地",
-        p3l:["落地軌道押金","風險控制對齊的執行路線圖","治理級驗證輸出"], p3buy:"付款 $9,999",
-        contactTitle:"聯絡", contactNote:"高管直通 • 不走客服機器人",
-        c1t:"Email", c1note:"CFO/COO、風險/合規、稽核、政府機關與營運主管的合作洽詢。",
-        c2t:"立刻開始", c2note:"想先看證據，就先跑平台診斷。"
-      },
-      es: {
-        navHow:"Cómo funciona", navPricing:"Precios", navContact:"Email", navStart:"Iniciar Plataforma",
-        kicker:"Para CFO/COO • Riesgo/Compliance • Sector Público",
-        mini1t:"Qué es", mini1:"Entrada de diagnóstico para ejecutivos: rápida, estructurada y orientada a decisiones.",
-        mini2t:"Qué obtiene", mini2:"Señales de fricción, alertas de riesgo y un siguiente paso claro (autoservicio o retainer).",
-        mini3t:"Para quién", mini3:"Equipos directivos que necesitan evidencia: CFO/COO, riesgo, auditoría, compliance y operaciones.",
-        howTitle:"Cómo funciona", howNote:"Claro. Ejecutivo. Accionable.",
-        h1t:"1) Ejecute el diagnóstico", h1l:["Use la plataforma para capturar señales base y patrones de fricción.","Sin onboarding largo. Sin ruido."],
-        h2t:"2) Obtenga una salida estructurada", h2l:["Alertas de fricción, modos de falla y áreas prioritarias.","Resumen listo para dirección."],
-        h3t:"3) Elija el modelo", h3l:["Autoservicio o depósito para diagnóstico profundo.","Escale solo si necesita implementación."],
-        pricingTitle:"Precios", pricingNote:"Pago único • Acceso inmediato",
-        p1tag:"Autoservicio", p1small:"Quick Scan", p1desc:"Entrada rápida para cuantificar fricción y decidir próximos pasos",
-        p1l:["Acceso a la plataforma + snapshot","Salida ejecutiva de señales de fricción","Ruta clara de upgrade"], p1buy:"Pagar $999", pPaid:"¿Ya pagó?",
-        p2tag:"Retainer", p2small:"Depósito Deep Scan", p2desc:"Para organizaciones que requieren diagnóstico profundo y plan de ejecución",
-        p2l:["Depósito de inicio","Alcance priorizado del diagnóstico","Briefing ejecutivo + ruta de remediación"], p2buy:"Pagar $4,999",
-        p3tag:"Enterprise", p3small:"Implementación", p3desc:"Para operaciones críticas donde la fricción está costando capital real",
-        p3l:["Depósito de implementación","Hoja de ruta alineada a control de riesgos","Salidas con validación tipo gobernanza"], p3buy:"Pagar $9,999",
-        contactTitle:"Contacto", contactNote:"Canal directo para ejecutivos.",
-        c1t:"Email", c1note:"Consultas de CFO/COO, riesgo/compliance, auditoría y sector público.",
-        c2t:"Inicie ahora", c2note:"Si quiere evidencia primero, ejecute la plataforma."
-      }
-    };
-
-    function setLang(lang){
-      // tabs
-      document.querySelectorAll('.langbtn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-      // hero text blocks
-      document.querySelectorAll('.langblock').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-
-      // nav labels
-      document.getElementById('nav-how').textContent = L[lang].navHow;
-      document.getElementById('nav-pricing').textContent = L[lang].navPricing;
-      document.getElementById('nav-contact').textContent = L[lang].navContact;
-      document.getElementById('nav-start').textContent = L[lang].navStart;
-
-      // small cards
-      document.getElementById('kicker').textContent = L[lang].kicker;
-      document.getElementById('mini1-title').textContent = L[lang].mini1t;
-      document.getElementById('mini1-text').textContent = L[lang].mini1;
-      document.getElementById('mini2-title').textContent = L[lang].mini2t;
-      document.getElementById('mini2-text').textContent = L[lang].mini2;
-      document.getElementById('mini3-title').textContent = L[lang].mini3t;
-      document.getElementById('mini3-text').textContent = L[lang].mini3;
-
-      // how
-      document.getElementById('how-title').textContent = L[lang].howTitle;
-      document.getElementById('how-note').textContent = L[lang].howNote;
-      document.getElementById('how1-title').textContent = L[lang].h1t;
-      document.getElementById('how2-title').textContent = L[lang].h2t;
-      document.getElementById('how3-title').textContent = L[lang].h3t;
-
-      document.getElementById('how1-list').innerHTML = `<li>${L[lang].h1l[0]}</li><li>${L[lang].h1l[1]}</li>`;
-      document.getElementById('how2-list').innerHTML = `<li>${L[lang].h2l[0]}</li><li>${L[lang].h2l[1]}</li>`;
-      document.getElementById('how3-list').innerHTML = `<li>${L[lang].h3l[0]}</li><li>${L[lang].h3l[1]}</li>`;
-
-      // pricing
-      document.getElementById('pricing-title').textContent = L[lang].pricingTitle;
-      document.getElementById('pricing-note').textContent = L[lang].pricingNote;
-
-      document.getElementById('p1-tag').textContent = L[lang].p1tag;
-      document.getElementById('p1-small').textContent = L[lang].p1small;
-      document.getElementById('p1-desc').textContent = L[lang].p1desc;
-      document.getElementById('p1-list').innerHTML = `<li>${L[lang].p1l[0]}</li><li>${L[lang].p1l[1]}</li><li>${L[lang].p1l[2]}</li>`;
-      document.getElementById('p1-buy').textContent = L[lang].p1buy;
-      document.getElementById('p1-paid').textContent = L[lang].pPaid;
-
-      document.getElementById('p2-tag').textContent = L[lang].p2tag;
-      document.getElementById('p2-small').textContent = L[lang].p2small;
-      document.getElementById('p2-desc').textContent = L[lang].p2desc;
-      document.getElementById('p2-list').innerHTML = `<li>${L[lang].p2l[0]}</li><li>${L[lang].p2l[1]}</li><li>${L[lang].p2l[2]}</li>`;
-      document.getElementById('p2-buy').textContent = L[lang].p2buy;
-      document.getElementById('p2-paid').textContent = L[lang].pPaid;
-
-      document.getElementById('p3-tag').textContent = L[lang].p3tag;
-      document.getElementById('p3-small').textContent = L[lang].p3small;
-      document.getElementById('p3-desc').textContent = L[lang].p3desc;
-      document.getElementById('p3-list').innerHTML = `<li>${L[lang].p3l[0]}</li><li>${L[lang].p3l[1]}</li><li>${L[lang].p3l[2]}</li>`;
-      document.getElementById('p3-buy').textContent = L[lang].p3buy;
-      document.getElementById('p3-paid').textContent = L[lang].pPaid;
-
-      // contact
-      document.getElementById('contact-title').textContent = L[lang].contactTitle;
-      document.getElementById('contact-note').textContent = L[lang].contactNote;
-      document.getElementById('c1-title').textContent = L[lang].c1t;
-      document.getElementById('c1-note').textContent = L[lang].c1note;
-      document.getElementById('c2-title').textContent = L[lang].c2t;
-      document.getElementById('c2-note').textContent = L[lang].c2note;
-
-      // persist
-      try{ localStorage.setItem('gfi_lang', lang); }catch(e){}
-    }
-
-    document.querySelectorAll('.langbtn').forEach(btn=>{
-      btn.addEventListener('click', ()=>setLang(btn.dataset.lang));
-    });
-
-    // init
-    let saved = "en";
-    try{
-      saved = localStorage.getItem('gfi_lang') || "en";
-    }catch(e){}
-    if(!L[saved]) saved = "en";
-    setLang(saved);
-  </script>
 </body>
 </html>
