@@ -1,0 +1,15 @@
+[theme]
+base = "dark"
+
+# 背景 — 和首頁完全一致
+backgroundColor = "#141d2e"
+secondaryBackgroundColor = "#1c2740"
+
+# 文字
+textColor = "#edf0f8"
+
+# 強調色 — 首頁的螢光黃綠
+primaryColor = "#c8f542"
+
+# 字體
+font = "sans serif"
