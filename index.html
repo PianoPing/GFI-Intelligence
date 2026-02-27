@@ -388,6 +388,11 @@ footer a:hover { color: var(--text); }
 </head>
 <body>
 
+<!-- ✅ ONE SOURCE OF TRUTH: $999 PAY LINK -->
+<script>
+  const PAY_999 = "https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00";
+</script>
+
 <header>
   <a href="index.html" class="logo"><img src="GFILOGO.png" alt="GFI Flow Intelligence"></a>
   <nav>
@@ -400,7 +405,9 @@ footer a:hover { color: var(--text); }
       <button class="lb-btn"     onclick="setLang('tw',this)">繁</button>
       <button class="lb-btn"     onclick="setLang('cn',this)">简</button>
     </div>
-    <a href="#contact" class="nav-cta">Start Verification</a>
+
+    <!-- ✅ NAV CTA now goes to $999 checkout -->
+    <a href="#" class="nav-cta" onclick="goPay999(event)">Start Verification</a>
   </nav>
   <button class="ham" id="ham" aria-label="Menu" onclick="toggleDrawer()">
     <span></span><span></span><span></span>
@@ -417,7 +424,9 @@ footer a:hover { color: var(--text); }
     <button class="lb-btn"    onclick="setLang('tw',this)">繁</button>
     <button class="lb-btn"    onclick="setLang('cn',this)">简</button>
   </div>
-  <a href="#contact" class="drawer-cta" onclick="closeDrawer()">Start Verification →</a>
+
+  <!-- ✅ Drawer CTA now goes to $999 checkout -->
+  <a href="#" class="drawer-cta" onclick="goPay999(event)">Start Verification →</a>
 </div>
 
 <!-- ═══ ENGLISH ═══ -->
@@ -429,7 +438,8 @@ footer a:hover { color: var(--text); }
     <h1>Does your transformation<br><em>actually</em> improve<br>capital efficiency?</h1>
     <p class="hero-sub">GL independently verifies whether organizational change increases or decreases capital velocity — before and after transformation.</p>
     <div class="hero-btns">
-      <a href="https://gfi-intelligence.streamlit.app" class="btn-solid" target="_blank">Enter Verification Platform →</a>
+      <!-- ✅ HERO CTA now goes to $999 checkout -->
+      <a href="#" class="btn-solid" onclick="goPay999(event)">Start Verification – $999 →</a>
       <a href="methodology.html" class="btn-ghost">View Methodology</a>
     </div>
     <div class="hero-stats">
@@ -527,6 +537,7 @@ footer a:hover { color: var(--text); }
         <div class="pc-amt"><span class="pc-cur">$</span>999</div>
         <p class="pc-desc">Baseline GL assessment. Identify friction before committing to transformation.</p>
         <ul class="pc-feats"><li>12-question GL diagnostic</li><li>Friction source identification</li><li>GL score + risk classification</li><li>12-page PDF · 48hr delivery</li></ul>
+        <!-- ✅ stays $999 -->
         <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn" target="_blank">Begin Assessment →</a>
       </div>
       <div class="pc feat">
@@ -568,7 +579,8 @@ footer a:hover { color: var(--text); }
     <p class="slead" style="margin:0 auto;text-align:center">For enterprise scoping, partnership inquiries, or academic collaboration.</p>
     <div class="contact-links" style="justify-content:center;margin-top:36px">
       <a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a>
-      <a href="https://gfi-intelligence.streamlit.app" class="cl" target="_blank">⟶ Verification Platform</a>
+      <!-- ✅ removed free platform access -->
+      <a href="#" class="cl" onclick="goPay999(event)">⟶ Start Verification – $999</a>
       <a href="methodology.html" class="cl">⊞ Full Methodology</a>
     </div>
   </div>
@@ -584,7 +596,8 @@ footer a:hover { color: var(--text); }
     <h1>您的轉型<br><em>真的</em>提升了<br>資本效率嗎？</h1>
     <p class="hero-sub">GL 獨立驗證組織變革是否提升或降低資本速度——轉型前後皆可量化。</p>
     <div class="hero-btns">
-      <a href="https://gfi-intelligence.streamlit.app" class="btn-solid" target="_blank">進入驗證平台 →</a>
+      <!-- ✅ HERO CTA now goes to $999 checkout -->
+      <a href="#" class="btn-solid" onclick="goPay999(event)">開始驗證 – $999 →</a>
       <a href="methodology.html" class="btn-ghost">查看方法論</a>
     </div>
     <div class="hero-stats">
@@ -655,7 +668,8 @@ footer a:hover { color: var(--text); }
   <p class="slead" style="margin:0 auto;text-align:center">企業範圍評估、合作夥伴諮詢或學術合作。</p>
   <div class="contact-links" style="justify-content:center;margin-top:36px">
     <a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a>
-    <a href="https://gfi-intelligence.streamlit.app" class="cl" target="_blank">⟶ 驗證平台</a>
+    <!-- ✅ removed free platform access -->
+    <a href="#" class="cl" onclick="goPay999(event)">⟶ 開始驗證 – $999</a>
     <a href="methodology.html" class="cl">⊞ 完整方法論</a>
   </div>
 </div></section>
@@ -670,7 +684,8 @@ footer a:hover { color: var(--text); }
     <h1>您的转型<br><em>真的</em>提升了<br>资本效率吗？</h1>
     <p class="hero-sub">GL 独立验证组织变革是否提升或降低资本速度——转型前后皆可量化。</p>
     <div class="hero-btns">
-      <a href="https://gfi-intelligence.streamlit.app" class="btn-solid" target="_blank">进入验证平台 →</a>
+      <!-- ✅ HERO CTA now goes to $999 checkout -->
+      <a href="#" class="btn-solid" onclick="goPay999(event)">开始验证 – $999 →</a>
       <a href="methodology.html" class="btn-ghost">查看方法论</a>
     </div>
     <div class="hero-stats">
@@ -741,7 +756,8 @@ footer a:hover { color: var(--text); }
   <p class="slead" style="margin:0 auto;text-align:center">企业范围评估、合作伙伴咨询或学术合作。</p>
   <div class="contact-links" style="justify-content:center;margin-top:36px">
     <a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a>
-    <a href="https://gfi-intelligence.streamlit.app" class="cl" target="_blank">⟶ 验证平台</a>
+    <!-- ✅ removed free platform access -->
+    <a href="#" class="cl" onclick="goPay999(event)">⟶ 开始验证 – $999</a>
     <a href="methodology.html" class="cl">⊞ 完整方法论</a>
   </div>
 </div></section>
@@ -756,6 +772,11 @@ footer a:hover { color: var(--text); }
 </footer>
 
 <script>
+function goPay999(e){
+  if(e) e.preventDefault();
+  window.open(PAY_999, "_blank", "noopener,noreferrer");
+}
+
 function setLang(lang, btn) {
   document.querySelectorAll('.lb').forEach(el => el.classList.remove('on'));
   document.querySelector('.lb[data-lang="' + lang + '"]').classList.add('on');
