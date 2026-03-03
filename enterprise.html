@@ -251,6 +251,7 @@ footer a:hover{color:var(--text)}
     <a href="#method"     onclick="navTo('method',event)">Method</a>
     <a href="#pricing"    onclick="navTo('pricing',event)">Pricing</a>
     <a href="about.html">Founder</a>
+    <a href="ghost-gdp.html">Ghost GDP</a>
     <div class="lang-grp">
       <button class="lb-btn on"  onclick="setLang('en',this)">EN</button>
       <button class="lb-btn"     onclick="setLang('tw',this)">繁</button>
@@ -560,6 +561,7 @@ footer a:hover{color:var(--text)}
     <h2 class="stitle">Intellectual evolution.</h2>
     <p class="slead">The thinking behind GL — from framework development to international validation.</p>
     <div class="pub-list reveal">
+      <div class="pub-item"><span class="pub-date">Mar 2026</span><a href="https://ssrn.com/abstract=6050695" target="_blank" rel="noopener" class="pub-t">The Last Poverty Solution: A Global Commons Funding System for Universal Essential Access</a><span class="pub-tag" style="background:rgba(77,163,255,.1);color:var(--blue)">SSRN Published</span></div>
       <div class="pub-item"><span class="pub-date">Feb 2026</span><a href="#method" class="pub-t">GL Method: Nine International Case Studies — Concept Validation of the Governance Friction Index</a><span class="pub-tag">Method</span></div>
       <div class="pub-item"><span class="pub-date">Jan 2026</span><a href="#" class="pub-t">Capital Efficiency Verification as an Independent Analytical Category</a><span class="pub-tag">Framework</span></div>
       <div class="pub-item"><span class="pub-date">Nov 2025</span><a href="#" class="pub-t">Why Automation Success Does Not Guarantee Efficiency Gain</a><span class="pub-tag">Analysis</span></div>
@@ -878,31 +880,33 @@ function calcResult() {
 
   scoreEl.textContent = glRounded;
 
+  // Ghost GDP %: friction absorbing intended value
+  // When GL=1, friction and value are in balance. Below 1, friction dominates.
+  const ghostPct = gl >= 1 ? Math.round((1 - (1/gl)) * 0) : Math.round((1 - gl) * 100);
+  const frictionPct = Math.min(Math.round((pd * cf) / ((fs * vn) + (pd * cf)) * 100), 99);
+
+  // Ghost GDP display element
+  let ghostEl = document.getElementById('qs-ghost');
+  if (!ghostEl) {
+    ghostEl = document.createElement('div');
+    ghostEl.id = 'qs-ghost';
+    ghostEl.style.cssText = 'font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--dim);margin-bottom:20px;padding:10px 16px;border:1px solid var(--border);border-radius:6px;display:inline-block';
+    verdictEl.parentNode.insertBefore(ghostEl, verdictEl.nextSibling);
+  }
+
   if (gl >= 1.5) {
     scoreEl.className = 'qs-gl-display hi';
     verdictEl.textContent = 'Your process is structurally sound.';
+    ghostEl.innerHTML = 'Structural friction absorbing approx. <strong style="color:var(--accent)">' + frictionPct + '%</strong> of process capacity — within acceptable range.';
     findingEl.textContent = 'A GL above 1.5 indicates that your automation investment is delivering real efficiency. Flow is high relative to friction. A full diagnosis can confirm whether this holds across all process layers or whether specific sub-processes are pulling the score down.';
   } else if (gl >= 0.5) {
     scoreEl.className = 'qs-gl-display mid';
     verdictEl.textContent = 'Warning: your denominator is accumulating.';
-    findingEl.textContent = 'A GL between 0.5 and 1.5 signals that friction is absorbing a significant share of your automation investment. The process is functioning — but not efficiently. Rework, exceptions, and manual intervention are costing more than they appear on any single report. A full GL diagnosis identifies exactly where the denominator is inflating.';
+    ghostEl.innerHTML = 'Structural friction absorbing approx. <strong style="color:#ffb347">' + frictionPct + '%</strong> of process capacity — value is leaking.';
+    findingEl.textContent = 'A GL between 0.5 and 1.5 signals that friction is absorbing a significant share of your automation investment. The process is functioning — but not efficiently. Rework, exceptions, and manual intervention are costing more than they appear on any single report. GL measures what your P&L does not: the denominator cost that never shows up as a line item.';
   } else {
     scoreEl.className = 'qs-gl-display lo';
     verdictEl.textContent = 'Your automation may be accelerating errors, not eliminating them.';
-    findingEl.textContent = 'A GL below 0.5 means your denominator — friction, pain duration, and cognitive load — is outpacing your numerator. This is the pattern seen when automation is applied to a misaligned process: it produces errors faster, not fewer. A full GL diagnosis maps the exact friction sources and quantifies the cost of leaving them unaddressed.';
+    ghostEl.innerHTML = 'Structural friction absorbing approx. <strong style="color:#ff6b6b">' + frictionPct + '%</strong> of process capacity — this is Ghost GDP territory.';
+    findingEl.textContent = 'A GL below 0.5 means your denominator is outpacing your numerator. Rework, corrections, and re-processing get counted as operational output — but produce no real value. This is how Ghost GDP forms inside an organization: activity without delivery. Automation applied to a misaligned process accelerates this cycle rather than breaking it. A full GL diagnosis maps where friction is inflating your denominator and what it is costing you per quarter.';
   }
-
-  document.querySelectorAll('.qs-step').forEach(s => s.classList.remove('active'));
-  const result = document.getElementById('qs-result');
-  result.classList.add('show');
-}
-function resetScan() {
-  answers.fill(null);
-  document.getElementById('qs-result').classList.remove('show');
-  document.querySelectorAll('.qs-opt').forEach(b => b.classList.remove('selected'));
-  document.querySelectorAll('.qs-btn.primary').forEach(b => { if (b.id && b.id.startsWith('next-')) b.disabled = true; });
-  nextStep(0);
-}
-</script>
-</body>
-</html>
