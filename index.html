@@ -61,6 +61,11 @@ main{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:c
 .gate-card.priv{background:rgba(77,163,255,.04);border:1px solid rgba(77,163,255,.2)}
 .gate-card.priv::before{background:rgba(77,163,255,.04)}
 .gate-card.priv:hover{border-color:rgba(77,163,255,.45);background:rgba(77,163,255,.07)}
+.gate-card.ghost{background:rgba(255,107,107,.04);border:1px solid rgba(255,107,107,.2);grid-column:1/-1}
+.gate-card.ghost::before{background:rgba(255,107,107,.04)}
+.gate-card.ghost:hover{border-color:rgba(255,107,107,.45);background:rgba(255,107,107,.07)}
+.gate-card.ghost .gc-sector{color:#ff7070}
+.gate-card.ghost .gc-cta{color:#ff7070}
 
 .gc-sector{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px}
 .gate-card.gov .gc-sector{color:var(--accent)}
@@ -140,6 +145,17 @@ main{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:c
       </ul>
       <div class="gc-cta">Enter <span class="gc-cta-arrow">→</span></div>
     </a>
+
+    <a href="ghost-gdp.html" class="gate-card ghost">
+      <div class="gc-sector">Ghost GDP · Free Calculator</div>
+      <div class="gc-title">How much of your process output is friction in disguise?</div>
+      <ul class="gc-items">
+        <li>Rework, corrections, and waiting are counted as output — but deliver nothing</li>
+        <li>GL measures the ratio of real value delivered to structural friction absorbed</li>
+        <li>Enter four numbers. Get your Ghost GDP % instantly.</li>
+      </ul>
+      <div class="gc-cta">Calculate now <span class="gc-cta-arrow">→</span></div>
+    </a>
   </div>
 </main>
 
@@ -181,13 +197,24 @@ main{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:c
       </ul>
       <div class="gc-cta">進入 <span class="gc-cta-arrow">→</span></div>
     </a>
+
+    <a href="ghost-gdp.html" class="gate-card ghost">
+      <div class="gc-sector">Ghost GDP · Free Calculator</div>
+      <div class="gc-title">How much of your process output is friction in disguise?</div>
+      <ul class="gc-items">
+        <li>Rework, corrections, and waiting are counted as output — but deliver nothing</li>
+        <li>GL measures the ratio of real value delivered to structural friction absorbed</li>
+        <li>Enter four numbers. Get your Ghost GDP % instantly.</li>
+      </ul>
+      <div class="gc-cta">Calculate now <span class="gc-cta-arrow">→</span></div>
+    </a>
   </div>
 </main>
 
 <div class="gate-footer">
   © 2026 GFI Flow Intelligence · 波士頓 &nbsp;·&nbsp;
   <a href="about.html">關於創辦人</a> &nbsp;·&nbsp;
-  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+  <a href="/cdn-cgi/l/email-protection#a7c0c1cee7c0c1cecec9d3c2cb89c4c8ca"><span class="__cf_email__" data-cfemail="91f6f7f8d1f6f7f8f8ffe5f4fdbff2fefc">[email&#160;protected]</span></a>
 </div>
 </div><!-- /tw -->
 
@@ -222,24 +249,25 @@ main{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:c
       </ul>
       <div class="gc-cta">进入 <span class="gc-cta-arrow">→</span></div>
     </a>
+
+    <a href="ghost-gdp.html" class="gate-card ghost">
+      <div class="gc-sector">Ghost GDP · Free Calculator</div>
+      <div class="gc-title">How much of your process output is friction in disguise?</div>
+      <ul class="gc-items">
+        <li>Rework, corrections, and waiting are counted as output — but deliver nothing</li>
+        <li>GL measures the ratio of real value delivered to structural friction absorbed</li>
+        <li>Enter four numbers. Get your Ghost GDP % instantly.</li>
+      </ul>
+      <div class="gc-cta">Calculate now <span class="gc-cta-arrow">→</span></div>
+    </a>
   </div>
 </main>
 
 <div class="gate-footer">
   © 2026 GFI Flow Intelligence · 波士顿 &nbsp;·&nbsp;
   <a href="about.html">关于创始人</a> &nbsp;·&nbsp;
-  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+  <a href="/cdn-cgi/l/email-protection#adcacbc4edcacbc4c4c3d9c8c183cec2c0"><span class="__cf_email__" data-cfemail="e88f8e81a88f8e8181869c8d84c68b8785">[email&#160;protected]</span></a>
 </div>
 </div><!-- /cn -->
 
-<script>
-function setLang(lang,btn){
-  document.querySelectorAll('.lb').forEach(el=>el.classList.remove('on'));
-  document.querySelectorAll('.lb[data-lang="'+lang+'"]').forEach(el=>el.classList.add('on'));
-  document.querySelectorAll('.lb-btn').forEach(b=>{
-    b.classList.toggle('on',b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+lang+"'"));
-  });
-}
-</script>
-</body>
-</html>
+<script da
