@@ -245,7 +245,7 @@ footer a:hover{color:var(--text)}
   <a href="index.html" class="logo"><img src="GFILOGO.png" alt="GFI Flow Intelligence"></a>
   <nav>
     <a href="#measures"   onclick="navTo('measures',event)">What GL Measures</a>
-    <a href="#validation" onclick="navTo('validation',event)">Validation</a>
+    <a href="#validation" onclick="navTo('validation',event)">Ghost GDP</a>
     <a href="cases.html">Cases</a>
     <a href="government.html">Public Sector</a>
     <a href="#method"     onclick="navTo('method',event)">Method</a>
@@ -273,7 +273,7 @@ footer a:hover{color:var(--text)}
 
 <div class="drawer" id="drawer">
   <a href="#measures"   onclick="navTo('measures',event);closeDrawer()">What GL Measures</a>
-  <a href="#validation" onclick="navTo('validation',event);closeDrawer()">Validation</a>
+  <a href="#validation" onclick="navTo('validation',event);closeDrawer()">Ghost GDP</a>
   <a href="cases.html"  onclick="closeDrawer()">Cases</a>
   <a href="government.html" onclick="closeDrawer()">Public Sector</a>
   <a href="#method"     onclick="navTo('method',event);closeDrawer()">Method</a>
@@ -375,24 +375,22 @@ footer a:hover{color:var(--text)}
 
 <section class="band" id="validation">
   <div class="wrap">
-    <div class="eyebrow">International Validation</div>
-    <h2 class="stitle">9-Case Verification Matrix</h2>
-    <p class="slead">Cross-domain application of GL across education, digital governance, healthcare, housing, climate, and identity systems.</p>
-    <div class="tscroll reveal">
-      <table>
-        <thead><tr><th>#</th><th>Country / System</th><th>Domain</th><th>GL Score</th><th>Signal</th></tr></thead>
-        <tbody>
-          <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">01</td><td>Finland · Education</td><td>Public Education</td><td><span class="gln">3.13</span></td><td><span class="tag hi">Excellent</span></td></tr>
-          <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">02</td><td>Brazil · Bolsa Família</td><td>Social Protection</td><td><span class="gln">2.64</span></td><td><span class="tag hi">Excellent</span></td></tr>
-          <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">03</td><td>Estonia · e-Governance</td><td>Digital Identity</td><td><span class="gln">4.20</span></td><td><span class="tag hi">Excellent</span></td></tr>
-          <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">04</td><td>Germany · Energiewende</td><td>Climate / Energy</td><td><span class="gln lo-txt">0.056</span></td><td><span class="tag lo">Friction</span></td></tr>
-          <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">05</td><td>Singapore · HDB Housing</td><td>Public Housing</td><td><span class="gln lo-txt">0.020</span></td><td><span class="tag lo">Friction</span></td></tr>
-          <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">06</td><td>South Korea · Digital Gov 24</td><td>Digital Governance</td><td><span class="gln">4.12</span></td><td><span class="tag hi">Excellent</span></td></tr>
-          <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">07</td><td>Rwanda · Mutuelle de Santé</td><td>Healthcare</td><td><span class="gln">5.08</span></td><td><span class="tag hi">Outstanding</span></td></tr>
-          <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">08</td><td>New Zealand · Wellbeing Budget</td><td>Social Policy</td><td><span class="gln lo-txt">0.32</span></td><td><span class="tag lo">Friction</span></td></tr>
-          <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">09</td><td>Uruguay · Digital Democracy</td><td>Democratic Gov.</td><td><span class="gln">6.24</span></td><td><span class="tag hi">Outstanding</span></td></tr>
-        </tbody>
-      </table>
+    <div class="eyebrow">Ghost GDP Diagnostic</div>
+    <h2 class="stitle">Is your AI investment<br>generating Ghost GDP?</h2>
+    <p class="slead">When automation is applied to a misaligned process, it accelerates errors rather than eliminating them. Activity registers as output — but produces no real capital value. This is Ghost GDP.</p>
+    <div class="sector-portal reveal" style="margin-top:clamp(28px,5vh,48px)">
+      <a href="ghost-gdp.html" class="sp-card priv" style="border-color:rgba(255,107,107,.2)">
+        <div class="sp-tag" style="color:#ff7070">Ghost GDP Framework</div>
+        <div class="sp-title">Why AI Accelerates Broken Processes</div>
+        <p class="sp-desc">Research across 1,500 workers shows AI adoption correlates with a 39% rise in serious errors and 40% spike in attrition — when the denominator is misaligned. GL measures this invisible cost before it compounds.</p>
+        <div class="sp-cta" style="color:#ff7070">Read the Diagnostic →</div>
+      </a>
+      <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="sp-card priv" target="_blank" rel="noopener">
+        <div class="sp-tag" style="color:var(--blue)">Start Now</div>
+        <div class="sp-title">GL Verification — $999</div>
+        <p class="sp-desc">Get a baseline GL score before your next transformation. Identify where your denominator is inflating — approvals, rework loops, cognitive overload — before AI accelerates the problem.</p>
+        <div class="sp-cta" style="color:var(--blue)">Begin Assessment →</div>
+      </a>
     </div>
   </div>
 </section>
@@ -566,7 +564,7 @@ footer a:hover{color:var(--text)}
     <h2 class="stitle">Initiate a verification.</h2>
     <p class="slead" style="margin:0 auto;text-align:center">For enterprise scoping, partnership inquiries, or academic collaboration.</p>
     <div class="contact-links" style="justify-content:center;margin-top:36px">
-      <a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a>
+      <a href="/cdn-cgi/l/email-protection#187f7e71587f7e7171766c7d74367b7775" class="cl">✉ <span class="__cf_email__" data-cfemail="5136373811363738383f25343d7f323e3c">[email&#160;protected]</span></a>
       <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ Start Verification ($999)</a>
       <a href="#method" class="cl">⊞ GL Method</a>
     </div>
@@ -632,23 +630,23 @@ footer a:hover{color:var(--text)}
   </div>
 </div></section>
 <section class="band" id="validation-tw"><div class="wrap">
-  <div class="eyebrow">國際驗證</div>
-  <h2 class="stitle">九案例驗證矩陣</h2>
-  <p class="slead">GL 公式跨域應用於教育、數位治理、醫療、住房、氣候和身份系統。</p>
-  <div class="tscroll reveal"><table>
-    <thead><tr><th>#</th><th>國家 / 系統</th><th>領域</th><th>GL 分數</th><th>信號</th></tr></thead>
-    <tbody>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">01</td><td>芬蘭 · 教育制度</td><td>公共教育</td><td><span class="gln">3.13</span></td><td><span class="tag hi">優良</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">02</td><td>巴西 · 家庭補助金</td><td>社會保護</td><td><span class="gln">2.64</span></td><td><span class="tag hi">優良</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">03</td><td>愛沙尼亞 · 數位治理</td><td>數位身份</td><td><span class="gln">4.20</span></td><td><span class="tag hi">優良</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">04</td><td>德國 · 能源轉型</td><td>氣候 / 能源</td><td><span class="gln lo-txt">0.056</span></td><td><span class="tag lo">高摩擦</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">05</td><td>新加坡 · 公共住房</td><td>住房</td><td><span class="gln lo-txt">0.020</span></td><td><span class="tag lo">高摩擦</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">06</td><td>南韓 · 數位政府 24</td><td>數位治理</td><td><span class="gln">4.12</span></td><td><span class="tag hi">優良</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">07</td><td>盧安達 · 社區健康保險</td><td>醫療</td><td><span class="gln">5.08</span></td><td><span class="tag hi">卓越</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">08</td><td>紐西蘭 · 幸福預算</td><td>社會政策</td><td><span class="gln lo-txt">0.32</span></td><td><span class="tag lo">高摩擦</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">09</td><td>烏拉圭 · 數位民主</td><td>民主治理</td><td><span class="gln">6.24</span></td><td><span class="tag hi">卓越</span></td></tr>
-    </tbody>
-  </table></div>
+  <div class="eyebrow">幽靈 GDP 診斷</div>
+  <h2 class="stitle">您的 AI 投資<br>正在製造幽靈 GDP 嗎？</h2>
+  <p class="slead">將自動化套用在結構未對齊的流程上，只會加速錯誤、而非消除它。帳面上有產出，卻沒有創造真實資本價值——這就是幽靈 GDP。</p>
+  <div class="sector-portal reveal" style="margin-top:clamp(28px,5vh,48px)">
+    <a href="ghost-gdp.html" class="sp-card priv" style="border-color:rgba(255,107,107,.2)">
+      <div class="sp-tag" style="color:#ff7070">幽靈 GDP 框架</div>
+      <div class="sp-title">為什麼 AI 會加速失靈的流程</div>
+      <p class="sp-desc">針對 1,500 名工作者的研究顯示，密集導入 AI 與重大失誤率上升 39%、離職率飆升 40% 高度相關——當分母未對齊時。GL 在問題複利惡化前就測量這個隱性成本。</p>
+      <div class="sp-cta" style="color:#ff7070">閱讀診斷報告 →</div>
+    </a>
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="sp-card priv" target="_blank" rel="noopener">
+      <div class="sp-tag" style="color:var(--blue)">立即開始</div>
+      <div class="sp-title">GL 驗證 — $999</div>
+      <p class="sp-desc">在下一次轉型前取得 GL 基準分數。找出您的分母在哪裡膨脹——審批層級、返工迴圈、認知超載——在 AI 加速問題之前先診斷。</p>
+      <div class="sp-cta" style="color:var(--blue)">開始評估 →</div>
+    </a>
+  </div>
 </div></section>
 <section id="method-tw"><div class="wrap">
   <div class="eyebrow">方法</div>
@@ -756,7 +754,7 @@ footer a:hover{color:var(--text)}
   <h2 class="stitle">啟動驗證。</h2>
   <p class="slead" style="margin:0 auto;text-align:center">企業範圍評估、合作夥伴諮詢或學術合作。</p>
   <div class="contact-links" style="justify-content:center;margin-top:36px">
-    <a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a>
+    <a href="/cdn-cgi/l/email-protection#385f5e51785f5e5151564c5d54165b5755" class="cl">✉ <span class="__cf_email__" data-cfemail="7017161930171619191e04151c5e131f1d">[email&#160;protected]</span></a>
     <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ 啟動驗證（$999）</a>
     <a href="#method-tw" class="cl">⊞ GL 方法</a>
   </div>
@@ -822,23 +820,23 @@ footer a:hover{color:var(--text)}
   </div>
 </div></section>
 <section class="band" id="validation-cn"><div class="wrap">
-  <div class="eyebrow">国际验证</div>
-  <h2 class="stitle">九案例验证矩阵</h2>
-  <p class="slead">GL 公式跨域应用于教育、数字治理、医疗、住房、气候和身份系统。</p>
-  <div class="tscroll reveal"><table>
-    <thead><tr><th>#</th><th>国家 / 系统</th><th>领域</th><th>GL 分数</th><th>信号</th></tr></thead>
-    <tbody>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">01</td><td>芬兰 · 教育制度</td><td>公共教育</td><td><span class="gln">3.13</span></td><td><span class="tag hi">优良</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">02</td><td>巴西 · 家庭补助金</td><td>社会保护</td><td><span class="gln">2.64</span></td><td><span class="tag hi">优良</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">03</td><td>爱沙尼亚 · 数字治理</td><td>数字身份</td><td><span class="gln">4.20</span></td><td><span class="tag hi">优良</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">04</td><td>德国 · 能源转型</td><td>气候 / 能源</td><td><span class="gln lo-txt">0.056</span></td><td><span class="tag lo">高摩擦</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">05</td><td>新加坡 · 公共住房</td><td>住房</td><td><span class="gln lo-txt">0.020</span></td><td><span class="tag lo">高摩擦</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">06</td><td>韩国 · 数字政府 24</td><td>数字治理</td><td><span class="gln">4.12</span></td><td><span class="tag hi">优良</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">07</td><td>卢旺达 · 社区健康保险</td><td>医疗</td><td><span class="gln">5.08</span></td><td><span class="tag hi">卓越</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">08</td><td>新西兰 · 幸福预算</td><td>社会政策</td><td><span class="gln lo-txt">0.32</span></td><td><span class="tag lo">高摩擦</span></td></tr>
-      <tr><td style="font-family:var(--mono);color:var(--dim);font-size:11px">09</td><td>乌拉圭 · 数字民主</td><td>民主治理</td><td><span class="gln">6.24</span></td><td><span class="tag hi">卓越</span></td></tr>
-    </tbody>
-  </table></div>
+  <div class="eyebrow">幽灵 GDP 诊断</div>
+  <h2 class="stitle">您的 AI 投资<br>正在制造幽灵 GDP 吗？</h2>
+  <p class="slead">将自动化套用在结构未对齐的流程上，只会加速错误、而非消除它。账面上有产出，却没有创造真实资本价值——这就是幽灵 GDP。</p>
+  <div class="sector-portal reveal" style="margin-top:clamp(28px,5vh,48px)">
+    <a href="ghost-gdp.html" class="sp-card priv" style="border-color:rgba(255,107,107,.2)">
+      <div class="sp-tag" style="color:#ff7070">幽灵 GDP 框架</div>
+      <div class="sp-title">为什么 AI 会加速失灵的流程</div>
+      <p class="sp-desc">针对 1,500 名工作者的研究显示，密集导入 AI 与重大失误率上升 39%、离职率飙升 40% 高度相关——当分母未对齐时。GL 在问题复利恶化前就测量这个隐性成本。</p>
+      <div class="sp-cta" style="color:#ff7070">阅读诊断报告 →</div>
+    </a>
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="sp-card priv" target="_blank" rel="noopener">
+      <div class="sp-tag" style="color:var(--blue)">立即开始</div>
+      <div class="sp-title">GL 验证 — $999</div>
+      <p class="sp-desc">在下一次转型前取得 GL 基准分数。找出您的分母在哪里膨胀——审批层级、返工循环、认知超载——在 AI 加速问题之前先诊断。</p>
+      <div class="sp-cta" style="color:var(--blue)">开始评估 →</div>
+    </a>
+  </div>
 </div></section>
 <section id="method-cn"><div class="wrap">
   <div class="eyebrow">方法</div>
@@ -946,7 +944,7 @@ footer a:hover{color:var(--text)}
   <h2 class="stitle">启动验证。</h2>
   <p class="slead" style="margin:0 auto;text-align:center">企业范围评估、合作伙伴咨询或学术合作。</p>
   <div class="contact-links" style="justify-content:center;margin-top:36px">
-    <a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a>
+    <a href="/cdn-cgi/l/email-protection#a6c1c0cfe6c1c0cfcfc8d2c3ca88c5c9cb" class="cl">✉ <span class="__cf_email__" data-cfemail="3a5d5c537a5d5c5353544e5f5614595557">[email&#160;protected]</span></a>
     <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ 启动验证（$999）</a>
     <a href="#method-cn" class="cl">⊞ GL 方法</a>
   </div>
@@ -958,11 +956,11 @@ footer a:hover{color:var(--text)}
   <div class="footer-links">
     <a href="#method">Method</a>
     <a href="government.html">Public Sector</a>
-    <a href="mailto:gfi@gfiintel.com">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#accbcac5eccbcac5c5c2d8c9c082cfc3c1">Contact</a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── NAV & LANG ─────────────────────────────────────────────────────
 function navTo(section, e) {
   e && e.preventDefault();
@@ -1152,18 +1150,4 @@ function calcResultLang(lang) {
   }
 
   document.getElementById(lang + '-qs-result').classList.add('show');
-  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-step').forEach(s => s.classList.remove('active'));
-}
-
-function resetScanLang(lang) {
-  answersLang[lang].fill(null);
-  document.getElementById(lang + '-qs-result').classList.remove('show');
-  const ghost = document.getElementById(lang + '-qs-ghost');
-  if (ghost) ghost.remove();
-  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-opt').forEach(b => b.classList.remove('selected'));
-  [0,1,2,3].forEach(i => { const b = document.getElementById(lang + '-next-' + i); if(b) b.disabled = true; });
-  nextStepLang(lang, 0);
-}
-</script>
-</body>
-</html>
+  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-step').forEach(s =
