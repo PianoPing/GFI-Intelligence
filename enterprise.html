@@ -439,15 +439,13 @@ footer a:hover{color:var(--text)}
     <h2 class="stitle">Is your AI investment working?</h2>
     <p class="slead">Four questions. Two minutes. Your preliminary GL score — calculated live.</p>
 
-    <div class="qs-wrap">
+    <div class="qs-wrap" id="qs-wrap-en">
       <div class="qs-progress">
         <div class="qs-dot active" id="dot-0"></div>
         <div class="qs-dot" id="dot-1"></div>
         <div class="qs-dot" id="dot-2"></div>
         <div class="qs-dot" id="dot-3"></div>
       </div>
-
-      <!-- Q1: Fs -->
       <div class="qs-step active" id="qs-0">
         <p class="qs-sub">Fs · Flow Success Rate</p>
         <p class="qs-q">Since your AI or automation rollout, what has happened to your process completion rate?</p>
@@ -459,8 +457,6 @@ footer a:hover{color:var(--text)}
         </div>
         <div class="qs-nav"><button class="qs-btn primary" onclick="nextStep(1)" id="next-0" disabled>Next →</button></div>
       </div>
-
-      <!-- Q2: Vn -->
       <div class="qs-step" id="qs-1">
         <p class="qs-sub">Vn · Strategic Value</p>
         <p class="qs-q">How central is this automated process to your core revenue or customer delivery?</p>
@@ -475,8 +471,6 @@ footer a:hover{color:var(--text)}
           <button class="qs-btn primary" onclick="nextStep(2)" id="next-1" disabled>Next →</button>
         </div>
       </div>
-
-      <!-- Q3: Pd -->
       <div class="qs-step" id="qs-2">
         <p class="qs-sub">Pd · Pain Duration</p>
         <p class="qs-q">After automation, how much staff time per week is still spent on exceptions, corrections, or manual intervention in this process?</p>
@@ -491,8 +485,6 @@ footer a:hover{color:var(--text)}
           <button class="qs-btn primary" onclick="nextStep(3)" id="next-2" disabled>Next →</button>
         </div>
       </div>
-
-      <!-- Q4: Cf -->
       <div class="qs-step" id="qs-3">
         <p class="qs-sub">Cf · Cognitive Friction</p>
         <p class="qs-q">How much judgment, coordination, or context-switching does your team still need to complete this process?</p>
@@ -507,18 +499,16 @@ footer a:hover{color:var(--text)}
           <button class="qs-btn primary" onclick="calcResult()" id="next-3" disabled>Calculate GL →</button>
         </div>
       </div>
-
-      <!-- RESULT -->
       <div class="qs-result" id="qs-result">
         <div class="qs-gl-display" id="qs-score">—</div>
-        <div class="qs-gl-label">Your Preliminary GL Score</div>
+        <div class="qs-gl-label" id="qs-label">Your Preliminary GL Score</div>
         <div class="qs-verdict" id="qs-verdict"></div>
         <div class="qs-finding" id="qs-finding"></div>
         <div class="qs-cta-row">
-          <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none">Get Full Diagnosis — $999 →</a>
-          <a href="#contact" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">Ask a question first</a>
+          <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none" id="qs-cta-primary">Get Full Diagnosis — $999 →</a>
+          <a href="#contact" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)" id="qs-cta-secondary">Ask a question first</a>
         </div>
-        <button class="qs-reset" onclick="resetScan()">← Run again</button>
+        <button class="qs-reset" onclick="resetScan()" id="qs-reset-btn">← Run again</button>
       </div>
     </div>
   </div>
@@ -629,7 +619,7 @@ footer a:hover{color:var(--text)}
   </div>
   <div class="fstrip reveal">
     <span>GL = (Fs × Vn) / (Pd × Cf)</span><span style="color:var(--dim)">·</span><span>GL<sub>r</sub> = (Fs × Vn) / (Pd × Cf × SRF)</span>
-    <a href="#method">查看方法 →</a>
+    <a href="#method-tw">查看方法 →</a>
   </div>
 </div></section>
 <section><div class="wrap">
@@ -671,6 +661,86 @@ footer a:hover{color:var(--text)}
   </div>
   <div style="margin-top:24px"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">啟動驗證（$999）→</a></div>
 </div></section>
+
+<!-- TW Quick Scan -->
+<section id="quickscan-tw"><div class="wrap">
+  <div class="eyebrow">快速掃描</div>
+  <h2 class="stitle">您的 AI 投資真的有效嗎？</h2>
+  <p class="slead">四個問題。兩分鐘。即時計算您的初步 GL 分數。</p>
+  <div class="qs-wrap" id="qs-wrap-tw">
+    <div class="qs-progress">
+      <div class="qs-dot active" id="tw-dot-0"></div>
+      <div class="qs-dot" id="tw-dot-1"></div>
+      <div class="qs-dot" id="tw-dot-2"></div>
+      <div class="qs-dot" id="tw-dot-3"></div>
+    </div>
+    <div class="qs-step active" id="tw-qs-0">
+      <p class="qs-sub">Fs · 流程成功率</p>
+      <p class="qs-q">自 AI 或自動化上線後，您的流程完成率發生了什麼變化？</p>
+      <div class="qs-opts">
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',0,0.92)"><span class="qs-opt-key">A</span>顯著改善——錯誤更少、返工減少</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',0,0.72)"><span class="qs-opt-key">B</span>略有改善——部分成效但不穩定</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',0,0.50)"><span class="qs-opt-key">C</span>差不多——沒有可量化的改變</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',0,0.28)"><span class="qs-opt-key">D</span>更差——返工與錯誤率上升</button>
+      </div>
+      <div class="qs-nav"><button class="qs-btn primary" onclick="nextStepLang('tw',1)" id="tw-next-0" disabled>下一題 →</button></div>
+    </div>
+    <div class="qs-step" id="tw-qs-1">
+      <p class="qs-sub">Vn · 戰略價值</p>
+      <p class="qs-q">這個自動化流程對您的核心營收或客戶交付有多重要？</p>
+      <div class="qs-opts">
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',1,9.5)"><span class="qs-opt-key">A</span>關鍵任務——直接影響營收或客戶成果</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',1,7.5)"><span class="qs-opt-key">B</span>重要——支援核心運營但非面向客戶</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',1,5.5)"><span class="qs-opt-key">C</span>中等——後台或行政功能</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',1,3.5)"><span class="qs-opt-key">D</span>邊緣——戰略權重低</button>
+      </div>
+      <div class="qs-nav">
+        <button class="qs-btn" onclick="prevStepLang('tw',0)">← 返回</button>
+        <button class="qs-btn primary" onclick="nextStepLang('tw',2)" id="tw-next-1" disabled>下一題 →</button>
+      </div>
+    </div>
+    <div class="qs-step" id="tw-qs-2">
+      <p class="qs-sub">Pd · 痛點持續時間</p>
+      <p class="qs-q">自動化後，員工每週仍花多少時間處理例外、修正或手動介入？</p>
+      <div class="qs-opts">
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',2,1.5)"><span class="qs-opt-key">A</span>2 小時以下——幾乎完全自動化</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',2,5.0)"><span class="qs-opt-key">B</span>2–8 小時——偶爾需要介入</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',2,15.0)"><span class="qs-opt-key">C</span>8–20 小時——仍有大量手動處理</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',2,35.0)"><span class="qs-opt-key">D</span>20 小時以上——比自動化前介入更多</button>
+      </div>
+      <div class="qs-nav">
+        <button class="qs-btn" onclick="prevStepLang('tw',1)">← 返回</button>
+        <button class="qs-btn primary" onclick="nextStepLang('tw',3)" id="tw-next-2" disabled>下一題 →</button>
+      </div>
+    </div>
+    <div class="qs-step" id="tw-qs-3">
+      <p class="qs-sub">Cf · 認知摩擦指數</p>
+      <p class="qs-q">您的團隊完成此流程仍需要多少判斷、協調或情境切換？</p>
+      <div class="qs-opts">
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',3,1.2)"><span class="qs-opt-key">A</span>極少——系統自動處理，員工只需確認</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',3,2.2)"><span class="qs-opt-key">B</span>少量——員工解讀輸出並偶爾決策</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',3,3.5)"><span class="qs-opt-key">C</span>高——頻繁判斷、跨團隊協調</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'tw',3,5.0)"><span class="qs-opt-key">D</span>非常高——自動化製造了新的複雜性</button>
+      </div>
+      <div class="qs-nav">
+        <button class="qs-btn" onclick="prevStepLang('tw',2)">← 返回</button>
+        <button class="qs-btn primary" onclick="calcResultLang('tw')" id="tw-next-3" disabled>計算 GL →</button>
+      </div>
+    </div>
+    <div class="qs-result" id="tw-qs-result">
+      <div class="qs-gl-display" id="tw-qs-score">—</div>
+      <div class="qs-gl-label">您的初步 GL 分數</div>
+      <div class="qs-verdict" id="tw-qs-verdict"></div>
+      <div class="qs-finding" id="tw-qs-finding"></div>
+      <div class="qs-cta-row">
+        <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none">取得完整診斷 — $999 →</a>
+        <a href="#contact" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">先諮詢問題</a>
+      </div>
+      <button class="qs-reset" onclick="resetScanLang('tw')">← 重新測試</button>
+    </div>
+  </div>
+</div></section>
+
 <section class="band" id="pricing-tw"><div class="wrap">
   <div class="eyebrow">服務方案</div>
   <h2 class="stitle">啟動驗證。</h2>
@@ -781,6 +851,86 @@ footer a:hover{color:var(--text)}
   </div>
   <div style="margin-top:24px"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">启动验证（$999）→</a></div>
 </div></section>
+
+<!-- CN Quick Scan -->
+<section id="quickscan-cn"><div class="wrap">
+  <div class="eyebrow">快速扫描</div>
+  <h2 class="stitle">您的 AI 投资真的有效吗？</h2>
+  <p class="slead">四个问题。两分钟。即时计算您的初步 GL 分数。</p>
+  <div class="qs-wrap" id="qs-wrap-cn">
+    <div class="qs-progress">
+      <div class="qs-dot active" id="cn-dot-0"></div>
+      <div class="qs-dot" id="cn-dot-1"></div>
+      <div class="qs-dot" id="cn-dot-2"></div>
+      <div class="qs-dot" id="cn-dot-3"></div>
+    </div>
+    <div class="qs-step active" id="cn-qs-0">
+      <p class="qs-sub">Fs · 流程成功率</p>
+      <p class="qs-q">自 AI 或自动化上线后，您的流程完成率发生了什么变化？</p>
+      <div class="qs-opts">
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',0,0.92)"><span class="qs-opt-key">A</span>显著改善——错误更少、返工减少</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',0,0.72)"><span class="qs-opt-key">B</span>略有改善——部分成效但不稳定</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',0,0.50)"><span class="qs-opt-key">C</span>差不多——没有可量化的改变</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',0,0.28)"><span class="qs-opt-key">D</span>更差——返工与错误率上升</button>
+      </div>
+      <div class="qs-nav"><button class="qs-btn primary" onclick="nextStepLang('cn',1)" id="cn-next-0" disabled>下一题 →</button></div>
+    </div>
+    <div class="qs-step" id="cn-qs-1">
+      <p class="qs-sub">Vn · 战略价值</p>
+      <p class="qs-q">这个自动化流程对您的核心营收或客户交付有多重要？</p>
+      <div class="qs-opts">
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',1,9.5)"><span class="qs-opt-key">A</span>关键任务——直接影响营收或客户成果</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',1,7.5)"><span class="qs-opt-key">B</span>重要——支撑核心运营但非面向客户</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',1,5.5)"><span class="qs-opt-key">C</span>中等——后台或行政功能</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',1,3.5)"><span class="qs-opt-key">D</span>边缘——战略权重低</button>
+      </div>
+      <div class="qs-nav">
+        <button class="qs-btn" onclick="prevStepLang('cn',0)">← 返回</button>
+        <button class="qs-btn primary" onclick="nextStepLang('cn',2)" id="cn-next-1" disabled>下一题 →</button>
+      </div>
+    </div>
+    <div class="qs-step" id="cn-qs-2">
+      <p class="qs-sub">Pd · 痛点持续时间</p>
+      <p class="qs-q">自动化后，员工每周仍花多少时间处理例外、修正或手动介入？</p>
+      <div class="qs-opts">
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',2,1.5)"><span class="qs-opt-key">A</span>2 小时以下——几乎完全自动化</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',2,5.0)"><span class="qs-opt-key">B</span>2–8 小时——偶尔需要介入</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',2,15.0)"><span class="qs-opt-key">C</span>8–20 小时——仍有大量手动处理</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',2,35.0)"><span class="qs-opt-key">D</span>20 小时以上——比自动化前介入更多</button>
+      </div>
+      <div class="qs-nav">
+        <button class="qs-btn" onclick="prevStepLang('cn',1)">← 返回</button>
+        <button class="qs-btn primary" onclick="nextStepLang('cn',3)" id="cn-next-2" disabled>下一题 →</button>
+      </div>
+    </div>
+    <div class="qs-step" id="cn-qs-3">
+      <p class="qs-sub">Cf · 认知摩擦指数</p>
+      <p class="qs-q">您的团队完成此流程仍需要多少判断、协调或情境切换？</p>
+      <div class="qs-opts">
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',3,1.2)"><span class="qs-opt-key">A</span>极少——系统自动处理，员工只需确认</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',3,2.2)"><span class="qs-opt-key">B</span>少量——员工解读输出并偶尔决策</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',3,3.5)"><span class="qs-opt-key">C</span>高——频繁判断、跨团队协调</button>
+        <button class="qs-opt" onclick="selectOptLang(this,'cn',3,5.0)"><span class="qs-opt-key">D</span>非常高——自动化制造了新的复杂性</button>
+      </div>
+      <div class="qs-nav">
+        <button class="qs-btn" onclick="prevStepLang('cn',2)">← 返回</button>
+        <button class="qs-btn primary" onclick="calcResultLang('cn')" id="cn-next-3" disabled>计算 GL →</button>
+      </div>
+    </div>
+    <div class="qs-result" id="cn-qs-result">
+      <div class="qs-gl-display" id="cn-qs-score">—</div>
+      <div class="qs-gl-label">您的初步 GL 分数</div>
+      <div class="qs-verdict" id="cn-qs-verdict"></div>
+      <div class="qs-finding" id="cn-qs-finding"></div>
+      <div class="qs-cta-row">
+        <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none">获取完整诊断 — $999 →</a>
+        <a href="#contact" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">先咨询问题</a>
+      </div>
+      <button class="qs-reset" onclick="resetScanLang('cn')">← 重新测试</button>
+    </div>
+  </div>
+</div></section>
+
 <section class="band" id="pricing-cn"><div class="wrap">
   <div class="eyebrow">服务方案</div>
   <h2 class="stitle">启动验证。</h2>
@@ -813,6 +963,7 @@ footer a:hover{color:var(--text)}
 </footer>
 
 <script>
+// ── NAV & LANG ─────────────────────────────────────────────────────
 function navTo(section, e) {
   e && e.preventDefault();
   const lang = document.querySelector('.lb.on') ? document.querySelector('.lb.on').getAttribute('data-lang') : 'en';
@@ -820,7 +971,6 @@ function navTo(section, e) {
   const target = document.getElementById(section + suffix) || document.getElementById(section);
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
 function setLang(lang,btn){
   document.querySelectorAll('.lb').forEach(el=>el.classList.remove('on'));
   document.querySelectorAll('.lb[data-lang="'+lang+'"]').forEach(el=>el.classList.add('on'));
@@ -841,7 +991,7 @@ function closeDrawer(){
 const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-// ── QUICK SCAN ────────────────────────────────────────────────────
+// ── QUICK SCAN — ENGLISH ──────────────────────────────────────────
 const answers = [null, null, null, null];
 function selectOpt(btn, qIdx, val) {
   btn.closest('.qs-opts').querySelectorAll('.qs-opt').forEach(b => b.classList.remove('selected'));
@@ -851,41 +1001,38 @@ function selectOpt(btn, qIdx, val) {
   if (nextBtn) nextBtn.disabled = false;
 }
 function nextStep(idx) {
-  document.querySelectorAll('.qs-step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('#qs-wrap-en .qs-step').forEach(s => s.classList.remove('active'));
   document.getElementById('qs-' + idx).classList.add('active');
-  updateDots(idx);
+  updateDots('', idx);
 }
 function prevStep(idx) {
-  document.querySelectorAll('.qs-step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('#qs-wrap-en .qs-step').forEach(s => s.classList.remove('active'));
   document.getElementById('qs-' + idx).classList.add('active');
-  updateDots(idx);
+  updateDots('', idx);
 }
-function updateDots(current) {
+function updateDots(prefix, current) {
+  const p = prefix ? prefix + '-' : '';
   for (let i = 0; i < 4; i++) {
-    const d = document.getElementById('dot-' + i);
+    const d = document.getElementById(p + 'dot-' + i);
+    if (!d) continue;
     d.classList.remove('active', 'done');
     if (i < current) d.classList.add('done');
     else if (i === current) d.classList.add('active');
   }
 }
+
 function calcResult() {
   const fs = answers[0], vn = answers[1], pd = answers[2], cf = answers[3];
   if (!fs || !vn || !pd || !cf) return;
   const gl = (fs * vn) / (pd * cf);
   const glRounded = Math.round(gl * 100) / 100;
+  const frictionPct = Math.min(Math.round((pd * cf) / ((fs * vn) + (pd * cf)) * 100), 99);
 
   const scoreEl = document.getElementById('qs-score');
   const verdictEl = document.getElementById('qs-verdict');
   const findingEl = document.getElementById('qs-finding');
-
   scoreEl.textContent = glRounded;
 
-  // Ghost GDP %: friction absorbing intended value
-  // When GL=1, friction and value are in balance. Below 1, friction dominates.
-  const ghostPct = gl >= 1 ? Math.round((1 - (1/gl)) * 0) : Math.round((1 - gl) * 100);
-  const frictionPct = Math.min(Math.round((pd * cf) / ((fs * vn) + (pd * cf)) * 100), 99);
-
-  // Ghost GDP display element
   let ghostEl = document.getElementById('qs-ghost');
   if (!ghostEl) {
     ghostEl = document.createElement('div');
@@ -906,7 +1053,117 @@ function calcResult() {
     findingEl.textContent = 'A GL between 0.5 and 1.5 signals that friction is absorbing a significant share of your automation investment. The process is functioning — but not efficiently. Rework, exceptions, and manual intervention are costing more than they appear on any single report. GL measures what your P&L does not: the denominator cost that never shows up as a line item.';
   } else {
     scoreEl.className = 'qs-gl-display lo';
-    verdictEl.textContent = 'Your automation may be accelerating errors, not eliminating them.';
+    verdictEl.textContent = 'AI is accelerating your errors, not eliminating them.';
     ghostEl.innerHTML = 'Structural friction absorbing approx. <strong style="color:#ff6b6b">' + frictionPct + '%</strong> of process capacity — this is Ghost GDP territory.';
-    findingEl.textContent = 'A GL below 0.5 means your denominator is outpacing your numerator. Rework, corrections, and re-processing get counted as operational output — but produce no real value. This is how Ghost GDP forms inside an organization: activity without delivery. Automation applied to a misaligned process accelerates this cycle rather than breaking it. A full GL diagnosis maps where friction is inflating your denominator and what it is costing you per quarter.';
+    findingEl.textContent = 'A GL below 0.5 is the signature of AI Brain Fry at the organizational level. Research across 1,500 workers shows that heavy AI adoption correlates with a 39% rise in serious errors and a 40% spike in attrition — not because AI is bad, but because automation applied to a misaligned process accelerates friction rather than removing it. Your team has been converted from creators into error-checkers, and the cognitive load is compounding. This is Ghost GDP: activity that registers as output but produces no real capital value. A full GL diagnosis maps exactly where your denominator is inflating and what it is costing you per quarter.';
   }
+
+  document.getElementById('qs-result').classList.add('show');
+  document.querySelectorAll('#qs-wrap-en .qs-step').forEach(s => s.classList.remove('active'));
+}
+
+function resetScan() {
+  answers.fill(null);
+  document.getElementById('qs-result').classList.remove('show');
+  const ghost = document.getElementById('qs-ghost');
+  if (ghost) ghost.remove();
+  document.querySelectorAll('#qs-wrap-en .qs-opt').forEach(b => b.classList.remove('selected'));
+  ['next-0','next-1','next-2','next-3'].forEach(id => { const b = document.getElementById(id); if(b) b.disabled = true; });
+  nextStep(0);
+}
+
+// ── QUICK SCAN — MULTILANG (TW / CN) ─────────────────────────────
+const answersLang = { tw: [null,null,null,null], cn: [null,null,null,null] };
+
+function selectOptLang(btn, lang, qIdx, val) {
+  btn.closest('.qs-opts').querySelectorAll('.qs-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answersLang[lang][qIdx] = val;
+  const nextBtn = document.getElementById(lang + '-next-' + qIdx);
+  if (nextBtn) nextBtn.disabled = false;
+}
+function nextStepLang(lang, idx) {
+  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-step').forEach(s => s.classList.remove('active'));
+  document.getElementById(lang + '-qs-' + idx).classList.add('active');
+  updateDots(lang, idx);
+}
+function prevStepLang(lang, idx) {
+  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-step').forEach(s => s.classList.remove('active'));
+  document.getElementById(lang + '-qs-' + idx).classList.add('active');
+  updateDots(lang, idx);
+}
+
+function calcResultLang(lang) {
+  const a = answersLang[lang];
+  const fs = a[0], vn = a[1], pd = a[2], cf = a[3];
+  if (!fs || !vn || !pd || !cf) return;
+  const gl = (fs * vn) / (pd * cf);
+  const glRounded = Math.round(gl * 100) / 100;
+  const frictionPct = Math.min(Math.round((pd * cf) / ((fs * vn) + (pd * cf)) * 100), 99);
+
+  const scoreEl   = document.getElementById(lang + '-qs-score');
+  const verdictEl = document.getElementById(lang + '-qs-verdict');
+  const findingEl = document.getElementById(lang + '-qs-finding');
+  scoreEl.textContent = glRounded;
+
+  let ghostEl = document.getElementById(lang + '-qs-ghost');
+  if (!ghostEl) {
+    ghostEl = document.createElement('div');
+    ghostEl.id = lang + '-qs-ghost';
+    ghostEl.style.cssText = 'font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--dim);margin-bottom:20px;padding:10px 16px;border:1px solid var(--border);border-radius:6px;display:inline-block';
+    verdictEl.parentNode.insertBefore(ghostEl, verdictEl.nextSibling);
+  }
+
+  if (lang === 'tw') {
+    if (gl >= 1.5) {
+      scoreEl.className = 'qs-gl-display hi';
+      verdictEl.textContent = '您的流程結構健全。';
+      ghostEl.innerHTML = '結構摩擦約佔流程產能的 <strong style="color:var(--accent)">' + frictionPct + '%</strong>——在可接受範圍內。';
+      findingEl.textContent = 'GL 高於 1.5 表示您的自動化投資正在產生真實效率。相對於摩擦，流動速度良好。完整診斷可確認這是否在所有流程層均成立，或是否有特定子流程正在拉低分數。';
+    } else if (gl >= 0.5) {
+      scoreEl.className = 'qs-gl-display mid';
+      verdictEl.textContent = '警告：您的分母正在累積。';
+      ghostEl.innerHTML = '結構摩擦約佔流程產能的 <strong style="color:#ffb347">' + frictionPct + '%</strong>——價值正在流失。';
+      findingEl.textContent = 'GL 介於 0.5 至 1.5 之間，表示摩擦正在吸收您自動化投資的相當大比例。流程仍在運作，但效率不足。返工、例外處理和手動介入的成本遠超出任何單一報告所呈現的數字。GL 測量的正是損益表看不到的分母成本——那條永遠不會出現的費用明細。';
+    } else {
+      scoreEl.className = 'qs-gl-display lo';
+      verdictEl.textContent = 'AI 正在加速您的錯誤，而非消除它們。';
+      ghostEl.innerHTML = '結構摩擦約佔流程產能的 <strong style="color:#ff6b6b">' + frictionPct + '%</strong>——這是幽靈 GDP 的典型症狀。';
+      findingEl.textContent = 'GL 低於 0.5 是組織層面「AI 烤腦症」的特徵信號。針對 1,500 名全職工作者的研究顯示，密集導入 AI 與重大失誤率上升 39%、離職率飆升 40% 高度相關——不是因為 AI 本身有問題，而是將自動化套用在結構未對齊的流程上，只會加速摩擦，而非消除它。您的團隊已從創造者變成錯誤偵測員，認知負荷正在複利累積。這就是幽靈 GDP：帳面上記錄為產出，卻沒有創造任何真實資本價值的活動。完整 GL 診斷將精確定位您的分母在哪裡膨脹，以及每季正在損耗多少資本。';
+    }
+  } else {
+    // cn
+    if (gl >= 1.5) {
+      scoreEl.className = 'qs-gl-display hi';
+      verdictEl.textContent = '您的流程结构健全。';
+      ghostEl.innerHTML = '结构摩擦约占流程产能的 <strong style="color:var(--accent)">' + frictionPct + '%</strong>——在可接受范围内。';
+      findingEl.textContent = 'GL 高于 1.5 表示您的自动化投资正在产生真实效率。相对于摩擦，流动速度良好。完整诊断可确认这是否在所有流程层均成立，或是否有特定子流程正在拉低分数。';
+    } else if (gl >= 0.5) {
+      scoreEl.className = 'qs-gl-display mid';
+      verdictEl.textContent = '警告：您的分母正在累积。';
+      ghostEl.innerHTML = '结构摩擦约占流程产能的 <strong style="color:#ffb347">' + frictionPct + '%</strong>——价值正在流失。';
+      findingEl.textContent = 'GL 介于 0.5 至 1.5 之间，表示摩擦正在吸收您自动化投资的相当大比例。流程仍在运作，但效率不足。返工、例外处理和手动介入的成本远超出任何单一报告所呈现的数字。GL 测量的正是损益表看不到的分母成本——那条永远不会出现的费用明细。';
+    } else {
+      scoreEl.className = 'qs-gl-display lo';
+      verdictEl.textContent = 'AI 正在加速您的错误，而非消除它们。';
+      ghostEl.innerHTML = '结构摩擦约占流程产能的 <strong style="color:#ff6b6b">' + frictionPct + '%</strong>——这是幽灵 GDP 的典型症状。';
+      findingEl.textContent = 'GL 低于 0.5 是组织层面"AI 烤脑症"的特征信号。针对 1,500 名全职工作者的研究显示，密集导入 AI 与重大失误率上升 39%、离职率飙升 40% 高度相关——不是因为 AI 本身有问题，而是将自动化套用在结构未对齐的流程上，只会加速摩擦，而非消除它。您的团队已从创造者变成错误侦测员，认知负荷正在复利累积。这就是幽灵 GDP：账面上记录为产出，却没有创造任何真实资本价值的活动。完整 GL 诊断将精确定位您的分母在哪里膨胀，以及每季正在损耗多少资本。';
+    }
+  }
+
+  document.getElementById(lang + '-qs-result').classList.add('show');
+  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-step').forEach(s => s.classList.remove('active'));
+}
+
+function resetScanLang(lang) {
+  answersLang[lang].fill(null);
+  document.getElementById(lang + '-qs-result').classList.remove('show');
+  const ghost = document.getElementById(lang + '-qs-ghost');
+  if (ghost) ghost.remove();
+  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-opt').forEach(b => b.classList.remove('selected'));
+  [0,1,2,3].forEach(i => { const b = document.getElementById(lang + '-next-' + i); if(b) b.disabled = true; });
+  nextStepLang(lang, 0);
+}
+</script>
+</body>
+</html>
