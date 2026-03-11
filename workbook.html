@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Friction Audit Playbook — Self-Guided Workbook. Diagnose and fix the hidden administrative costs in your organization. $99 PDF download.">
+<title>The Friction Audit Playbook · GFI Flow Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#141d2e;--surf:#1c2740;--surf2:#22304e;
+  --border:rgba(255,255,255,0.08);--text:#edf0f8;
+  --muted:#8fa3c0;--dim:#4a6080;--accent:#c8f542;--blue:#4da3ff;
+  --gold:#c8922a;--gold-light:rgba(200,146,42,0.15);--gold-border:rgba(200,146,42,0.35);
+  --serif:'DM Serif Display',Georgia,serif;
+  --mono:'DM Mono',monospace;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.75;overflow-x:hidden}
+
+.lb{display:none}.lb.on{display:block}
+
+/* NAV */
+.lang-bar{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;padding:0 clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;background:rgba(20,29,46,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo img{height:40px;width:auto}
+.lang-grp{display:flex;gap:6px;align-items:center}
+.lb-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:none;color:var(--muted);cursor:pointer;transition:all .2s}
+.lb-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.2)}
+.lb-btn.on{color:var(--accent);border-color:rgba(200,245,66,0.4);background:rgba(200,245,66,0.07)}
+
+/* BG */
+.bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 70% at 50% 40%,black 10%,transparent 80%);pointer-events:none;z-index:0}
+.bg-glow-left{position:fixed;width:700px;height:700px;background:radial-gradient(circle,rgba(200,146,42,.04) 0%,transparent 65%);top:-200px;left:-200px;pointer-events:none;z-index:0}
+.bg-glow-right{position:fixed;width:600px;height:600px;background:radial-gradient(circle,rgba(77,163,255,.04) 0%,transparent 65%);bottom:-150px;right:-150px;pointer-events:none;z-index:0}
+
+/* LAYOUT */
+main{position:relative;z-index:1;padding:96px clamp(20px,5vw,60px) 80px;max-width:900px;margin:0 auto}
+
+/* HERO */
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:up .5s .05s forwards}
+.hero-title{font-family:var(--serif);font-size:clamp(30px,5vw,54px);line-height:1.08;letter-spacing:-.02em;margin-bottom:10px;opacity:0;animation:up .5s .15s forwards}
+.hero-sub{font-family:var(--serif);font-size:clamp(18px,2.5vw,24px);color:var(--gold);font-style:italic;margin-bottom:24px;opacity:0;animation:up .5s .2s forwards}
+.hero-desc{font-size:clamp(15px,1.8vw,17px);color:var(--muted);max-width:600px;line-height:1.8;margin-bottom:48px;opacity:0;animation:up .5s .25s forwards}
+
+/* PRICE BLOCK */
+.price-block{display:flex;align-items:center;gap:24px;margin-bottom:48px;flex-wrap:wrap;opacity:0;animation:up .5s .3s forwards}
+.price-tag{font-family:var(--mono);font-size:clamp(40px,6vw,64px);font-weight:500;color:var(--gold);letter-spacing:-.02em}
+.price-meta{display:flex;flex-direction:column;gap:4px}
+.price-meta span{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.price-meta strong{font-size:14px;color:var(--text);font-weight:400}
+
+.btn-buy{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:#0a0f1a;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:500;transition:all .2s;white-space:nowrap}
+.btn-buy:hover{background:#d9a030;transform:translateY(-2px);box-shadow:0 8px 32px rgba(200,146,42,.25)}
+.btn-buy-arrow{font-size:18px;transition:transform .2s}
+.btn-buy:hover .btn-buy-arrow{transform:translateX(4px)}
+
+/* LANG BADGE */
+.lang-badges{display:flex;gap:8px;margin-bottom:56px;flex-wrap:wrap;opacity:0;animation:up .5s .35s forwards}
+.lang-badge{font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:4px 10px;border:1px solid var(--gold-border);border-radius:4px;color:var(--gold);background:var(--gold-light)}
+
+/* WHAT YOU GET */
+.section-label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:64px}
+.feature-card{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:28px 24px;transition:border-color .2s}
+.feature-card:hover{border-color:rgba(200,146,42,.3)}
+.fc-num{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.1em;margin-bottom:12px}
+.fc-title{font-family:var(--serif);font-size:clamp(16px,2vw,20px);color:var(--text);margin-bottom:10px;line-height:1.2}
+.fc-desc{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* FOR WHO */
+.for-who{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:36px;margin-bottom:64px}
+.for-who-list{list-style:none;display:flex;flex-direction:column;gap:0}
+.for-who-list li{font-size:15px;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--border);display:flex;gap:12px;line-height:1.6;align-items:flex-start}
+.for-who-list li:last-child{border-bottom:none}
+.for-who-list li::before{content:'→';color:var(--gold);flex-shrink:0;font-family:var(--mono);font-size:12px;margin-top:2px}
+
+/* FORMULA BOX */
+.formula-box{background:rgba(20,29,46,.9);border:1px solid var(--gold-border);border-radius:12px;padding:32px 36px;margin-bottom:64px;text-align:center}
+.formula-eq{font-family:var(--mono);font-size:clamp(18px,3vw,28px);color:var(--gold);letter-spacing:.05em;margin-bottom:12px}
+.formula-desc{font-size:14px;color:var(--muted);font-style:italic}
+
+/* TOC */
+.toc{margin-bottom:64px}
+.toc-part{margin-bottom:32px}
+.toc-part-label{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--gold-border)}
+.toc-chapters{list-style:none;display:flex;flex-direction:column;gap:0}
+.toc-chapters li{font-size:14px;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:16px}
+.toc-chapters li:last-child{border-bottom:none}
+.toc-tag{font-family:var(--mono);font-size:11px;color:var(--dim)}
+
+/* CTA BOTTOM */
+.cta-bottom{background:var(--gold-light);border:1px solid var(--gold-border);border-radius:14px;padding:40px 36px;text-align:center;margin-bottom:32px}
+.cta-bottom-title{font-family:var(--serif);font-size:clamp(22px,3vw,30px);margin-bottom:12px}
+.cta-bottom-sub{font-size:15px;color:var(--muted);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto}
+
+/* UPSELL */
+.upsell{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:64px}
+.upsell-card{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;transition:border-color .2s}
+.upsell-card:hover{border-color:rgba(77,163,255,.3)}
+.uc-price{font-family:var(--mono);font-size:28px;color:var(--blue);margin-bottom:8px}
+.uc-title{font-size:15px;color:var(--text);margin-bottom:8px;font-weight:500}
+.uc-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* FOOTER */
+.gate-footer{position:relative;z-index:1;text-align:center;padding:28px 20px;color:var(--dim);font-size:12px;font-family:var(--mono);letter-spacing:.06em}
+.gate-footer a{color:var(--dim);text-decoration:none;transition:color .2s}
+.gate-footer a:hover{color:var(--muted)}
+
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:640px){
+  .feature-grid{grid-template-columns:1fr}
+  .upsell{grid-template-columns:1fr}
+  .price-block{flex-direction:column;align-items:flex-start;gap:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow-left"></div>
+<div class="bg-glow-right"></div>
+
+<div class="lang-bar">
+  <a href="index.html"><img src="GFILOGO.png" alt="GFI" style="height:40px;width:auto"></a>
+  <div class="lang-grp">
+    <button class="lb-btn on"  onclick="setLang('en',this)">EN</button>
+    <button class="lb-btn"     onclick="setLang('tw',this)">繁</button>
+    <button class="lb-btn"     onclick="setLang('cn',this)">简</button>
+  </div>
+</div>
+
+<!-- ══════════ ENGLISH ══════════ -->
+<div class="lb on" data-lang="en">
+<main>
+  <div class="eyebrow">GFI Flow Intelligence · Self-Guided Workbook</div>
+  <h1 class="hero-title">The Friction Audit Playbook</h1>
+  <div class="hero-sub">Self-Guided Workbook</div>
+  <p class="hero-desc">Diagnose and fix the hidden administrative costs in your organization — without a consultant. The complete GL Framework methodology in a practitioner's workbook. Every chapter includes a diagnostic tool you can apply the same day.</p>
+
+  <div class="price-block">
+    <div class="price-tag">$99</div>
+    <div class="price-meta">
+      <span>One-time · PDF Download</span>
+      <strong>All three languages included</strong>
+    </div>
+    <a href="https://buy.stripe.com/9B6dRb9gSazSdE90fB3VC03" class="btn-buy">Buy Now <span class="btn-buy-arrow">→</span></a>
+  </div>
+
+  <div class="lang-badges">
+    <span class="lang-badge">English</span>
+    <span class="lang-badge">繁體中文</span>
+    <span class="lang-badge">简体中文</span>
+  </div>
+
+  <div class="section-label">What's inside</div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="fc-num">PART I</div>
+      <div class="fc-title">Diagnosis</div>
+      <div class="fc-desc">Identify the five sources of administrative friction. Run the 48-Hour Friction Audit on any process in your organization.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">PART II</div>
+      <div class="fc-title">Measurement</div>
+      <div class="fc-desc">Build your Friction Map. Calculate your GL Score. Benchmark against Estonia, Massachusetts DUA, and Rwanda.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">PART III</div>
+      <div class="fc-title">The Fix</div>
+      <div class="fc-desc">Sluice strategies you can open today. Dam removal for structural barriers. A 90-day implementation roadmap.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">APPENDIX</div>
+      <div class="fc-title">Templates &amp; Tools</div>
+      <div class="fc-desc">GL Formula quick reference, 48-Hour Audit checklist, Friction Spotter diagnostic, and the five-sources reference table.</div>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-eq">GL = (Fs × Vn) / (Pd × Cf)</div>
+    <div class="formula-desc">Governance Liquidity = (Flow Success Rate × Validated Nodes) / (Procedural Latency × Coordination Friction)</div>
+  </div>
+
+  <div class="section-label">Who this is for</div>
+  <div class="for-who">
+    <ul class="for-who-list">
+      <li>The manager who suspects their organization is running at 60% capacity but cannot prove it</li>
+      <li>The director who watches every new process improvement initiative somehow make things slower</li>
+      <li>The city administrator who knows residents are waiting too long and cannot explain why</li>
+      <li>The CFO who sees headcount growing faster than output</li>
+      <li>The COO watching onboarding timelines stretch from weeks to months</li>
+      <li>The nonprofit leader spending more time in compliance reviews than in the field</li>
+    </ul>
+  </div>
+
+  <div class="section-label">Table of contents</div>
+  <div class="toc">
+    <div class="toc-part">
+      <div class="toc-part-label">Part I — Diagnosis</div>
+      <ul class="toc-chapters">
+        <li><span>Chapter 1: What Is Friction?</span><span class="toc-tag">+ Friction Spotter diagnostic</span></li>
+        <li><span>Chapter 2: The Five Sources of Administrative Friction</span><span class="toc-tag">+ Quick reference table</span></li>
+        <li><span>Chapter 3: How to Run a Friction Audit in 48 Hours</span><span class="toc-tag">+ Audit checklist</span></li>
+      </ul>
+    </div>
+    <div class="toc-part">
+      <div class="toc-part-label">Part II — Measurement</div>
+      <ul class="toc-chapters">
+        <li><span>Chapter 4: Building Your Friction Map</span><span class="toc-tag">+ 4-layer template</span></li>
+        <li><span>Chapter 5: Reading the Numbers — What Your GL Score Means</span><span class="toc-tag">+ Score scale</span></li>
+        <li><span>Chapter 6: Case Studies — Estonia · Massachusetts · Rwanda</span><span class="toc-tag">+ 3 benchmarks</span></li>
+      </ul>
+    </div>
+    <div class="toc-part">
+      <div class="toc-part-label">Part III — The Fix</div>
+      <ul class="toc-chapters">
+        <li><span>Chapter 7: Sluice Strategies — What You Can Open Today</span><span class="toc-tag">+ 4 quick wins</span></li>
+        <li><span>Chapter 8: Dam Removal — What Requires Political Will</span><span class="toc-tag">+ Removal sequence</span></li>
+        <li><span>Chapter 9: The 90-Day Implementation Roadmap</span><span class="toc-tag">+ Phase-by-phase plan</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-bottom">
+    <div class="cta-bottom-title">Ready to start your Friction Audit?</div>
+    <p class="cta-bottom-sub">$99 · PDF download · All three languages · Instant delivery after payment</p>
+    <a href="https://buy.stripe.com/9B6dRb9gSazSdE90fB3VC03" class="btn-buy">Get the Workbook <span class="btn-buy-arrow">→</span></a>
+  </div>
+
+  <div class="section-label">Need more than a workbook?</div>
+  <div class="upsell">
+    <div class="upsell-card">
+      <div class="uc-price">$999</div>
+      <div class="uc-title">Friction Audit Report</div>
+      <div class="uc-desc">Process-level GL diagnostic delivered in 48 hours. We run the audit. You get the findings and three immediate action recommendations.</div>
+    </div>
+    <div class="upsell-card">
+      <div class="uc-price">$4,999</div>
+      <div class="uc-title">Executive Structural Audit</div>
+      <div class="uc-desc">Full organizational friction surgery over 10 business days. Dam identification, political case-building, and a 90-day roadmap built for your context.</div>
+    </div>
+  </div>
+</main>
+<div class="gate-footer">
+  © 2026 GFI Flow Intelligence · Boston &nbsp;·&nbsp;
+  <a href="about.html">About the Founder</a> &nbsp;·&nbsp;
+  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+</div>
+</div><!-- /en -->
+
+<!-- ══════════ 繁體中文 ══════════ -->
+<div class="lb" data-lang="tw">
+<main>
+  <div class="eyebrow">GFI Flow Intelligence · 自助工作手冊</div>
+  <h1 class="hero-title">摩擦力審計實戰手冊</h1>
+  <div class="hero-sub">自助工作手冊</div>
+  <p class="hero-desc">不需顧問——自行診斷並修復組織中隱藏的行政成本。GL框架完整方法論的實務工作手冊。每一章都包含當天即可應用的診斷工具。</p>
+
+  <div class="price-block">
+    <div class="price-tag">$99</div>
+    <div class="price-meta">
+      <span>一次性付款 · PDF 下載</span>
+      <strong>三個語言版本全部包含</strong>
+    </div>
+    <a href="https://buy.stripe.com/9B6dRb9gSazSdE90fB3VC03" class="btn-buy">立即購買 <span class="btn-buy-arrow">→</span></a>
+  </div>
+
+  <div class="lang-badges">
+    <span class="lang-badge">English</span>
+    <span class="lang-badge">繁體中文</span>
+    <span class="lang-badge">简体中文</span>
+  </div>
+
+  <div class="section-label">內容涵蓋</div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="fc-num">第一部</div>
+      <div class="fc-title">診斷</div>
+      <div class="fc-desc">識別行政摩擦的五大來源。對組織中任何流程執行48小時摩擦力審計。</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">第二部</div>
+      <div class="fc-title">衡量</div>
+      <div class="fc-desc">建立摩擦地圖。計算GL分數。對照愛沙尼亞、麻薩諸塞州DUA和盧安達進行基準比較。</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">第三部</div>
+      <div class="fc-title">修復</div>
+      <div class="fc-desc">今天就能開啟的閘門策略。結構性屏障的水壩移除方法。90天實施路線圖。</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">附錄</div>
+      <div class="fc-title">模板與工具</div>
+      <div class="fc-desc">GL公式快速參照、48小時審計清單、摩擦探測器診斷工具，以及五大來源參照表。</div>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-eq">GL = (Fs × Vn) / (Pd × Cf)</div>
+    <div class="formula-desc">治理流動性 = （流程成功率 × 有效節點數）/ （程序延滯 × 協調摩擦）</div>
+  </div>
+
+  <div class="section-label">適合誰使用</div>
+  <div class="for-who">
+    <ul class="for-who-list">
+      <li>懷疑組織只在60%效能運轉卻無法證明的主管</li>
+      <li>眼看著每一個新的流程改善計畫反而讓事情更慢的部門主任</li>
+      <li>知道民眾等待太久卻說不清原因的市府行政主管</li>
+      <li>看到人員增長速度快於產出的財務長</li>
+      <li>眼看入職時間從幾週延長到幾個月的營運長</li>
+      <li>花在合規審查上的時間多於實地工作的非營利組織主管</li>
+    </ul>
+  </div>
+
+  <div class="section-label">章節目錄</div>
+  <div class="toc">
+    <div class="toc-part">
+      <div class="toc-part-label">第一部 — 診斷</div>
+      <ul class="toc-chapters">
+        <li><span>第一章：什麼是摩擦？</span><span class="toc-tag">+ 摩擦探測器</span></li>
+        <li><span>第二章：行政摩擦的五大來源</span><span class="toc-tag">+ 快速參照表</span></li>
+        <li><span>第三章：如何在48小時內執行摩擦力審計</span><span class="toc-tag">+ 審計清單</span></li>
+      </ul>
+    </div>
+    <div class="toc-part">
+      <div class="toc-part-label">第二部 — 衡量</div>
+      <ul class="toc-chapters">
+        <li><span>第四章：建立你的摩擦地圖</span><span class="toc-tag">+ 四層模板</span></li>
+        <li><span>第五章：解讀數字——GL分數的含義</span><span class="toc-tag">+ 分數量表</span></li>
+        <li><span>第六章：案例研究——愛沙尼亞 · 麻薩諸塞 · 盧安達</span><span class="toc-tag">+ 三個基準</span></li>
+      </ul>
+    </div>
+    <div class="toc-part">
+      <div class="toc-part-label">第三部 — 修復</div>
+      <ul class="toc-chapters">
+        <li><span>第七章：閘門策略——你今天就能開啟的</span><span class="toc-tag">+ 四項速效行動</span></li>
+        <li><span>第八章：水壩移除——需要政治意志的事</span><span class="toc-tag">+ 移除順序</span></li>
+        <li><span>第九章：90天實施路線圖</span><span class="toc-tag">+ 分階段計畫</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-bottom">
+    <div class="cta-bottom-title">準備好開始你的摩擦力審計了嗎？</div>
+    <p class="cta-bottom-sub">$99 · PDF下載 · 三個語言版本 · 付款後即時交付</p>
+    <a href="https://buy.stripe.com/9B6dRb9gSazSdE90fB3VC03" class="btn-buy">取得手冊 <span class="btn-buy-arrow">→</span></a>
+  </div>
+
+  <div class="section-label">需要的不只是手冊？</div>
+  <div class="upsell">
+    <div class="upsell-card">
+      <div class="uc-price">$999</div>
+      <div class="uc-title">摩擦力審計報告</div>
+      <div class="uc-desc">流程級GL診斷，48小時交付。我們執行審計，你得到調查結果和三項立即行動建議。</div>
+    </div>
+    <div class="upsell-card">
+      <div class="uc-price">$4,999</div>
+      <div class="uc-title">行政架構深度手術</div>
+      <div class="uc-desc">10個工作日的完整組織摩擦手術。水壩識別、政治論據建構，以及針對你的情境建立的90天路線圖。</div>
+    </div>
+  </div>
+</main>
+<div class="gate-footer">
+  © 2026 GFI Flow Intelligence · 波士頓 &nbsp;·&nbsp;
+  <a href="about.html">關於創辦人</a> &nbsp;·&nbsp;
+  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+</div>
+</div><!-- /tw -->
+
+<!-- ══════════ 简体中文 ══════════ -->
+<div class="lb" data-lang="cn">
+<main>
+  <div class="eyebrow">GFI Flow Intelligence · 自助工作手册</div>
+  <h1 class="hero-title">摩擦力审计实战手册</h1>
+  <div class="hero-sub">自助工作手册</div>
+  <p class="hero-desc">无需顾问——自行诊断并修复组织中隐藏的行政成本。GL框架完整方法论的实务工作手册。每一章都包含当天即可应用的诊断工具。</p>
+
+  <div class="price-block">
+    <div class="price-tag">$99</div>
+    <div class="price-meta">
+      <span>一次性付款 · PDF 下载</span>
+      <strong>三个语言版本全部包含</strong>
+    </div>
+    <a href="https://buy.stripe.com/9B6dRb9gSazSdE90fB3VC03" class="btn-buy">立即购买 <span class="btn-buy-arrow">→</span></a>
+  </div>
+
+  <div class="lang-badges">
+    <span class="lang-badge">English</span>
+    <span class="lang-badge">繁體中文</span>
+    <span class="lang-badge">简体中文</span>
+  </div>
+
+  <div class="section-label">内容涵盖</div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="fc-num">第一部</div>
+      <div class="fc-title">诊断</div>
+      <div class="fc-desc">识别行政摩擦的五大来源。对组织中任何流程执行48小时摩擦力审计。</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">第二部</div>
+      <div class="fc-title">衡量</div>
+      <div class="fc-desc">建立摩擦地图。计算GL分数。对照爱沙尼亚、麻萨诸塞州DUA和卢旺达进行基准比较。</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">第三部</div>
+      <div class="fc-title">修复</div>
+      <div class="fc-desc">今天就能开启的闸门策略。结构性屏障的水坝移除方法。90天实施路线图。</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">附录</div>
+      <div class="fc-title">模板与工具</div>
+      <div class="fc-desc">GL公式快速参照、48小时审计清单、摩擦探测器诊断工具，以及五大来源参照表。</div>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-eq">GL = (Fs × Vn) / (Pd × Cf)</div>
+    <div class="formula-desc">治理流动性 = （流程成功率 × 有效节点数）/ （程序延迟 × 协调摩擦）</div>
+  </div>
+
+  <div class="section-label">适合谁使用</div>
+  <div class="for-who">
+    <ul class="for-who-list">
+      <li>怀疑组织只在60%效能运转却无法证明的主管</li>
+      <li>眼看着每一个新的流程改善计划反而让事情更慢的部门主任</li>
+      <li>知道民众等待太久却说不清原因的市府行政主管</li>
+      <li>看到人员增长速度快于产出的财务长</li>
+      <li>眼看入职时间从几周延长到几个月的运营长</li>
+      <li>花在合规审查上的时间多于实地工作的非营利组织主管</li>
+    </ul>
+  </div>
+
+  <div class="section-label">章节目录</div>
+  <div class="toc">
+    <div class="toc-part">
+      <div class="toc-part-label">第一部 — 诊断</div>
+      <ul class="toc-chapters">
+        <li><span>第一章：什么是摩擦？</span><span class="toc-tag">+ 摩擦探测器</span></li>
+        <li><span>第二章：行政摩擦的五大来源</span><span class="toc-tag">+ 快速参照表</span></li>
+        <li><span>第三章：如何在48小时内执行摩擦力审计</span><span class="toc-tag">+ 审计清单</span></li>
+      </ul>
+    </div>
+    <div class="toc-part">
+      <div class="toc-part-label">第二部 — 衡量</div>
+      <ul class="toc-chapters">
+        <li><span>第四章：建立你的摩擦地图</span><span class="toc-tag">+ 四层模板</span></li>
+        <li><span>第五章：解读数字——GL分数的含义</span><span class="toc-tag">+ 分数量表</span></li>
+        <li><span>第六章：案例研究——爱沙尼亚 · 麻萨诸塞 · 卢旺达</span><span class="toc-tag">+ 三个基准</span></li>
+      </ul>
+    </div>
+    <div class="toc-part">
+      <div class="toc-part-label">第三部 — 修复</div>
+      <ul class="toc-chapters">
+        <li><span>第七章：闸门策略——你今天就能开启的</span><span class="toc-tag">+ 四项速效行动</span></li>
+        <li><span>第八章：水坝移除——需要政治意志的事</span><span class="toc-tag">+ 移除顺序</span></li>
+        <li><span>第九章：90天实施路线图</span><span class="toc-tag">+ 分阶段计划</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-bottom">
+    <div class="cta-bottom-title">准备好开始你的摩擦力审计了吗？</div>
+    <p class="cta-bottom-sub">$99 · PDF下载 · 三个语言版本 · 付款后即时交付</p>
+    <a href="https://buy.stripe.com/9B6dRb9gSazSdE90fB3VC03" class="btn-buy">获取手册 <span class="btn-buy-arrow">→</span></a>
+  </div>
+
+  <div class="section-label">需要的不只是手册？</div>
+  <div class="upsell">
+    <div class="upsell-card">
+      <div class="uc-price">$999</div>
+      <div class="uc-title">摩擦力审计报告</div>
+      <div class="uc-desc">流程级GL诊断，48小时交付。我们执行审计，你得到调查结果和三项立即行动建议。</div>
+    </div>
+    <div class="upsell-card">
+      <div class="uc-price">$4,999</div>
+      <div class="uc-title">行政架构深度手术</div>
+      <div class="uc-desc">10个工作日的完整组织摩擦手术。水坝识别、政治论据构建，以及针对你的情境建立的90天路线图。</div>
+    </div>
+  </div>
+</main>
+<div class="gate-footer">
+  © 2026 GFI Flow Intelligence · 波士顿 &nbsp;·&nbsp;
+  <a href="about.html">关于创始人</a> &nbsp;·&nbsp;
+  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+</div>
+</div><!-- /cn -->
+
+<script>
+function setLang(lang,btn){
+  document.querySelectorAll('.lb').forEach(el=>el.classList.remove('on'));
+  document.querySelectorAll('.lb[data-lang="'+lang+'"]').forEach(el=>el.classList.add('on'));
+  document.querySelectorAll('.lb-btn').forEach(b=>{
+    b.classList.toggle('on',b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+lang+"'"));
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
