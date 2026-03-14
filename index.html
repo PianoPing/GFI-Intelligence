@@ -13,18 +13,20 @@
 <style>
 :root{
   --bg:#0b1220;
-  --bg2:#0f172a;
-  --surf:#131c2e;
-  --surf2:#1b263b;
-  --card:#111a2b;
-  --border:rgba(255,255,255,0.08);
+  --bg2:#111827;
+  --card:#121b2c;
+  --card2:#162235;
+  --border:rgba(255,255,255,0.10);
 
   --text:#f8fbff;
-  --muted:#a9b6cb;
-  --dim:#6f809a;
+  --muted:#c7d2e3;
+  --sub:#9fb0c8;
+  --dim:#8fa2bc;
 
-  --accent:#22c55e;
-  --blue:#38bdf8;
+  --green:#9FE870;
+  --green-strong:#7CDA42;
+  --blue:#7DD3FC;
+  --blue-strong:#38BDF8;
 
   --serif:'DM Serif Display', Georgia, serif;
   --mono:'DM Mono', monospace;
@@ -44,8 +46,8 @@ html{
 
 body{
   background:
-    radial-gradient(circle at 20% 10%, rgba(34,197,94,.08), transparent 28%),
-    radial-gradient(circle at 85% 80%, rgba(56,189,248,.08), transparent 30%),
+    radial-gradient(circle at 18% 10%, rgba(159,232,112,.08), transparent 26%),
+    radial-gradient(circle at 85% 80%, rgba(56,189,248,.08), transparent 28%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
   color:var(--text);
   font-family:var(--sans);
@@ -55,10 +57,6 @@ body{
   min-height:100vh;
 }
 
-a{
-  color:inherit;
-}
-
 .bg-grid{
   position:fixed;
   inset:0;
@@ -66,21 +64,9 @@ a{
     linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
   background-size:56px 56px;
-  mask-image:radial-gradient(ellipse 85% 70% at 50% 40%, black 15%, transparent 80%);
+  mask-image:radial-gradient(ellipse 85% 72% at 50% 42%, black 18%, transparent 82%);
   pointer-events:none;
   z-index:0;
-}
-
-.bg-noise{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  opacity:.06;
-  background-image:
-    radial-gradient(circle at 25% 20%, white 0.6px, transparent 0.7px),
-    radial-gradient(circle at 75% 60%, white 0.6px, transparent 0.7px);
-  background-size:120px 120px, 140px 140px;
 }
 
 .lang-bar{
@@ -90,13 +76,13 @@ a{
   right:0;
   z-index:100;
   height:62px;
-  padding:0 clamp(20px,5vw,52px);
+  padding:0 clamp(18px,5vw,52px);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  background:rgba(11,18,32,.78);
+  background:rgba(11,18,32,.82);
   backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .logo img{
@@ -116,24 +102,24 @@ a{
   font-size:11px;
   letter-spacing:.08em;
   padding:6px 11px;
-  border:1px solid var(--border);
+  border:1px solid rgba(255,255,255,.10);
   border-radius:6px;
   background:none;
-  color:var(--muted);
+  color:var(--sub);
   cursor:pointer;
   transition:all .2s ease;
 }
 
 .lb-btn:hover{
   color:var(--text);
-  border-color:rgba(255,255,255,.18);
+  border-color:rgba(255,255,255,.20);
   background:rgba(255,255,255,.03);
 }
 
 .lb-btn.on{
-  color:var(--accent);
-  border-color:rgba(34,197,94,.35);
-  background:rgba(34,197,94,.08);
+  color:var(--green);
+  border-color:rgba(159,232,112,.35);
+  background:rgba(159,232,112,.08);
 }
 
 .lb{
@@ -157,7 +143,7 @@ main{
 
 .hero-wrap{
   width:100%;
-  max-width:1100px;
+  max-width:1120px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -168,46 +154,35 @@ main{
   font-size:11px;
   letter-spacing:.22em;
   text-transform:uppercase;
-  color:var(--accent);
+  color:#AFC3DB;
   text-align:center;
-  margin-bottom:24px;
+  margin-bottom:20px;
   opacity:0;
   animation:up .55s .05s forwards;
 }
 
 .gate-title{
   font-family:var(--serif);
-  font-size:clamp(34px,5vw,68px);
-  line-height:1.02;
+  font-size:clamp(34px,5vw,70px);
+  line-height:1.05;
   letter-spacing:-.03em;
   text-align:center;
   max-width:980px;
   margin-bottom:18px;
+  color:#FFFFFF;
   opacity:0;
   animation:up .55s .16s forwards;
 }
 
 .gate-sub{
-  font-size:clamp(16px,1.9vw,20px);
-  color:#d3deee;
+  font-size:clamp(18px,2vw,22px);
+  color:#D8E2F0;
   text-align:center;
-  max-width:740px;
+  max-width:760px;
   line-height:1.8;
-  margin-bottom:26px;
+  margin-bottom:56px;
   opacity:0;
   animation:up .55s .28s forwards;
-}
-
-.hero-note{
-  font-family:var(--mono);
-  font-size:11px;
-  letter-spacing:.08em;
-  color:var(--dim);
-  text-transform:uppercase;
-  text-align:center;
-  margin-bottom:62px;
-  opacity:0;
-  animation:up .55s .38s forwards;
 }
 
 .gate-cards{
@@ -215,92 +190,89 @@ main{
   grid-template-columns:1fr 1fr;
   gap:24px;
   width:100%;
-  max-width:980px;
+  max-width:1000px;
   opacity:0;
-  animation:up .6s .48s forwards;
+  animation:up .6s .42s forwards;
 }
 
 .gate-card{
   position:relative;
   display:flex;
   flex-direction:column;
-  min-height:360px;
-  border-radius:20px;
+  min-height:380px;
+  border-radius:22px;
   padding:34px 32px 30px;
   text-decoration:none;
   overflow:hidden;
   border:1px solid var(--border);
-  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-  box-shadow:0 10px 40px rgba(0,0,0,.22);
-  transition:transform .28s ease,border-color .28s ease,background .28s ease,box-shadow .28s ease;
-}
-
-.gate-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  opacity:.9;
+  box-shadow:0 14px 42px rgba(0,0,0,.26);
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease,background .28s ease;
 }
 
 .gate-card:hover{
   transform:translateY(-6px);
-  box-shadow:0 18px 48px rgba(0,0,0,.32);
+  box-shadow:0 18px 50px rgba(0,0,0,.34);
 }
 
 .gate-card.gov{
   background:
-    linear-gradient(180deg, rgba(34,197,94,.08), rgba(34,197,94,.03)),
-    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-  border-color:rgba(34,197,94,.18);
-}
-
-.gate-card.gov::before{
-  background:radial-gradient(circle at top right, rgba(34,197,94,.14), transparent 38%);
-}
-
-.gate-card.gov:hover{
-  border-color:rgba(34,197,94,.4);
+    radial-gradient(circle at top right, rgba(159,232,112,.12), transparent 34%),
+    linear-gradient(180deg, rgba(159,232,112,.06), rgba(255,255,255,.015)),
+    linear-gradient(180deg, #141F18 0%, #121B17 100%);
+  border-color:rgba(159,232,112,.28);
 }
 
 .gate-card.priv{
   background:
-    linear-gradient(180deg, rgba(56,189,248,.08), rgba(56,189,248,.03)),
-    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-  border-color:rgba(56,189,248,.18);
+    radial-gradient(circle at top right, rgba(125,211,252,.12), transparent 34%),
+    linear-gradient(180deg, rgba(56,189,248,.06), rgba(255,255,255,.015)),
+    linear-gradient(180deg, #131C2D 0%, #111827 100%);
+  border-color:rgba(125,211,252,.26);
 }
 
-.gate-card.priv::before{
-  background:radial-gradient(circle at top right, rgba(56,189,248,.14), transparent 38%);
+.gate-card.gov:hover{
+  border-color:rgba(159,232,112,.52);
 }
 
 .gate-card.priv:hover{
-  border-color:rgba(56,189,248,.4);
+  border-color:rgba(125,211,252,.48);
 }
 
 .gc-sector{
   font-family:var(--mono);
-  font-size:10px;
+  font-size:11px;
   letter-spacing:.18em;
   text-transform:uppercase;
-  margin-bottom:16px;
+  margin-bottom:18px;
 }
 
-.gate-card.gov .gc-sector{color:var(--accent);}
-.gate-card.priv .gc-sector{color:var(--blue);}
+.gate-card.gov .gc-sector{
+  color:var(--green);
+}
+
+.gate-card.priv .gc-sector{
+  color:var(--blue);
+}
 
 .gc-title{
   font-family:var(--serif);
-  font-size:clamp(24px,2.4vw,34px);
-  line-height:1.12;
-  color:var(--text);
+  font-size:clamp(26px,2.6vw,38px);
+  line-height:1.16;
   margin-bottom:18px;
-  max-width:420px;
+  max-width:430px;
+}
+
+.gate-card.gov .gc-title{
+  color:#F3FFE9;
+}
+
+.gate-card.priv .gc-title{
+  color:#ECF8FF;
 }
 
 .gc-desc{
-  color:var(--muted);
-  font-size:15px;
+  color:#D7E1EE;
+  font-size:16px;
   line-height:1.8;
   margin-bottom:22px;
   max-width:430px;
@@ -315,10 +287,10 @@ main{
   display:flex;
   gap:10px;
   align-items:flex-start;
-  padding:8px 0;
-  color:#d7e1ef;
-  font-size:14px;
-  line-height:1.65;
+  padding:9px 0;
+  color:#E4ECF7;
+  font-size:15px;
+  line-height:1.7;
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 
@@ -330,8 +302,13 @@ main{
   margin-top:2px;
 }
 
-.gate-card.gov .gc-items li::before{color:var(--accent);}
-.gate-card.priv .gc-items li::before{color:var(--blue);}
+.gate-card.gov .gc-items li::before{
+  color:var(--green);
+}
+
+.gate-card.priv .gc-items li::before{
+  color:var(--blue);
+}
 
 .gc-cta{
   margin-top:auto;
@@ -344,8 +321,13 @@ main{
   text-transform:uppercase;
 }
 
-.gate-card.gov .gc-cta{color:var(--accent);}
-.gate-card.priv .gc-cta{color:var(--blue);}
+.gate-card.gov .gc-cta{
+  color:var(--green);
+}
+
+.gate-card.priv .gc-cta{
+  color:var(--blue);
+}
 
 .gc-arrow{
   font-size:18px;
@@ -360,21 +342,21 @@ main{
   position:relative;
   z-index:1;
   text-align:center;
-  padding:28px 20px 34px;
-  color:var(--dim);
+  padding:28px 20px 36px;
+  color:#A9BAD1;
   font-size:12px;
   font-family:var(--mono);
   letter-spacing:.05em;
 }
 
 .gate-footer a{
-  color:var(--muted);
+  color:#D9E6F7;
   text-decoration:none;
-  transition:color .2s;
+  transition:color .2s ease;
 }
 
 .gate-footer a:hover{
-  color:var(--text);
+  color:#FFFFFF;
 }
 
 @keyframes up{
@@ -396,18 +378,26 @@ main{
   .lang-bar{
     padding:0 16px;
   }
+
   .logo img{
     height:34px;
   }
+
   main{
-    padding:88px 18px 44px;
+    padding:88px 18px 42px;
   }
+
   .gate-card{
     padding:28px 22px 24px;
-    border-radius:16px;
+    border-radius:18px;
   }
+
   .gate-title{
-    font-size:clamp(30px,10vw,46px);
+    font-size:clamp(30px,10vw,48px);
+  }
+
+  .gate-sub{
+    font-size:18px;
   }
 }
 </style>
@@ -415,7 +405,6 @@ main{
 <body>
 
 <div class="bg-grid"></div>
-<div class="bg-noise"></div>
 
 <div class="lang-bar">
   <a href="index.html" class="logo">
@@ -436,29 +425,25 @@ main{
       <div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
 
       <h1 class="gate-title">
-        GL measures structural efficiency<br>
-        across public systems and capital systems.
+        GL measures structural efficiency.<br>
+        Choose your context.
       </h1>
 
       <p class="gate-sub">
-        One framework. Two operating contexts. Choose the environment that matches your work.
+        The same GL framework applies across different institutional environments.
       </p>
-
-      <div class="hero-note">
-        Demo access appears inside each sector page
-      </div>
 
       <div class="gate-cards">
         <a href="government.html" class="gate-card gov">
           <div class="gc-sector">Public Sector</div>
           <div class="gc-title">Government &amp; Public Administration</div>
           <div class="gc-desc">
-            Independent structural diagnosis of administrative systems, delivery friction, and cross-jurisdiction efficiency.
+            Independent structural diagnosis of administrative systems and delivery friction.
           </div>
           <ul class="gc-items">
-            <li>External GL analysis using public audit and performance data</li>
-            <li>Cross-state and cross-system structural comparison</li>
-            <li>For auditors, oversight offices, digital government, and policy researchers</li>
+            <li>Structural efficiency of administrative systems</li>
+            <li>Cross-jurisdiction comparison</li>
+            <li>Public audit dataset analysis</li>
           </ul>
           <div class="gc-cta">Enter <span class="gc-arrow">→</span></div>
         </a>
@@ -467,12 +452,12 @@ main{
           <div class="gc-sector">Private Sector</div>
           <div class="gc-title">Enterprise &amp; Capital Efficiency</div>
           <div class="gc-desc">
-            Verify whether AI, ERP, and organizational transformation actually improve capital velocity rather than multiplying friction.
+            Verify whether transformation improves capital velocity or multiplies friction.
           </div>
           <ul class="gc-items">
-            <li>Before-and-after GL verification of operational change</li>
-            <li>Identify hidden rework loops, denominator inflation, and Ghost GDP</li>
-            <li>For operators, CFO teams, digital transformation, and diligence work</li>
+            <li>Measure operational drag after automation</li>
+            <li>Detect hidden rework loops</li>
+            <li>Compare efficiency before and after change</li>
           </ul>
           <div class="gc-cta">Enter <span class="gc-arrow">→</span></div>
         </a>
@@ -488,29 +473,25 @@ main{
       <div class="gate-eyebrow">GFI Flow Intelligence · 波士頓</div>
 
       <h1 class="gate-title">
-        GL 衡量結構效率，<br>
-        橫跨公共系統與資本系統。
+        GL 衡量結構效率。<br>
+        選擇你的場域。
       </h1>
 
       <p class="gate-sub">
-        同一個框架，兩種運作場域。選擇最符合你工作的那一個。
+        同一套 GL 框架，可應用於不同制度環境。
       </p>
-
-      <div class="hero-note">
-        Demo 入口放在各自的 sector 頁面內
-      </div>
 
       <div class="gate-cards">
         <a href="government.html" class="gate-card gov">
           <div class="gc-sector">公部門</div>
           <div class="gc-title">政府與公共行政</div>
           <div class="gc-desc">
-            針對行政系統、交付摩擦與跨司法管轄效率進行獨立的結構診斷。
+            對行政系統與政策交付摩擦進行獨立結構診斷。
           </div>
           <ul class="gc-items">
-            <li>以公開審計與績效資料進行外部 GL 分析</li>
-            <li>進行跨州與跨系統的結構比較</li>
-            <li>適用於審計、監督、數位政府與政策研究</li>
+            <li>行政系統的結構效率測量</li>
+            <li>跨司法管轄比較</li>
+            <li>公開審計資料分析</li>
           </ul>
           <div class="gc-cta">進入 <span class="gc-arrow">→</span></div>
         </a>
@@ -519,12 +500,12 @@ main{
           <div class="gc-sector">民間企業</div>
           <div class="gc-title">企業與資本效率</div>
           <div class="gc-desc">
-            驗證 AI、ERP 與組織轉型是否真正提升資本速度，而不是把摩擦放大。
+            驗證轉型究竟提升資本速度，還是放大制度摩擦。
           </div>
           <ul class="gc-items">
-            <li>針對營運變化做前後 GL 驗證</li>
-            <li>找出隱藏返工迴圈、分母膨脹與幽靈 GDP</li>
-            <li>適用於營運、CFO 團隊、數位轉型與盡職調查</li>
+            <li>衡量自動化後的營運拖累</li>
+            <li>找出隱藏返工迴圈</li>
+            <li>比較變革前後效率差值</li>
           </ul>
           <div class="gc-cta">進入 <span class="gc-arrow">→</span></div>
         </a>
@@ -540,29 +521,25 @@ main{
       <div class="gate-eyebrow">GFI Flow Intelligence · 波士顿</div>
 
       <h1 class="gate-title">
-        GL 衡量结构效率，<br>
-        横跨公共系统与资本系统。
+        GL 衡量结构效率。<br>
+        选择你的场域。
       </h1>
 
       <p class="gate-sub">
-        同一个框架，两种运作场域。选择最符合你工作的那一个。
+        同一套 GL 框架，可应用于不同制度环境。
       </p>
-
-      <div class="hero-note">
-        Demo 入口放在各自的 sector 页面内
-      </div>
 
       <div class="gate-cards">
         <a href="government.html" class="gate-card gov">
           <div class="gc-sector">公共部门</div>
           <div class="gc-title">政府与公共行政</div>
           <div class="gc-desc">
-            针对行政系统、交付摩擦与跨司法辖区效率进行独立的结构诊断。
+            对行政系统与政策交付摩擦进行独立结构诊断。
           </div>
           <ul class="gc-items">
-            <li>以公开审计与绩效数据进行外部 GL 分析</li>
-            <li>进行跨州与跨系统的结构比较</li>
-            <li>适用于审计、监督、数字政府与政策研究</li>
+            <li>行政系统的结构效率测量</li>
+            <li>跨司法辖区比较</li>
+            <li>公开审计资料分析</li>
           </ul>
           <div class="gc-cta">进入 <span class="gc-arrow">→</span></div>
         </a>
@@ -571,12 +548,12 @@ main{
           <div class="gc-sector">民间企业</div>
           <div class="gc-title">企业与资本效率</div>
           <div class="gc-desc">
-            验证 AI、ERP 与组织转型是否真正提升资本速度，而不是把摩擦放大。
+            验证转型究竟提升资本速度，还是放大制度摩擦。
           </div>
           <ul class="gc-items">
-            <li>针对运营变化做前后 GL 验证</li>
-            <li>找出隐藏返工循环、分母膨胀与幽灵 GDP</li>
-            <li>适用于运营、CFO 团队、数字转型与尽职调查</li>
+            <li>衡量自动化后的运营拖累</li>
+            <li>找出隐藏返工循环</li>
+            <li>比较变革前后效率差值</li>
           </ul>
           <div class="gc-cta">进入 <span class="gc-arrow">→</span></div>
         </a>
