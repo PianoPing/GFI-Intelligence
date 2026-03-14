@@ -1,339 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GFI Flow Intelligence — GL Framework for structural efficiency measurement. Public Sector and Private Sector.">
-<title>GFI Flow Intelligence</title>
+
+<title>GFI Flow Intelligence | GL Framework</title>
+
+<meta name="description" content="GFI Flow Intelligence — GL Framework for measuring structural efficiency, administrative friction, and Ghost GDP across public and private systems.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
+
 :root{
-  --bg:#141d2e;--surf:#1c2740;--surf2:#22304e;
-  --border:rgba(255,255,255,0.08);--text:#edf0f8;
-  --muted:#8fa3c0;--dim:#4a6080;--accent:#c8f542;--blue:#4da3ff;
-  --gold:#c8922a;
-  --serif:'DM Serif Display',Georgia,serif;
-  --mono:'DM Mono',monospace;
-  --sans:'DM Sans',system-ui,sans-serif;
+--bg:#141d2e;
+--surf:#1c2740;
+--surf2:#22304e;
+--border:rgba(255,255,255,0.08);
+--text:#edf0f8;
+--muted:#8fa3c0;
+--dim:#4a6080;
+--accent:#c8f542;
+--blue:#4da3ff;
+--gold:#c8922a;
+
+--serif:'DM Serif Display',Georgia,serif;
+--mono:'DM Mono',monospace;
+--sans:'DM Sans',system-ui,sans-serif;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.75;overflow-x:hidden;min-height:100svh}
 
-/* LANG */
-.lb{display:none}.lb.on{display:block}
+*,*::before,*::after{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
-/* LANG BUTTONS */
-.lang-bar{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;padding:0 clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;background:rgba(20,29,46,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.logo img{height:40px;width:auto}
-.lang-grp{display:flex;gap:6px;align-items:center}
-.lb-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:none;color:var(--muted);cursor:pointer;transition:all .2s}
-.lb-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.2)}
-.lb-btn.on{color:var(--accent);border-color:rgba(200,245,66,0.4);background:rgba(200,245,66,0.07)}
+body{
+background:var(--bg);
+color:var(--text);
+font-family:var(--sans);
+font-size:17px;
+line-height:1.75;
+overflow-x:hidden;
+}
 
-/* GRID BACKGROUND */
-.bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 70% at 50% 40%,black 10%,transparent 80%);pointer-events:none;z-index:0}
-.bg-glow-left{position:fixed;width:700px;height:700px;background:radial-gradient(circle,rgba(200,245,66,.04) 0%,transparent 65%);top:-200px;left:-200px;pointer-events:none;z-index:0}
-.bg-glow-right{position:fixed;width:600px;height:600px;background:radial-gradient(circle,rgba(77,163,255,.04) 0%,transparent 65%);bottom:-150px;right:-150px;pointer-events:none;z-index:0}
+.lang-bar{
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:100;
+height:56px;
+padding:0 48px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:rgba(20,29,46,0.93);
+backdrop-filter:blur(16px);
+border-bottom:1px solid var(--border);
+}
 
-/* MAIN LAYOUT */
-main{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px clamp(20px,5vw,60px) 48px}
+.logo img{
+height:40px;
+}
 
-/* HEADER TEXT */
-.gate-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:clamp(16px,3vh,24px);opacity:0;animation:up .5s .05s forwards}
-.gate-title{font-family:var(--serif);font-size:clamp(26px,4vw,48px);line-height:1.1;letter-spacing:-.02em;text-align:center;margin-bottom:clamp(10px,2vh,16px);opacity:0;animation:up .5s .15s forwards}
-.gate-sub{font-size:clamp(15px,1.8vw,17px);color:var(--muted);text-align:center;max-width:540px;line-height:1.7;margin-bottom:clamp(40px,7vh,72px);opacity:0;animation:up .5s .25s forwards}
+.lang-grp{
+display:flex;
+gap:6px;
+}
 
-/* GATE CARDS */
-.gate-cards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px);width:100%;max-width:860px;opacity:0;animation:up .55s .4s forwards}
-.gate-card{display:flex;flex-direction:column;border-radius:14px;padding:clamp(28px,4vw,48px) clamp(24px,3.5vw,40px);text-decoration:none;transition:transform .28s,border-color .28s,background .28s;position:relative;overflow:hidden}
-.gate-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .28s}
-.gate-card:hover{transform:translateY(-5px)}
-.gate-card:hover::before{opacity:1}
+.lb-btn{
+font-family:var(--mono);
+font-size:11px;
+letter-spacing:.08em;
+padding:5px 10px;
+border:1px solid var(--border);
+border-radius:4px;
+background:none;
+color:var(--muted);
+cursor:pointer;
+}
 
-/* GOV CARD */
-.gate-card.gov{background:rgba(200,245,66,.04);border:1px solid rgba(200,245,66,.2)}
-.gate-card.gov::before{background:rgba(200,245,66,.04)}
-.gate-card.gov:hover{border-color:rgba(200,245,66,.45);background:rgba(200,245,66,.07)}
+.lb-btn.on{
+color:var(--accent);
+border-color:rgba(200,245,66,0.4);
+background:rgba(200,245,66,.07);
+}
 
-/* PRIV CARD */
-.gate-card.priv{background:rgba(77,163,255,.04);border:1px solid rgba(77,163,255,.2)}
-.gate-card.priv::before{background:rgba(77,163,255,.04)}
-.gate-card.priv:hover{border-color:rgba(77,163,255,.45);background:rgba(77,163,255,.07)}
+main{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:80px 48px 48px;
+}
 
-/* GHOST CARD */
-.gate-card.ghost{background:rgba(255,107,107,.04);border:1px solid rgba(255,107,107,.2);grid-column:1/-1}
-.gate-card.ghost::before{background:rgba(255,107,107,.04)}
-.gate-card.ghost:hover{border-color:rgba(255,107,107,.45);background:rgba(255,107,107,.07)}
-.gate-card.ghost .gc-sector{color:#ff7070}
-.gate-card.ghost .gc-cta{color:#ff7070}
+.gate-eyebrow{
+font-family:var(--mono);
+font-size:11px;
+letter-spacing:.22em;
+text-transform:uppercase;
+color:var(--accent);
+margin-bottom:24px;
+}
 
-/* WORKBOOK CARD */
-.gate-card.workbook{background:rgba(200,146,42,.04);border:1px solid rgba(200,146,42,.25);grid-column:1/-1}
-.gate-card.workbook::before{background:rgba(200,146,42,.04)}
-.gate-card.workbook:hover{border-color:rgba(200,146,42,.55);background:rgba(200,146,42,.08)}
-.gate-card.workbook .gc-sector{color:var(--gold)}
-.gate-card.workbook .gc-cta{color:var(--gold)}
-.gate-card.workbook .gc-items li::before{content:'→';color:var(--gold);flex-shrink:0;font-family:var(--mono);font-size:12px}
-.workbook-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.workbook-price{font-family:var(--mono);font-size:26px;color:var(--gold);letter-spacing:-.01em}
+.gate-title{
+font-family:var(--serif);
+font-size:44px;
+text-align:center;
+line-height:1.1;
+margin-bottom:16px;
+}
 
-.gc-sector{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px}
-.gate-card.gov .gc-sector{color:var(--accent)}
-.gate-card.priv .gc-sector{color:var(--blue)}
+.gate-sub{
+max-width:540px;
+text-align:center;
+color:var(--muted);
+margin-bottom:72px;
+}
 
-.gc-title{font-family:var(--serif);font-size:clamp(20px,2.8vw,30px);line-height:1.18;color:var(--text);margin-bottom:clamp(12px,2vh,18px)}
+.gate-cards{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:24px;
+width:100%;
+max-width:900px;
+}
 
-.gc-items{list-style:none;margin-bottom:clamp(20px,3vh,32px);flex-grow:1}
-.gc-items li{font-size:clamp(13px,1.6vw,15px);color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;line-height:1.55;align-items:flex-start}
-.gate-card.gov .gc-items li::before{content:'→';color:var(--accent);flex-shrink:0;font-family:var(--mono);font-size:12px}
-.gate-card.priv .gc-items li::before{content:'→';color:var(--blue);flex-shrink:0;font-family:var(--mono);font-size:12px}
+.gate-card{
+display:flex;
+flex-direction:column;
+border-radius:14px;
+padding:40px;
+text-decoration:none;
+transition:.25s;
+border:1px solid var(--border);
+}
 
-.gc-cta{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding-top:4px}
-.gate-card.gov .gc-cta{color:var(--accent)}
-.gate-card.priv .gc-cta{color:var(--blue)}
-.gc-cta-arrow{font-size:18px;transition:transform .2s}
-.gate-card:hover .gc-cta-arrow{transform:translateX(5px)}
+.gate-card:hover{
+transform:translateY(-5px);
+}
 
-/* FOOTER LINE */
-.gate-footer{position:relative;z-index:1;text-align:center;padding:28px 20px;color:var(--dim);font-size:12px;font-family:var(--mono);letter-spacing:.06em}
-.gate-footer a{color:var(--dim);text-decoration:none;transition:color .2s}
-.gate-footer a:hover{color:var(--muted)}
+.gc-sector{
+font-family:var(--mono);
+font-size:11px;
+letter-spacing:.18em;
+margin-bottom:14px;
+}
 
-/* ANIMATIONS */
-@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.gc-title{
+font-family:var(--serif);
+font-size:26px;
+margin-bottom:20px;
+}
 
-/* RESPONSIVE */
+.gc-items{
+list-style:none;
+margin-bottom:20px;
+}
+
+.gc-items li{
+color:var(--muted);
+font-size:15px;
+padding:6px 0;
+}
+
+.gc-cta{
+font-family:var(--mono);
+font-size:12px;
+letter-spacing:.08em;
+text-transform:uppercase;
+margin-top:auto;
+}
+
+.gov{background:rgba(200,245,66,.04);border-color:rgba(200,245,66,.2)}
+.priv{background:rgba(77,163,255,.04);border-color:rgba(77,163,255,.2)}
+.ghost{background:rgba(255,107,107,.04);border-color:rgba(255,107,107,.2);grid-column:1/-1}
+.workbook{background:rgba(200,146,42,.04);border-color:rgba(200,146,42,.25);grid-column:1/-1}
+
+.workbook-price{
+font-family:var(--mono);
+font-size:24px;
+color:var(--gold);
+}
+
+.gate-footer{
+text-align:center;
+padding:28px;
+font-family:var(--mono);
+font-size:12px;
+color:var(--dim);
+}
+
+.gate-footer a{
+color:var(--muted);
+text-decoration:none;
+}
+
+.lb{display:none}
+.lb.active{display:block}
+
 @media(max-width:640px){
-  .gate-cards{grid-template-columns:1fr}
-  .gate-card{padding:clamp(24px,5vw,36px) clamp(20px,5vw,32px)}
+.gate-cards{grid-template-columns:1fr}
 }
+
 </style>
 </head>
+
 <body>
 
-<div class="bg-grid"></div>
-<div class="bg-glow-left"></div>
-<div class="bg-glow-right"></div>
-
 <div class="lang-bar">
-  <a href="index.html"><img src="GFILOGO.png" alt="GFI" style="height:40px;width:auto"></a>
-  <div class="lang-grp">
-    <button class="lb-btn on"  onclick="setLang('en',this)">EN</button>
-    <button class="lb-btn"     onclick="setLang('tw',this)">繁</button>
-    <button class="lb-btn"     onclick="setLang('cn',this)">简</button>
-  </div>
+
+<div class="logo">
+<a href="/">
+<img src="GFILOGO.png" alt="GFI Flow Intelligence">
+</a>
 </div>
 
-<!-- ══════════ ENGLISH ══════════ -->
-<div class="lb on" data-lang="en">
+<div class="lang-grp">
+
+<button class="lb-btn on" data-lang="en">EN</button>
+<button class="lb-btn" data-lang="tw">繁</button>
+<button class="lb-btn" data-lang="cn">简</button>
+
+</div>
+
+</div>
+
+
+<!-- EN -->
+
+<section class="lb active" data-lang="en">
+
 <main>
-  <div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
-  <h1 class="gate-title">GL measures structural efficiency.<br>Choose your context.</h1>
-  <p class="gate-sub">The same framework. Two contexts. Choose the one that fits.</p>
 
-  <div class="gate-cards">
-    <a href="government.html" class="gate-card gov">
-      <div class="gc-sector">Public Sector</div>
-      <div class="gc-title">Government &amp; Public Administration</div>
-      <ul class="gc-items">
-        <li>External GL analysis of administrative systems</li>
-        <li>Cross-jurisdictional efficiency comparison</li>
-        <li>Based entirely on publicly available audit data</li>
-        <li>For state auditors and oversight offices</li>
-      </ul>
-      <div class="gc-cta">Enter <span class="gc-cta-arrow">→</span></div>
-    </a>
+<div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
 
-    <a href="enterprise.html" class="gate-card priv">
-      <div class="gc-sector">Private Sector</div>
-      <div class="gc-title">Enterprise &amp; Capital Efficiency</div>
-      <ul class="gc-items">
-        <li>Your AI rollout is live. Is rework increasing or decreasing?</li>
-        <li>Automation accelerates errors when the underlying process is misaligned</li>
-        <li>GL measures before and after — not what you spent, but what changed</li>
-        <li>$999 diagnostic · $4,999 full analysis</li>
-      </ul>
-      <div class="gc-cta">Enter <span class="gc-cta-arrow">→</span></div>
-    </a>
+<h1 class="gate-title">
+GL measures structural efficiency.<br>
+Choose your context.
+</h1>
 
-    <a href="ghost-gdp.html" class="gate-card ghost">
-      <div class="gc-sector">Ghost GDP · Free Calculator</div>
-      <div class="gc-title">How much of your process output is friction in disguise?</div>
-      <ul class="gc-items">
-        <li>Rework, corrections, and waiting are counted as output — but deliver nothing</li>
-        <li>GL measures the ratio of real value delivered to structural friction absorbed</li>
-        <li>Enter four numbers. Get your Ghost GDP % instantly.</li>
-      </ul>
-      <div class="gc-cta">Calculate now <span class="gc-cta-arrow">→</span></div>
-    </a>
+<p class="gate-sub">
+The same framework. Two contexts. Choose the one that fits.
+</p>
 
-    <a href="workbook.html" class="gate-card workbook">
-      <div class="gc-sector">Self-Guided Workbook · New</div>
-      <div class="gc-title">The Friction Audit Playbook</div>
-      <ul class="gc-items">
-        <li>Run a 48-Hour Friction Audit on any process — no consultant needed</li>
-        <li>Calculate your GL Score and build a Friction Map with included templates</li>
-        <li>Sluice strategies you can open today · Dam removal · 90-day roadmap</li>
-        <li>Available in English · 繁體中文 · 简体中文</li>
-      </ul>
-      <div class="workbook-footer">
-        <div class="gc-cta">Get the workbook <span class="gc-cta-arrow">→</span></div>
-        <div class="workbook-price">$99</div>
-      </div>
-    </a>
-  </div>
-</main>
-<div class="gate-footer">
-  © 2026 GFI Flow Intelligence · Boston &nbsp;·&nbsp;
-  <a href="about.html">About the Founder</a> &nbsp;·&nbsp;
-  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+<div class="gate-cards">
+
+<a href="government.html" class="gate-card gov">
+
+<div class="gc-sector">Public Sector</div>
+
+<div class="gc-title">
+Government & Public Administration
 </div>
-</div><!-- /en -->
 
-<!-- ══════════ 繁體中文 ══════════ -->
-<div class="lb" data-lang="tw">
-<main>
-  <div class="gate-eyebrow">GFI Flow Intelligence · 波士頓</div>
-  <h1 class="gate-title">GL 測量結構效率。<br>選擇你的場域。</h1>
-  <p class="gate-sub">同一個框架。兩個場域。選擇適合你的那一個。</p>
+<ul class="gc-items">
+<li>External GL analysis of administrative systems</li>
+<li>Cross-jurisdictional efficiency comparison</li>
+<li>Based on publicly available audit data</li>
+<li>For state auditors and oversight offices</li>
+</ul>
 
-  <div class="gate-cards">
-    <a href="government.html" class="gate-card gov">
-      <div class="gc-sector">公部門</div>
-      <div class="gc-title">政府與公共行政</div>
-      <ul class="gc-items">
-        <li>行政系統的外部 GL 結構分析</li>
-        <li>跨司法管轄區效率比較</li>
-        <li>完全基於公開審計數據</li>
-        <li>適用於州審計長與監督辦公室</li>
-      </ul>
-      <div class="gc-cta">進入 <span class="gc-cta-arrow">→</span></div>
-    </a>
+<div class="gc-cta">Enter →</div>
 
-    <a href="enterprise.html" class="gate-card priv">
-      <div class="gc-sector">民間企業</div>
-      <div class="gc-title">企業與資本效率</div>
-      <ul class="gc-items">
-        <li>AI 已經上線了。重工率是上升還是下降？</li>
-        <li>流程設計錯誤時，自動化只會讓錯誤產生得更快</li>
-        <li>GL 測量導入前後的結構效率——不是你花了多少，而是什麼改變了</li>
-        <li>$999 診斷 · $4,999 完整分析</li>
-      </ul>
-      <div class="gc-cta">進入 <span class="gc-cta-arrow">→</span></div>
-    </a>
+</a>
 
-    <a href="ghost-gdp.html" class="gate-card ghost">
-      <div class="gc-sector">幽靈GDP · 免費試算</div>
-      <div class="gc-title">你的流程有多少產出其實是摩擦偽裝的？</div>
-      <ul class="gc-items">
-        <li>重工、更正、等待都被計入產出——但什麼都沒有交付</li>
-        <li>GL 測量真實價值交付與結構摩擦吸收的比率</li>
-        <li>輸入四個數字，立即得出你的幽靈GDP %</li>
-      </ul>
-      <div class="gc-cta">立即試算 <span class="gc-cta-arrow">→</span></div>
-    </a>
 
-    <a href="workbook.html" class="gate-card workbook">
-      <div class="gc-sector">自助工作手冊 · 全新上架</div>
-      <div class="gc-title">摩擦力審計實戰手冊</div>
-      <ul class="gc-items">
-        <li>對組織中任何流程執行48小時摩擦力審計——不需顧問</li>
-        <li>計算你的GL分數，用附帶模板建立摩擦地圖</li>
-        <li>閘門策略 · 水壩移除 · 90天路線圖</li>
-        <li>提供 English · 繁體中文 · 简体中文 三個版本</li>
-      </ul>
-      <div class="workbook-footer">
-        <div class="gc-cta">取得手冊 <span class="gc-cta-arrow">→</span></div>
-        <div class="workbook-price">$99</div>
-      </div>
-    </a>
-  </div>
-</main>
-<div class="gate-footer">
-  © 2026 GFI Flow Intelligence · 波士頓 &nbsp;·&nbsp;
-  <a href="about.html">關於創辦人</a> &nbsp;·&nbsp;
-  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+<a href="enterprise.html" class="gate-card priv">
+
+<div class="gc-sector">Private Sector</div>
+
+<div class="gc-title">
+Enterprise & Capital Efficiency
 </div>
-</div><!-- /tw -->
 
-<!-- ══════════ 简体中文 ══════════ -->
-<div class="lb" data-lang="cn">
-<main>
-  <div class="gate-eyebrow">GFI Flow Intelligence · 波士顿</div>
-  <h1 class="gate-title">GL 测量结构效率。<br>选择你的场域。</h1>
-  <p class="gate-sub">同一个框架。两个场域。选择适合你的那一个。</p>
+<ul class="gc-items">
+<li>AI rollout is live. Is rework increasing?</li>
+<li>Automation accelerates errors if process design is wrong</li>
+<li>GL measures before and after change</li>
+<li>$999 diagnostic · $4,999 analysis</li>
+</ul>
 
-  <div class="gate-cards">
-    <a href="government.html" class="gate-card gov">
-      <div class="gc-sector">公共部门</div>
-      <div class="gc-title">政府与公共行政</div>
-      <ul class="gc-items">
-        <li>行政系统的外部 GL 结构分析</li>
-        <li>跨司法管辖区效率比较</li>
-        <li>完全基于公开审计数据</li>
-        <li>适用于州审计长与监督办公室</li>
-      </ul>
-      <div class="gc-cta">进入 <span class="gc-cta-arrow">→</span></div>
-    </a>
+<div class="gc-cta">Enter →</div>
 
-    <a href="enterprise.html" class="gate-card priv">
-      <div class="gc-sector">民间企业</div>
-      <div class="gc-title">企业与资本效率</div>
-      <ul class="gc-items">
-        <li>AI 已经上线了。返工率是上升还是下降？</li>
-        <li>流程设计错误时，自动化只会让错误产生得更快</li>
-        <li>GL 测量导入前后的结构效率——不是你花了多少，而是什么改变了</li>
-        <li>$999 诊断 · $4,999 完整分析</li>
-      </ul>
-      <div class="gc-cta">进入 <span class="gc-cta-arrow">→</span></div>
-    </a>
+</a>
 
-    <a href="ghost-gdp.html" class="gate-card ghost">
-      <div class="gc-sector">幽灵GDP · 免费测算</div>
-      <div class="gc-title">你的流程有多少产出其实是摩擦伪装的？</div>
-      <ul class="gc-items">
-        <li>返工、更正、等待都被计入产出——但什么都没有交付</li>
-        <li>GL 测量真实价值交付与结构摩擦吸收的比率</li>
-        <li>输入四个数字，立即得出你的幽灵GDP %</li>
-      </ul>
-      <div class="gc-cta">立即测算 <span class="gc-cta-arrow">→</span></div>
-    </a>
 
-    <a href="workbook.html" class="gate-card workbook">
-      <div class="gc-sector">自助工作手册 · 全新上架</div>
-      <div class="gc-title">摩擦力审计实战手册</div>
-      <ul class="gc-items">
-        <li>对组织中任何流程执行48小时摩擦力审计——无需顾问</li>
-        <li>计算你的GL分数，用附带模板建立摩擦地图</li>
-        <li>闸门策略 · 水坝移除 · 90天路线图</li>
-        <li>提供 English · 繁體中文 · 简体中文 三个版本</li>
-      </ul>
-      <div class="workbook-footer">
-        <div class="gc-cta">获取手册 <span class="gc-cta-arrow">→</span></div>
-        <div class="workbook-price">$99</div>
-      </div>
-    </a>
-  </div>
-</main>
-<div class="gate-footer">
-  © 2026 GFI Flow Intelligence · 波士顿 &nbsp;·&nbsp;
-  <a href="about.html">关于创始人</a> &nbsp;·&nbsp;
-  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+<a href="ghost-gdp.html" class="gate-card ghost">
+
+<div class="gc-sector">Ghost GDP</div>
+
+<div class="gc-title">
+How much of your output is friction in disguise?
 </div>
-</div><!-- /cn -->
+
+<ul class="gc-items">
+<li>Rework and waiting counted as output</li>
+<li>GL measures value vs structural friction</li>
+<li>Calculate Ghost GDP instantly</li>
+</ul>
+
+<div class="gc-cta">Calculate →</div>
+
+</a>
+
+
+<a href="workbook.html" class="gate-card workbook">
+
+<div class="gc-sector">Friction Audit Workbook</div>
+
+<div class="gc-title">
+The Friction Audit Playbook
+</div>
+
+<ul class="gc-items">
+<li>48-hour friction audit method</li>
+<li>Calculate GL score and build friction map</li>
+<li>90-day structural roadmap</li>
+</ul>
+
+<div class="gc-cta">Get Workbook →</div>
+
+<div class="workbook-price">$99</div>
+
+</a>
+
+</div>
+
+</main>
+
+</section>
+
+
+
+<div class="gate-footer">
+
+© 2026 GFI Flow Intelligence · Boston  
+<a href="about.html">About</a> ·
+<a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+
+</div>
+
+
 
 <script>
-function setLang(lang,btn){
-  document.querySelectorAll('.lb').forEach(el=>el.classList.remove('on'));
-  document.querySelectorAll('.lb[data-lang="'+lang+'"]').forEach(el=>el.classList.add('on'));
-  document.querySelectorAll('.lb-btn').forEach(b=>{
-    b.classList.toggle('on',b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+lang+"'"));
-  });
-  window.scrollTo({top:0,behavior:'smooth'});
+
+const buttons=document.querySelectorAll(".lb-btn")
+const blocks=document.querySelectorAll(".lb")
+
+buttons.forEach(btn=>{
+btn.addEventListener("click",()=>{
+
+buttons.forEach(b=>b.classList.remove("on"))
+btn.classList.add("on")
+
+let lang=btn.dataset.lang
+
+blocks.forEach(block=>{
+block.classList.remove("active")
+if(block.dataset.lang===lang){
+block.classList.add("active")
 }
+})
+
+})
+})
+
 </script>
+
 </body>
 </html>
