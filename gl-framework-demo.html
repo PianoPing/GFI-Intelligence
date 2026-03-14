@@ -3,682 +3,788 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GL Framework · Governance Fluency Index</title>
+<title>GL Framework · Governance Diagnostic Engine</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #0a0c10;
-    --paper: #f5f2ec;
-    --accent: #c84b2f;
-    --accent2: #2d6a9f;
-    --muted: #6b6860;
-    --rule: #d4cfc6;
-    --glow: rgba(200, 75, 47, 0.12);
-    --green: #2a7a4b;
-    --amber: #c47d15;
-  }
+:root {
+  --ink: #0a0c10;
+  --ink2: #111318;
+  --ink3: #1a1d23;
+  --paper: #f5f2ec;
+  --accent: #c84b2f;
+  --accent2: #2d6a9f;
+  --green: #2a7a4b;
+  --amber: #c47d15;
+  --muted: #6b6860;
+  --rule: #2a2d33;
+  --glow: rgba(200,75,47,0.1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    linear-gradient(rgba(245,242,236,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,242,236,.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events:none; z-index:0;
+}
+.wrapper { position:relative; z-index:1; }
 
-  body {
-    background: var(--ink);
-    color: var(--paper);
-    font-family: 'Outfit', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* NAV */
+nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 24px clamp(24px,5vw,72px);
+  border-bottom: 1px solid var(--rule);
+  position:sticky; top:0; z-index:100;
+  background: rgba(10,12,16,0.95);
+  backdrop-filter: blur(12px);
+}
+.nav-brand { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+.nav-links { display:flex; gap:28px; }
+.nav-links a { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+.nav-links a:hover { color:var(--paper); }
+.nav-cta { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--paper); background:var(--accent); padding:8px 20px; border-radius:2px; text-decoration:none; transition:background .2s; }
+.nav-cta:hover { background:#a83a20; }
 
-  /* ── GRID NOISE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(245,242,236,.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(245,242,236,.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none; z-index: 0;
-  }
+/* SECTIONS */
+section { padding: clamp(60px,8vw,110px) clamp(24px,5vw,72px); }
+.section-eyebrow {
+  font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:48px;
+  display:flex; align-items:center; gap:16px;
+}
+.section-eyebrow::after { content:''; flex:1; height:1px; background:linear-gradient(to right, rgba(200,75,47,.4), transparent); }
 
-  .wrapper { position: relative; z-index: 1; }
+/* HERO */
+.hero {
+  min-height:calc(100vh - 65px);
+  display:flex; flex-direction:column; justify-content:center;
+  padding: 80px clamp(24px,5vw,72px) 60px;
+  max-width:1100px; margin:0 auto;
+}
+.hero-eyebrow { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--accent); margin-bottom:24px; display:flex; align-items:center; gap:12px; }
+.hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--accent); }
+h1 { font-family:'DM Serif Display',serif; font-size:clamp(48px,7vw,88px); line-height:.95; letter-spacing:-.02em; margin-bottom:24px; }
+h1 em { font-style:italic; color:var(--accent); }
+.hero-formula {
+  font-family:'DM Mono',monospace; font-size:clamp(16px,2.2vw,22px);
+  padding:20px 28px; margin:28px 0 16px;
+  border-left:3px solid var(--accent);
+  background:rgba(200,75,47,.06); border-radius:0 4px 4px 0;
+  letter-spacing:.05em;
+}
+.hero-formula .num { color:var(--green); }
+.hero-formula .den { color:var(--accent); }
+.hero-sub { font-size:16px; color:var(--muted); line-height:1.75; max-width:540px; }
+.hero-cta { display:flex; gap:14px; margin-top:36px; flex-wrap:wrap; }
+.btn-p { background:var(--accent); color:var(--paper); padding:13px 30px; border-radius:3px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-family:'DM Mono',monospace; border:none; cursor:pointer; transition:all .2s; text-decoration:none; }
+.btn-p:hover { background:#a83a20; transform:translateY(-1px); }
+.btn-g { background:transparent; color:var(--paper); padding:13px 30px; border-radius:3px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-family:'DM Mono',monospace; border:1px solid rgba(245,242,236,.2); cursor:pointer; transition:all .2s; text-decoration:none; }
+.btn-g:hover { border-color:var(--paper); }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    padding: 0 clamp(24px, 5vw, 80px);
-  }
+/* FORMULA DECODER */
+.formula-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:2px; max-width:960px;
+}
+.f-card {
+  padding:28px 24px; background:var(--ink2);
+  border:1px solid var(--rule);
+  transition:background .2s;
+}
+.f-card:hover { background:var(--ink3); }
+.f-sym { font-family:'DM Serif Display',serif; font-size:32px; margin-bottom:8px; }
+.f-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; margin-bottom:10px; font-weight:700; }
+.f-desc { font-size:13px; color:var(--muted); line-height:1.6; }
+.f-scale { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); margin-top:8px; }
+.fs .f-sym, .fs .f-label { color:var(--green); }
+.vn .f-sym, .vn .f-label { color:var(--accent2); }
+.pd .f-sym, .pd .f-label { color:var(--accent); }
+.cf .f-sym, .cf .f-label { color:var(--amber); }
+.f-divider {
+  grid-column:1/-1; padding:16px 24px;
+  background:rgba(200,75,47,.06); border:1px solid rgba(200,75,47,.2);
+  display:flex; align-items:center; gap:12px;
+}
+.f-divider-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); white-space:nowrap; }
+.f-divider-desc { font-size:13px; color:var(--muted); }
 
-  nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 28px 0;
-    border-bottom: 1px solid rgba(245,242,236,.1);
-  }
-  .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--accent); opacity: .9;
-  }
-  .nav-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--muted); border: 1px solid rgba(245,242,236,.15);
-    padding: 6px 14px; border-radius: 2px;
-  }
+/* CASES */
+.cases-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:2px; }
+.case-card {
+  background:var(--ink2); border:1px solid var(--rule);
+  padding:26px 22px; cursor:default;
+  transition:background .25s; position:relative; overflow:hidden;
+}
+.case-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  transform:scaleX(0); transform-origin:left; transition:transform .3s;
+}
+.case-card:hover { background:var(--ink3); }
+.case-card:hover::before { transform:scaleX(1); }
+.case-card.tier-high::before { background:var(--green); }
+.case-card.tier-mid::before { background:var(--amber); }
+.case-card.tier-low::before { background:var(--accent); }
+.case-tag { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.case-title { font-size:15px; font-weight:600; margin-bottom:16px; line-height:1.3; }
+.gl-row { display:flex; align-items:baseline; gap:8px; margin-bottom:10px; }
+.gl-lbl { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+.gl-num { font-family:'DM Serif Display',serif; font-size:38px; line-height:1; }
+.gl-num.tier-high { color:var(--green); }
+.gl-num.tier-mid { color:var(--amber); }
+.gl-num.tier-low { color:var(--accent); }
+.gl-verdict { font-size:11px; font-weight:700; letter-spacing:.05em; margin-bottom:12px; }
+.gl-verdict.tier-high { color:var(--green); }
+.gl-verdict.tier-mid { color:var(--amber); }
+.gl-verdict.tier-low { color:var(--accent); }
+.gl-bar { width:100%; height:4px; background:rgba(245,242,236,.08); border-radius:2px; margin-bottom:14px; overflow:hidden; }
+.gl-fill { height:100%; border-radius:2px; width:0; transition:width 1.4s cubic-bezier(.16,1,.3,1); }
+.gl-fill.tier-high { background:var(--green); }
+.gl-fill.tier-mid { background:var(--amber); }
+.gl-fill.tier-low { background:var(--accent); }
+.case-vars { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:12px; }
+.cv { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); padding:5px 8px; background:rgba(245,242,236,.04); border-radius:2px; }
+.cv strong { font-weight:600; }
+.case-insight { font-size:12px; color:var(--muted); line-height:1.6; padding-top:12px; border-top:1px solid var(--rule); }
 
-  .hero-center {
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: flex-start;
-    padding: 80px 0 60px;
-    max-width: 900px;
-  }
+/* POWER OUTPUT */
+.power-section { background:rgba(245,242,236,.02); }
+.power-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:2px; max-width:900px; }
+.power-card { padding:24px 20px; background:var(--ink2); border:1px solid var(--rule); }
+.power-num { font-family:'DM Serif Display',serif; font-size:40px; margin-bottom:4px; }
+.power-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.power-desc { font-size:12px; color:var(--muted); line-height:1.5; }
 
-  .eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: .25em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .eyebrow::before {
-    content: ''; width: 32px; height: 1px; background: var(--accent);
-  }
+/* CALCULATOR */
+.calc-wrap { max-width:820px; background:var(--ink2); border:1px solid var(--rule); border-radius:6px; overflow:hidden; }
+.calc-head { padding:20px 28px; background:rgba(245,242,236,.03); border-bottom:1px solid var(--rule); }
+.calc-head h3 { font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--paper); font-weight:400; }
+.calc-body { padding:28px; }
+.sliders { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:28px; }
+.sl-group label { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+.sl-name { font-size:12px; font-weight:600; }
+.sl-val { font-family:'DM Mono',monospace; font-size:16px; font-weight:500; }
+input[type=range] { -webkit-appearance:none; width:100%; height:4px; border-radius:2px; outline:none; cursor:pointer; background:rgba(245,242,236,.12); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:15px; height:15px; border-radius:50%; cursor:pointer; border:2px solid var(--ink); transition:transform .15s; }
+input[type=range]::-webkit-slider-thumb:hover { transform:scale(1.3); }
+.sl-fs::-webkit-slider-thumb { background:var(--green); }
+.sl-vn::-webkit-slider-thumb { background:var(--accent2); }
+.sl-pd::-webkit-slider-thumb { background:var(--accent); }
+.sl-cf::-webkit-slider-thumb { background:var(--amber); }
+.sl-fs { accent-color:var(--green); }
+.sl-vn { accent-color:var(--accent2); }
+.sl-pd { accent-color:var(--accent); }
+.sl-cf { accent-color:var(--amber); }
 
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(52px, 8vw, 100px);
-    line-height: .95;
-    letter-spacing: -.02em;
-    color: var(--paper);
-    margin-bottom: 20px;
-  }
-  h1 em { font-style: italic; color: var(--accent); }
+.calc-result {
+  background:rgba(245,242,236,.05); border:1px solid rgba(245,242,236,.1);
+  border-radius:4px; padding:24px 28px;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+  margin-bottom:20px;
+}
+.res-score-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+.res-score { font-family:'DM Serif Display',serif; font-size:64px; line-height:1; transition:color .3s; }
+.res-power-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+.res-power { font-family:'DM Mono',monospace; font-size:22px; font-weight:500; transition:color .3s; }
+.res-right { text-align:right; }
+.res-verdict { font-size:18px; font-weight:700; margin-bottom:6px; transition:color .3s; }
+.res-interp { font-size:13px; color:var(--muted); max-width:260px; text-align:right; line-height:1.6; }
 
-  .formula-hero {
-    font-family: 'DM Mono', monospace;
-    font-size: clamp(18px, 2.5vw, 26px);
-    color: var(--paper);
-    margin: 32px 0 20px;
-    padding: 20px 28px;
-    border-left: 3px solid var(--accent);
-    background: rgba(200,75,47,.07);
-    border-radius: 0 4px 4px 0;
-    letter-spacing: .05em;
-  }
-  .formula-hero span { color: var(--accent); }
+/* SENSITIVITY TABLE */
+.sens-table { width:100%; border-collapse:collapse; font-size:12px; margin-top:16px; }
+.sens-table th { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding:8px 10px; text-align:left; border-bottom:1px solid var(--rule); background:rgba(245,242,236,.03); }
+.sens-table td { padding:8px 10px; border-bottom:1px solid rgba(245,242,236,.05); font-family:'DM Mono',monospace; }
+.sens-table tr:last-child td { border-bottom:none; }
+.pos { color:var(--green); }
+.neg { color:var(--accent); }
+.base-val { color:var(--paper); font-weight:600; }
 
-  .hero-sub {
-    font-size: 17px; color: var(--muted); line-height: 1.7;
-    max-width: 560px; margin-top: 8px;
-  }
+/* TORNADO */
+.tornado-wrap { margin-top:20px; }
+.tornado-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.tornado-label { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); width:160px; flex-shrink:0; }
+.tornado-bar-wrap { flex:1; display:flex; align-items:center; gap:4px; height:20px; }
+.tornado-bar-neg { height:100%; border-radius:2px 0 0 2px; min-width:2px; }
+.tornado-bar-pos { height:100%; border-radius:0 2px 2px 0; min-width:2px; }
+.tornado-range { font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); width:60px; text-align:right; }
 
-  .hero-cta {
-    display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap;
-  }
-  .btn-primary {
-    background: var(--accent); color: var(--paper);
-    padding: 14px 32px; border-radius: 3px;
-    font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
-    font-family: 'DM Mono', monospace; border: none; cursor: pointer;
-    transition: all .2s; text-decoration: none;
-  }
-  .btn-primary:hover { background: #a83a20; transform: translateY(-1px); }
-  .btn-ghost {
-    background: transparent; color: var(--paper);
-    padding: 14px 32px; border-radius: 3px;
-    font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-    border: 1px solid rgba(245,242,236,.25); cursor: pointer;
-    transition: all .2s; text-decoration: none;
-  }
-  .btn-ghost:hover { border-color: var(--paper); }
+/* GHOST COST */
+.ghost-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; max-width:700px; margin-top:16px; }
+.ghost-card { padding:20px; background:var(--ink2); border:1px solid var(--rule); }
+.ghost-num { font-family:'DM Serif Display',serif; font-size:32px; color:var(--accent); margin-bottom:4px; }
+.ghost-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
 
-  /* ── SCROLL INDICATOR ── */
-  .scroll-hint {
-    padding: 28px 0;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--muted);
-    display: flex; align-items: center; gap: 12px;
-    animation: pulse 2.5s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+/* TABS */
+.tab-btn {
+  font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+  padding:10px 20px; background:var(--ink2); border:1px solid var(--rule);
+  color:var(--muted); cursor:pointer; transition:all .2s;
+}
+.tab-btn:hover { color:var(--paper); background:var(--ink3); }
+.tab-btn.active { color:var(--paper); background:var(--ink3); border-color:var(--accent); border-bottom-color:var(--ink3); }
+.tab-panel { padding-top:2px; }
 
-  /* ── SECTION BASE ── */
-  section {
-    padding: clamp(60px, 8vw, 120px) clamp(24px, 5vw, 80px);
-  }
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 48px;
-    display: flex; align-items: center; gap: 16px;
-  }
-  .section-label::after {
-    content: ''; flex: 1; height: 1px;
-    background: linear-gradient(to right, rgba(200,75,47,.4), transparent);
-  }
+/* SIMULATOR */
+.sim-wrap { max-width:820px; background:var(--ink2); border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin-top:0; }
+.sim-head { padding:20px 28px; background:rgba(245,242,236,.03); border-bottom:1px solid var(--rule); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.sim-head h3 { font-family:'DM Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--paper); font-weight:400; }
+.sim-preset-row { display:flex; gap:8px; flex-wrap:wrap; }
+.sim-preset { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; padding:6px 12px; background:var(--ink3); border:1px solid var(--rule); color:var(--muted); cursor:pointer; border-radius:2px; transition:all .2s; }
+.sim-preset:hover { color:var(--paper); border-color:var(--accent); }
+.sim-preset.active { color:var(--accent); border-color:var(--accent); }
+.sim-body { padding:28px; }
+.sim-sliders { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:24px; }
+.sim-result-row {
+  display:grid; grid-template-columns:1fr auto 1fr auto 1fr;
+  gap:0; align-items:stretch;
+  background:rgba(245,242,236,.04); border:1px solid var(--rule); border-radius:4px;
+  overflow:hidden; margin-bottom:20px;
+}
+.sim-metric { padding:20px 24px; text-align:center; }
+.sim-metric-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.sim-metric-val { font-family:'DM Serif Display',serif; font-size:40px; line-height:1; }
+.sim-arrow { display:flex; align-items:center; justify-content:center; padding:0 16px; color:var(--muted); font-size:20px; background:rgba(245,242,236,.02); }
+.sim-improvement { padding:20px 24px; background:rgba(42,122,75,.08); border-left:2px solid var(--green); }
+.sim-improvement-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--green); margin-bottom:6px; }
+.sim-improvement-val { font-family:'DM Serif Display',serif; font-size:40px; line-height:1; color:var(--green); }
+.sim-improvement-pct { font-family:'DM Mono',monospace; font-size:14px; color:var(--green); margin-top:4px; }
+.sim-table { width:100%; border-collapse:collapse; font-size:12px; }
+.sim-table th { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding:8px 10px; text-align:left; border-bottom:1px solid var(--rule); background:rgba(245,242,236,.03); }
+.sim-table td { padding:8px 10px; border-bottom:1px solid rgba(245,242,236,.05); font-family:'DM Mono',monospace; font-size:11px; }
+.sim-table tr:last-child td { border-bottom:none; }
 
-  /* ── FORMULA EXPLAINER ── */
-  .formula-section { background: rgba(245,242,236,.03); }
+/* CONTACT */
+.contact-box {
+  background:var(--ink2); border:1px solid var(--rule); border-radius:4px;
+  padding:40px; max-width:640px;
+  display:flex; flex-direction:column; gap:16px;
+}
+.contact-box h3 { font-family:'DM Serif Display',serif; font-size:28px; }
+.contact-box p { font-size:14px; color:var(--muted); line-height:1.7; }
+.contact-link { font-family:'DM Mono',monospace; font-size:13px; color:var(--accent); text-decoration:none; }
+.contact-link:hover { text-decoration:underline; }
 
-  .formula-breakdown {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
-    gap: 0; align-items: stretch;
-    max-width: 1100px; margin: 0 auto 60px;
-    border: 1px solid rgba(245,242,236,.1);
-    border-radius: 6px; overflow: hidden;
-  }
+/* FOOTER */
+footer { padding:32px clamp(24px,5vw,72px); border-top:1px solid var(--rule); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.footer-brand { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+.footer-formula { font-family:'DM Mono',monospace; font-size:12px; color:rgba(245,242,236,.2); }
 
-  .f-operator {
-    display: flex; align-items: center; justify-content: center;
-    padding: 32px 16px;
-    font-family: 'DM Serif Display', serif;
-    font-size: 32px; color: var(--muted);
-    background: rgba(245,242,236,.02);
-    border-left: 1px solid rgba(245,242,236,.08);
-    border-right: 1px solid rgba(245,242,236,.08);
-  }
+/* ANIMATIONS */
+.fade-in { opacity:0; transform:translateY(16px); animation:fadeUp .6s forwards; }
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+.fade-in:nth-child(1) { animation-delay:.1s; }
+.fade-in:nth-child(2) { animation-delay:.22s; }
+.fade-in:nth-child(3) { animation-delay:.34s; }
+.fade-in:nth-child(4) { animation-delay:.46s; }
+.fade-in:nth-child(5) { animation-delay:.58s; }
 
-  .f-var {
-    padding: 32px 28px;
-    display: flex; flex-direction: column;
-    gap: 10px;
-    cursor: pointer;
-    transition: background .2s;
-    position: relative;
-  }
-  .f-var:hover { background: rgba(245,242,236,.05); }
-  .f-var.numerator { border-bottom: 2px solid rgba(245,242,236,.08); }
-
-  .f-symbol {
-    font-family: 'DM Mono', monospace;
-    font-size: 22px; font-weight: 500;
-  }
-  .f-name {
-    font-size: 12px; font-weight: 600; letter-spacing: .05em;
-    text-transform: uppercase;
-  }
-  .f-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-  .f-var[data-type="fs"] .f-symbol,
-  .f-var[data-type="fs"] .f-name { color: var(--green); }
-  .f-var[data-type="vn"] .f-symbol,
-  .f-var[data-type="vn"] .f-name { color: var(--accent2); }
-  .f-var[data-type="pd"] .f-symbol,
-  .f-var[data-type="pd"] .f-name { color: var(--accent); }
-  .f-var[data-type="cf"] .f-symbol,
-  .f-var[data-type="cf"] .f-name { color: var(--amber); }
-
-  .f-result {
-    grid-column: 1 / -1;
-    padding: 20px 28px;
-    background: rgba(200,75,47,.07);
-    border-top: 1px solid rgba(200,75,47,.2);
-    display: flex; align-items: center; gap: 16px;
-  }
-  .f-result-label {
-    font-family: 'DM Mono', monospace; font-size: 11px;
-    letter-spacing: .2em; text-transform: uppercase; color: var(--accent);
-  }
-  .f-result-desc { font-size: 14px; color: var(--muted); }
-
-  /* ── CASE STUDIES ── */
-  .cases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2px; margin-top: 8px;
-  }
-
-  .case-card {
-    background: rgba(245,242,236,.03);
-    border: 1px solid rgba(245,242,236,.08);
-    padding: 28px 24px;
-    cursor: pointer;
-    transition: all .25s;
-    position: relative; overflow: hidden;
-  }
-  .case-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 3px;
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .3s;
-  }
-  .case-card:hover { background: rgba(245,242,236,.06); }
-  .case-card:hover::before { transform: scaleX(1); }
-  .case-card.high::before { background: var(--green); }
-  .case-card.mid::before { background: var(--amber); }
-  .case-card.low::before { background: var(--accent); }
-
-  .case-country {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 8px;
-  }
-  .case-name { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
-
-  .gl-score-row {
-    display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px;
-  }
-  .gl-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--muted);
-  }
-  .gl-number {
-    font-family: 'DM Serif Display', serif;
-    font-size: 36px; line-height: 1;
-  }
-  .gl-number.high { color: var(--green); }
-  .gl-number.mid { color: var(--amber); }
-  .gl-number.low { color: var(--accent); }
-
-  .gl-bar-track {
-    width: 100%; height: 4px;
-    background: rgba(245,242,236,.1); border-radius: 2px;
-    margin-bottom: 16px; overflow: hidden;
-  }
-  .gl-bar-fill {
-    height: 100%; border-radius: 2px;
-    transition: width 1.2s cubic-bezier(.16,1,.3,1);
-    width: 0;
-  }
-  .gl-bar-fill.high { background: var(--green); }
-  .gl-bar-fill.mid { background: var(--amber); }
-  .gl-bar-fill.low { background: var(--accent); }
-
-  .case-vars {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 8px; margin-top: 12px;
-  }
-  .case-var-item {
-    font-family: 'DM Mono', monospace; font-size: 11px;
-    color: var(--muted); padding: 6px 8px;
-    background: rgba(245,242,236,.04);
-    border-radius: 2px;
-  }
-  .case-var-item strong { color: var(--paper); font-weight: 500; }
-
-  .case-insight {
-    font-size: 13px; color: var(--muted); line-height: 1.6;
-    margin-top: 14px; padding-top: 14px;
-    border-top: 1px solid rgba(245,242,236,.08);
-  }
-
-  /* ── CALCULATOR ── */
-  .calc-section { background: rgba(10,12,16,1); }
-
-  .calc-wrapper {
-    max-width: 800px; margin: 0 auto;
-    background: rgba(245,242,236,.03);
-    border: 1px solid rgba(245,242,236,.12);
-    border-radius: 8px; overflow: hidden;
-  }
-
-  .calc-header {
-    padding: 24px 32px;
-    background: rgba(245,242,236,.04);
-    border-bottom: 1px solid rgba(245,242,236,.08);
-    display: flex; align-items: center; gap: 16px;
-  }
-  .calc-header h3 {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--paper); font-weight: 400;
-  }
-
-  .calc-body { padding: 32px; }
-
-  .sliders-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 28px; margin-bottom: 36px;
-  }
-
-  .slider-group label {
-    display: flex; justify-content: space-between; align-items: baseline;
-    margin-bottom: 10px;
-  }
-  .slider-name {
-    font-size: 13px; font-weight: 600; letter-spacing: .03em;
-  }
-  .slider-val {
-    font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500;
-  }
-
-  input[type=range] {
-    -webkit-appearance: none; width: 100%; height: 4px;
-    border-radius: 2px; outline: none; cursor: pointer;
-    background: rgba(245,242,236,.15);
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 16px; height: 16px;
-    border-radius: 50%; cursor: pointer;
-    border: 2px solid var(--ink);
-    transition: transform .15s;
-  }
-  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.3); }
-
-  .fs-range::-webkit-slider-thumb { background: var(--green); }
-  .vn-range::-webkit-slider-thumb { background: var(--accent2); }
-  .pd-range::-webkit-slider-thumb { background: var(--accent); }
-  .cf-range::-webkit-slider-thumb { background: var(--amber); }
-
-  .fs-range { accent-color: var(--green); }
-  .vn-range { accent-color: var(--accent2); }
-  .pd-range { accent-color: var(--accent); }
-  .cf-range { accent-color: var(--amber); }
-
-  .calc-result {
-    background: rgba(245,242,236,.06);
-    border: 1px solid rgba(245,242,236,.12);
-    border-radius: 4px; padding: 28px 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 20px;
-  }
-  .result-left {}
-  .result-gl-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 4px;
-  }
-  .result-gl-score {
-    font-family: 'DM Serif Display', serif;
-    font-size: 64px; line-height: 1;
-    transition: color .3s;
-  }
-  .result-right { text-align: right; }
-  .result-verdict {
-    font-size: 20px; font-weight: 700;
-    margin-bottom: 6px;
-    transition: color .3s;
-  }
-  .result-interp {
-    font-size: 14px; color: var(--muted); max-width: 280px;
-    text-align: right; line-height: 1.6;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 40px clamp(24px, 5vw, 80px);
-    border-top: 1px solid rgba(245,242,236,.08);
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 16px;
-  }
-  .footer-brand {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
-    color: var(--muted);
-  }
-  .footer-formula {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px; color: rgba(245,242,236,.3);
-  }
-
-  /* ── ANIMATIONS ── */
-  .fade-in {
-    opacity: 0; transform: translateY(20px);
-    animation: fadeUp .7s forwards;
-  }
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .fade-in:nth-child(1) { animation-delay: .1s; }
-  .fade-in:nth-child(2) { animation-delay: .25s; }
-  .fade-in:nth-child(3) { animation-delay: .4s; }
-  .fade-in:nth-child(4) { animation-delay: .55s; }
-  .fade-in:nth-child(5) { animation-delay: .7s; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    .formula-breakdown {
-      grid-template-columns: 1fr; 
-    }
-    .f-operator { display: none; }
-    .sliders-grid { grid-template-columns: 1fr; }
-    .calc-result { flex-direction: column; }
-    .result-right { text-align: left; }
-    .result-interp { text-align: left; }
-  }
+@media(max-width:640px) {
+  .sliders { grid-template-columns:1fr; }
+  .formula-grid { grid-template-columns:1fr; }
+  .cases-grid { grid-template-columns:1fr; }
+  .calc-result { flex-direction:column; }
+  .res-right { text-align:left; }
+  .res-interp { text-align:left; }
+  .ghost-grid { grid-template-columns:1fr; }
+  .nav-links { display:none; }
+}
 </style>
 </head>
 <body>
 <div class="wrapper">
 
-  <!-- ── HERO ── -->
-  <div class="hero">
-    <nav>
-      <div class="nav-logo">GFI Flow Intelligence</div>
-      <div class="nav-tag">Confidential Preview · March 2025</div>
-    </nav>
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">GFI Flow Intelligence</div>
+  <div class="nav-links">
+    <a href="#formula">Formula</a>
+    <a href="#cases">Benchmark</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#simulator">Simulator</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Request Diagnostic</a>
+</nav>
 
-    <div class="hero-center">
-      <div class="eyebrow fade-in">Governance Fluency Index</div>
-      <h1 class="fade-in">When policy <em>flows</em>,<br>citizens thrive.</h1>
-      <div class="formula-hero fade-in">
-        GL &nbsp;=&nbsp; <span>( Fs × Vn )</span> &nbsp;/&nbsp; <span>( Pd × Cf )</span>
-      </div>
-      <p class="hero-sub fade-in">
-        A precision instrument for measuring how well governance systems convert policy intent into citizen outcomes — by quantifying the forces that accelerate flow and the denominators that collapse it.
-      </p>
-      <div class="hero-cta fade-in">
-        <a class="btn-primary" href="#cases">See 9-Country Benchmark</a>
-        <a class="btn-ghost" href="#calculator">Run Your Own Scenario</a>
-      </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow fade-in">GL Framework · Governance Diagnostic Engine</div>
+  <h1 class="fade-in">The budget was never<br>the problem.<br><em>The denominator was.</em></h1>
+  <div class="hero-formula fade-in">
+    GL &nbsp;=&nbsp; <span class="num">( Fs × Vn )</span> &nbsp;/&nbsp; <span class="den">( Pd × Cf )</span>
+  </div>
+  <p class="hero-sub fade-in">
+    Every dollar invested in policy has an output efficiency. GL measures it.
+    When the denominator wins, citizens lose — and budgets keep growing without results.
+  </p>
+  <div class="hero-cta fade-in">
+    <a class="btn-p" href="#cases">See 4-State Benchmark</a>
+    <a class="btn-g" href="#calculator">Run Scenario</a>
+  </div>
+</div>
+
+<!-- FORMULA DECODER -->
+<section id="formula">
+  <div class="section-eyebrow">The Formula Decoded</div>
+  <div class="formula-grid">
+    <div class="f-card fs">
+      <div class="f-sym">Fs</div>
+      <div class="f-label">Flow Success Rate</div>
+      <div class="f-desc">What share of eligible citizens successfully complete the intended policy action? Measured from real process outcomes — not system outputs.</div>
+      <div class="f-scale">Scale: 0.0 → 1.0</div>
     </div>
+    <div class="f-card vn">
+      <div class="f-sym">Vn</div>
+      <div class="f-label">Strategic Value</div>
+      <div class="f-desc">How critical is this service to social stability? Unemployment insurance is not a convenience — it is the social safety valve that prevents collapse.</div>
+      <div class="f-scale">Scale: 0.8 → 1.5</div>
+    </div>
+    <div class="f-card pd">
+      <div class="f-sym">Pd</div>
+      <div class="f-label">Pain Duration</div>
+      <div class="f-desc">How many hours of suffering does the system impose? Every wait, every re-submission, every unexplained denial is measured here as real human cost.</div>
+      <div class="f-scale">Multiplier: 1.2× → 3.0×</div>
+    </div>
+    <div class="f-card cf">
+      <div class="f-sym">Cf</div>
+      <div class="f-label">Cognitive Friction</div>
+      <div class="f-desc">How complex are the rules? How many documents? How many decision-makers? Can a citizen understand what is required without professional help?</div>
+      <div class="f-scale">Multiplier: 1.2× → 3.0×</div>
+    </div>
+    <div class="f-divider">
+      <div class="f-divider-label">GL Score</div>
+      <div class="f-divider-desc">High GL = policy intent reaches citizens. &nbsp;·&nbsp; GL &lt; 0.3 = structural collapse. &nbsp;·&nbsp; The denominator is never an accident — it accumulates layer by layer, year by year, until no one remembers why each rule was added.</div>
+    </div>
+  </div>
+</section>
 
-    <div class="scroll-hint">↓ &nbsp; Explore the Framework</div>
+<!-- POWER OUTPUT -->
+<section class="power-section">
+  <div class="section-eyebrow">Output Efficiency · What GL Really Means</div>
+  <p style="font-size:15px; color:var(--muted); max-width:560px; line-height:1.7; margin-bottom:32px;">
+    Think of GL as the output efficiency of a policy engine. For every $1 invested in policy intent, how much actually reaches the citizen? The denominator is friction loss — and friction loss is not waste in the abstract. It is the anxiety, the sleepless nights, the skipped meals of people waiting for money that should already be theirs.
+  </p>
+  <div class="power-grid" id="powerGrid"></div>
+</section>
+
+<!-- BENCHMARK SECTION WITH TABS -->
+<section id="cases">
+  <div class="section-eyebrow">Multi-Dimensional Benchmark · Public Data</div>
+  <p style="font-size:14px; color:var(--muted); max-width:640px; line-height:1.7; margin-bottom:24px;">
+    Two diagnostic lenses: same state across different programs, and same program across different states. All scores derived from public records — no internal system access required.
+  </p>
+
+  <!-- TAB BUTTONS -->
+  <div style="display:flex; gap:2px; margin-bottom:2px; flex-wrap:wrap;">
+    <button class="tab-btn active" onclick="switchTab('ui')" id="tab-ui">Unemployment Insurance · 4 States</button>
+    <button class="tab-btn" onclick="switchTab('ma')" id="tab-ma">Massachusetts · 3 Programs</button>
+    <button class="tab-btn" onclick="switchTab('snap')" id="tab-snap">SNAP Food Assistance · 4 States</button>
   </div>
 
-  <!-- ── FORMULA BREAKDOWN ── -->
-  <section class="formula-section" id="formula">
-    <div class="section-label">The Formula Decoded</div>
-
-    <div class="formula-breakdown">
-      <!-- Fs -->
-      <div class="f-var" data-type="fs">
-        <div class="f-symbol">Fs</div>
-        <div class="f-name">Flow Score</div>
-        <div class="f-desc">How smoothly can a citizen complete the intended policy action? Measures touchpoints, handoffs, and resolution time. <strong>Scale 0–10.</strong></div>
-      </div>
-
-      <div class="f-operator">×</div>
-
-      <!-- Vn -->
-      <div class="f-var" data-type="vn">
-        <div class="f-symbol">Vn</div>
-        <div class="f-name">Validity Norm</div>
-        <div class="f-desc">Is the process grounded in legitimate policy intent? Measures alignment between regulation and lived reality. <strong>Scale 0–1.</strong></div>
-      </div>
-
-      <div class="f-operator">÷</div>
-
-      <!-- Pd -->
-      <div class="f-var" data-type="pd">
-        <div class="f-symbol">Pd</div>
-        <div class="f-name">Procedural Drag</div>
-        <div class="f-desc">How much unnecessary friction does the system impose? Redundant steps, opaque rules, poor sequencing. <strong>Scale 1–10.</strong></div>
-      </div>
-
-      <div class="f-operator">×</div>
-
-      <!-- Cf -->
-      <div class="f-var" data-type="cf">
-        <div class="f-symbol">Cf</div>
-        <div class="f-name">Compliance Friction</div>
-        <div class="f-desc">Cost burden on citizens to meet requirements — financial, cognitive, and time cost of proof and compliance. <strong>Scale 1–10.</strong></div>
-      </div>
-
-      <div class="f-result">
-        <div class="f-result-label">GL → Governance Fluency</div>
-        <div class="f-result-desc">
-          High GL = policy intent reaches citizens. &nbsp;·&nbsp;
-          Low GL = the denominator has consumed the system. &nbsp;·&nbsp;
-          GL &lt; 0.5 = <strong style="color:var(--accent)">flow collapse</strong>.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CASE STUDIES ── -->
-  <section id="cases">
-    <div class="section-label">9-Country Validation · Real Case Studies</div>
+  <!-- UI TAB -->
+  <div id="panel-ui" class="tab-panel">
+    <p style="font-family:'DM Mono',monospace; font-size:10px; color:var(--accent); letter-spacing:.1em; margin-bottom:20px; padding-top:16px;">
+      FEDERAL BENCHMARK: 87% of first payments within 14 days. As of June 2024, only 24% of states meet this standard.
+    </p>
     <div class="cases-grid" id="casesGrid"></div>
-  </section>
+  </div>
 
-  <!-- ── CALCULATOR ── -->
-  <section class="calc-section" id="calculator">
-    <div class="section-label">Interactive GL Calculator</div>
+  <!-- MA PROGRAMS TAB -->
+  <div id="panel-ma" class="tab-panel" style="display:none;">
+    <p style="font-size:13px; color:var(--muted); max-width:600px; line-height:1.7; padding-top:16px; margin-bottom:20px;">
+      Same government. Same citizens. Three different programs — three different GL scores. This reveals which programs are consuming the most budget through administrative friction, and where intervention has the highest leverage.
+    </p>
+    <div class="cases-grid" id="maCasesGrid"></div>
+  </div>
 
-    <div class="calc-wrapper">
-      <div class="calc-header">
-        <h3>Scenario Diagnostic Engine</h3>
+  <!-- SNAP TAB -->
+  <div id="panel-snap" class="tab-panel" style="display:none;">
+    <p style="font-size:13px; color:var(--muted); max-width:600px; line-height:1.7; padding-top:16px; margin-bottom:20px;">
+      Same federal program. Same policy intent. Four different states — four different GL scores. The variation is not about policy design. It is about how each state has layered the denominator.
+    </p>
+    <div class="cases-grid" id="snapCasesGrid"></div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calculator" style="background:rgba(10,12,16,1);">
+  <div class="section-eyebrow">Interactive GL Calculator · Model Any Scenario</div>
+  <div class="calc-wrap">
+    <div class="calc-head">
+      <h3>Scenario Diagnostic Engine &nbsp;·&nbsp; Adjust variables to model any government program</h3>
+    </div>
+    <div class="calc-body">
+      <div class="sliders">
+        <div class="sl-group">
+          <label>
+            <span class="sl-name" style="color:var(--green)">Fs · Flow Success Rate</span>
+            <span class="sl-val" style="color:var(--green)" id="fsVal">0.75</span>
+          </label>
+          <input type="range" class="sl-fs" id="fsSlider" min="0.01" max="1" step="0.01" value="0.75">
+        </div>
+        <div class="sl-group">
+          <label>
+            <span class="sl-name" style="color:var(--accent2)">Vn · Strategic Value</span>
+            <span class="sl-val" style="color:var(--accent2)" id="vnVal">1.20</span>
+          </label>
+          <input type="range" class="sl-vn" id="vnSlider" min="0.8" max="1.5" step="0.05" value="1.2">
+        </div>
+        <div class="sl-group">
+          <label>
+            <span class="sl-name" style="color:var(--accent)">Pd · Pain Duration ×</span>
+            <span class="sl-val" style="color:var(--accent)" id="pdVal">1.60</span>
+          </label>
+          <input type="range" class="sl-pd" id="pdSlider" min="1.2" max="3.0" step="0.1" value="1.6">
+        </div>
+        <div class="sl-group">
+          <label>
+            <span class="sl-name" style="color:var(--amber)">Cf · Cognitive Friction ×</span>
+            <span class="sl-val" style="color:var(--amber)" id="cfVal">1.60</span>
+          </label>
+          <input type="range" class="sl-cf" id="cfSlider" min="1.2" max="3.0" step="0.1" value="1.6">
+        </div>
       </div>
-      <div class="calc-body">
-        <div class="sliders-grid">
-          <div class="slider-group">
-            <label>
-              <span class="slider-name" style="color:var(--green)">Fs · Flow Score</span>
-              <span class="slider-val" style="color:var(--green)" id="fsVal">7.0</span>
-            </label>
-            <input type="range" class="fs-range" id="fsSlider" min="0" max="10" step="0.1" value="7">
-          </div>
-          <div class="slider-group">
-            <label>
-              <span class="slider-name" style="color:var(--accent2)">Vn · Validity Norm</span>
-              <span class="slider-val" style="color:var(--accent2)" id="vnVal">0.85</span>
-            </label>
-            <input type="range" class="vn-range" id="vnSlider" min="0" max="1" step="0.01" value="0.85">
-          </div>
-          <div class="slider-group">
-            <label>
-              <span class="slider-name" style="color:var(--accent)">Pd · Procedural Drag</span>
-              <span class="slider-val" style="color:var(--accent)" id="pdVal">2.5</span>
-            </label>
-            <input type="range" class="pd-range" id="pdSlider" min="1" max="10" step="0.1" value="2.5">
-          </div>
-          <div class="slider-group">
-            <label>
-              <span class="slider-name" style="color:var(--amber)">Cf · Compliance Friction</span>
-              <span class="slider-val" style="color:var(--amber)" id="cfVal">2.0</span>
-            </label>
-            <input type="range" class="cf-range" id="cfSlider" min="1" max="10" step="0.1" value="2">
-          </div>
-        </div>
 
-        <div class="calc-result">
-          <div class="result-left">
-            <div class="result-gl-label">GL Score</div>
-            <div class="result-gl-score" id="glScore">—</div>
-          </div>
-          <div class="result-right">
-            <div class="result-verdict" id="verdict">—</div>
-            <div class="result-interp" id="interp">Adjust the sliders to model any governance scenario.</div>
-          </div>
+      <div class="calc-result">
+        <div>
+          <div class="res-score-label">GL Score</div>
+          <div class="res-score" id="glScore">—</div>
+          <div class="res-power-label" style="margin-top:8px">Output Efficiency</div>
+          <div class="res-power" id="glPower">—</div>
         </div>
+        <div class="res-right">
+          <div class="res-verdict" id="verdict">—</div>
+          <div class="res-interp" id="interp">Adjust the sliders to model any government program scenario.</div>
+        </div>
+      </div>
+
+      <!-- Sensitivity Table -->
+      <div style="margin-top:8px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Sensitivity Analysis · ±30% per variable</div>
+        <table class="sens-table" id="sensTable">
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Base</th>
+              <th>−30% GL</th>
+              <th>−30% Δ</th>
+              <th>+30% GL</th>
+              <th>+30% Δ</th>
+            </tr>
+          </thead>
+          <tbody id="sensBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Tornado -->
+      <div class="tornado-wrap">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">Leverage Ranking · Tornado Chart</div>
+        <div id="tornadoChart"></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── FOOTER ── -->
-  <footer>
-    <div class="footer-brand">GFI Flow Intelligence &nbsp;·&nbsp; gfiintel.com &nbsp;·&nbsp; Proprietary & Confidential</div>
-    <div class="footer-formula">GL = (Fs × Vn) / (Pd × Cf)</div>
-  </footer>
+<!-- POLICY SIMULATOR -->
+<section id="simulator" style="background:rgba(10,12,16,1);">
+  <div class="section-eyebrow">Policy Simulator · Model Reform Impact</div>
+  <p style="font-size:14px; color:var(--muted); max-width:580px; line-height:1.7; margin-bottom:24px;">
+    Select a real case or enter custom values. Adjust three reform levers and see exactly how much the GL score improves — and what that means for citizens and budget.
+  </p>
+  <div class="sim-wrap">
+    <div class="sim-head">
+      <h3>Reform Scenario Engine</h3>
+      <div class="sim-preset-row">
+        <button class="sim-preset active" onclick="loadPreset('custom')" id="preset-custom">Custom</button>
+        <button class="sim-preset" onclick="loadPreset('ma-dua')" id="preset-ma-dua">MA · DUA</button>
+        <button class="sim-preset" onclick="loadPreset('tx-ui')" id="preset-tx-ui">TX · UI</button>
+        <button class="sim-preset" onclick="loadPreset('fl-ui')" id="preset-fl-ui">FL · UI</button>
+        <button class="sim-preset" onclick="loadPreset('ca-ui')" id="preset-ca-ui">CA · UI</button>
+        <button class="sim-preset" onclick="loadPreset('ma-snap')" id="preset-ma-snap">MA · SNAP</button>
+        <button class="sim-preset" onclick="loadPreset('ma-health')" id="preset-ma-health">MA · Health</button>
+      </div>
+    </div>
+    <div class="sim-body">
+
+      <!-- Base inputs -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:16px; margin-bottom:24px; padding:20px; background:rgba(245,242,236,.03); border:1px solid var(--rule); border-radius:4px;">
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:6px;">Fs · Base</div>
+          <input type="number" id="simFs" value="0.44" min="0.01" max="1" step="0.01"
+            style="width:100%; background:var(--ink3); border:1px solid var(--rule); color:var(--paper); padding:8px; font-family:'DM Mono',monospace; font-size:14px; border-radius:2px;">
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent2); margin-bottom:6px;">Vn · Value</div>
+          <input type="number" id="simVn" value="1.2" min="0.8" max="1.5" step="0.1"
+            style="width:100%; background:var(--ink3); border:1px solid var(--rule); color:var(--paper); padding:8px; font-family:'DM Mono',monospace; font-size:14px; border-radius:2px;">
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:6px;">Pd · Multiplier</div>
+          <input type="number" id="simPd" value="3.0" min="1.2" max="3.0" step="0.1"
+            style="width:100%; background:var(--ink3); border:1px solid var(--rule); color:var(--paper); padding:8px; font-family:'DM Mono',monospace; font-size:14px; border-radius:2px;">
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber); margin-bottom:6px;">Cf · Multiplier</div>
+          <input type="number" id="simCf" value="3.0" min="1.2" max="3.0" step="0.1"
+            style="width:100%; background:var(--ink3); border:1px solid var(--rule); color:var(--paper); padding:8px; font-family:'DM Mono',monospace; font-size:14px; border-radius:2px;">
+        </div>
+      </div>
+
+      <!-- Reform levers -->
+      <div class="sim-sliders">
+        <div class="sl-group">
+          <label>
+            <span class="sl-name" style="color:var(--accent)">Reduce Pd (%)</span>
+            <span class="sl-val" style="color:var(--accent)" id="simPdPct">0%</span>
+          </label>
+          <input type="range" class="sl-pd" id="simPdSlider" min="0" max="60" step="1" value="0">
+        </div>
+        <div class="sl-group">
+          <label>
+            <span class="sl-name" style="color:var(--amber)">Reduce Cf (%)</span>
+            <span class="sl-val" style="color:var(--amber)" id="simCfPct">0%</span>
+          </label>
+          <input type="range" class="sl-cf" id="simCfSlider" min="0" max="60" step="1" value="0">
+        </div>
+        <div class="sl-group">
+          <label>
+            <span class="sl-name" style="color:var(--green)">Increase Fs (%)</span>
+            <span class="sl-val" style="color:var(--green)" id="simFsPct">0%</span>
+          </label>
+          <input type="range" class="sl-fs" id="simFsSlider" min="0" max="30" step="1" value="0">
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="sim-result-row">
+        <div class="sim-metric">
+          <div class="sim-metric-label">Current GL</div>
+          <div class="sim-metric-val" id="simCurrentGL" style="color:var(--accent);">—</div>
+          <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); margin-top:4px;" id="simCurrentEff">—</div>
+        </div>
+        <div class="sim-arrow">→</div>
+        <div class="sim-metric">
+          <div class="sim-metric-label">Simulated GL</div>
+          <div class="sim-metric-val" id="simNewGL" style="color:var(--amber);">—</div>
+          <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); margin-top:4px;" id="simNewEff">—</div>
+        </div>
+        <div class="sim-arrow">→</div>
+        <div class="sim-improvement">
+          <div class="sim-improvement-label">GL Improvement</div>
+          <div class="sim-improvement-val" id="simDeltaGL">—</div>
+          <div class="sim-improvement-pct" id="simDeltaPct">—</div>
+        </div>
+      </div>
+
+      <!-- Sim table -->
+      <table class="sim-table">
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Current</th>
+            <th>After Reform</th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody id="simTableBody"></tbody>
+      </table>
+
+    </div>
+  </div>
+</section>
+
+<!-- GHOST COST -->
+<section>
+  <div class="section-eyebrow">Ghost Cost Estimator · Hidden Administrative Waste</div>
+  <p style="font-size:14px; color:var(--muted); max-width:580px; line-height:1.7; margin-bottom:20px;">
+    Ghost Cost is the budget consumed by administrative friction — money spent on processing, re-processing, appeals, and re-submissions that produces zero citizen value. It is not corruption. It is accumulated denominator.
+  </p>
+  <div style="max-width:500px; margin-bottom:20px;">
+    <label style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:8px;">Agency Annual Budget (USD)</label>
+    <input type="range" id="budgetSlider" min="10000000" max="2000000000" step="10000000" value="500000000"
+      style="-webkit-appearance:none; width:100%; height:4px; border-radius:2px; outline:none; cursor:pointer; background:rgba(245,242,236,.12); accent-color:var(--accent);">
+    <div style="font-family:'DM Mono',monospace; font-size:14px; color:var(--paper); margin-top:8px;" id="budgetDisplay">$500,000,000</div>
+  </div>
+  <div class="ghost-grid" id="ghostGrid"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:rgba(245,242,236,.02);">
+  <div class="section-eyebrow">Request a Diagnostic</div>
+  <div class="contact-box">
+    <h3>Ready to find where your budget is going?</h3>
+    <p>GL Framework delivers a structural friction diagnostic using public data — no system access, no individual data, no IT integration required. Fixed fee: <strong style="color:var(--paper);">$9,999 per program.</strong> Two-week turnaround. One-page findings plus full PDF report.</p>
+    <p>We diagnose. You decide what to fix. No ongoing dependency.</p>
+    <a href="mailto:ping@gfiintel.com" class="contact-link">ping@gfiintel.com</a>
+    <a href="https://gfiintel.com" class="contact-link">gfiintel.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">GFI Flow Intelligence &nbsp;·&nbsp; gfiintel.com &nbsp;·&nbsp; Boston, MA</div>
+  <div class="footer-formula">GL = (Fs × Vn) / (Pd × Cf)</div>
+</footer>
 
 </div>
 
 <script>
-// ── CASE DATA ──
+// ── CORE ENGINE (mirrors app.py logic) ──
+function computeGL(fs, vn, pd, cf) {
+  if (pd <= 0 || cf <= 0) return null;
+  return (fs * vn) / (pd * cf);
+}
+
+function glBucket(gl) {
+  if (gl === null) return 'na';
+  if (gl >= 2.0) return 'excellent';
+  if (gl >= 1.0) return 'good';
+  if (gl >= 0.5) return 'avg';
+  return 'poor';
+}
+
+function glTierClass(gl) {
+  if (gl >= 0.15) return 'tier-mid';
+  return 'tier-low';
+}
+
+function fmtGL(gl) {
+  if (gl === null) return '—';
+  if (gl >= 1) return gl.toFixed(3);
+  return gl.toFixed(4);
+}
+
+function fmtPct(delta) {
+  if (delta === null || isNaN(delta)) return '—';
+  const sign = delta >= 0 ? '+' : '';
+  return `${sign}${delta.toFixed(1)}%`;
+}
+
+function outputEfficiency(gl) {
+  if (gl === null) return '—';
+  return (gl * 100).toFixed(1) + '%';
+}
+
+// ── CASE DATA (4 US states, public data) ──
 const cases = [
   {
-    country: "Estonia", name: "Digital Government Portal",
-    Fs: 9.2, Vn: 0.95, Pd: 1.3, Cf: 1.1, gl: 10.54, tier: "high",
-    insight: "Benchmark reference. End-to-end digital services eliminate procedural drag. Vn near-perfect: laws actually map to lived reality."
+    state: 'Massachusetts', agency: 'DUA · Dept of Unemployment Assistance',
+    Fs: 0.44, Vn: 1.2, Pd: 3.0, Cf: 3.0,
+    gl: null, // computed
+    insight: 'Spent millions upgrading the system in May 2025. GL collapsed to worst in the nation. The upgrade addressed technology — not the denominator. 70,000+ pending issues. Appeals up 9× year-over-year.',
+    sources: 'CommonWealth Beacon Feb 2026 · Mass.gov DUA data · U.S. DOL BTQ Reports',
+    highlight: 'GL < 0.1 — Structural Collapse'
   },
   {
-    country: "Singapore", name: "Business Registration",
-    Fs: 8.8, Vn: 0.92, Pd: 1.5, Cf: 1.4, gl: 8.09, tier: "high",
-    insight: "Near-zero handoffs. SingPass integration reduces Cf dramatically. Minor drag from multi-ministry approvals."
+    state: 'Texas', agency: 'TWC · Texas Workforce Commission',
+    Fs: 0.38, Vn: 1.2, Pd: 3.0, Cf: 3.0,
+    gl: null,
+    insight: 'System structurally oriented toward employer chargeback protection, not citizen service. Stated appeal wait: 6–8 weeks. Actual: 14–19+ weeks. Commissioners meet only once monthly.',
+    sources: 'TWC official documentation · U.S. DOL Core Measures State Rankings',
+    highlight: 'Gatekeeper design — fund protection over citizen service'
   },
   {
-    country: "New Zealand", name: "Resource Consent",
-    Fs: 7.6, Vn: 0.88, Pd: 2.1, Cf: 1.8, gl: 6.31, tier: "high",
-    insight: "Strong validity norm — policy intent is genuine. Online tracking helps flow. Cf elevated by mandatory specialist reports."
+    state: 'Florida', agency: 'DEO · Dept of Economic Opportunity',
+    Fs: 0.31, Vn: 1.2, Pd: 3.0, Cf: 3.0,
+    gl: null,
+    insight: 'Maximum weekly benefit: $275 — lowest of any large state. Maximum duration: 12 weeks — half the federal norm. Legislative-level Vn collapse: the law itself was designed to minimize payout.',
+    sources: 'FloridaCommerce documentation · Florida Statutes 443 · U.S. DOL State UI Laws 2025',
+    highlight: 'Legislative design failure — $275/week cannot sustain life'
   },
   {
-    country: "Canada", name: "Immigration Express Entry",
-    Fs: 6.4, Vn: 0.82, Pd: 3.2, Cf: 3.1, gl: 3.71, tier: "mid",
-    insight: "Pd inflated by document redundancy across provincial and federal layers. Cf compounds with translation and credential recognition costs."
-  },
-  {
-    country: "USA", name: "SNAP Benefits Enrollment",
-    Fs: 4.8, Vn: 0.71, Pd: 4.6, Cf: 4.3, gl: 1.95, tier: "mid",
-    insight: "Eligibility verification creates compounding friction. Vn suffers from legislative disconnect between food security intent and application design."
-  },
-  {
-    country: "Massachusetts", name: "DUA Unemployment",
-    Fs: 3.2, Vn: 0.65, Pd: 6.1, Cf: 5.8, gl: 0.58, tier: "low",
-    insight: "Near-collapse zone. Phone-only adjudication, repeated identity reverification, and opaque denial language produce systematic flow failure."
-  },
-  {
-    country: "Italy", name: "Municipal Business Permit",
-    Fs: 2.9, Vn: 0.58, Pd: 6.8, Cf: 6.2, gl: 0.40, tier: "low",
-    insight: "Validity norm collapse: regulations contradict each other across municipal, regional, and national layers. Pd reflects actual bureaucratic layering."
-  },
-  {
-    country: "Germany", name: "Solar Panel Permit",
-    Fs: 1.8, Vn: 0.72, Pd: 8.4, Cf: 7.6, gl: 0.056, tier: "low",
-    insight: "Paradox case: strong policy intent (Vn 0.72) but catastrophic denominator. Grid approval alone averages 14 months. Flow collapse despite green mandate."
-  },
-  {
-    country: "Brazil", name: "Public Housing Application",
-    Fs: 2.1, Vn: 0.48, Pd: 7.9, Cf: 7.2, gl: 0.078, tier: "low",
-    insight: "Compounded denominators: corrupt Pd layers, extreme Cf for informal workers, and low Vn from misaligned housing law. Classic denominator problem."
+    state: 'California', agency: 'EDD · Employment Development Dept',
+    Fs: 0.72, Vn: 1.2, Pd: 1.6, Cf: 2.2,
+    gl: null,
+    insight: 'Strongest performer among large states — but still in structural friction zone. Post-pandemic identity verification overcorrection creates disproportionate burden on legitimate claimants.',
+    sources: 'California EDD official data · EDD.ca.gov processing timelines · U.S. DOL BTQ Reports',
+    highlight: 'Relative benchmark — but still below federal standard'
   }
 ];
 
-const MAX_GL = 11;
+// Compute GL for each case
+cases.forEach(c => { c.gl = computeGL(c.Fs, c.Vn, c.Pd, c.Cf); });
 
-function tierClass(gl) {
-  if (gl >= 4) return 'high';
-  if (gl >= 1) return 'mid';
+// ── POWER OUTPUT CARDS ──
+const powerData = [
+  { gl: cases[0].gl, state: 'Massachusetts DUA', label: 'Output Efficiency' },
+  { gl: cases[1].gl, state: 'Texas TWC', label: 'Output Efficiency' },
+  { gl: cases[2].gl, state: 'Florida DEO', label: 'Output Efficiency' },
+  { gl: cases[3].gl, state: 'California EDD', label: 'Output Efficiency' },
+];
+
+function renderPowerGrid() {
+  const grid = document.getElementById('powerGrid');
+  powerData.forEach(p => {
+    const eff = (p.gl * 100).toFixed(1);
+    const col = p.gl < 0.1 ? 'var(--accent)' : p.gl < 0.3 ? 'var(--amber)' : 'var(--green)';
+    grid.innerHTML += `
+      <div class="power-card">
+        <div class="power-label">${p.state}</div>
+        <div class="power-num" style="color:${col}">${eff}¢</div>
+        <div class="power-desc">For every $1 invested in policy, <strong style="color:var(--paper)">${eff} cents</strong> reaches the citizen. The rest is friction loss.</div>
+      </div>`;
+  });
+}
+
+// ── CASE CARDS ──
+function tierFromGL(gl) {
+  if (gl >= 0.15) return 'mid';
   return 'low';
+}
+
+function verdictFromGL(gl) {
+  if (gl >= 2.0) return 'High Fluency';
+  if (gl >= 1.0) return 'Functional';
+  if (gl >= 0.3) return 'Stress Zone';
+  if (gl >= 0.1) return 'Structural Failure';
+  return 'Flow Collapse';
 }
 
 function renderCases() {
   const grid = document.getElementById('casesGrid');
+  const MAX = 0.3;
   cases.forEach((c, i) => {
-    const tier = tierClass(c.gl);
-    const barPct = Math.min((c.gl / MAX_GL) * 100, 100);
-    const glDisp = c.gl >= 1 ? c.gl.toFixed(2) : c.gl.toFixed(3);
+    const tier = tierFromGL(c.gl);
+    const verdict = verdictFromGL(c.gl);
+    const barPct = Math.min((c.gl / MAX) * 100, 100);
+    const glStr = fmtGL(c.gl);
     grid.innerHTML += `
-      <div class="case-card ${tier}" style="animation: fadeUp .6s ${.05*i}s both forwards; opacity:0">
-        <div class="case-country">${c.country}</div>
-        <div class="case-name">${c.name}</div>
-        <div class="gl-score-row">
-          <span class="gl-label">GL</span>
-          <span class="gl-number ${tier}">${glDisp}</span>
+      <div class="case-card tier-${tier}" style="animation:fadeUp .5s ${i*.1}s both forwards; opacity:0">
+        <div class="case-tag">${c.state}</div>
+        <div class="case-title">${c.agency}</div>
+        <div class="gl-row">
+          <span class="gl-lbl">GL</span>
+          <span class="gl-num tier-${tier}">${glStr}</span>
         </div>
-        <div class="gl-bar-track">
-          <div class="gl-bar-fill ${tier}" data-pct="${barPct}"></div>
-        </div>
+        <div class="gl-verdict tier-${tier}">${verdict} &nbsp;·&nbsp; ${outputEfficiency(c.gl)} output efficiency</div>
+        <div class="gl-bar"><div class="gl-fill tier-${tier}" data-pct="${barPct}"></div></div>
         <div class="case-vars">
-          <div class="case-var-item">Fs <strong style="color:var(--green)">${c.Fs}</strong></div>
-          <div class="case-var-item">Vn <strong style="color:var(--accent2)">${c.Vn}</strong></div>
-          <div class="case-var-item">Pd <strong style="color:var(--accent)">${c.Pd}</strong></div>
-          <div class="case-var-item">Cf <strong style="color:var(--amber)">${c.Cf}</strong></div>
+          <div class="cv">Fs <strong style="color:var(--green)">${c.Fs}</strong></div>
+          <div class="cv">Vn <strong style="color:var(--accent2)">${c.Vn}</strong></div>
+          <div class="cv">Pd <strong style="color:var(--accent)">${c.Pd}×</strong></div>
+          <div class="cv">Cf <strong style="color:var(--amber)">${c.Cf}×</strong></div>
         </div>
         <div class="case-insight">${c.insight}</div>
+        <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--rule); margin-top:10px;">${c.sources}</div>
       </div>`;
   });
 
-  // Animate bars when visible
-  const observer = new IntersectionObserver((entries) => {
+  // Animate bars on scroll
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.querySelectorAll('.gl-bar-fill').forEach(bar => {
-          bar.style.width = bar.dataset.pct + '%';
+        e.target.querySelectorAll('.gl-fill').forEach(b => {
+          b.style.width = b.dataset.pct + '%';
         });
       }
     });
@@ -686,7 +792,7 @@ function renderCases() {
   observer.observe(grid);
 }
 
-// ── CALCULATOR ──
+// ── CALCULATOR ENGINE ──
 const sliders = {
   fs: document.getElementById('fsSlider'),
   vn: document.getElementById('vnSlider'),
@@ -699,46 +805,368 @@ const displays = {
   pd: document.getElementById('pdVal'),
   cf: document.getElementById('cfVal'),
 };
-const glScoreEl = document.getElementById('glScore');
-const verdictEl = document.getElementById('verdict');
-const interpEl  = document.getElementById('interp');
+
+function buildSensitivity(fs, vn, pd, cf) {
+  const base = computeGL(fs, vn, pd, cf);
+  const rows = [
+    { label: 'Fs', base: fs, lo: fs*0.7, hi: Math.min(fs*1.3,1), loGL: computeGL(fs*0.7,vn,pd,cf), hiGL: computeGL(Math.min(fs*1.3,1),vn,pd,cf) },
+    { label: 'Vn', base: vn, lo: vn*0.7, hi: vn*1.3, loGL: computeGL(fs,vn*0.7,pd,cf), hiGL: computeGL(fs,vn*1.3,pd,cf) },
+    { label: 'Pd', base: pd, lo: pd*0.7, hi: pd*1.3, loGL: computeGL(fs,vn,pd*0.7,cf), hiGL: computeGL(fs,vn,pd*1.3,cf) },
+    { label: 'Cf', base: cf, lo: cf*0.7, hi: cf*1.3, loGL: computeGL(fs,vn,pd,cf*0.7), hiGL: computeGL(fs,vn,pd,cf*1.3) },
+  ];
+  rows.forEach(r => {
+    r.loDelta = base ? (r.loGL - base) / base * 100 : null;
+    r.hiDelta = base ? (r.hiGL - base) / base * 100 : null;
+    r.range = Math.abs((r.hiGL||0) - (r.loGL||0));
+  });
+  return rows;
+}
+
+function renderSensitivity(fs, vn, pd, cf) {
+  const rows = buildSensitivity(fs, vn, pd, cf);
+  const tbody = document.getElementById('sensBody');
+  tbody.innerHTML = '';
+  rows.forEach(r => {
+    const loClass = r.loDelta < 0 ? 'neg' : 'pos';
+    const hiClass = r.hiDelta > 0 ? 'pos' : 'neg';
+    tbody.innerHTML += `<tr>
+      <td class="base-val">${r.label}</td>
+      <td>${r.base.toFixed(2)}</td>
+      <td>${fmtGL(r.loGL)}</td>
+      <td class="${loClass}">${fmtPct(r.loDelta)}</td>
+      <td>${fmtGL(r.hiGL)}</td>
+      <td class="${hiClass}">${fmtPct(r.hiDelta)}</td>
+    </tr>`;
+  });
+  return rows;
+}
+
+function renderTornado(rows) {
+  const chart = document.getElementById('tornadoChart');
+  const sorted = [...rows].sort((a,b) => b.range - a.range);
+  const maxRange = sorted[0]?.range || 1;
+  chart.innerHTML = '';
+  sorted.forEach(r => {
+    const negPct = (Math.abs((r.loGL||0) - computeGL(
+      parseFloat(sliders.fs.value),
+      parseFloat(sliders.vn.value),
+      parseFloat(sliders.pd.value),
+      parseFloat(sliders.cf.value)
+    )) / maxRange * 100).toFixed(1);
+    const posPct = (Math.abs((r.hiGL||0) - computeGL(
+      parseFloat(sliders.fs.value),
+      parseFloat(sliders.vn.value),
+      parseFloat(sliders.pd.value),
+      parseFloat(sliders.cf.value)
+    )) / maxRange * 100).toFixed(1);
+
+    const colors = { Fs: 'var(--green)', Vn: 'var(--accent2)', Pd: 'var(--accent)', Cf: 'var(--amber)' };
+    const col = colors[r.label] || 'var(--muted)';
+
+    chart.innerHTML += `
+      <div class="tornado-row">
+        <div class="tornado-label">${r.label}</div>
+        <div class="tornado-bar-wrap">
+          <div class="tornado-bar-neg" style="width:${negPct}%; background:var(--accent); opacity:.7;"></div>
+          <div style="width:2px; background:rgba(245,242,236,.2); height:100%;"></div>
+          <div class="tornado-bar-pos" style="width:${posPct}%; background:${col};"></div>
+        </div>
+        <div class="tornado-range">${r.range.toFixed(4)}</div>
+      </div>`;
+  });
+}
 
 function calcGL() {
   const fs = parseFloat(sliders.fs.value);
   const vn = parseFloat(sliders.vn.value);
   const pd = parseFloat(sliders.pd.value);
   const cf = parseFloat(sliders.cf.value);
-  displays.fs.textContent = fs.toFixed(1);
+
+  displays.fs.textContent = fs.toFixed(2);
   displays.vn.textContent = vn.toFixed(2);
-  displays.pd.textContent = pd.toFixed(1);
-  displays.cf.textContent = cf.toFixed(1);
-  const gl = (fs * vn) / (pd * cf);
-  const glStr = gl >= 1 ? gl.toFixed(2) : gl.toFixed(3);
-  glScoreEl.textContent = glStr;
+  displays.pd.textContent = pd.toFixed(2);
+  displays.cf.textContent = cf.toFixed(2);
+
+  const gl = computeGL(fs, vn, pd, cf);
+  const glEl = document.getElementById('glScore');
+  const powerEl = document.getElementById('glPower');
+  const verdictEl = document.getElementById('verdict');
+  const interpEl = document.getElementById('interp');
+
+  glEl.textContent = fmtGL(gl);
+  powerEl.textContent = outputEfficiency(gl) + ' output efficiency';
 
   let color, verdict, interp;
-  if (gl >= 6) {
+  if (gl >= 2.0) {
     color = 'var(--green)'; verdict = 'High Fluency';
-    interp = 'Policy intent reaches citizens with minimal loss. System operates near design potential.';
-  } else if (gl >= 2) {
+    interp = 'Policy intent reaches citizens with minimal friction loss. System operating near design potential.';
+  } else if (gl >= 1.0) {
     color = 'var(--accent2)'; verdict = 'Functional — With Drag';
-    interp = 'Services work, but friction is measurable. Denominator reduction would unlock significant gains.';
-  } else if (gl >= 0.5) {
+    interp = 'Services work, but denominator friction is measurable. Targeted reduction would unlock significant gains.';
+  } else if (gl >= 0.3) {
     color = 'var(--amber)'; verdict = 'Stress Zone';
-    interp = 'Denominator forces are dominant. Citizens bear disproportionate burden. Reform is urgent.';
+    interp = 'Denominator forces are dominant. Citizens bear disproportionate burden. Structural reform is urgent.';
+  } else if (gl >= 0.1) {
+    color = 'var(--accent)'; verdict = 'Structural Failure';
+    interp = 'The denominator has overwhelmed the system. Policy investment is being consumed before reaching citizens.';
   } else {
     color = 'var(--accent)'; verdict = 'Flow Collapse';
-    interp = 'The denominator has consumed the system. Policy intent is not reaching citizens. Critical intervention required.';
+    interp = 'Critical intervention required. The system is not delivering its intended function. Immediate diagnostic action needed.';
   }
-  glScoreEl.style.color = color;
+
+  glEl.style.color = color;
+  powerEl.style.color = color;
   verdictEl.style.color = color;
   verdictEl.textContent = verdict;
   interpEl.textContent = interp;
+
+  const sensRows = renderSensitivity(fs, vn, pd, cf);
+  renderTornado(sensRows);
+  updateGhostCost(gl);
 }
 
+// ── GHOST COST ──
+const budgetSlider = document.getElementById('budgetSlider');
+const budgetDisplay = document.getElementById('budgetDisplay');
+
+function ghostLoadPct(fs, vn, pd, cf) {
+  const denom = Math.max(fs * vn, 0.01);
+  const raw = ((pd * cf) / denom) * 0.08;
+  return Math.min(Math.max(raw, 0), 0.85);
+}
+
+function updateGhostCost(gl) {
+  const fs = parseFloat(sliders.fs.value);
+  const vn = parseFloat(sliders.vn.value);
+  const pd = parseFloat(sliders.pd.value);
+  const cf = parseFloat(sliders.cf.value);
+  const budget = parseFloat(budgetSlider.value);
+
+  const ghost = ghostLoadPct(fs, vn, pd, cf);
+  const waste = budget * ghost;
+
+  const grid = document.getElementById('ghostGrid');
+  grid.innerHTML = `
+    <div class="ghost-card">
+      <div class="ghost-label">Ghost Load</div>
+      <div class="ghost-num">${(ghost*100).toFixed(1)}%</div>
+      <div style="font-size:12px; color:var(--muted); margin-top:4px;">Of budget consumed by administrative friction</div>
+    </div>
+    <div class="ghost-card">
+      <div class="ghost-label">Estimated Waste</div>
+      <div class="ghost-num">$${(waste/1000000).toFixed(1)}M</div>
+      <div style="font-size:12px; color:var(--muted); margin-top:4px;">Annual administrative waste at current friction level</div>
+    </div>
+    <div class="ghost-card">
+      <div class="ghost-label">If GL Doubled</div>
+      <div class="ghost-num" style="color:var(--green);">$${(waste*0.5/1000000).toFixed(1)}M</div>
+      <div style="font-size:12px; color:var(--muted); margin-top:4px;">Estimated savings from halving the denominator</div>
+    </div>`;
+}
+
+budgetSlider.addEventListener('input', () => {
+  const v = parseFloat(budgetSlider.value);
+  budgetDisplay.textContent = '$' + v.toLocaleString();
+  calcGL();
+});
+
 Object.values(sliders).forEach(s => s.addEventListener('input', calcGL));
-calcGL();
+
+// ── MA PROGRAMS DATA ──
+const maCases = [
+  {
+    state: 'Massachusetts', agency: 'DUA · Unemployment Insurance',
+    Fs: 0.44, Vn: 1.2, Pd: 3.0, Cf: 3.0, gl: null,
+    insight: 'Worst performing program in Massachusetts. Spent millions on upgrade, collapsed to worst in the nation. 70,000+ pending issues. 9× surge in appeals. Denominator fully overwhelms policy intent.',
+    sources: 'CommonWealth Beacon Feb 2026 · Mass.gov DUA data · U.S. DOL BTQ Reports',
+  },
+  {
+    state: 'Massachusetts', agency: 'MassHealth · Medicaid',
+    Fs: 0.61, Vn: 1.5, Pd: 2.2, Cf: 2.6, gl: null,
+    insight: 'Long-term care applications require 5 years of financial documentation and multiple approval layers. General Medicaid is more accessible. 898,233 procedural disenrollments during 2023–2024 unwinding — two-thirds for paperwork reasons, not ineligibility.',
+    sources: 'KFF Medicaid Enrollment Data · MassHealth Redetermination Dashboard · Mass Legal Services',
+  },
+  {
+    state: 'Massachusetts', agency: 'SNAP · Food Assistance',
+    Fs: 0.68, Vn: 1.5, Pd: 1.6, Cf: 2.2, gl: null,
+    insight: 'Best performing social program in Massachusetts. 30-day processing standard, online application available, 90-day appeal window. However, ~600,000 eligible MassHealth recipients are not receiving SNAP they qualify for — a hidden access gap.',
+    sources: 'Mass.gov DTA · MLRI SNAP Advocacy Guide 2024 · Project Bread FoodSource Data',
+  },
+];
+maCases.forEach(c => { c.gl = computeGL(c.Fs, c.Vn, c.Pd, c.Cf); });
+
+// ── SNAP 4-STATE DATA ──
+const snapCases = [
+  {
+    state: 'California', agency: 'CalFresh · SNAP Program',
+    Fs: 0.74, Vn: 1.5, Pd: 1.6, Cf: 1.6, gl: null,
+    insight: 'Strongest large-state SNAP performer. Strong outreach, multilingual support, simplified verification. Post-pandemic identity friction adds some drag, but overall denominator is lowest among peer states.',
+    sources: 'California EDD · USDA FNS State Performance Data · Food Research & Action Center',
+  },
+  {
+    state: 'Massachusetts', agency: 'SNAP · Dept of Transitional Assistance',
+    Fs: 0.68, Vn: 1.5, Pd: 1.6, Cf: 2.2, gl: null,
+    insight: '600,000 MassHealth recipients eligible for SNAP but not enrolled — a structural access gap. 2025 Trump work rule expansion (ABAWD) increases Cf. 30-day processing standard generally met for standard applications.',
+    sources: 'Mass.gov DTA · MLRI SNAP Advocacy Guide 2024 · FRAC State SNAP Data',
+  },
+  {
+    state: 'Texas', agency: 'SNAP · Health and Human Services',
+    Fs: 0.52, Vn: 1.5, Pd: 2.2, Cf: 2.6, gl: null,
+    insight: 'Strict 3-month ABAWD work requirement. Complex employer documentation requirements. System oriented toward fund protection. Among lowest SNAP participation rates of any large state despite high food insecurity.',
+    sources: 'Texas HHS · USDA FNS SNAP Timeliness Data · Center on Budget and Policy Priorities',
+  },
+  {
+    state: 'Florida', agency: 'SNAP · Dept of Commerce',
+    Fs: 0.41, Vn: 1.5, Pd: 2.6, Cf: 2.6, gl: null,
+    insight: 'CONNECT system failures extend to SNAP administration. Lowest participation rate nationally. 5 work search contacts per week for ABAWD — highest compliance burden in the nation. Legislative design consistently minimizes benefit access.',
+    sources: 'FloridaCommerce · USDA FNS SNAP State Performance · Food Research & Action Center',
+  },
+];
+snapCases.forEach(c => { c.gl = computeGL(c.Fs, c.Vn, c.Pd, c.Cf); });
+
+// ── TAB SWITCHING ──
+function switchTab(tab) {
+  ['ui','ma','snap'].forEach(t => {
+    document.getElementById('panel-' + t).style.display = t === tab ? 'block' : 'none';
+    document.getElementById('tab-' + t).classList.toggle('active', t === tab);
+  });
+  if (tab === 'ma' && !document.getElementById('maCasesGrid').children.length) renderCaseSet(maCases, 'maCasesGrid');
+  if (tab === 'snap' && !document.getElementById('snapCasesGrid').children.length) renderCaseSet(snapCases, 'snapCasesGrid');
+}
+
+function renderCaseSet(caseData, gridId) {
+  const grid = document.getElementById(gridId);
+  const MAX = Math.max(...caseData.map(c => c.gl));
+  caseData.forEach((c, i) => {
+    const tier = tierFromGL(c.gl);
+    const verdict = verdictFromGL(c.gl);
+    const barPct = Math.min((c.gl / (MAX * 1.1)) * 100, 100);
+    const glStr = fmtGL(c.gl);
+    grid.innerHTML += `
+      <div class="case-card tier-${tier}" style="animation:fadeUp .5s ${i*.1}s both forwards; opacity:0">
+        <div class="case-tag">${c.state}</div>
+        <div class="case-title">${c.agency}</div>
+        <div class="gl-row">
+          <span class="gl-lbl">GL</span>
+          <span class="gl-num tier-${tier}">${glStr}</span>
+        </div>
+        <div class="gl-verdict tier-${tier}">${verdict} &nbsp;·&nbsp; ${outputEfficiency(c.gl)} output efficiency</div>
+        <div class="gl-bar"><div class="gl-fill tier-${tier}" style="width:${barPct}%"></div></div>
+        <div class="case-vars">
+          <div class="cv">Fs <strong style="color:var(--green)">${c.Fs}</strong></div>
+          <div class="cv">Vn <strong style="color:var(--accent2)">${c.Vn}</strong></div>
+          <div class="cv">Pd <strong style="color:var(--accent)">${c.Pd}×</strong></div>
+          <div class="cv">Cf <strong style="color:var(--amber)">${c.Cf}×</strong></div>
+        </div>
+        <div class="case-insight">${c.insight}</div>
+        <div style="font-family:'DM Mono',monospace; font-size:9px; color:var(--rule); margin-top:10px;">${c.sources}</div>
+      </div>`;
+  });
+}
+
+// ── POLICY SIMULATOR ──
+const simPresets = {
+  'custom': { fs:0.75, vn:1.2, pd:1.6, cf:1.6 },
+  'ma-dua': { fs:0.44, vn:1.2, pd:3.0, cf:3.0 },
+  'tx-ui':  { fs:0.38, vn:1.2, pd:3.0, cf:3.0 },
+  'fl-ui':  { fs:0.31, vn:1.2, pd:3.0, cf:3.0 },
+  'ca-ui':  { fs:0.72, vn:1.2, pd:1.6, cf:2.2 },
+  'ma-snap':{ fs:0.68, vn:1.5, pd:1.6, cf:2.2 },
+  'ma-health':{ fs:0.61, vn:1.5, pd:2.2, cf:2.6 },
+};
+
+function loadPreset(key) {
+  const p = simPresets[key];
+  document.getElementById('simFs').value = p.fs;
+  document.getElementById('simVn').value = p.vn;
+  document.getElementById('simPd').value = p.pd;
+  document.getElementById('simCf').value = p.cf;
+  document.getElementById('simPdSlider').value = 0;
+  document.getElementById('simCfSlider').value = 0;
+  document.getElementById('simFsSlider').value = 0;
+  Object.keys(simPresets).forEach(k => {
+    document.getElementById('preset-' + k).classList.toggle('active', k === key);
+  });
+  runSimulator();
+}
+
+function runSimulator() {
+  const fs = parseFloat(document.getElementById('simFs').value) || 0.5;
+  const vn = parseFloat(document.getElementById('simVn').value) || 1.2;
+  const pd = parseFloat(document.getElementById('simPd').value) || 2.0;
+  const cf = parseFloat(document.getElementById('simCf').value) || 2.0;
+
+  const reducePd = parseFloat(document.getElementById('simPdSlider').value);
+  const reduceCf = parseFloat(document.getElementById('simCfSlider').value);
+  const increaseFs = parseFloat(document.getElementById('simFsSlider').value);
+
+  document.getElementById('simPdPct').textContent = reducePd + '%';
+  document.getElementById('simCfPct').textContent = reduceCf + '%';
+  document.getElementById('simFsPct').textContent = increaseFs + '%';
+
+  const newFs = Math.min(1.0, fs * (1 + increaseFs/100));
+  const newPd = Math.max(1.2, pd * (1 - reducePd/100));
+  const newCf = Math.max(1.2, cf * (1 - reduceCf/100));
+
+  const baseGL = computeGL(fs, vn, pd, cf);
+  const newGL = computeGL(newFs, vn, newPd, newCf);
+  const deltaGL = newGL - baseGL;
+  const deltaPct = baseGL > 0 ? (deltaGL / baseGL * 100) : 0;
+
+  // Color current GL
+  const baseColor = baseGL < 0.1 ? 'var(--accent)' : baseGL < 0.3 ? 'var(--accent)' : baseGL < 1 ? 'var(--amber)' : 'var(--green)';
+  const newColor = newGL < 0.1 ? 'var(--accent)' : newGL < 0.3 ? 'var(--accent)' : newGL < 1 ? 'var(--amber)' : 'var(--green)';
+
+  document.getElementById('simCurrentGL').textContent = fmtGL(baseGL);
+  document.getElementById('simCurrentGL').style.color = baseColor;
+  document.getElementById('simCurrentEff').textContent = outputEfficiency(baseGL) + ' output efficiency';
+
+  document.getElementById('simNewGL').textContent = fmtGL(newGL);
+  document.getElementById('simNewGL').style.color = newColor;
+  document.getElementById('simNewEff').textContent = outputEfficiency(newGL) + ' output efficiency';
+
+  document.getElementById('simDeltaGL').textContent = (deltaGL >= 0 ? '+' : '') + fmtGL(deltaGL);
+  document.getElementById('simDeltaPct').textContent = (deltaPct >= 0 ? '+' : '') + deltaPct.toFixed(1) + '%';
+
+  // Table
+  const tbody = document.getElementById('simTableBody');
+  tbody.innerHTML = '';
+  const rows = [
+    { label:'Fs', cur:fs, next:newFs, pct:(newFs-fs)/fs*100 },
+    { label:'Vn', cur:vn, next:vn, pct:0 },
+    { label:'Pd ×', cur:pd, next:newPd, pct:(newPd-pd)/pd*100 },
+    { label:'Cf ×', cur:cf, next:newCf, pct:(newCf-cf)/cf*100 },
+    { label:'GL', cur:baseGL, next:newGL, pct:deltaPct },
+  ];
+  rows.forEach(r => {
+    const sign = r.pct >= 0 ? '+' : '';
+    const cls = (r.label === 'GL' || r.label === 'Fs') ? (r.pct > 0 ? 'pos' : r.pct < 0 ? 'neg' : '') : (r.pct < 0 ? 'pos' : r.pct > 0 ? 'neg' : '');
+    tbody.innerHTML += `<tr>
+      <td class="base-val">${r.label}</td>
+      <td>${r.cur.toFixed(3)}</td>
+      <td>${r.next.toFixed(3)}</td>
+      <td class="${cls}">${sign}${r.pct.toFixed(1)}%</td>
+    </tr>`;
+  });
+}
+
+// Attach simulator events
+['simPdSlider','simCfSlider','simFsSlider'].forEach(id => {
+  document.getElementById(id).addEventListener('input', runSimulator);
+});
+['simFs','simVn','simPd','simCf'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    // deactivate all presets
+    Object.keys(simPresets).forEach(k => document.getElementById('preset-'+k).classList.remove('active'));
+    runSimulator();
+  });
+});
+
+// ── INIT ──
+renderPowerGrid();
 renderCases();
+calcGL();
+runSimulator();
 </script>
 </body>
 </html>
