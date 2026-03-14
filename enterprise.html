@@ -37,7 +37,7 @@ nav a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
 .lang-grp{display:flex;gap:3px;margin-left:8px}
 .lb-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:5px 9px;border:1px solid var(--border);border-radius:4px;background:none;color:var(--muted);cursor:pointer;transition:all .2s}
 .lb-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.18)}
-.lb-btn.on{color:var(--accent);border-color:rgba(200,245,66,0.35);background:rgba(200,245,66,0.06)}
+.lb-btn.on{color:var(--accent);border-color:rgba(200,245,66,.35);background:rgba(200,245,66,.06)}
 .nav-cta{display:inline-block;padding:8px 16px;background:var(--accent);color:#0d1117;font-size:13px;font-weight:600;border-radius:6px;text-decoration:none;margin-left:8px;white-space:nowrap;transition:opacity .2s}
 .nav-cta:hover{opacity:.85}
 
@@ -150,6 +150,13 @@ tr:hover td{background:rgba(255,255,255,.018)}
 .mlist li{padding:10px 0;border-bottom:1px solid var(--border);color:var(--muted);display:flex;gap:10px;font-size:14px}
 .mlist li::before{content:'✓';color:var(--accent);flex:0 0 auto}
 
+/* DEMO BLOCK */
+.demo-panel{background:var(--surf);border:1px solid rgba(77,163,255,.2);border-radius:10px;padding:clamp(24px,3vw,36px);margin-top:clamp(28px,5vh,48px)}
+.demo-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+.demo-title{font-family:var(--serif);font-size:clamp(18px,2.4vw,30px);line-height:1.25;margin-bottom:12px}
+.demo-desc{font-size:clamp(15px,1.8vw,17px);color:var(--muted);line-height:1.8;max-width:760px}
+.demo-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+
 /* PRICING */
 .pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:clamp(12px,2vw,22px);margin-top:clamp(28px,5vh,48px)}
 .pc{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;transition:border-color .2s,transform .25s}
@@ -248,6 +255,7 @@ footer a:hover{color:var(--text)}
     <a href="#validation" onclick="navTo('validation',event)">Ghost GDP</a>
     <a href="cases.html">Cases</a>
     <a href="government.html">Public Sector</a>
+    <a href="gl-framework-demo.html">GL Demo</a>
     <a href="#method"     onclick="navTo('method',event)">Method</a>
     <a href="#pricing"    onclick="navTo('pricing',event)">Pricing</a>
     <a href="about.html">Founder</a>
@@ -276,6 +284,7 @@ footer a:hover{color:var(--text)}
   <a href="#validation" onclick="navTo('validation',event);closeDrawer()">Ghost GDP</a>
   <a href="cases.html"  onclick="closeDrawer()">Cases</a>
   <a href="government.html" onclick="closeDrawer()">Public Sector</a>
+  <a href="gl-framework-demo.html" onclick="closeDrawer()">GL Demo</a>
   <a href="#method"     onclick="navTo('method',event);closeDrawer()">Method</a>
   <a href="#pricing"    onclick="navTo('pricing',event);closeDrawer()">Pricing</a>
   <a href="about.html"  onclick="closeDrawer()">Founder</a>
@@ -298,6 +307,7 @@ footer a:hover{color:var(--text)}
     <p class="hero-sub">GL independently verifies whether organizational change increases or decreases capital velocity — before and after transformation.</p>
     <div class="hero-btns">
       <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">Start Verification ($999) →</a>
+      <a href="gl-framework-demo.html" class="btn-ghost">Try GL Demo</a>
       <a href="#method" class="btn-ghost">View Method</a>
     </div>
     <div class="hero-stats">
@@ -392,6 +402,16 @@ footer a:hover{color:var(--text)}
         <div class="sp-cta" style="color:var(--blue)">Begin Assessment →</div>
       </a>
     </div>
+
+    <div class="demo-panel reveal">
+      <div class="demo-kicker">Interactive Demonstration</div>
+      <h2 class="demo-title">See the GL diagnostic engine in action.</h2>
+      <p class="demo-desc">The public demo shows how GL translates structural variables into scores, sensitivity ranges, friction maps, simulations, and ghost cost estimation — before you commit to a full engagement.</p>
+      <div class="demo-actions">
+        <a href="gl-framework-demo.html" class="btn-solid">Open GL Demo →</a>
+        <a href="#quickscan" onclick="navTo('quickscan',event)" class="btn-ghost">Take the Quick Scan</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -425,8 +445,9 @@ footer a:hover{color:var(--text)}
         </ul>
       </div>
     </div>
-    <div style="margin-top:24px">
+    <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px">
       <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">Start Verification ($999) →</a>
+      <a href="gl-framework-demo.html" class="btn-ghost">Try GL Demo</a>
     </div>
   </div>
 </section>
@@ -504,7 +525,7 @@ footer a:hover{color:var(--text)}
         <div class="qs-finding" id="qs-finding"></div>
         <div class="qs-cta-row">
           <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none" id="qs-cta-primary">Get Full Diagnosis — $999 →</a>
-          <a href="#contact" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)" id="qs-cta-secondary">Ask a question first</a>
+          <a href="gl-framework-demo.html" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)" id="qs-cta-secondary">Open GL Demo</a>
         </div>
         <button class="qs-reset" onclick="resetScan()" id="qs-reset-btn">← Run again</button>
       </div>
@@ -566,6 +587,7 @@ footer a:hover{color:var(--text)}
     <div class="contact-links" style="justify-content:center;margin-top:36px">
       <a href="/cdn-cgi/l/email-protection#187f7e71587f7e7171766c7d74367b7775" class="cl">✉ <span class="__cf_email__" data-cfemail="5136373811363738383f25343d7f323e3c">[email&#160;protected]</span></a>
       <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ Start Verification ($999)</a>
+      <a href="gl-framework-demo.html" class="cl">⊞ GL Demo</a>
       <a href="#method" class="cl">⊞ GL Method</a>
     </div>
   </div>
@@ -582,6 +604,7 @@ footer a:hover{color:var(--text)}
     <p class="hero-sub">GL 獨立驗證組織變革是否提升或降低資本速度——轉型前後皆可量化。</p>
     <div class="hero-btns">
       <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">啟動驗證（$999）→</a>
+      <a href="gl-framework-demo.html" class="btn-ghost">試用 GL Demo</a>
       <a href="#method-tw" class="btn-ghost">查看方法</a>
     </div>
     <div class="hero-stats">
@@ -606,6 +629,7 @@ footer a:hover{color:var(--text)}
     </div>
   </div>
 </div>
+
 <section class="band" id="measures-tw"><div class="wrap">
   <h2 class="stitle">資本速度，<br>結構性驗證。</h2>
   <p class="slead">GL 驗證資本效率是否真正提升，並指出轉型後摩擦轉移到哪一層。</p>
@@ -620,6 +644,7 @@ footer a:hover{color:var(--text)}
     <a href="#method-tw">查看方法 →</a>
   </div>
 </div></section>
+
 <section><div class="wrap">
   <div class="eyebrow">為何需要前後對比</div>
   <h2 class="stitle">部署成功 ≠ 效率提升。</h2>
@@ -629,6 +654,7 @@ footer a:hover{color:var(--text)}
     <div class="ba good"><div class="ba-head">有 GL 驗證</div><ul><li>轉型前建立基準 GL 分數</li><li>按層級量化摩擦來源</li><li>獨立計算轉型後 GL 差值</li><li>記錄資本效率提升或下降</li><li>交付董事會級驗證報告</li></ul></div>
   </div>
 </div></section>
+
 <section class="band" id="validation-tw"><div class="wrap">
   <div class="eyebrow">幽靈 GDP 診斷</div>
   <h2 class="stitle">您的 AI 投資<br>正在製造幽靈 GDP 嗎？</h2>
@@ -647,7 +673,18 @@ footer a:hover{color:var(--text)}
       <div class="sp-cta" style="color:var(--blue)">開始評估 →</div>
     </a>
   </div>
+
+  <div class="demo-panel reveal">
+    <div class="demo-kicker">互動展示</div>
+    <h2 class="demo-title">直接查看 GL 診斷引擎。</h2>
+    <p class="demo-desc">公開 demo 會展示 GL 如何把結構變數轉換成分數、敏感度區間、摩擦地圖、模擬結果與 ghost cost 估算，讓你先理解框架邏輯。</p>
+    <div class="demo-actions">
+      <a href="gl-framework-demo.html" class="btn-solid">開啟 GL Demo →</a>
+      <a href="#quickscan-tw" onclick="navTo('quickscan',event)" class="btn-ghost">先做快速掃描</a>
+    </div>
+  </div>
 </div></section>
+
 <section id="method-tw"><div class="wrap">
   <div class="eyebrow">方法</div>
   <h2 class="stitle">GL 方法</h2>
@@ -657,7 +694,10 @@ footer a:hover{color:var(--text)}
     <div class="mcard"><div class="mkv">輸入</div><ul class="mlist"><li>Fs：流程完成成功率</li><li>Vn：戰略價值權重（0–10）</li><li>Pd：痛點耗時（延遲/迴圈）</li><li>Cf：認知摩擦指數（0–10）</li></ul></div>
     <div class="mcard"><div class="mkv">流程</div><ul class="mlist"><li>轉型前建立 GL 基準</li><li>轉型後用同一流程再測</li><li>計算 GL 差值（增益/損失）</li><li>標示摩擦轉移的層級</li></ul></div>
   </div>
-  <div style="margin-top:24px"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">啟動驗證（$999）→</a></div>
+  <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px">
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">啟動驗證（$999）→</a>
+    <a href="gl-framework-demo.html" class="btn-ghost">試用 GL Demo</a>
+  </div>
 </div></section>
 
 <!-- TW Quick Scan -->
@@ -732,7 +772,7 @@ footer a:hover{color:var(--text)}
       <div class="qs-finding" id="tw-qs-finding"></div>
       <div class="qs-cta-row">
         <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none">取得完整診斷 — $999 →</a>
-        <a href="#contact" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">先諮詢問題</a>
+        <a href="gl-framework-demo.html" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">開啟 GL Demo</a>
       </div>
       <button class="qs-reset" onclick="resetScanLang('tw')">← 重新測試</button>
     </div>
@@ -749,6 +789,7 @@ footer a:hover{color:var(--text)}
     <div class="pc"><div class="pc-tier">董事會級</div><div class="pc-amt"><span class="pc-cur">$</span>9,999</div><p class="pc-desc">適合董事會報告、投資人呈現或併購盡職調查。</p><ul class="pc-feats"><li>包含驗證所有內容</li><li>獨立審計師簽核</li><li>董事會報告格式</li><li>投資人摘要</li><li>季度持續追蹤</li></ul><a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">聯繫洽詢 →</a></div>
   </div>
 </div></section>
+
 <section style="text-align:center"><div class="wrap">
   <div class="eyebrow">聯絡</div>
   <h2 class="stitle">啟動驗證。</h2>
@@ -756,6 +797,7 @@ footer a:hover{color:var(--text)}
   <div class="contact-links" style="justify-content:center;margin-top:36px">
     <a href="/cdn-cgi/l/email-protection#385f5e51785f5e5151564c5d54165b5755" class="cl">✉ <span class="__cf_email__" data-cfemail="7017161930171619191e04151c5e131f1d">[email&#160;protected]</span></a>
     <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ 啟動驗證（$999）</a>
+    <a href="gl-framework-demo.html" class="cl">⊞ GL Demo</a>
     <a href="#method-tw" class="cl">⊞ GL 方法</a>
   </div>
 </div></section>
@@ -771,6 +813,7 @@ footer a:hover{color:var(--text)}
     <p class="hero-sub">GL 独立验证组织变革是否提升或降低资本速度——转型前后皆可量化。</p>
     <div class="hero-btns">
       <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">启动验证（$999）→</a>
+      <a href="gl-framework-demo.html" class="btn-ghost">试用 GL Demo</a>
       <a href="#method-cn" class="btn-ghost">查看方法</a>
     </div>
     <div class="hero-stats">
@@ -795,6 +838,7 @@ footer a:hover{color:var(--text)}
     </div>
   </div>
 </div>
+
 <section class="band" id="measures-cn"><div class="wrap">
   <div class="eyebrow">GL 测量什么</div>
   <h2 class="stitle">资本速度，<br>结构性验证。</h2>
@@ -810,6 +854,7 @@ footer a:hover{color:var(--text)}
     <a href="#method-cn">查看方法 →</a>
   </div>
 </div></section>
+
 <section><div class="wrap">
   <div class="eyebrow">为何需要前后对比</div>
   <h2 class="stitle">部署成功 ≠ 效率提升。</h2>
@@ -819,6 +864,7 @@ footer a:hover{color:var(--text)}
     <div class="ba good"><div class="ba-head">有 GL 验证</div><ul><li>转型前建立基准 GL 分数</li><li>按层级量化摩擦来源</li><li>独立计算转型后 GL 差值</li><li>记录资本效率提升或下降</li><li>交付董事会级验证报告</li></ul></div>
   </div>
 </div></section>
+
 <section class="band" id="validation-cn"><div class="wrap">
   <div class="eyebrow">幽灵 GDP 诊断</div>
   <h2 class="stitle">您的 AI 投资<br>正在制造幽灵 GDP 吗？</h2>
@@ -837,7 +883,18 @@ footer a:hover{color:var(--text)}
       <div class="sp-cta" style="color:var(--blue)">开始评估 →</div>
     </a>
   </div>
+
+  <div class="demo-panel reveal">
+    <div class="demo-kicker">互动展示</div>
+    <h2 class="demo-title">直接查看 GL 诊断引擎。</h2>
+    <p class="demo-desc">公开 demo 会展示 GL 如何把结构变量转换成分数、敏感度区间、摩擦地图、模拟结果与 ghost cost 估算，让你先理解框架逻辑。</p>
+    <div class="demo-actions">
+      <a href="gl-framework-demo.html" class="btn-solid">打开 GL Demo →</a>
+      <a href="#quickscan-cn" onclick="navTo('quickscan',event)" class="btn-ghost">先做快速扫描</a>
+    </div>
+  </div>
 </div></section>
+
 <section id="method-cn"><div class="wrap">
   <div class="eyebrow">方法</div>
   <h2 class="stitle">GL 方法</h2>
@@ -847,7 +904,10 @@ footer a:hover{color:var(--text)}
     <div class="mcard"><div class="mkv">输入</div><ul class="mlist"><li>Fs：流程完成成功率</li><li>Vn：战略价值权重（0–10）</li><li>Pd：痛点耗时（延迟/循环）</li><li>Cf：认知摩擦指数（0–10）</li></ul></div>
     <div class="mcard"><div class="mkv">流程</div><ul class="mlist"><li>转型前建立 GL 基准</li><li>转型后用同一流程再测</li><li>计算 GL 差值（增益/损失）</li><li>标示摩擦转移的层级</li></ul></div>
   </div>
-  <div style="margin-top:24px"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">启动验证（$999）→</a></div>
+  <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px">
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">启动验证（$999）→</a>
+    <a href="gl-framework-demo.html" class="btn-ghost">试用 GL Demo</a>
+  </div>
 </div></section>
 
 <!-- CN Quick Scan -->
@@ -922,7 +982,7 @@ footer a:hover{color:var(--text)}
       <div class="qs-finding" id="cn-qs-finding"></div>
       <div class="qs-cta-row">
         <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none">获取完整诊断 — $999 →</a>
-        <a href="#contact" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">先咨询问题</a>
+        <a href="gl-framework-demo.html" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">打开 GL Demo</a>
       </div>
       <button class="qs-reset" onclick="resetScanLang('cn')">← 重新测试</button>
     </div>
@@ -939,13 +999,15 @@ footer a:hover{color:var(--text)}
     <div class="pc"><div class="pc-tier">董事会级</div><div class="pc-amt"><span class="pc-cur">$</span>9,999</div><p class="pc-desc">适合董事会报告、投资人呈现或并购尽职调查。</p><ul class="pc-feats"><li>包含验证所有内容</li><li>独立审计师签核</li><li>董事会报告格式</li><li>投资人摘要</li><li>季度持续追踪</li></ul><a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">联系洽询 →</a></div>
   </div>
 </div></section>
+
 <section style="text-align:center"><div class="wrap">
   <div class="eyebrow">联系</div>
   <h2 class="stitle">启动验证。</h2>
   <p class="slead" style="margin:0 auto;text-align:center">企业范围评估、合作伙伴咨询或学术合作。</p>
   <div class="contact-links" style="justify-content:center;margin-top:36px">
-    <a href="/cdn-cgi/l/email-protection#a6c1c0cfe6c1c0cfcfc8d2c3ca88c5c9cb" class="cl">✉ <span class="__cf_email__" data-cfemail="3a5d5c537a5d5c5353544e5f5614595557">[email&#160;protected]</span></a>
+    <a href="/cdn-cgi/l/email-protection#a6c1c0cfe6c1c0cfcfc8d2c3ca88c5c9cb" class="cl">✉ <span class="__cf_email__" data-cfemail="7a1d1c133a1d1c1313140e1f1654191517">[email&#160;protected]</span></a>
     <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ 启动验证（$999）</a>
+    <a href="gl-framework-demo.html" class="cl">⊞ GL Demo</a>
     <a href="#method-cn" class="cl">⊞ GL 方法</a>
   </div>
 </div></section>
@@ -956,15 +1018,18 @@ footer a:hover{color:var(--text)}
   <div class="footer-links">
     <a href="#method">Method</a>
     <a href="government.html">Public Sector</a>
+    <a href="gl-framework-demo.html">GL Demo</a>
     <a href="/cdn-cgi/l/email-protection#accbcac5eccbcac5c5c2d8c9c082cfc3c1">Contact</a>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
 // ── NAV & LANG ─────────────────────────────────────────────────────
 function navTo(section, e) {
   e && e.preventDefault();
-  const lang = document.querySelector('.lb.on') ? document.querySelector('.lb.on').getAttribute('data-lang') : 'en';
+  const langBlock = document.querySelector('.lb.on');
+  const lang = langBlock ? langBlock.getAttribute('data-lang') : 'en';
   const suffix = lang === 'tw' ? '-tw' : lang === 'cn' ? '-cn' : '';
   const target = document.getElementById(section + suffix) || document.getElementById(section);
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1018,7 +1083,6 @@ function updateDots(prefix, current) {
     else if (i === current) d.classList.add('active');
   }
 }
-
 function calcResult() {
   const fs = answers[0], vn = answers[1], pd = answers[2], cf = answers[3];
   if (!fs || !vn || !pd || !cf) return;
@@ -1048,18 +1112,17 @@ function calcResult() {
     scoreEl.className = 'qs-gl-display mid';
     verdictEl.textContent = 'Warning: your denominator is accumulating.';
     ghostEl.innerHTML = 'Structural friction absorbing approx. <strong style="color:#ffb347">' + frictionPct + '%</strong> of process capacity — value is leaking.';
-    findingEl.textContent = 'A GL between 0.5 and 1.5 signals that friction is absorbing a significant share of your automation investment. The process is functioning — but not efficiently. Rework, exceptions, and manual intervention are costing more than they appear on any single report. GL measures what your P&L does not: the denominator cost that never shows up as a line item.';
+    findingEl.textContent = 'A GL between 0.5 and 1.5 signals that friction is absorbing a significant share of your automation investment. The process is functioning — but not efficiently. Rework, exceptions, and manual intervention are costing more than they appear on any single report.';
   } else {
     scoreEl.className = 'qs-gl-display lo';
     verdictEl.textContent = 'AI is accelerating your errors, not eliminating them.';
     ghostEl.innerHTML = 'Structural friction absorbing approx. <strong style="color:#ff6b6b">' + frictionPct + '%</strong> of process capacity — this is Ghost GDP territory.';
-    findingEl.textContent = 'A GL below 0.5 is the signature of AI Brain Fry at the organizational level. Research across 1,500 workers shows that heavy AI adoption correlates with a 39% rise in serious errors and a 40% spike in attrition — not because AI is bad, but because automation applied to a misaligned process accelerates friction rather than removing it. Your team has been converted from creators into error-checkers, and the cognitive load is compounding. This is Ghost GDP: activity that registers as output but produces no real capital value. A full GL diagnosis maps exactly where your denominator is inflating and what it is costing you per quarter.';
+    findingEl.textContent = 'A GL below 0.5 is the signature of AI Brain Fry at the organizational level. Automation applied to a misaligned process accelerates friction rather than removing it. This is Ghost GDP: activity that registers as output but produces no real capital value.';
   }
 
   document.getElementById('qs-result').classList.add('show');
   document.querySelectorAll('#qs-wrap-en .qs-step').forEach(s => s.classList.remove('active'));
 }
-
 function resetScan() {
   answers.fill(null);
   document.getElementById('qs-result').classList.remove('show');
@@ -1070,7 +1133,7 @@ function resetScan() {
   nextStep(0);
 }
 
-// ── QUICK SCAN — MULTILANG (TW / CN) ─────────────────────────────
+// ── QUICK SCAN — MULTILANG ────────────────────────────────────────
 const answersLang = { tw: [null,null,null,null], cn: [null,null,null,null] };
 
 function selectOptLang(btn, lang, qIdx, val) {
@@ -1081,14 +1144,63 @@ function selectOptLang(btn, lang, qIdx, val) {
   if (nextBtn) nextBtn.disabled = false;
 }
 function nextStepLang(lang, idx) {
-    document.querySelectorAll('#qs-wrap-' + lang + ' .qs-step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-step').forEach(s => s.classList.remove('active'));
+  document.getElementById(lang + '-qs-' + idx).classList.add('active');
+  updateDots(lang, idx);
 }
+function prevStepLang(lang, idx) {
+  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-step').forEach(s => s.classList.remove('active'));
+  document.getElementById(lang + '-qs-' + idx).classList.add('active');
+  updateDots(lang, idx);
+}
+function calcResultLang(lang) {
+  const a = answersLang[lang];
+  const fs = a[0], vn = a[1], pd = a[2], cf = a[3];
+  if (!fs || !vn || !pd || !cf) return;
 
+  const gl = (fs * vn) / (pd * cf);
+  const glRounded = Math.round(gl * 100) / 100;
+
+  const scoreEl = document.getElementById(lang + '-qs-score');
+  const verdictEl = document.getElementById(lang + '-qs-verdict');
+  const findingEl = document.getElementById(lang + '-qs-finding');
+  scoreEl.textContent = glRounded;
+
+  if (gl >= 1.5) {
+    scoreEl.className = 'qs-gl-display hi';
+    if (lang === 'tw') {
+      verdictEl.textContent = '您的流程結構穩健。';
+      findingEl.textContent = '這表示自動化投資大致產生了真實效率。完整診斷可進一步確認是否所有子流程都同樣健康。';
+    } else {
+      verdictEl.textContent = '您的流程结构稳健。';
+      findingEl.textContent = '这表示自动化投资大致产生了真实效率。完整诊断可进一步确认是否所有子流程都同样健康。';
+    }
+  } else if (gl >= 0.5) {
+    scoreEl.className = 'qs-gl-display mid';
+    if (lang === 'tw') {
+      verdictEl.textContent = '警示：您的分母正在累積。';
+      findingEl.textContent = '流程仍在運作，但效率並不理想。返工、例外處理與人工介入正在吞噬轉型成效。';
+    } else {
+      verdictEl.textContent = '警示：您的分母正在累积。';
+      findingEl.textContent = '流程仍在运作，但效率并不理想。返工、例外处理与人工介入正在吞噬转型成效。';
+    }
+  } else {
+    scoreEl.className = 'qs-gl-display lo';
+    if (lang === 'tw') {
+      verdictEl.textContent = 'AI 正在加速錯誤，而不是消除錯誤。';
+      findingEl.textContent = '這是 Ghost GDP 區間。自動化被套用到錯位流程上，只會加速摩擦，而不會創造真實價值。';
+    } else {
+      verdictEl.textContent = 'AI 正在加速错误，而不是消除错误。';
+      findingEl.textContent = '这是 Ghost GDP 区间。自动化被套用到错位流程上，只会加速摩擦，而不会创造真实价值。';
+    }
+  }
+
+  document.getElementById(lang + '-qs-result').classList.add('show');
+  document.querySelectorAll('#qs-wrap-' + lang + ' .qs-step').forEach(s => s.classList.remove('active'));
+}
 function resetScanLang(lang) {
   answersLang[lang].fill(null);
   document.getElementById(lang + '-qs-result').classList.remove('show');
-  const ghost = document.getElementById(lang + '-qs-ghost');
-  if (ghost) ghost.remove();
   document.querySelectorAll('#qs-wrap-' + lang + ' .qs-opt').forEach(b => b.classList.remove('selected'));
   [0,1,2,3].forEach(i => { const b = document.getElementById(lang + '-next-' + i); if(b) b.disabled = true; });
   nextStepLang(lang, 0);
