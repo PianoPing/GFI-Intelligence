@@ -303,6 +303,38 @@
       .research-btn{ width:100%; justify-content:center; }
       .gate-card{ padding:22px 16px 18px; border-radius:16px; }
     }
+
+    /* PA TIMES STRIP */
+    .pa-strip{
+      width:100%; max-width:1000px;
+      margin:32px auto 0;
+      opacity:0; animation:up .6s .52s forwards;
+    }
+    .pa-strip-label{
+      font-family:var(--mono); font-size:10px; letter-spacing:.22em;
+      text-transform:uppercase; color:#7a90aa;
+      margin-bottom:14px; display:flex; align-items:center; gap:12px;
+    }
+    .pa-strip-label::after{ content:''; flex:1; height:1px; background:rgba(255,255,255,.08); }
+    .pa-articles{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .pa-article{
+      padding:16px 18px; border-radius:10px;
+      border:1px solid rgba(255,255,255,.07);
+      background:rgba(255,255,255,.025);
+      text-decoration:none;
+      transition:border-color .2s ease, background .2s ease;
+    }
+    .pa-article:hover{
+      border-color:rgba(159,232,112,.25);
+      background:rgba(159,232,112,.04);
+    }
+    .pa-date{
+      font-family:var(--mono); font-size:10px; letter-spacing:.12em;
+      color:#7a90aa; margin-bottom:6px;
+    }
+    .pa-title{ font-size:13px; font-weight:500; color:#E8F0FA; line-height:1.4; margin-bottom:6px; }
+    .pa-summary{ font-size:12px; color:#7a90aa; line-height:1.6; }
+    @media(max-width:640px){ .pa-articles{ grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -327,7 +359,8 @@
       <div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
       <h1 class="gate-title">Other tools measure <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">what</em> happened. GL measures <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">why</em> it failed.</h1>
       <p class="hero-definition">The only formula that diagnoses delivery system failure using public data alone — no internal access, no six-month audit, applicable across any jurisdiction.</p>
-      <p class="gate-sub">Published on SSRN. Validated across 18 jurisdictions. Results in two weeks.</p>
+      <p class="gate-sub">Delivery systems can look functional while failing the people they serve. GL makes that invisible failure visible.</p>
+      <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">Published on SSRN · Validated across 18 jurisdictions · Results in two weeks</p>
 
       <div class="research-strip">
         <div class="research-badge"><span class="research-dot"></span>SSRN Published · 18 Jurisdictions Validated</div>
@@ -369,6 +402,33 @@
           <div class="gc-cta">Enter <span class="gc-arrow">→</span></div>
         </a>
       </div>
+
+      <div class="pa-strip">
+        <div class="pa-strip-label">Featured in PA Times · American Society for Public Administration</div>
+        <div class="pa-articles">
+          <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">Mar 13, 2026</div>
+            <div class="pa-title">The Denominator Problem</div>
+            <div class="pa-summary">Why policy failures stem from broken delivery design, not insufficient funding.</div>
+          </a>
+          <a href="https://patimes.org/proportional-sequencing-in-long-term-care/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">Apr 3, 2026</div>
+            <div class="pa-title">Proportional Sequencing in Long-Term Care</div>
+            <div class="pa-summary">How reordering safeguards — without removing them — reduces access delays in HCBS programs.</div>
+          </a>
+          <a href="https://patimes.org/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">Apr 24, 2026</div>
+            <div class="pa-title">What Global Benefit Systems Reveal About Policy Delivery</div>
+            <div class="pa-summary">Rwanda, Estonia, Singapore, and Canada show that delivery design determines outcomes as much as policy design.</div>
+          </a>
+          <a href="https://patimes.org/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">May 22, 2026</div>
+            <div class="pa-title">What One-Stop Service Reveals About Delivery Problem</div>
+            <div class="pa-summary">China's one-stop model illustrates a universal principle: coordination burden should sit with systems, not citizens.</div>
+          </a>
+        </div>
+      </div>
+
     </div>
   </main>
 </section>
@@ -380,7 +440,8 @@
       <div class="gate-eyebrow">GFI Flow Intelligence · 波士頓</div>
       <h1 class="gate-title">其他工具測量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">發生了什麼</em>。GL 測量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">為什麼失敗</em>。</h1>
       <p class="hero-definition">唯一一個僅憑公開數據即可診斷交付系統失效的公式——無需內部數據、無需六個月審計、適用於任何司法管轄區。</p>
-      <p class="gate-sub">已在 SSRN 發表。18 個司法管轄區驗證。兩週出結果。</p>
+      <p class="gate-sub">低效遞交讓社福系統看起來體面，骨子裡心酸。GL 讓這個看不見的失效變得可見。</p>
+      <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">已在 SSRN 發表 · 18 個司法管轄區驗證 · 兩週出結果</p>
 
       <div class="research-strip">
         <div class="research-badge"><span class="research-dot"></span>SSRN 已發表 · 18 個司法管轄區驗證</div>
@@ -422,6 +483,33 @@
           <div class="gc-cta">進入 <span class="gc-arrow">→</span></div>
         </a>
       </div>
+
+      <div class="pa-strip">
+        <div class="pa-strip-label">刊登於 PA Times · 美國公共行政學會</div>
+        <div class="pa-articles">
+          <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年3月13日</div>
+            <div class="pa-title">分母問題</div>
+            <div class="pa-summary">政策失敗源於交付系統設計失效，而非資源不足。</div>
+          </a>
+          <a href="https://patimes.org/proportional-sequencing-in-long-term-care/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年4月3日</div>
+            <div class="pa-title">長期照護中的比例順序設計</div>
+            <div class="pa-summary">在不移除審查機制的前提下重新排序，可減少 HCBS 計畫的入系延誤。</div>
+          </a>
+          <a href="https://patimes.org/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年4月24日</div>
+            <div class="pa-title">國際福利系統對政策交付的啟示</div>
+            <div class="pa-summary">盧安達、愛沙尼亞、新加坡、加拿大的經驗顯示：交付設計與政策設計同等重要。</div>
+          </a>
+          <a href="https://patimes.org/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年5月22日</div>
+            <div class="pa-title">一站到位服務揭示的交付問題</div>
+            <div class="pa-summary">中國的一站式模式體現了一個普世原則：協調負擔應由系統承擔，而非公民。</div>
+          </a>
+        </div>
+      </div>
+
     </div>
   </main>
 </section>
@@ -433,7 +521,8 @@
       <div class="gate-eyebrow">GFI Flow Intelligence · 波士顿</div>
       <h1 class="gate-title">其他工具测量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">发生了什么</em>。GL 测量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">为什么失败</em>。</h1>
       <p class="hero-definition">唯一一个仅凭公开数据即可诊断交付系统失效的公式——无需内部数据、无需六个月审计、适用于任何司法管辖区。</p>
-      <p class="gate-sub">已在 SSRN 发表。18 个司法管辖区验证。两周出结果。</p>
+      <p class="gate-sub">低效递交让社福系统看起来体面，骨子里心酸。GL 让这个看不见的失效变得可见。</p>
+      <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">已在 SSRN 发表 · 18 个司法管辖区验证 · 两周出结果</p>
 
       <div class="research-strip">
         <div class="research-badge"><span class="research-dot"></span>SSRN 已发表 · 18 个司法管辖区验证</div>
@@ -475,6 +564,33 @@
           <div class="gc-cta">进入 <span class="gc-arrow">→</span></div>
         </a>
       </div>
+
+      <div class="pa-strip">
+        <div class="pa-strip-label">刊登于 PA Times · 美国公共行政学会</div>
+        <div class="pa-articles">
+          <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年3月13日</div>
+            <div class="pa-title">分母问题</div>
+            <div class="pa-summary">政策失败源于交付系统设计失效，而非资源不足。</div>
+          </a>
+          <a href="https://patimes.org/proportional-sequencing-in-long-term-care/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年4月3日</div>
+            <div class="pa-title">长期照护中的比例顺序设计</div>
+            <div class="pa-summary">在不移除审查机制的前提下重新排序，可减少 HCBS 计划的入系延误。</div>
+          </a>
+          <a href="https://patimes.org/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年4月24日</div>
+            <div class="pa-title">国际福利系统对政策交付的启示</div>
+            <div class="pa-summary">卢安达、爱沙尼亚、新加坡、加拿大的经验显示：交付设计与政策设计同等重要。</div>
+          </a>
+          <a href="https://patimes.org/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年5月22日</div>
+            <div class="pa-title">一站到位服务揭示的交付问题</div>
+            <div class="pa-summary">中国的一站式模式体现了一个普世原则：协调负担应由系统承担，而非公民。</div>
+          </a>
+        </div>
+      </div>
+
     </div>
   </main>
 </section>
