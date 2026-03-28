@@ -20,8 +20,6 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.75;overflow-x:hidden}
-
-/* NAV */
 header{position:fixed;inset:0 0 auto 0;z-index:100;height:60px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(20,29,46,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 .logo img{height:44px;width:auto}
 nav{display:flex;align-items:center;gap:4px}
@@ -45,26 +43,18 @@ nav a.active{color:var(--accent)}
 .drawer a:hover{color:var(--text)}
 .drawer-lang{display:flex;gap:8px;padding:16px 0 0}
 .drawer-cta{display:block;text-align:center;padding:16px;background:var(--accent);color:#0d1117;font-weight:600;font-size:16px;border-radius:8px;text-decoration:none;margin-top:16px;border-bottom:none!important}
-
-/* LANG */
 .lb{display:none}.lb.on{display:block}
-
-/* LAYOUT */
 .wrap{max-width:1060px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
 section{padding:clamp(60px,9vh,100px) 0}
 section.band{background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
 h2.stitle{font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);line-height:1.12;letter-spacing:-.02em;margin-bottom:14px}
 .slead{font-size:clamp(15px,1.8vw,17px);color:var(--muted);max-width:680px;line-height:1.8}
-
-/* BUTTONS */
 .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,3.5vh,32px)}
 .btn-solid{display:inline-flex;align-items:center;padding:12px clamp(18px,2.5vw,28px);background:var(--accent);color:#0d1117;font-weight:600;font-size:clamp(13px,1.5vw,15px);border-radius:8px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s}
 .btn-solid:hover{opacity:.87;transform:translateY(-1px)}
 .btn-ghost{display:inline-flex;align-items:center;padding:12px clamp(18px,2.5vw,28px);border:1px solid var(--border);color:var(--muted);font-size:clamp(13px,1.5vw,15px);border-radius:8px;text-decoration:none;white-space:nowrap;transition:all .2s}
 .btn-ghost:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
-
-/* HERO two-column */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding-top:60px}
 .hero-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse 80% 50% at 50% 0%,black 20%,transparent 75%);pointer-events:none}
 .hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(200,245,66,.05) 0%,transparent 70%);top:-150px;right:-150px;pointer-events:none}
@@ -81,8 +71,6 @@ h2.stitle{font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);line-height:
 .aside-pt strong{display:block;font-size:15px;color:var(--text);margin-bottom:4px}
 .aside-pt span{font-size:13px;color:var(--muted);line-height:1.55}
 @media(max-width:840px){.hero-cols{grid-template-columns:1fr}.hero-aside{display:none}}
-
-/* 3 FIELDS */
 .fields-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2vw,18px);margin-top:clamp(24px,4vh,36px)}
 .field-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:clamp(18px,2.5vw,28px);transition:border-color .2s,background .2s}
 .field-card:hover{background:var(--surf2);border-color:rgba(200,245,66,.2)}
@@ -91,8 +79,6 @@ h2.stitle{font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);line-height:
 .field-desc{font-size:clamp(13px,1.4vw,14px);color:var(--muted);line-height:1.6}
 .info-strip{margin-top:clamp(16px,2.5vh,24px);padding:14px 20px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.025);font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.05em;line-height:1.7}
 @media(max-width:600px){.fields-grid{grid-template-columns:1fr}}
-
-/* ROOM CARDS */
 .room-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2vw,18px);margin-top:clamp(24px,4vh,36px)}
 .room-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:clamp(18px,2.5vw,28px);transition:border-color .2s,background .2s}
 .room-card:hover{background:var(--surf2);border-color:rgba(200,245,66,.18)}
@@ -102,8 +88,6 @@ h2.stitle{font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);line-height:
 .room-shift{margin-top:clamp(20px,3vh,28px);padding:clamp(14px,2vh,20px) clamp(18px,3vw,28px);border:1px solid var(--border);border-radius:10px;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.9vw,19px);color:var(--muted)}
 .room-shift em{color:var(--text);font-style:normal}
 @media(max-width:600px){.room-grid{grid-template-columns:1fr}}
-
-/* PUBLICATIONS */
 .pub-item{padding:clamp(24px,3.5vh,38px) 0;border-bottom:1px solid var(--border)}
 .pub-item:first-child{border-top:1px solid var(--border)}
 .pub-meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
@@ -115,23 +99,23 @@ h2.stitle{font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);line-height:
 .pub-status.forthcoming{background:rgba(77,163,255,.1);color:var(--blue);border:1px solid rgba(77,163,255,.2)}
 .pub-title{font-family:var(--serif);font-size:clamp(18px,2.4vw,28px);line-height:1.2;letter-spacing:-.01em;color:var(--text);margin-bottom:10px}
 .pub-desc{font-size:clamp(14px,1.6vw,16px);color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:16px}
-
-/* VIDEO */
 .video-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:14px;overflow:hidden;background:#0d1117;border:1px solid var(--border);margin-top:clamp(20px,3vh,30px)}
 .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video-caption{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.7;max-width:640px}
-
-/* FINAL CTA */
 .cta-panel{background:radial-gradient(circle at top right,rgba(200,245,66,.08),transparent 30%),linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(200,245,66,.15);border-radius:18px;padding:clamp(28px,5vw,48px);margin-top:clamp(24px,4vh,36px)}
 .cta-panel h3{font-family:var(--serif);font-size:clamp(20px,2.8vw,32px);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
 .cta-panel p{font-size:clamp(14px,1.7vw,16px);color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:0}
 .cta-privacy{margin-top:clamp(12px,2vh,18px);font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--dim)}
-
+.sample-box{margin-top:28px;border-top:1px solid var(--border);padding-top:22px}
+.sample-label{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.sample-inner{padding:18px 22px;background:rgba(0,0,0,.25);border:1px solid var(--border);border-radius:10px;font-size:14px;line-height:1.75;color:var(--muted)}
+.sample-inner b{display:block;color:var(--text);font-weight:600;margin-bottom:8px}
+.sample-inner b+b{margin-top:16px}
+.sample-inner em{color:var(--dim);font-style:italic}
 footer{padding:clamp(28px,5vh,44px) clamp(20px,5vw,60px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:13px}
 footer a{color:var(--muted);text-decoration:none}
 footer a:hover{color:var(--text)}
 .footer-links{display:flex;gap:24px;flex-wrap:wrap}
-
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s,transform .65s}
 .reveal.vis{opacity:1;transform:none}
@@ -178,7 +162,6 @@ footer a:hover{color:var(--text)}
 
 <!-- ══════════ ENGLISH ══════════ -->
 <div class="lb on" data-lang="en">
-
 <div class="hero">
   <div class="hero-bg"></div><div class="hero-glow"></div>
   <div class="wrap hero-inner">
@@ -205,101 +188,99 @@ footer a:hover{color:var(--text)}
     </div>
   </div>
 </div>
-
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">Why It Matters</span>
-    <h2 class="stitle reveal">Public delivery problems are often structural before they are political.</h2>
-    <p class="slead reveal">A program may be well-funded and well-intended, yet still underperform because the path through the process is too slow, too layered, or too difficult to complete.</p>
+<section class="band"><div class="wrap">
+  <span class="eyebrow reveal">Why It Matters</span>
+  <h2 class="stitle reveal">Public delivery problems are often structural before they are political.</h2>
+  <p class="slead reveal">A program may be well-funded and well-intended, yet still underperform because the path through the process is too slow, too layered, or too difficult to complete.</p>
+</div></section>
+<section><div class="wrap">
+  <span class="eyebrow reveal">Start Here</span>
+  <h2 class="stitle reveal">Start with 3 basic operational fields.</h2>
+  <p class="slead reveal">An initial directional diagnostic does not require a large technical project. A simple starting file is enough.</p>
+  <div class="fields-grid reveal">
+    <div class="field-card"><div class="field-num">1</div><div class="field-label">Total applications or cases</div><div class="field-desc">How many people entered the process in the period being measured.</div></div>
+    <div class="field-card"><div class="field-num">2</div><div class="field-label">Average processing time</div><div class="field-desc">Days or hours from submission to determination or next actionable step.</div></div>
+    <div class="field-card"><div class="field-num">3</div><div class="field-label">Drop-off / appeal / manual review rate</div><div class="field-desc">Share of cases that required rework, escalation, or exceptions.</div></div>
   </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <span class="eyebrow reveal">Start Here</span>
-    <h2 class="stitle reveal">Start with 3 basic operational fields.</h2>
-    <p class="slead reveal">An initial directional diagnostic does not require a large technical project. A simple starting file is enough.</p>
-    <div class="fields-grid reveal">
-      <div class="field-card"><div class="field-num">1</div><div class="field-label">Total applications or cases</div><div class="field-desc">How many people entered the process in the period being measured.</div></div>
-      <div class="field-card"><div class="field-num">2</div><div class="field-label">Average processing time</div><div class="field-desc">Days or hours from submission to determination or next actionable step.</div></div>
-      <div class="field-card"><div class="field-num">3</div><div class="field-label">Drop-off / appeal / manual review rate</div><div class="field-desc">Share of cases that required rework, escalation, or exceptions.</div></div>
-    </div>
-    <div class="info-strip reveal">Estimates are acceptable for an initial directional diagnostic &nbsp;·&nbsp; Nothing stored without your approval &nbsp;·&nbsp; No naming &nbsp;·&nbsp; No blaming</div>
-    <div class="btn-row reveal">
-      <a href="gl-demo.html" class="btn-solid">Run a Quick Scan →</a>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Request a Private Diagnostic</a>
-    </div>
+  <div class="info-strip reveal">Estimates are acceptable for an initial directional diagnostic &nbsp;·&nbsp; Nothing stored without your approval &nbsp;·&nbsp; No naming &nbsp;·&nbsp; No blaming</div>
+  <div class="btn-row reveal">
+    <a href="gl-demo.html" class="btn-solid">Run a Quick Scan →</a>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Request a Private Diagnostic</a>
   </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">Use It in the Room</span>
-    <h2 class="stitle reveal">Walk into the meeting with numbers.</h2>
-    <p class="slead reveal">When you're asked why things are delayed, you need something you can point to — not an explanation.</p>
-    <div class="room-grid reveal">
-      <div class="room-card"><div class="room-scenario">Budget Hearing</div><div class="room-quote">"We are not underfunded. We are overloaded at step 3."</div><div class="room-tag">Turns a resource argument into a structural diagnosis.</div></div>
-      <div class="room-card"><div class="room-scenario">Oversight Review</div><div class="room-quote">"Drop-off is happening before eligibility — not after."</div><div class="room-tag">Shows where the system breaks before anyone assigns fault.</div></div>
-      <div class="room-card"><div class="room-scenario">Internal Briefing</div><div class="room-quote">"This is where the process breaks, not where people fail."</div><div class="room-tag">Protects staff. Focuses leadership on fixable structure.</div></div>
-    </div>
-    <div class="room-shift reveal">Shifts the conversation from <em>blame</em> to structure.</div>
-    <div class="video-wrap reveal" style="margin-top:clamp(32px,5vh,48px)" id="one-stop-video">
-      <iframe src="https://www.youtube.com/embed/KHhfAa4jliY" title="China One-Stop Service" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <p class="video-caption reveal">China's one-stop service model: when systems absorb coordination work, access becomes faster and less fragile. The same principle applies to any public delivery system.</p>
+</div></section>
+<section class="band"><div class="wrap">
+  <span class="eyebrow reveal">Use It in the Room</span>
+  <h2 class="stitle reveal">Walk into the meeting with numbers.</h2>
+  <p class="slead reveal">When you're asked why things are delayed, you need something you can point to — not an explanation.</p>
+  <div class="room-grid reveal">
+    <div class="room-card"><div class="room-scenario">Budget Hearing</div><div class="room-quote">"We are not underfunded. We are overloaded at step 3."</div><div class="room-tag">Turns a resource argument into a structural diagnosis.</div></div>
+    <div class="room-card"><div class="room-scenario">Oversight Review</div><div class="room-quote">"Drop-off is happening before eligibility — not after."</div><div class="room-tag">Shows where the system breaks before anyone assigns fault.</div></div>
+    <div class="room-card"><div class="room-scenario">Internal Briefing</div><div class="room-quote">"This is where the process breaks, not where people fail."</div><div class="room-tag">Protects staff. Focuses leadership on fixable structure.</div></div>
   </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <span class="eyebrow reveal">Publications</span>
-    <h2 class="stitle reveal">PA Times · Public Administration Review</h2>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue">PA Times</span><span class="pub-date">March 13, 2026</span><span class="pub-status published">Published</span></div>
-      <div class="pub-title">The Denominator Problem: Structural Efficiency Measurement in Public Administrative Systems</div>
-      <p class="pub-desc">Institutional failure is not a resource problem — it is a denominator design problem.</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-solid">Request Copy →</a>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">April 3, 2026</span><span class="pub-status forthcoming">Forthcoming</span></div>
-      <div class="pub-title">Proportional Sequencing in Long-Term Care: A Process Design Approach for U.S. HCBS</div>
-      <p class="pub-desc">Reordering safeguards reduces entry friction without removing oversight.</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Request Pre-Publication Copy →</a>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">April 24, 2026</span><span class="pub-status forthcoming">Forthcoming</span></div>
-      <div class="pub-title">What Global Benefit Systems Reveal About Policy Delivery</div>
-      <p class="pub-desc">Delivery design shapes public outcomes as much as funding or policy intent.</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Request Advance Review →</a>
-    </div>
-    <div class="pub-item reveal" style="border-bottom:none">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">May 22, 2026</span><span class="pub-status forthcoming">Forthcoming</span></div>
-      <div class="pub-title">What One-Stop Service Reveals About the Delivery Problem</div>
-      <p class="pub-desc">Coordination burden should sit with systems, not citizens.</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Request Advance Review →</a>
-    </div>
+  <div class="room-shift reveal">Shifts the conversation from <em>blame</em> to structure.</div>
+  <div class="video-wrap reveal" style="margin-top:clamp(32px,5vh,48px)" id="one-stop-video">
+    <iframe src="https://www.youtube.com/embed/KHhfAa4jliY" title="China One-Stop Service" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <div class="cta-panel reveal">
-      <span class="eyebrow">Next Step</span>
-      <h3>Start with one workflow, one program, or one agency unit.</h3>
-      <p>GL is designed for directional structural diagnosis using public or operational data — not internal audit exposure.</p>
-      <div class="btn-row">
-        <a href="mailto:gfi@gfiintel.com" class="btn-solid">Request a Private Diagnostic →</a>
-        <a href="gl-demo.html" class="btn-ghost">Open GL Demo</a>
+  <p class="video-caption reveal">China's one-stop service model: when systems absorb coordination work, access becomes faster and less fragile. The same principle applies to any public delivery system.</p>
+</div></section>
+<section><div class="wrap">
+  <span class="eyebrow reveal">Publications</span>
+  <h2 class="stitle reveal">PA Times · Public Administration Review</h2>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue">PA Times</span><span class="pub-date">March 13, 2026</span><span class="pub-status published">Published</span></div>
+    <div class="pub-title">The Denominator Problem: Structural Efficiency Measurement in Public Administrative Systems</div>
+    <p class="pub-desc">Institutional failure is not a resource problem — it is a denominator design problem.</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-solid">Request Copy →</a>
+  </div>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">April 3, 2026</span><span class="pub-status forthcoming">Forthcoming</span></div>
+    <div class="pub-title">Proportional Sequencing in Long-Term Care: A Process Design Approach for U.S. HCBS</div>
+    <p class="pub-desc">Reordering safeguards reduces entry friction without removing oversight.</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Request Pre-Publication Copy →</a>
+  </div>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">April 24, 2026</span><span class="pub-status forthcoming">Forthcoming</span></div>
+    <div class="pub-title">What Global Benefit Systems Reveal About Policy Delivery</div>
+    <p class="pub-desc">Delivery design shapes public outcomes as much as funding or policy intent.</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Request Advance Review →</a>
+  </div>
+  <div class="pub-item reveal" style="border-bottom:none">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">May 22, 2026</span><span class="pub-status forthcoming">Forthcoming</span></div>
+    <div class="pub-title">What One-Stop Service Reveals About the Delivery Problem</div>
+    <p class="pub-desc">Coordination burden should sit with systems, not citizens.</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Request Advance Review →</a>
+  </div>
+</div></section>
+<section class="band"><div class="wrap">
+  <div class="cta-panel reveal">
+    <span class="eyebrow">Next Step</span>
+    <h3>Start with one workflow, one program, or one agency unit.</h3>
+    <p>GL is designed for directional structural diagnosis using public or operational data — not internal audit exposure.</p>
+    <div class="btn-row">
+      <a href="mailto:gfi@gfiintel.com" class="btn-solid">Request a Private Diagnostic →</a>
+      <a href="gl-demo.html" class="btn-ghost">Open GL Demo</a>
+    </div>
+    <div class="cta-privacy">Nothing is shared without your approval &nbsp;·&nbsp; No payment &nbsp;·&nbsp; No vendor registration &nbsp;·&nbsp; No RFP</div>
+    <div class="sample-box">
+      <div class="sample-label">Sample Output</div>
+      <div class="sample-inner">
+        <b>Structural Snapshot (Example)</b>
+        — Processing time concentrates at initial eligibility stage<br>
+        — Appeal rate indicates rework loop in documentation verification<br>
+        — Sequential review structure delays activation<br>
+        <b>Recommended Actions</b>
+        — Enable early activation with post-verification review<br>
+        — Separate high-certainty cases to improve throughput<br>
+        — Reduce duplicate submissions across steps<br><br>
+        <em>One-page internal brief. No system access required.</em>
       </div>
-      <div class="cta-privacy">Nothing is shared without your approval &nbsp;·&nbsp; No payment &nbsp;·&nbsp; No vendor registration &nbsp;·&nbsp; No RFP</div>
     </div>
   </div>
-</section>
+</div></section>
 </div><!-- /en -->
 
 <!-- ══════════ 繁體中文 ══════════ -->
 <div class="lb" data-lang="tw">
-
 <div class="hero">
   <div class="hero-bg"></div><div class="hero-glow"></div>
   <div class="wrap hero-inner">
@@ -326,101 +307,99 @@ footer a:hover{color:var(--text)}
     </div>
   </div>
 </div>
-
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">為什麼重要</span>
-    <h2 class="stitle reveal">很多公共交付問題，先是結構問題，才是政治問題。</h2>
-    <p class="slead reveal">一個方案即使預算充足、目標正確，仍可能表現不佳，因為整個流程太慢、太多層、太難走完。</p>
+<section class="band"><div class="wrap">
+  <span class="eyebrow reveal">為什麼重要</span>
+  <h2 class="stitle reveal">很多公共交付問題，先是結構問題，才是政治問題。</h2>
+  <p class="slead reveal">一個方案即使預算充足、目標正確，仍可能表現不佳，因為整個流程太慢、太多層、太難走完。</p>
+</div></section>
+<section><div class="wrap">
+  <span class="eyebrow reveal">如何開始</span>
+  <h2 class="stitle reveal">從 3 個基本營運欄位開始。</h2>
+  <p class="slead reveal">初步方向性診斷，不需要大型技術專案。一份簡單資料就能開始。</p>
+  <div class="fields-grid reveal">
+    <div class="field-card"><div class="field-num">1</div><div class="field-label">申請數或案件數</div><div class="field-desc">測量期間內進入流程的人數。</div></div>
+    <div class="field-card"><div class="field-num">2</div><div class="field-label">平均處理時間</div><div class="field-desc">從提交到決定或下一個可行步驟的天數或小時數。</div></div>
+    <div class="field-card"><div class="field-num">3</div><div class="field-label">流失 / 申訴 / 人工審查率</div><div class="field-desc">需要返工、升級或例外處理的案件比例。</div></div>
   </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <span class="eyebrow reveal">如何開始</span>
-    <h2 class="stitle reveal">從 3 個基本營運欄位開始。</h2>
-    <p class="slead reveal">初步方向性診斷，不需要大型技術專案。一份簡單資料就能開始。</p>
-    <div class="fields-grid reveal">
-      <div class="field-card"><div class="field-num">1</div><div class="field-label">申請數或案件數</div><div class="field-desc">測量期間內進入流程的人數。</div></div>
-      <div class="field-card"><div class="field-num">2</div><div class="field-label">平均處理時間</div><div class="field-desc">從提交到決定或下一個可行步驟的天數或小時數。</div></div>
-      <div class="field-card"><div class="field-num">3</div><div class="field-label">流失 / 申訴 / 人工審查率</div><div class="field-desc">需要返工、升級或例外處理的案件比例。</div></div>
-    </div>
-    <div class="info-strip reveal">初步方向性診斷可接受估算數字 &nbsp;·&nbsp; 未經您同意不儲存任何資料 &nbsp;·&nbsp; 不指名 &nbsp;·&nbsp; 不問責</div>
-    <div class="btn-row reveal">
-      <a href="gl-demo.html" class="btn-solid">執行快速掃描 →</a>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">申請私密診斷</a>
-    </div>
+  <div class="info-strip reveal">初步方向性診斷可接受估算數字 &nbsp;·&nbsp; 未經您同意不儲存任何資料 &nbsp;·&nbsp; 不指名 &nbsp;·&nbsp; 不問責</div>
+  <div class="btn-row reveal">
+    <a href="gl-demo.html" class="btn-solid">執行快速掃描 →</a>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">申請私密診斷</a>
   </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">帶進會議室</span>
-    <h2 class="stitle reveal">帶著數字走進會議。</h2>
-    <p class="slead reveal">當有人問你為什麼事情延誤，你需要的不是解釋——而是可以指出來的東西。</p>
-    <div class="room-grid reveal">
-      <div class="room-card"><div class="room-scenario">預算審查</div><div class="room-quote">「我們不是資源不足。我們是在第三步卡住了。」</div><div class="room-tag">把資源論點轉化為結構診斷。</div></div>
-      <div class="room-card"><div class="room-scenario">監督審查</div><div class="room-quote">「流失發生在資格審查之前，不是之後。」</div><div class="room-tag">在責任歸屬之前，先指出系統哪裡斷掉。</div></div>
-      <div class="room-card"><div class="room-scenario">內部簡報</div><div class="room-quote">「這是流程斷掉的地方，不是人失職的地方。」</div><div class="room-tag">保護員工。讓領導層聚焦在可修正的結構上。</div></div>
-    </div>
-    <div class="room-shift reveal">把對話從<em>問責</em>轉向結構。</div>
-    <div class="video-wrap reveal" style="margin-top:clamp(32px,5vh,48px)">
-      <iframe src="https://www.youtube.com/embed/Hpb8fibUdYw" title="中國一站式服務" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <p class="video-caption reveal">中國的一站式服務模式體現了同樣的原則：當系統承擔協調工作，民眾的服務體驗就會變得更快、更清晰、更不容易出錯。</p>
+</div></section>
+<section class="band"><div class="wrap">
+  <span class="eyebrow reveal">帶進會議室</span>
+  <h2 class="stitle reveal">帶著數字走進會議。</h2>
+  <p class="slead reveal">當有人問你為什麼事情延誤，你需要的不是解釋——而是可以指出來的東西。</p>
+  <div class="room-grid reveal">
+    <div class="room-card"><div class="room-scenario">預算審查</div><div class="room-quote">「我們不是資源不足。我們是在第三步卡住了。」</div><div class="room-tag">把資源論點轉化為結構診斷。</div></div>
+    <div class="room-card"><div class="room-scenario">監督審查</div><div class="room-quote">「流失發生在資格審查之前，不是之後。」</div><div class="room-tag">在責任歸屬之前，先指出系統哪裡斷掉。</div></div>
+    <div class="room-card"><div class="room-scenario">內部簡報</div><div class="room-quote">「這是流程斷掉的地方，不是人失職的地方。」</div><div class="room-tag">保護員工。讓領導層聚焦在可修正的結構上。</div></div>
   </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <span class="eyebrow reveal">研究發表</span>
-    <h2 class="stitle reveal">PA Times · 公共行政評論</h2>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue">PA Times</span><span class="pub-date">2026年3月13日</span><span class="pub-status published">已發表</span></div>
-      <div class="pub-title">分母問題：公共行政系統的結構效率測量</div>
-      <p class="pub-desc">制度失靈不是資源問題——而是分母設計問題。</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-solid">索取全文 →</a>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年4月3日</span><span class="pub-status forthcoming">即將刊出</span></div>
-      <div class="pub-title">長期照護中的比例順序設計：美國 HCBS 的流程設計方法</div>
-      <p class="pub-desc">在不移除審查機制的前提下重新排序，可減少入系延誤。</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取預發表版本 →</a>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年4月24日</span><span class="pub-status forthcoming">即將刊出</span></div>
-      <div class="pub-title">國際福利系統對政策交付的啟示</div>
-      <p class="pub-desc">交付設計與政策設計同等重要。</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取預發表版本 →</a>
-    </div>
-    <div class="pub-item reveal" style="border-bottom:none">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年5月22日</span><span class="pub-status forthcoming">即將刊出</span></div>
-      <div class="pub-title">一站到位服務揭示的交付問題</div>
-      <p class="pub-desc">協調負擔應由系統承擔，而非公民。</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取預發表版本 →</a>
-    </div>
+  <div class="room-shift reveal">把對話從<em>問責</em>轉向結構。</div>
+  <div class="video-wrap reveal" style="margin-top:clamp(32px,5vh,48px)">
+    <iframe src="https://www.youtube.com/embed/Hpb8fibUdYw" title="中國一站式服務" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <div class="cta-panel reveal">
-      <span class="eyebrow">下一步</span>
-      <h3>從一個工作流、一個方案或一個機關單位開始。</h3>
-      <p>GL 專為方向性結構診斷而設計，使用公開或營運數據——不需要內部審計暴露。</p>
-      <div class="btn-row">
-        <a href="mailto:gfi@gfiintel.com" class="btn-solid">申請私密診斷 →</a>
-        <a href="gl-demo.html" class="btn-ghost">開啟 GL Demo</a>
+  <p class="video-caption reveal">中國的一站式服務模式體現了同樣的原則：當系統承擔協調工作，民眾的服務體驗就會變得更快、更清晰、更不容易出錯。</p>
+</div></section>
+<section><div class="wrap">
+  <span class="eyebrow reveal">研究發表</span>
+  <h2 class="stitle reveal">PA Times · 公共行政評論</h2>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue">PA Times</span><span class="pub-date">2026年3月13日</span><span class="pub-status published">已發表</span></div>
+    <div class="pub-title">分母問題：公共行政系統的結構效率測量</div>
+    <p class="pub-desc">制度失靈不是資源問題——而是分母設計問題。</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-solid">索取全文 →</a>
+  </div>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年4月3日</span><span class="pub-status forthcoming">即將刊出</span></div>
+    <div class="pub-title">長期照護中的比例順序設計：美國 HCBS 的流程設計方法</div>
+    <p class="pub-desc">在不移除審查機制的前提下重新排序，可減少入系延誤。</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取預發表版本 →</a>
+  </div>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年4月24日</span><span class="pub-status forthcoming">即將刊出</span></div>
+    <div class="pub-title">國際福利系統對政策交付的啟示</div>
+    <p class="pub-desc">交付設計與政策設計同等重要。</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取預發表版本 →</a>
+  </div>
+  <div class="pub-item reveal" style="border-bottom:none">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年5月22日</span><span class="pub-status forthcoming">即將刊出</span></div>
+    <div class="pub-title">一站到位服務揭示的交付問題</div>
+    <p class="pub-desc">協調負擔應由系統承擔，而非公民。</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取預發表版本 →</a>
+  </div>
+</div></section>
+<section class="band"><div class="wrap">
+  <div class="cta-panel reveal">
+    <span class="eyebrow">下一步</span>
+    <h3>從一個工作流、一個方案或一個機關單位開始。</h3>
+    <p>GL 專為方向性結構診斷而設計，使用公開或營運數據——不需要內部審計暴露。</p>
+    <div class="btn-row">
+      <a href="mailto:gfi@gfiintel.com" class="btn-solid">申請私密診斷 →</a>
+      <a href="gl-demo.html" class="btn-ghost">開啟 GL Demo</a>
+    </div>
+    <div class="cta-privacy">未經您同意不分享任何資料 &nbsp;·&nbsp; 無需付款 &nbsp;·&nbsp; 無需廠商登記 &nbsp;·&nbsp; 無需 RFP</div>
+    <div class="sample-box">
+      <div class="sample-label">報告樣本</div>
+      <div class="sample-inner">
+        <b>結構快照（範例）</b>
+        — 處理時間集中在初始資格審查階段<br>
+        — 申訴率顯示文件驗證環節存在返工迴圈<br>
+        — 序列審查結構延遲服務啟動<br>
+        <b>建議行動</b>
+        — 啟用事後驗證審查，提前激活服務<br>
+        — 將高確定性案件分流以提升效率<br>
+        — 減少各步驟間的重複提交<br><br>
+        <em>單頁內部簡報。不需要系統存取。</em>
       </div>
-      <div class="cta-privacy">未經您同意不分享任何資料 &nbsp;·&nbsp; 無需付款 &nbsp;·&nbsp; 無需廠商登記 &nbsp;·&nbsp; 無需 RFP</div>
     </div>
   </div>
-</section>
+</div></section>
 </div><!-- /tw -->
 
 <!-- ══════════ 简体中文 ══════════ -->
 <div class="lb" data-lang="cn">
-
 <div class="hero">
   <div class="hero-bg"></div><div class="hero-glow"></div>
   <div class="wrap hero-inner">
@@ -447,101 +426,99 @@ footer a:hover{color:var(--text)}
     </div>
   </div>
 </div>
-
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">为什么重要</span>
-    <h2 class="stitle reveal">很多公共交付问题，首先是结构问题，然后才是政治问题。</h2>
-    <p class="slead reveal">一个项目即使预算充足、目标正确，仍可能表现不佳，因为整个流程太慢、层级太多、太难走完。</p>
+<section class="band"><div class="wrap">
+  <span class="eyebrow reveal">为什么重要</span>
+  <h2 class="stitle reveal">很多公共交付问题，首先是结构问题，然后才是政治问题。</h2>
+  <p class="slead reveal">一个项目即使预算充足、目标正确，仍可能表现不佳，因为整个流程太慢、层级太多、太难走完。</p>
+</div></section>
+<section><div class="wrap">
+  <span class="eyebrow reveal">如何开始</span>
+  <h2 class="stitle reveal">从 3 个基本运营字段开始。</h2>
+  <p class="slead reveal">初步方向性诊断，不需要大型技术项目。一份简单数据就能开始。</p>
+  <div class="fields-grid reveal">
+    <div class="field-card"><div class="field-num">1</div><div class="field-label">申请数或案件数</div><div class="field-desc">测量期间内进入流程的人数。</div></div>
+    <div class="field-card"><div class="field-num">2</div><div class="field-label">平均处理时间</div><div class="field-desc">从提交到决定或下一个可行步骤的天数或小时数。</div></div>
+    <div class="field-card"><div class="field-num">3</div><div class="field-label">流失 / 申诉 / 人工审查率</div><div class="field-desc">需要返工、升级或例外处理的案件比例。</div></div>
   </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <span class="eyebrow reveal">如何开始</span>
-    <h2 class="stitle reveal">从 3 个基本运营字段开始。</h2>
-    <p class="slead reveal">初步方向性诊断，不需要大型技术项目。一份简单数据就能开始。</p>
-    <div class="fields-grid reveal">
-      <div class="field-card"><div class="field-num">1</div><div class="field-label">申请数或案件数</div><div class="field-desc">测量期间内进入流程的人数。</div></div>
-      <div class="field-card"><div class="field-num">2</div><div class="field-label">平均处理时间</div><div class="field-desc">从提交到决定或下一个可行步骤的天数或小时数。</div></div>
-      <div class="field-card"><div class="field-num">3</div><div class="field-label">流失 / 申诉 / 人工审查率</div><div class="field-desc">需要返工、升级或例外处理的案件比例。</div></div>
-    </div>
-    <div class="info-strip reveal">初步方向性诊断可接受估算数字 &nbsp;·&nbsp; 未经您同意不储存任何数据 &nbsp;·&nbsp; 不指名 &nbsp;·&nbsp; 不问责</div>
-    <div class="btn-row reveal">
-      <a href="gl-demo.html" class="btn-solid">执行快速扫描 →</a>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">申请私密诊断</a>
-    </div>
+  <div class="info-strip reveal">初步方向性诊断可接受估算数字 &nbsp;·&nbsp; 未经您同意不储存任何数据 &nbsp;·&nbsp; 不指名 &nbsp;·&nbsp; 不问责</div>
+  <div class="btn-row reveal">
+    <a href="gl-demo.html" class="btn-solid">执行快速扫描 →</a>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">申请私密诊断</a>
   </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">带进会议室</span>
-    <h2 class="stitle reveal">带着数字走进会议。</h2>
-    <p class="slead reveal">当有人问你为什么事情延误，你需要的不是解释——而是可以指出来的东西。</p>
-    <div class="room-grid reveal">
-      <div class="room-card"><div class="room-scenario">预算审查</div><div class="room-quote">「我们不是资源不足。我们是在第三步卡住了。」</div><div class="room-tag">把资源论点转化为结构诊断。</div></div>
-      <div class="room-card"><div class="room-scenario">监督审查</div><div class="room-quote">「流失发生在资格审查之前，不是之后。」</div><div class="room-tag">在责任归属之前，先指出系统哪里断掉。</div></div>
-      <div class="room-card"><div class="room-scenario">内部简报</div><div class="room-quote">「这是流程断掉的地方，不是人失职的地方。」</div><div class="room-tag">保护员工。让领导层聚焦在可修正的结构上。</div></div>
-    </div>
-    <div class="room-shift reveal">把对话从<em>问责</em>转向结构。</div>
-    <div class="video-wrap reveal" style="margin-top:clamp(32px,5vh,48px)">
-      <iframe src="https://www.youtube.com/embed/Hpb8fibUdYw" title="中国一站式服务" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <p class="video-caption reveal">中国的一站式服务模式体现了同样的原则：当系统承担协调工作，民众的服务体验就会变得更快、更清晰、更不容易出错。</p>
+</div></section>
+<section class="band"><div class="wrap">
+  <span class="eyebrow reveal">带进会议室</span>
+  <h2 class="stitle reveal">带着数字走进会议。</h2>
+  <p class="slead reveal">当有人问你为什么事情延误，你需要的不是解释——而是可以指出来的东西。</p>
+  <div class="room-grid reveal">
+    <div class="room-card"><div class="room-scenario">预算审查</div><div class="room-quote">「我们不是资源不足。我们是在第三步卡住了。」</div><div class="room-tag">把资源论点转化为结构诊断。</div></div>
+    <div class="room-card"><div class="room-scenario">监督审查</div><div class="room-quote">「流失发生在资格审查之前，不是之后。」</div><div class="room-tag">在责任归属之前，先指出系统哪里断掉。</div></div>
+    <div class="room-card"><div class="room-scenario">内部简报</div><div class="room-quote">「这是流程断掉的地方，不是人失职的地方。」</div><div class="room-tag">保护员工。让领导层聚焦在可修正的结构上。</div></div>
   </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <span class="eyebrow reveal">研究发表</span>
-    <h2 class="stitle reveal">PA Times · 公共行政评论</h2>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue">PA Times</span><span class="pub-date">2026年3月13日</span><span class="pub-status published">已发表</span></div>
-      <div class="pub-title">分母问题：公共行政系统的结构效率测量</div>
-      <p class="pub-desc">制度失灵不是资源问题——而是分母设计问题。</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-solid">索取全文 →</a>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年4月3日</span><span class="pub-status forthcoming">即将刊出</span></div>
-      <div class="pub-title">长期照护中的比例顺序设计：美国 HCBS 的流程设计方法</div>
-      <p class="pub-desc">在不移除审查机制的前提下重新排序，可减少入系延误。</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取预发表版本 →</a>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年4月24日</span><span class="pub-status forthcoming">即将刊出</span></div>
-      <div class="pub-title">国际福利系统对政策交付的启示</div>
-      <p class="pub-desc">交付设计与政策设计同等重要。</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取预发表版本 →</a>
-    </div>
-    <div class="pub-item reveal" style="border-bottom:none">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年5月22日</span><span class="pub-status forthcoming">即将刊出</span></div>
-      <div class="pub-title">一站到位服务揭示的交付问题</div>
-      <p class="pub-desc">协调负担应由系统承担，而非公民。</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取预发表版本 →</a>
-    </div>
+  <div class="room-shift reveal">把对话从<em>问责</em>转向结构。</div>
+  <div class="video-wrap reveal" style="margin-top:clamp(32px,5vh,48px)">
+    <iframe src="https://www.youtube.com/embed/Hpb8fibUdYw" title="中国一站式服务" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <div class="cta-panel reveal">
-      <span class="eyebrow">下一步</span>
-      <h3>从一个工作流、一个项目或一个机构单位开始。</h3>
-      <p>GL 专为方向性结构诊断而设计，使用公开或运营数据——不需要内部审计暴露。</p>
-      <div class="btn-row">
-        <a href="mailto:gfi@gfiintel.com" class="btn-solid">申请私密诊断 →</a>
-        <a href="gl-demo.html" class="btn-ghost">打开 GL Demo</a>
+  <p class="video-caption reveal">中国的一站式服务模式体现了同样的原则：当系统承担协调工作，民众的服务体验就会变得更快、更清晰、更不容易出错。</p>
+</div></section>
+<section><div class="wrap">
+  <span class="eyebrow reveal">研究发表</span>
+  <h2 class="stitle reveal">PA Times · 公共行政评论</h2>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue">PA Times</span><span class="pub-date">2026年3月13日</span><span class="pub-status published">已发表</span></div>
+    <div class="pub-title">分母问题：公共行政系统的结构效率测量</div>
+    <p class="pub-desc">制度失灵不是资源问题——而是分母设计问题。</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-solid">索取全文 →</a>
+  </div>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年4月3日</span><span class="pub-status forthcoming">即将刊出</span></div>
+    <div class="pub-title">长期照护中的比例顺序设计：美国 HCBS 的流程设计方法</div>
+    <p class="pub-desc">在不移除审查机制的前提下重新排序，可减少入系延误。</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取预发表版本 →</a>
+  </div>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年4月24日</span><span class="pub-status forthcoming">即将刊出</span></div>
+    <div class="pub-title">国际福利系统对政策交付的启示</div>
+    <p class="pub-desc">交付设计与政策设计同等重要。</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取预发表版本 →</a>
+  </div>
+  <div class="pub-item reveal" style="border-bottom:none">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">2026年5月22日</span><span class="pub-status forthcoming">即将刊出</span></div>
+    <div class="pub-title">一站到位服务揭示的交付问题</div>
+    <p class="pub-desc">协调负担应由系统承担，而非公民。</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">索取预发表版本 →</a>
+  </div>
+</div></section>
+<section class="band"><div class="wrap">
+  <div class="cta-panel reveal">
+    <span class="eyebrow">下一步</span>
+    <h3>从一个工作流、一个项目或一个机构单位开始。</h3>
+    <p>GL 专为方向性结构诊断而设计，使用公开或运营数据——不需要内部审计暴露。</p>
+    <div class="btn-row">
+      <a href="mailto:gfi@gfiintel.com" class="btn-solid">申请私密诊断 →</a>
+      <a href="gl-demo.html" class="btn-ghost">打开 GL Demo</a>
+    </div>
+    <div class="cta-privacy">未经您同意不分享任何数据 &nbsp;·&nbsp; 无需付款 &nbsp;·&nbsp; 无需厂商登记 &nbsp;·&nbsp; 无需 RFP</div>
+    <div class="sample-box">
+      <div class="sample-label">报告样本</div>
+      <div class="sample-inner">
+        <b>结构快照（范例）</b>
+        — 处理时间集中在初始资格审查阶段<br>
+        — 申诉率显示文件验证环节存在返工循环<br>
+        — 序列审查结构延迟服务启动<br>
+        <b>建议行动</b>
+        — 启用事后验证审查，提前激活服务<br>
+        — 将高确定性案件分流以提升效率<br>
+        — 减少各步骤间的重复提交<br><br>
+        <em>单页内部简报。不需要系统访问。</em>
       </div>
-      <div class="cta-privacy">未经您同意不分享任何数据 &nbsp;·&nbsp; 无需付款 &nbsp;·&nbsp; 无需厂商登记 &nbsp;·&nbsp; 无需 RFP</div>
     </div>
   </div>
-</section>
+</div></section>
 </div><!-- /cn -->
 
 <!-- ══════════ ESPAÑOL ══════════ -->
 <div class="lb" data-lang="es">
-
 <div class="hero">
   <div class="hero-bg"></div><div class="hero-glow"></div>
   <div class="wrap hero-inner">
@@ -568,96 +545,95 @@ footer a:hover{color:var(--text)}
     </div>
   </div>
 </div>
-
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">Por qué importa</span>
-    <h2 class="stitle reveal">Muchos problemas de entrega pública son estructurales antes que políticos.</h2>
-    <p class="slead reveal">Un programa puede estar bien financiado y bien diseñado, y aun así rendir mal porque el recorrido del proceso es demasiado lento, demasiado fragmentado o demasiado difícil de completar.</p>
+<section class="band"><div class="wrap">
+  <span class="eyebrow reveal">Por qué importa</span>
+  <h2 class="stitle reveal">Muchos problemas de entrega pública son estructurales antes que políticos.</h2>
+  <p class="slead reveal">Un programa puede estar bien financiado y bien diseñado, y aun así rendir mal porque el recorrido del proceso es demasiado lento, demasiado fragmentado o demasiado difícil de completar.</p>
+</div></section>
+<section><div class="wrap">
+  <span class="eyebrow reveal">Cómo empezar</span>
+  <h2 class="stitle reveal">Empiece con 3 campos operativos básicos.</h2>
+  <p class="slead reveal">Un diagnóstico direccional inicial no requiere un gran proyecto técnico. Un archivo de inicio simple es suficiente.</p>
+  <div class="fields-grid reveal">
+    <div class="field-card"><div class="field-num">1</div><div class="field-label">Total de solicitudes o casos</div><div class="field-desc">Cuántas personas ingresaron al proceso en el período medido.</div></div>
+    <div class="field-card"><div class="field-num">2</div><div class="field-label">Tiempo promedio de procesamiento</div><div class="field-desc">Días u horas desde la presentación hasta la determinación o el siguiente paso.</div></div>
+    <div class="field-card"><div class="field-num">3</div><div class="field-label">Tasa de abandono / apelación / revisión manual</div><div class="field-desc">Proporción de casos que requirieron retrabajo, escalamiento o excepciones.</div></div>
   </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <span class="eyebrow reveal">Cómo empezar</span>
-    <h2 class="stitle reveal">Empiece con 3 campos operativos básicos.</h2>
-    <p class="slead reveal">Un diagnóstico direccional inicial no requiere un gran proyecto técnico. Un archivo de inicio simple es suficiente.</p>
-    <div class="fields-grid reveal">
-      <div class="field-card"><div class="field-num">1</div><div class="field-label">Total de solicitudes o casos</div><div class="field-desc">Cuántas personas ingresaron al proceso en el período medido.</div></div>
-      <div class="field-card"><div class="field-num">2</div><div class="field-label">Tiempo promedio de procesamiento</div><div class="field-desc">Días u horas desde la presentación hasta la determinación o el siguiente paso.</div></div>
-      <div class="field-card"><div class="field-num">3</div><div class="field-label">Tasa de abandono / apelación / revisión manual</div><div class="field-desc">Proporción de casos que requirieron retrabajo, escalamiento o excepciones.</div></div>
-    </div>
-    <div class="info-strip reveal">Las estimaciones son aceptables para un diagnóstico inicial &nbsp;·&nbsp; Nada se almacena sin su aprobación &nbsp;·&nbsp; Sin identificación &nbsp;·&nbsp; Sin señalamientos</div>
-    <div class="btn-row reveal">
-      <a href="gl-demo.html" class="btn-solid">Ejecutar Escaneo Rápido →</a>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Solicitar Diagnóstico Privado</a>
-    </div>
+  <div class="info-strip reveal">Las estimaciones son aceptables para un diagnóstico inicial &nbsp;·&nbsp; Nada se almacena sin su aprobación &nbsp;·&nbsp; Sin identificación &nbsp;·&nbsp; Sin señalamientos</div>
+  <div class="btn-row reveal">
+    <a href="gl-demo.html" class="btn-solid">Ejecutar Escaneo Rápido →</a>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Solicitar Diagnóstico Privado</a>
   </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">Úselo en la Sala</span>
-    <h2 class="stitle reveal">Entre a la reunión con números.</h2>
-    <p class="slead reveal">Cuando le pregunten por qué hay retrasos, necesita algo que pueda señalar — no una explicación.</p>
-    <div class="room-grid reveal">
-      <div class="room-card"><div class="room-scenario">Audiencia Presupuestaria</div><div class="room-quote">"No estamos subfinanciados. Estamos sobrecargados en el paso 3."</div><div class="room-tag">Convierte un argumento de recursos en un diagnóstico estructural.</div></div>
-      <div class="room-card"><div class="room-scenario">Revisión de Supervisión</div><div class="room-quote">"El abandono ocurre antes de la elegibilidad — no después."</div><div class="room-tag">Muestra dónde falla el sistema antes de asignar culpas.</div></div>
-      <div class="room-card"><div class="room-scenario">Informe Interno</div><div class="room-quote">"Aquí es donde falla el proceso, no donde falla la gente."</div><div class="room-tag">Protege al personal. Enfoca al liderazgo en la estructura corregible.</div></div>
-    </div>
-    <div class="room-shift reveal">Cambia la conversación de <em>culpa</em> a estructura.</div>
-    <div class="video-wrap reveal" style="margin-top:clamp(32px,5vh,48px)">
-      <iframe src="https://www.youtube.com/embed/KHhfAa4jliY" title="China One-Stop Service" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <p class="video-caption reveal">El modelo de ventanilla única de China ilustra el mismo principio: cuando los sistemas absorben el trabajo de coordinación, el acceso se vuelve más rápido y menos frágil.</p>
+</div></section>
+<section class="band"><div class="wrap">
+  <span class="eyebrow reveal">Úselo en la Sala</span>
+  <h2 class="stitle reveal">Entre a la reunión con números.</h2>
+  <p class="slead reveal">Cuando le pregunten por qué hay retrasos, necesita algo que pueda señalar — no una explicación.</p>
+  <div class="room-grid reveal">
+    <div class="room-card"><div class="room-scenario">Audiencia Presupuestaria</div><div class="room-quote">"No estamos subfinanciados. Estamos sobrecargados en el paso 3."</div><div class="room-tag">Convierte un argumento de recursos en un diagnóstico estructural.</div></div>
+    <div class="room-card"><div class="room-scenario">Revisión de Supervisión</div><div class="room-quote">"El abandono ocurre antes de la elegibilidad — no después."</div><div class="room-tag">Muestra dónde falla el sistema antes de asignar culpas.</div></div>
+    <div class="room-card"><div class="room-scenario">Informe Interno</div><div class="room-quote">"Aquí es donde falla el proceso, no donde falla la gente."</div><div class="room-tag">Protege al personal. Enfoca al liderazgo en la estructura corregible.</div></div>
   </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <span class="eyebrow reveal">Publicaciones</span>
-    <h2 class="stitle reveal">PA Times · Public Administration Review</h2>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue">PA Times</span><span class="pub-date">13 mar 2026</span><span class="pub-status published">Publicado</span></div>
-      <div class="pub-title">El Problema del Denominador: Medición de Eficiencia Estructural en Sistemas Administrativos Públicos</div>
-      <p class="pub-desc">El fallo institucional no es un problema de recursos — es un problema de diseño del denominador.</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-solid">Solicitar Copia →</a>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">3 abr 2026</span><span class="pub-status forthcoming">Próximamente</span></div>
-      <div class="pub-title">Secuenciación Proporcional en Cuidados de Larga Duración</div>
-      <p class="pub-desc">Reordenar las salvaguardas reduce la fricción de acceso sin eliminar la supervisión.</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Solicitar Copia Anticipada →</a>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">24 abr 2026</span><span class="pub-status forthcoming">Próximamente</span></div>
-      <div class="pub-title">Lo que los Sistemas de Beneficios Globales Revelan sobre la Entrega de Políticas</div>
-      <p class="pub-desc">El diseño de entrega determina los resultados tanto como el financiamiento o la política.</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Solicitar Revisión Anticipada →</a>
-    </div>
-    <div class="pub-item reveal" style="border-bottom:none">
-      <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">22 may 2026</span><span class="pub-status forthcoming">Próximamente</span></div>
-      <div class="pub-title">Lo que la Ventanilla Única Revela sobre el Problema de Entrega</div>
-      <p class="pub-desc">La carga de coordinación debe recaer en los sistemas, no en los ciudadanos.</p>
-      <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Solicitar Revisión Anticipada →</a>
-    </div>
+  <div class="room-shift reveal">Cambia la conversación de <em>culpa</em> a estructura.</div>
+  <div class="video-wrap reveal" style="margin-top:clamp(32px,5vh,48px)">
+    <iframe src="https://www.youtube.com/embed/KHhfAa4jliY" title="China One-Stop Service" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <div class="cta-panel reveal">
-      <span class="eyebrow">Próximo Paso</span>
-      <h3>Empiece con un flujo de trabajo, un programa o una unidad.</h3>
-      <p>GL está diseñado para diagnóstico estructural direccional usando datos públicos u operativos — sin exposición de auditoría interna.</p>
-      <div class="btn-row">
-        <a href="mailto:gfi@gfiintel.com" class="btn-solid">Solicitar Diagnóstico Privado →</a>
-        <a href="gl-demo.html" class="btn-ghost">Abrir GL Demo</a>
+  <p class="video-caption reveal">El modelo de ventanilla única de China ilustra el mismo principio: cuando los sistemas absorben el trabajo de coordinación, el acceso se vuelve más rápido y menos frágil.</p>
+</div></section>
+<section><div class="wrap">
+  <span class="eyebrow reveal">Publicaciones</span>
+  <h2 class="stitle reveal">PA Times · Public Administration Review</h2>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue">PA Times</span><span class="pub-date">13 mar 2026</span><span class="pub-status published">Publicado</span></div>
+    <div class="pub-title">El Problema del Denominador: Medición de Eficiencia Estructural en Sistemas Administrativos Públicos</div>
+    <p class="pub-desc">El fallo institucional no es un problema de recursos — es un problema de diseño del denominador.</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-solid">Solicitar Copia →</a>
+  </div>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">3 abr 2026</span><span class="pub-status forthcoming">Próximamente</span></div>
+    <div class="pub-title">Secuenciación Proporcional en Cuidados de Larga Duración</div>
+    <p class="pub-desc">Reordenar las salvaguardas reduce la fricción de acceso sin eliminar la supervisión.</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Solicitar Copia Anticipada →</a>
+  </div>
+  <div class="pub-item reveal">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">24 abr 2026</span><span class="pub-status forthcoming">Próximamente</span></div>
+    <div class="pub-title">Lo que los Sistemas de Beneficios Globales Revelan sobre la Entrega de Políticas</div>
+    <p class="pub-desc">El diseño de entrega determina los resultados tanto como el financiamiento o la política.</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Solicitar Revisión Anticipada →</a>
+  </div>
+  <div class="pub-item reveal" style="border-bottom:none">
+    <div class="pub-meta"><span class="pub-venue fc">PA Times</span><span class="pub-date">22 may 2026</span><span class="pub-status forthcoming">Próximamente</span></div>
+    <div class="pub-title">Lo que la Ventanilla Única Revela sobre el Problema de Entrega</div>
+    <p class="pub-desc">La carga de coordinación debe recaer en los sistemas, no en los ciudadanos.</p>
+    <a href="mailto:gfi@gfiintel.com" class="btn-ghost">Solicitar Revisión Anticipada →</a>
+  </div>
+</div></section>
+<section class="band"><div class="wrap">
+  <div class="cta-panel reveal">
+    <span class="eyebrow">Próximo Paso</span>
+    <h3>Empiece con un flujo de trabajo, un programa o una unidad.</h3>
+    <p>GL está diseñado para diagnóstico estructural direccional usando datos públicos u operativos — sin exposición de auditoría interna.</p>
+    <div class="btn-row">
+      <a href="mailto:gfi@gfiintel.com" class="btn-solid">Solicitar Diagnóstico Privado →</a>
+      <a href="gl-demo.html" class="btn-ghost">Abrir GL Demo</a>
+    </div>
+    <div class="cta-privacy">Nada se comparte sin su aprobación &nbsp;·&nbsp; Sin pago &nbsp;·&nbsp; Sin registro de proveedor &nbsp;·&nbsp; Sin RFP</div>
+    <div class="sample-box">
+      <div class="sample-label">Muestra de Resultado</div>
+      <div class="sample-inner">
+        <b>Instantánea Estructural (Ejemplo)</b>
+        — El tiempo de procesamiento se concentra en la etapa inicial de elegibilidad<br>
+        — La tasa de apelación indica un ciclo de retrabajo en la verificación de documentos<br>
+        — La estructura de revisión secuencial retrasa la activación del servicio<br>
+        <b>Acciones Recomendadas</b>
+        — Habilitar la activación temprana con revisión posterior a la verificación<br>
+        — Separar casos de alta certeza para mejorar el flujo<br>
+        — Reducir las presentaciones duplicadas entre pasos<br><br>
+        <em>Informe interno de una página. No se requiere acceso a sistemas.</em>
       </div>
-      <div class="cta-privacy">Nada se comparte sin su aprobación &nbsp;·&nbsp; Sin pago &nbsp;·&nbsp; Sin registro de proveedor &nbsp;·&nbsp; Sin RFP</div>
     </div>
   </div>
-</section>
+</div></section>
 </div><!-- /es -->
 
 <footer>
