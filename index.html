@@ -3,69 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="GFI Flow Intelligence — GL Framework: the only formula that diagnoses delivery system failure using public data alone. No internal access required. Published on SSRN. Validated across 18 jurisdictions.">
+  <meta name="description" content="GFI Flow Intelligence — GL Framework: a diagnostic framework that turns delivery uncertainty into defensible numbers. No internal access required. Published on SSRN. Validated across 18 jurisdictions.">
   <title>GFI Flow Intelligence</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-
   <style>
-    :root{
-      --bg:#0b1220; --bg2:#111827;
-      --border:rgba(255,255,255,.10);
-      --text:#f8fbff; --muted:#c7d2e3; --sub:#9fb0c8;
-      --green:#9FE870; --blue:#7DD3FC;
-      --serif:'DM Serif Display',Georgia,serif;
-      --mono:'DM Mono',monospace;
-      --sans:'DM Sans',system-ui,sans-serif;
-    }
+    :root{--bg:#0b1220;--bg2:#111827;--border:rgba(255,255,255,.10);--text:#f8fbff;--muted:#c7d2e3;--sub:#9fb0c8;--green:#9FE870;--blue:#7DD3FC;--serif:'DM Serif Display',Georgia,serif;--mono:'DM Mono',monospace;--sans:'DM Sans',system-ui,sans-serif;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-    body{
-      background:
-        radial-gradient(circle at 18% 10%,rgba(159,232,112,.08),transparent 26%),
-        radial-gradient(circle at 85% 80%,rgba(56,189,248,.08),transparent 28%),
-        linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
-      color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.8;overflow-x:hidden;min-height:100vh;
-    }
-    .bg-grid{
-      position:fixed;inset:0;
-      background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-      background-size:56px 56px;
-      mask-image:radial-gradient(ellipse 85% 72% at 50% 42%,black 18%,transparent 82%);
-      pointer-events:none;z-index:0;
-    }
-    .lang-bar{
-      position:fixed;top:0;left:0;right:0;z-index:100;height:62px;
-      padding:0 clamp(18px,5vw,52px);
-      display:flex;align-items:center;justify-content:space-between;
-      background:rgba(11,18,32,.82);backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
+    body{background:radial-gradient(circle at 18% 10%,rgba(159,232,112,.08),transparent 26%),radial-gradient(circle at 85% 80%,rgba(56,189,248,.08),transparent 28%),linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.8;overflow-x:hidden;min-height:100vh;}
+    .bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 85% 72% at 50% 42%,black 18%,transparent 82%);pointer-events:none;z-index:0;}
+    .lang-bar{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;padding:0 clamp(18px,5vw,52px);display:flex;align-items:center;justify-content:space-between;background:rgba(11,18,32,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);}
     .logo img{height:40px;width:auto;display:block;}
     .lang-grp{display:flex;gap:6px;align-items:center;}
-    .lb-btn{
-      font-family:var(--mono);font-size:11px;letter-spacing:.08em;
-      padding:6px 11px;border:1px solid rgba(255,255,255,.10);border-radius:6px;
-      background:none;color:var(--sub);cursor:pointer;transition:all .2s ease;
-    }
+    .lb-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:6px 11px;border:1px solid rgba(255,255,255,.10);border-radius:6px;background:none;color:var(--sub);cursor:pointer;transition:all .2s ease;}
     .lb-btn:hover{color:var(--text);border-color:rgba(255,255,255,.20);background:rgba(255,255,255,.03);}
     .lb-btn.on{color:var(--green);border-color:rgba(159,232,112,.35);background:rgba(159,232,112,.08);}
-    .lb{display:none;position:relative;z-index:1;}
-    .lb.active{display:block;}
+    .lb{display:none;position:relative;z-index:1;}.lb.active{display:block;}
     main{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:96px clamp(20px,5vw,60px) 64px;}
     .hero-wrap{width:100%;max-width:1120px;display:flex;flex-direction:column;align-items:center;}
     .gate-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#AFC3DB;text-align:center;margin-bottom:18px;opacity:0;animation:up .55s .05s forwards;}
     .gate-title{font-family:var(--serif);font-size:clamp(24px,2.8vw,40px);line-height:1.18;letter-spacing:-.02em;text-align:center;max-width:720px;margin-bottom:12px;color:#FFFFFF;opacity:0;animation:up .55s .16s forwards;}
-    .hero-definition{max-width:640px;margin:0 auto 14px;text-align:center;font-size:14px;line-height:1.75;color:#8fa2bc;opacity:0;animation:up .55s .22s forwards;}
-    .gate-sub{font-size:clamp(15px,1.3vw,17px);color:#C8D8EC;text-align:center;max-width:640px;line-height:1.85;margin-bottom:26px;opacity:0;animation:up .55s .28s forwards;}
+    .hero-definition{max-width:640px;margin:0 auto 8px;text-align:center;font-size:15px;line-height:1.75;color:#C8D8EC;opacity:0;animation:up .55s .22s forwards;}
+    .hero-no-risk{max-width:640px;margin:0 auto 8px;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:#7a90aa;opacity:0;animation:up .55s .25s forwards;}
+    .hero-built-for{max-width:640px;margin:0 auto 14px;text-align:center;font-size:14px;color:var(--green);font-weight:500;opacity:0;animation:up .55s .27s forwards;}
+    .gate-sub{font-size:clamp(15px,1.3vw,17px);color:#C8D8EC;text-align:center;max-width:640px;line-height:1.85;margin-bottom:10px;opacity:0;animation:up .55s .28s forwards;}
+    .hero-room{max-width:640px;margin:0 auto 22px;text-align:center;font-size:14px;color:#8fa2bc;line-height:1.7;opacity:0;animation:up .55s .30s forwards;}
     .research-strip{width:100%;max-width:720px;margin:0 auto 26px;display:flex;flex-direction:column;align-items:center;gap:12px;opacity:0;animation:up .58s .34s forwards;}
     .research-badge{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;border:1px solid rgba(159,232,112,.22);background:rgba(159,232,112,.07);color:#DFF7CF;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;}
     .research-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(159,232,112,.45);flex-shrink:0;}
     .research-note{max-width:620px;text-align:center;color:#b8cce0;font-size:14px;line-height:1.8;}
     .research-btn{display:inline-flex;align-items:center;gap:10px;padding:11px 20px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(159,232,112,.14),rgba(159,232,112,.08));color:#F5FFE9;text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;}
     .research-btn:hover{transform:translateY(-2px);border-color:rgba(159,232,112,.38);box-shadow:0 10px 24px rgba(0,0,0,.22);}
+    .no-access-bar{width:100%;max-width:720px;margin:0 auto 20px;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);padding:10px 0;border-top:1px solid rgba(159,232,112,.15);border-bottom:1px solid rgba(159,232,112,.15);opacity:0;animation:up .55s .32s forwards;}
     .exec-bridge{width:100%;max-width:780px;margin:0 auto 34px;padding:28px 32px 26px;border:1px solid rgba(255,255,255,.10);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.042),rgba(255,255,255,.016));box-shadow:0 8px 24px rgba(0,0,0,.14);text-align:center;opacity:0;animation:up .58s .40s forwards;}
     .exec-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7a90aa;margin-bottom:16px;}
     .exec-lines{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;}
@@ -80,23 +51,18 @@
     .gate-card:hover{transform:translateY(-5px);box-shadow:0 16px 44px rgba(0,0,0,.28);}
     .gate-card.gov{background:radial-gradient(circle at top right,rgba(159,232,112,.11),transparent 34%),linear-gradient(180deg,rgba(159,232,112,.055),rgba(255,255,255,.012)),linear-gradient(180deg,#141F18 0%,#121B17 100%);border-color:rgba(159,232,112,.26);}
     .gate-card.priv{background:radial-gradient(circle at top right,rgba(125,211,252,.11),transparent 34%),linear-gradient(180deg,rgba(56,189,248,.055),rgba(255,255,255,.012)),linear-gradient(180deg,#131C2D 0%,#111827 100%);border-color:rgba(125,211,252,.24);}
-    .gate-card.gov:hover{border-color:rgba(159,232,112,.48);}
-    .gate-card.priv:hover{border-color:rgba(125,211,252,.44);}
+    .gate-card.gov:hover{border-color:rgba(159,232,112,.48);}.gate-card.priv:hover{border-color:rgba(125,211,252,.44);}
     .gc-sector{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;}
-    .gate-card.gov .gc-sector{color:var(--green);}
-    .gate-card.priv .gc-sector{color:var(--blue);}
+    .gate-card.gov .gc-sector{color:var(--green);}.gate-card.priv .gc-sector{color:var(--blue);}
     .gc-title{font-family:var(--serif);font-size:clamp(20px,2vw,28px);line-height:1.2;margin-bottom:12px;max-width:380px;}
-    .gate-card.gov .gc-title{color:#F0FFE8;}
-    .gate-card.priv .gc-title{color:#EAF5FF;}
+    .gate-card.gov .gc-title{color:#F0FFE8;}.gate-card.priv .gc-title{color:#EAF5FF;}
     .gc-desc{color:#b8cce0;font-size:14px;line-height:1.8;margin-bottom:16px;max-width:380px;}
     .gc-items{list-style:none;margin-bottom:18px;}
     .gc-items li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;color:#D4E2F0;font-size:13px;line-height:1.7;border-bottom:1px solid rgba(255,255,255,.05);}
     .gc-items li::before{content:"→";font-family:var(--mono);font-size:11px;flex-shrink:0;margin-top:2px;}
-    .gate-card.gov .gc-items li::before{color:var(--green);}
-    .gate-card.priv .gc-items li::before{color:var(--blue);}
+    .gate-card.gov .gc-items li::before{color:var(--green);}.gate-card.priv .gc-items li::before{color:var(--blue);}
     .gc-cta{margin-top:auto;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.10em;text-transform:uppercase;}
-    .gate-card.gov .gc-cta{color:var(--green);}
-    .gate-card.priv .gc-cta{color:var(--blue);}
+    .gate-card.gov .gc-cta{color:var(--green);}.gate-card.priv .gc-cta{color:var(--blue);}
     .gate-footer{position:relative;z-index:1;text-align:center;padding:28px 20px 36px;color:#6a7e96;font-size:11px;font-family:var(--mono);letter-spacing:.05em;}
     .gate-footer a{color:#8faabe;text-decoration:none;transition:color .2s ease;}
     .gate-footer a:hover{color:#FFFFFF;}
@@ -116,13 +82,9 @@
   </style>
 </head>
 <body>
-
 <div class="bg-grid"></div>
-
 <div class="lang-bar">
-  <a href="index.html" class="logo">
-    <img src="GFILOGO.png" alt="GFI Flow Intelligence">
-  </a>
+  <a href="index.html" class="logo"><img src="GFILOGO.png" alt="GFI Flow Intelligence"></a>
   <div class="lang-grp">
     <button class="lb-btn on" data-lang="en" type="button">EN</button>
     <button class="lb-btn" data-lang="tw" type="button">繁</button>
@@ -133,280 +95,184 @@
 
 <!-- ═══ EN ═══ -->
 <section class="lb active" data-lang="en">
-  <main><div class="hero-wrap">
-    <div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
-    <h1 class="gate-title">Other tools measure <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">what</em> happened. GL measures <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">why</em> it failed.</h1>
-    <p class="hero-definition">The only formula that diagnoses delivery system failure using public data alone — no internal access, no six-month audit, applicable across any jurisdiction.</p>
-    <p class="gate-sub">Delivery systems can look functional while failing the people they serve. GL makes that invisible failure visible.</p>
-    <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">Published on SSRN · Validated across 18 jurisdictions · Results in two weeks</p>
-    <div class="research-strip">
-      <div class="research-badge"><span class="research-dot"></span>SSRN Published · 18 Jurisdictions Validated</div>
-      <p class="research-note">Developed by Ping Xu, public administration researcher and independent governance analyst, Boston. Published in PA Times and SSRN. Applied across 18 jurisdictions using public data only.</p>
-      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">View SSRN Research <span class="gc-arrow">→</span></a>
-      <a href="government.html#one-stop-video" class="research-btn">See Government One-Stop Example <span class="gc-arrow">→</span></a>
+<main><div class="hero-wrap">
+  <div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
+  <h1 class="gate-title">Other tools measure <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">what</em> happened.<br>GL shows what you can <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">defend</em>.</h1>
+  <p class="hero-definition">A diagnostic framework that turns delivery uncertainty into defensible numbers.</p>
+  <p class="hero-no-risk">No system access &nbsp;·&nbsp; No installation &nbsp;·&nbsp; No exposure &nbsp;·&nbsp; Works with public or CSV data only</p>
+  <p class="hero-built-for">Built to support decision-makers — not to audit them.</p>
+  <p class="gate-sub">Most systems don't fail on budget or intent.<br>They fail in execution — where no one has measurable visibility.<br>GL makes that visible — before it becomes a problem.</p>
+  <p class="hero-room">You don't need another report.<br>You need something you can bring into the room.</p>
+  <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">Published on SSRN · Applied across 18 jurisdictions · Results in two weeks</p>
+  <div class="no-access-bar">No Internal Access &nbsp;·&nbsp; No System Risk &nbsp;·&nbsp; Fully External Diagnostic</div>
+  <div class="research-strip">
+    <div class="research-badge"><span class="research-dot"></span>SSRN Published · 18 Jurisdictions Validated</div>
+    <p class="research-note">Developed by Ping Xu — Published in PA Times &amp; SSRN — Used in multi-jurisdiction analysis</p>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">View SSRN Research <span class="gc-arrow">→</span></a>
+    <a href="government.html#one-stop-video" class="research-btn">See Government One-Stop Example <span class="gc-arrow">→</span></a>
+  </div>
+  <div class="exec-bridge">
+    <div class="exec-kicker">For CFOs · Boards · Executive Review</div>
+    <div class="exec-lines">
+      <div class="exec-line">You know <strong>the system is slowing down</strong>.</div>
+      <div class="exec-line">What you don't yet have is <strong>a number you can put on the table</strong>.</div>
+      <div class="exec-line">GL Framework turns that into <strong>a report leadership can discuss and act on</strong>.</div>
     </div>
-    <div class="exec-bridge">
-      <div class="exec-kicker">For CFOs · Boards · Executive Review</div>
-      <div class="exec-lines">
-        <div class="exec-line">You know <strong>the system is slowing down</strong>.</div>
-        <div class="exec-line">What you don't yet have is <strong>a number you can put on the table</strong>.</div>
-        <div class="exec-line">GL Framework turns that into <strong>a report leadership can discuss and act on</strong>.</div>
-      </div>
-      <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="exec-cta" target="_blank" rel="noopener">Request a Structural Analysis <span class="gc-arrow">→</span></a>
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="exec-cta" target="_blank" rel="noopener">Get a 30-Min Diagnostic <span class="gc-arrow">→</span></a>
+  </div>
+  <div class="gate-cards">
+    <a href="government.html" class="gate-card gov">
+      <div class="gc-sector">Public Sector</div>
+      <div class="gc-title">Government &amp; Public Administration</div>
+      <div class="gc-desc">Independent structural diagnosis of administrative systems and delivery friction.</div>
+      <ul class="gc-items"><li>Structural efficiency of administrative systems</li><li>Cross-jurisdiction comparison</li><li>Public audit dataset analysis</li></ul>
+      <div class="gc-cta">Enter <span class="gc-arrow">→</span></div>
+    </a>
+    <a href="enterprise.html" class="gate-card priv">
+      <div class="gc-sector">Private Sector</div>
+      <div class="gc-title">Enterprise &amp; Capital Efficiency</div>
+      <div class="gc-desc">Verify whether transformation improves capital velocity or multiplies friction.</div>
+      <ul class="gc-items"><li>Measure operational drag after automation</li><li>Detect hidden rework loops</li><li>Compare efficiency before and after change</li></ul>
+      <div class="gc-cta">Enter <span class="gc-arrow">→</span></div>
+    </a>
+  </div>
+  <div class="pa-strip">
+    <div class="pa-strip-label">Featured in PA Times · American Society for Public Administration</div>
+    <div class="pa-articles">
+      <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article"><div class="pa-date">Mar 13, 2026</div><div class="pa-title">The Denominator Problem</div><div class="pa-summary">Why policy failures stem from broken delivery design, not insufficient funding.</div></a>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">Apr 3, 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Coming Soon</span></div><div class="pa-title">Proportional Sequencing in Long-Term Care</div><div class="pa-summary">How reordering safeguards reduces access delays in HCBS programs without removing oversight.</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Advance review → ping@gfiintel.com</div></div>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">Apr 24, 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Coming Soon</span></div><div class="pa-title">What Global Benefit Systems Reveal About Policy Delivery</div><div class="pa-summary">Rwanda, Estonia, Singapore, and Canada show that delivery design determines outcomes as much as policy design.</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Advance review → ping@gfiintel.com</div></div>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">May 22, 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Coming Soon</span></div><div class="pa-title">What One-Stop Service Reveals About Delivery Problem</div><div class="pa-summary">China's one-stop model illustrates a universal principle: coordination burden should sit with systems, not citizens.</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Advance review → ping@gfiintel.com</div></div>
     </div>
-    <div class="gate-cards">
-      <a href="government.html" class="gate-card gov">
-        <div class="gc-sector">Public Sector</div>
-        <div class="gc-title">Government &amp; Public Administration</div>
-        <div class="gc-desc">Independent structural diagnosis of administrative systems and delivery friction.</div>
-        <ul class="gc-items"><li>Structural efficiency of administrative systems</li><li>Cross-jurisdiction comparison</li><li>Public audit dataset analysis</li></ul>
-        <div class="gc-cta">Enter <span class="gc-arrow">→</span></div>
-      </a>
-      <a href="enterprise.html" class="gate-card priv">
-        <div class="gc-sector">Private Sector</div>
-        <div class="gc-title">Enterprise &amp; Capital Efficiency</div>
-        <div class="gc-desc">Verify whether transformation improves capital velocity or multiplies friction.</div>
-        <ul class="gc-items"><li>Measure operational drag after automation</li><li>Detect hidden rework loops</li><li>Compare efficiency before and after change</li></ul>
-        <div class="gc-cta">Enter <span class="gc-arrow">→</span></div>
-      </a>
-    </div>
-    <div class="pa-strip">
-      <div class="pa-strip-label">Featured in PA Times · American Society for Public Administration</div>
-      <div class="pa-articles">
-        <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
-          <div class="pa-date">Mar 13, 2026</div>
-          <div class="pa-title">The Denominator Problem</div>
-          <div class="pa-summary">Why policy failures stem from broken delivery design, not insufficient funding.</div>
-        </a>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">Apr 3, 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Coming Soon</span></div>
-          <div class="pa-title">Proportional Sequencing in Long-Term Care</div>
-          <div class="pa-summary">How reordering safeguards reduces access delays in HCBS programs without removing oversight.</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Advance review → ping@gfiintel.com</div>
-        </div>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">Apr 24, 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Coming Soon</span></div>
-          <div class="pa-title">What Global Benefit Systems Reveal About Policy Delivery</div>
-          <div class="pa-summary">Rwanda, Estonia, Singapore, and Canada show that delivery design determines outcomes as much as policy design.</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Advance review → ping@gfiintel.com</div>
-        </div>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">May 22, 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Coming Soon</span></div>
-          <div class="pa-title">What One-Stop Service Reveals About Delivery Problem</div>
-          <div class="pa-summary">China's one-stop model illustrates a universal principle: coordination burden should sit with systems, not citizens.</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Advance review → ping@gfiintel.com</div>
-        </div>
-      </div>
-    </div>
-  </div></main>
+  </div>
+</div></main>
 </section>
 
 <!-- ═══ TW ═══ -->
 <section class="lb" data-lang="tw">
-  <main><div class="hero-wrap">
-    <div class="gate-eyebrow">GFI Flow Intelligence · 波士頓</div>
-    <h1 class="gate-title">其他工具測量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">發生了什麼</em>。GL 測量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">為什麼失敗</em>。</h1>
-    <p class="hero-definition">唯一一個僅憑公開數據即可診斷交付系統失效的公式——無需內部數據、無需六個月審計、適用於任何司法管轄區。</p>
-    <p class="gate-sub">低效遞交讓社福系統看起來體面，骨子裡心酸。GL 讓這個看不見的失效變得可見。</p>
-    <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">已在 SSRN 發表 · 18 個司法管轄區驗證 · 兩週出結果</p>
-    <div class="research-strip">
-      <div class="research-badge"><span class="research-dot"></span>SSRN 已發表 · 18 個司法管轄區驗證</div>
-      <p class="research-note">由波士頓公共行政研究員、獨立治理分析師徐萍（Ping Xu）開發。已發表於 PA Times 及 SSRN。在 18 個司法管轄區僅使用公開數據完成驗證。</p>
-      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">查看 SSRN 研究 <span class="gc-arrow">→</span></a>
+<main><div class="hero-wrap">
+  <div class="gate-eyebrow">GFI Flow Intelligence · 波士頓</div>
+  <h1 class="gate-title">其他工具測量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">發生了什麼</em>。<br>GL 給你<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">可以被捍衛的數字</em>。</h1>
+  <p class="hero-definition">一套把交付不確定性轉化為可被答辯數據的診斷框架。</p>
+  <p class="hero-no-risk">無需系統存取 &nbsp;·&nbsp; 無需安裝 &nbsp;·&nbsp; 零風險暴露 &nbsp;·&nbsp; 僅使用公開或 CSV 數據</p>
+  <p class="hero-built-for">為決策者而建——不是為了審計他們。</p>
+  <p class="gate-sub">大多數系統不是因為預算或意圖而失敗。<br>失敗發生在執行層面——沒有人具備可量化的可視度。<br>GL 讓那個隱形之處變得可見——在它成為問題之前。</p>
+  <p class="hero-room">你不需要另一份報告。<br>你需要的是可以帶進會議室的東西。</p>
+  <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">已在 SSRN 發表 · 18 個司法管轄區驗證 · 兩週出結果</p>
+  <div class="no-access-bar">無需內部存取 &nbsp;·&nbsp; 零系統風險 &nbsp;·&nbsp; 完全外部診斷</div>
+  <div class="research-strip">
+    <div class="research-badge"><span class="research-dot"></span>SSRN 已發表 · 18 個司法管轄區驗證</div>
+    <p class="research-note">由徐萍（Ping Xu）開發 — 發表於 PA Times 及 SSRN — 用於多司法管轄區分析</p>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">查看 SSRN 研究 <span class="gc-arrow">→</span></a>
+  </div>
+  <div class="exec-bridge">
+    <div class="exec-kicker">給 CFO · 董事會 · 高層決策者</div>
+    <div class="exec-lines">
+      <div class="exec-line">你知道<strong>系統正在變慢</strong>。</div>
+      <div class="exec-line">你還沒有的，是<strong>一個可以放上桌的數字</strong>。</div>
+      <div class="exec-line">GL Framework 把它變成<strong>高層可以討論、可以行動的報告</strong>。</div>
     </div>
-    <div class="exec-bridge">
-      <div class="exec-kicker">給 CFO · 董事會 · 高層決策者</div>
-      <div class="exec-lines">
-        <div class="exec-line">你知道<strong>系統正在變慢</strong>。</div>
-        <div class="exec-line">你還沒有的，是<strong>一個可以放上桌的數字</strong>。</div>
-        <div class="exec-line">GL Framework 把它變成<strong>高層可以討論、可以行動的報告</strong>。</div>
-      </div>
-      <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="exec-cta" target="_blank" rel="noopener">預約結構分析 <span class="gc-arrow">→</span></a>
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="exec-cta" target="_blank" rel="noopener">預約 30 分鐘診斷 <span class="gc-arrow">→</span></a>
+  </div>
+  <div class="gate-cards">
+    <a href="government.html" class="gate-card gov"><div class="gc-sector">公部門</div><div class="gc-title">政府與公共行政</div><div class="gc-desc">對行政系統與政策交付摩擦進行獨立結構診斷。</div><ul class="gc-items"><li>行政系統的結構效率測量</li><li>跨司法管轄比較</li><li>公開審計資料分析</li></ul><div class="gc-cta">進入 <span class="gc-arrow">→</span></div></a>
+    <a href="enterprise.html" class="gate-card priv"><div class="gc-sector">民間企業</div><div class="gc-title">企業與資本效率</div><div class="gc-desc">驗證轉型究竟提升資本速度，還是放大制度摩擦。</div><ul class="gc-items"><li>衡量自動化後的營運拖累</li><li>找出隱藏返工迴圈</li><li>比較變革前後效率差值</li></ul><div class="gc-cta">進入 <span class="gc-arrow">→</span></div></a>
+  </div>
+  <div class="pa-strip">
+    <div class="pa-strip-label">刊登於 PA Times · 美國公共行政學會</div>
+    <div class="pa-articles">
+      <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article"><div class="pa-date">2026年3月13日</div><div class="pa-title">分母問題</div><div class="pa-summary">政策失敗源於交付系統設計失效，而非資源不足。</div></a>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年4月3日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即將刊出</span></div><div class="pa-title">長期照護中的比例順序設計</div><div class="pa-summary">在不移除審查機制的前提下重新排序，可減少 HCBS 計畫的入系延誤。</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前閱讀草稿 → ping@gfiintel.com</div></div>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年4月24日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即將刊出</span></div><div class="pa-title">國際福利系統對政策交付的啟示</div><div class="pa-summary">盧安達、愛沙尼亞、新加坡、加拿大的經驗顯示：交付設計與政策設計同等重要。</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前閱讀草稿 → ping@gfiintel.com</div></div>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年5月22日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即將刊出</span></div><div class="pa-title">一站到位服務揭示的交付問題</div><div class="pa-summary">中國的一站式模式體現了一個普世原則：協調負擔應由系統承擔，而非公民。</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前閱讀草稿 → ping@gfiintel.com</div></div>
     </div>
-    <div class="gate-cards">
-      <a href="government.html" class="gate-card gov">
-        <div class="gc-sector">公部門</div>
-        <div class="gc-title">政府與公共行政</div>
-        <div class="gc-desc">對行政系統與政策交付摩擦進行獨立結構診斷。</div>
-        <ul class="gc-items"><li>行政系統的結構效率測量</li><li>跨司法管轄比較</li><li>公開審計資料分析</li></ul>
-        <div class="gc-cta">進入 <span class="gc-arrow">→</span></div>
-      </a>
-      <a href="enterprise.html" class="gate-card priv">
-        <div class="gc-sector">民間企業</div>
-        <div class="gc-title">企業與資本效率</div>
-        <div class="gc-desc">驗證轉型究竟提升資本速度，還是放大制度摩擦。</div>
-        <ul class="gc-items"><li>衡量自動化後的營運拖累</li><li>找出隱藏返工迴圈</li><li>比較變革前後效率差值</li></ul>
-        <div class="gc-cta">進入 <span class="gc-arrow">→</span></div>
-      </a>
-    </div>
-    <div class="pa-strip">
-      <div class="pa-strip-label">刊登於 PA Times · 美國公共行政學會</div>
-      <div class="pa-articles">
-        <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
-          <div class="pa-date">2026年3月13日</div>
-          <div class="pa-title">分母問題</div>
-          <div class="pa-summary">政策失敗源於交付系統設計失效，而非資源不足。</div>
-        </a>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年4月3日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即將刊出</span></div>
-          <div class="pa-title">長期照護中的比例順序設計</div>
-          <div class="pa-summary">在不移除審查機制的前提下重新排序，可減少 HCBS 計畫的入系延誤。</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前閱讀草稿 → ping@gfiintel.com</div>
-        </div>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年4月24日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即將刊出</span></div>
-          <div class="pa-title">國際福利系統對政策交付的啟示</div>
-          <div class="pa-summary">盧安達、愛沙尼亞、新加坡、加拿大的經驗顯示：交付設計與政策設計同等重要。</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前閱讀草稿 → ping@gfiintel.com</div>
-        </div>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年5月22日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即將刊出</span></div>
-          <div class="pa-title">一站到位服務揭示的交付問題</div>
-          <div class="pa-summary">中國的一站式模式體現了一個普世原則：協調負擔應由系統承擔，而非公民。</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前閱讀草稿 → ping@gfiintel.com</div>
-        </div>
-      </div>
-    </div>
-  </div></main>
+  </div>
+</div></main>
 </section>
 
 <!-- ═══ CN ═══ -->
 <section class="lb" data-lang="cn">
-  <main><div class="hero-wrap">
-    <div class="gate-eyebrow">GFI Flow Intelligence · 波士顿</div>
-    <h1 class="gate-title">其他工具测量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">发生了什么</em>。GL 测量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">为什么失败</em>。</h1>
-    <p class="hero-definition">唯一一个仅凭公开数据即可诊断交付系统失效的公式——无需内部数据、无需六个月审计、适用于任何司法管辖区。</p>
-    <p class="gate-sub">低效递交让社福系统看起来体面，骨子里心酸。GL 让这个看不见的失效变得可见。</p>
-    <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">已在 SSRN 发表 · 18 个司法管辖区验证 · 两周出结果</p>
-    <div class="research-strip">
-      <div class="research-badge"><span class="research-dot"></span>SSRN 已发表 · 18 个司法管辖区验证</div>
-      <p class="research-note">由波士顿公共行政研究员、独立治理分析师徐萍（Ping Xu）开发。已发表于 PA Times 及 SSRN。在 18 个司法管辖区仅使用公开数据完成验证。</p>
-      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">查看 SSRN 研究 <span class="gc-arrow">→</span></a>
+<main><div class="hero-wrap">
+  <div class="gate-eyebrow">GFI Flow Intelligence · 波士顿</div>
+  <h1 class="gate-title">其他工具测量<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">发生了什么</em>。<br>GL 给你<em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">可以被捍卫的数字</em>。</h1>
+  <p class="hero-definition">一套把交付不确定性转化为可被答辩数据的诊断框架。</p>
+  <p class="hero-no-risk">无需系统存取 &nbsp;·&nbsp; 无需安装 &nbsp;·&nbsp; 零风险暴露 &nbsp;·&nbsp; 仅使用公开或 CSV 数据</p>
+  <p class="hero-built-for">为决策者而建——不是为了审计他们。</p>
+  <p class="gate-sub">大多数系统不是因为预算或意图而失败。<br>失败发生在执行层面——没有人具备可量化的可视度。<br>GL 让那个隐形之处变得可见——在它成为问题之前。</p>
+  <p class="hero-room">你不需要另一份报告。<br>你需要的是可以带进会议室的东西。</p>
+  <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">已在 SSRN 发表 · 18 个司法管辖区验证 · 两周出结果</p>
+  <div class="no-access-bar">无需内部存取 &nbsp;·&nbsp; 零系统风险 &nbsp;·&nbsp; 完全外部诊断</div>
+  <div class="research-strip">
+    <div class="research-badge"><span class="research-dot"></span>SSRN 已发表 · 18 个司法管辖区验证</div>
+    <p class="research-note">由徐萍（Ping Xu）开发 — 发表于 PA Times 及 SSRN — 用于多司法管辖区分析</p>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">查看 SSRN 研究 <span class="gc-arrow">→</span></a>
+  </div>
+  <div class="exec-bridge">
+    <div class="exec-kicker">给 CFO · 董事会 · 高层决策者</div>
+    <div class="exec-lines">
+      <div class="exec-line">你知道<strong>系统正在变慢</strong>。</div>
+      <div class="exec-line">你还没有的，是<strong>一个可以放上桌的数字</strong>。</div>
+      <div class="exec-line">GL Framework 把它变成<strong>高层可以讨论、可以行动的报告</strong>。</div>
     </div>
-    <div class="exec-bridge">
-      <div class="exec-kicker">给 CFO · 董事会 · 高层决策者</div>
-      <div class="exec-lines">
-        <div class="exec-line">你知道<strong>系统正在变慢</strong>。</div>
-        <div class="exec-line">你还没有的，是<strong>一个可以放上桌的数字</strong>。</div>
-        <div class="exec-line">GL Framework 把它变成<strong>高层可以讨论、可以行动的报告</strong>。</div>
-      </div>
-      <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="exec-cta" target="_blank" rel="noopener">预约结构分析 <span class="gc-arrow">→</span></a>
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="exec-cta" target="_blank" rel="noopener">预约 30 分钟诊断 <span class="gc-arrow">→</span></a>
+  </div>
+  <div class="gate-cards">
+    <a href="government.html" class="gate-card gov"><div class="gc-sector">公共部门</div><div class="gc-title">政府与公共行政</div><div class="gc-desc">对行政系统与政策交付摩擦进行独立结构诊断。</div><ul class="gc-items"><li>行政系统的结构效率测量</li><li>跨司法辖区比较</li><li>公开审计资料分析</li></ul><div class="gc-cta">进入 <span class="gc-arrow">→</span></div></a>
+    <a href="enterprise.html" class="gate-card priv"><div class="gc-sector">民间企业</div><div class="gc-title">企业与资本效率</div><div class="gc-desc">验证转型究竟提升资本速度，还是放大制度摩擦。</div><ul class="gc-items"><li>衡量自动化后的运营拖累</li><li>找出隐藏返工循环</li><li>比较变革前后效率差值</li></ul><div class="gc-cta">进入 <span class="gc-arrow">→</span></div></a>
+  </div>
+  <div class="pa-strip">
+    <div class="pa-strip-label">刊登于 PA Times · 美国公共行政学会</div>
+    <div class="pa-articles">
+      <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article"><div class="pa-date">2026年3月13日</div><div class="pa-title">分母问题</div><div class="pa-summary">政策失败源于交付系统设计失效，而非资源不足。</div></a>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年4月3日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即将刊出</span></div><div class="pa-title">长期照护中的比例顺序设计</div><div class="pa-summary">在不移除审查机制的前提下重新排序，可减少 HCBS 计划的入系延误。</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前阅读草稿 → ping@gfiintel.com</div></div>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年4月24日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即将刊出</span></div><div class="pa-title">国际福利系统对政策交付的启示</div><div class="pa-summary">卢安达、爱沙尼亚、新加坡、加拿大的经验显示：交付设计与政策设计同等重要。</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前阅读草稿 → ping@gfiintel.com</div></div>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年5月22日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即将刊出</span></div><div class="pa-title">一站到位服务揭示的交付问题</div><div class="pa-summary">中国的一站式模式体现了一个普世原则：协调负担应由系统承担，而非公民。</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前阅读草稿 → ping@gfiintel.com</div></div>
     </div>
-    <div class="gate-cards">
-      <a href="government.html" class="gate-card gov">
-        <div class="gc-sector">公共部门</div>
-        <div class="gc-title">政府与公共行政</div>
-        <div class="gc-desc">对行政系统与政策交付摩擦进行独立结构诊断。</div>
-        <ul class="gc-items"><li>行政系统的结构效率测量</li><li>跨司法辖区比较</li><li>公开审计资料分析</li></ul>
-        <div class="gc-cta">进入 <span class="gc-arrow">→</span></div>
-      </a>
-      <a href="enterprise.html" class="gate-card priv">
-        <div class="gc-sector">民间企业</div>
-        <div class="gc-title">企业与资本效率</div>
-        <div class="gc-desc">验证转型究竟提升资本速度，还是放大制度摩擦。</div>
-        <ul class="gc-items"><li>衡量自动化后的运营拖累</li><li>找出隐藏返工循环</li><li>比较变革前后效率差值</li></ul>
-        <div class="gc-cta">进入 <span class="gc-arrow">→</span></div>
-      </a>
-    </div>
-    <div class="pa-strip">
-      <div class="pa-strip-label">刊登于 PA Times · 美国公共行政学会</div>
-      <div class="pa-articles">
-        <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
-          <div class="pa-date">2026年3月13日</div>
-          <div class="pa-title">分母问题</div>
-          <div class="pa-summary">政策失败源于交付系统设计失效，而非资源不足。</div>
-        </a>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年4月3日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即将刊出</span></div>
-          <div class="pa-title">长期照护中的比例顺序设计</div>
-          <div class="pa-summary">在不移除审查机制的前提下重新排序，可减少 HCBS 计划的入系延误。</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前阅读草稿 → ping@gfiintel.com</div>
-        </div>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年4月24日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即将刊出</span></div>
-          <div class="pa-title">国际福利系统对政策交付的启示</div>
-          <div class="pa-summary">卢安达、爱沙尼亚、新加坡、加拿大的经验显示：交付设计与政策设计同等重要。</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前阅读草稿 → ping@gfiintel.com</div>
-        </div>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">2026年5月22日</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">即将刊出</span></div>
-          <div class="pa-title">一站到位服务揭示的交付问题</div>
-          <div class="pa-summary">中国的一站式模式体现了一个普世原则：协调负担应由系统承担，而非公民。</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">提前阅读草稿 → ping@gfiintel.com</div>
-        </div>
-      </div>
-    </div>
-  </div></main>
+  </div>
+</div></main>
 </section>
 
 <!-- ═══ ES ═══ -->
 <section class="lb" data-lang="es">
-  <main><div class="hero-wrap">
-    <div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
-    <h1 class="gate-title">Otras herramientas miden <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">qué</em> ocurrió. GL mide <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">por qué</em> falló.</h1>
-    <p class="hero-definition">La única fórmula que diagnostica el fallo de sistemas de entrega usando solo datos públicos — sin acceso interno, sin auditorías de seis meses, aplicable en cualquier jurisdicción.</p>
-    <p class="gate-sub">Un sistema puede parecer funcional mientras falla a las personas que debe servir. GL hace visible ese fallo invisible.</p>
-    <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">Publicado en SSRN · Validado en 18 jurisdicciones · Resultados en dos semanas</p>
-    <div class="research-strip">
-      <div class="research-badge"><span class="research-dot"></span>Publicado en SSRN · 18 Jurisdicciones Validadas</div>
-      <p class="research-note">Desarrollado por Ping Xu, investigadora de administración pública y analista independiente de gobernanza, Boston. Publicado en PA Times y SSRN. Aplicado en 18 jurisdicciones usando únicamente datos públicos.</p>
-      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">Ver Investigación en SSRN <span class="gc-arrow">→</span></a>
-      <a href="government.html#one-stop-video" class="research-btn">Ver Ejemplo de Ventanilla Única <span class="gc-arrow">→</span></a>
+<main><div class="hero-wrap">
+  <div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
+  <h1 class="gate-title">Otras herramientas miden <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#7DD3FC;">qué</em> ocurrió.<br>GL muestra lo que puede <em style="font-family:'DM Serif Display',serif;font-style:italic;color:#9FE870;">defender</em>.</h1>
+  <p class="hero-definition">Un marco diagnóstico que convierte la incertidumbre de entrega en números defendibles.</p>
+  <p class="hero-no-risk">Sin acceso a sistemas &nbsp;·&nbsp; Sin instalación &nbsp;·&nbsp; Sin exposición &nbsp;·&nbsp; Solo datos públicos o CSV</p>
+  <p class="hero-built-for">Construido para apoyar a los tomadores de decisiones — no para auditarlos.</p>
+  <p class="gate-sub">La mayoría de los sistemas no fallan por presupuesto o intención.<br>Fallan en la ejecución — donde nadie tiene visibilidad medible.<br>GL hace eso visible — antes de que se convierta en un problema.</p>
+  <p class="hero-room">No necesita otro informe.<br>Necesita algo que pueda llevar a la sala de reuniones.</p>
+  <p style="font-family:var(--mono);font-size:11px;letter-spacing:.10em;color:#7a90aa;text-align:center;margin-bottom:18px;">Publicado en SSRN · Aplicado en 18 jurisdicciones · Resultados en dos semanas</p>
+  <div class="no-access-bar">Sin Acceso Interno &nbsp;·&nbsp; Sin Riesgo de Sistema &nbsp;·&nbsp; Diagnóstico Completamente Externo</div>
+  <div class="research-strip">
+    <div class="research-badge"><span class="research-dot"></span>Publicado en SSRN · 18 Jurisdicciones Validadas</div>
+    <p class="research-note">Desarrollado por Ping Xu — Publicado en PA Times y SSRN — Usado en análisis multijurisdiccional</p>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">Ver Investigación en SSRN <span class="gc-arrow">→</span></a>
+    <a href="government.html#one-stop-video" class="research-btn">Ver Ejemplo de Ventanilla Única <span class="gc-arrow">→</span></a>
+  </div>
+  <div class="exec-bridge">
+    <div class="exec-kicker">Para CFOs · Directorios · Alta Dirección</div>
+    <div class="exec-lines">
+      <div class="exec-line">Usted sabe que <strong>el sistema está ralentizándose</strong>.</div>
+      <div class="exec-line">Lo que aún no tiene es <strong>un número que pueda poner sobre la mesa</strong>.</div>
+      <div class="exec-line">GL Framework convierte eso en <strong>un informe que la dirección puede discutir y ejecutar</strong>.</div>
     </div>
-    <div class="exec-bridge">
-      <div class="exec-kicker">Para CFOs · Directorios · Alta Dirección</div>
-      <div class="exec-lines">
-        <div class="exec-line">Usted sabe que <strong>el sistema está ralentizándose</strong>.</div>
-        <div class="exec-line">Lo que aún no tiene es <strong>un número que pueda poner sobre la mesa</strong>.</div>
-        <div class="exec-line">GL Framework convierte eso en <strong>un informe que la dirección puede discutir y ejecutar</strong>.</div>
-      </div>
-      <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="exec-cta" target="_blank" rel="noopener">Solicitar Análisis Estructural <span class="gc-arrow">→</span></a>
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="exec-cta" target="_blank" rel="noopener">Obtener Diagnóstico de 30 Min <span class="gc-arrow">→</span></a>
+  </div>
+  <div class="gate-cards">
+    <a href="government.html" class="gate-card gov"><div class="gc-sector">Sector Público</div><div class="gc-title">Gobierno y Administración Pública</div><div class="gc-desc">Diagnóstico estructural independiente de sistemas administrativos y fricción en la entrega de servicios.</div><ul class="gc-items"><li>Eficiencia estructural de sistemas administrativos</li><li>Comparación entre jurisdicciones</li><li>Análisis de datos de auditoría pública</li></ul><div class="gc-cta">Ingresar <span class="gc-arrow">→</span></div></a>
+    <a href="enterprise.html" class="gate-card priv"><div class="gc-sector">Sector Privado</div><div class="gc-title">Empresa y Eficiencia de Capital</div><div class="gc-desc">Verifique si la transformación mejora la velocidad del capital o multiplica la fricción.</div><ul class="gc-items"><li>Medir la carga operativa tras la automatización</li><li>Detectar ciclos ocultos de retrabajo</li><li>Comparar eficiencia antes y después del cambio</li></ul><div class="gc-cta">Ingresar <span class="gc-arrow">→</span></div></a>
+  </div>
+  <div class="pa-strip">
+    <div class="pa-strip-label">Publicado en PA Times · Sociedad Americana de Administración Pública</div>
+    <div class="pa-articles">
+      <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article"><div class="pa-date">13 mar 2026</div><div class="pa-title">El Problema del Denominador</div><div class="pa-summary">Por qué los fallos de política se originan en el diseño roto de entrega, no en la falta de financiamiento.</div></a>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">3 abr 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Próximamente</span></div><div class="pa-title">Secuenciación Proporcional en Cuidados de Larga Duración</div><div class="pa-summary">Cómo reordenar las salvaguardas reduce los retrasos de acceso en programas HCBS sin eliminar la supervisión.</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Revisión anticipada → ping@gfiintel.com</div></div>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">24 abr 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Próximamente</span></div><div class="pa-title">Lo que los Sistemas de Beneficios Globales Revelan sobre la Entrega de Políticas</div><div class="pa-summary">Ruanda, Estonia, Singapur y Canadá demuestran que el diseño de entrega determina los resultados tanto como el diseño de política.</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Revisión anticipada → ping@gfiintel.com</div></div>
+      <div class="pa-article" style="cursor:default;opacity:.75;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">22 may 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Próximamente</span></div><div class="pa-title">Lo que la Ventanilla Única Revela sobre el Problema de Entrega</div><div class="pa-summary">El modelo de ventanilla única de China ilustra un principio universal: la carga de coordinación debe recaer en los sistemas, no en los ciudadanos.</div><div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Revisión anticipada → ping@gfiintel.com</div></div>
     </div>
-    <div class="gate-cards">
-      <a href="government.html" class="gate-card gov">
-        <div class="gc-sector">Sector Público</div>
-        <div class="gc-title">Gobierno y Administración Pública</div>
-        <div class="gc-desc">Diagnóstico estructural independiente de sistemas administrativos y fricción en la entrega de servicios.</div>
-        <ul class="gc-items"><li>Eficiencia estructural de sistemas administrativos</li><li>Comparación entre jurisdicciones</li><li>Análisis de datos de auditoría pública</li></ul>
-        <div class="gc-cta">Ingresar <span class="gc-arrow">→</span></div>
-      </a>
-      <a href="enterprise.html" class="gate-card priv">
-        <div class="gc-sector">Sector Privado</div>
-        <div class="gc-title">Empresa y Eficiencia de Capital</div>
-        <div class="gc-desc">Verifique si la transformación mejora la velocidad del capital o multiplica la fricción.</div>
-        <ul class="gc-items"><li>Medir la carga operativa tras la automatización</li><li>Detectar ciclos ocultos de retrabajo</li><li>Comparar eficiencia antes y después del cambio</li></ul>
-        <div class="gc-cta">Ingresar <span class="gc-arrow">→</span></div>
-      </a>
-    </div>
-    <div class="pa-strip">
-      <div class="pa-strip-label">Publicado en PA Times · Sociedad Americana de Administración Pública</div>
-      <div class="pa-articles">
-        <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
-          <div class="pa-date">13 mar 2026</div>
-          <div class="pa-title">El Problema del Denominador</div>
-          <div class="pa-summary">Por qué los fallos de política se originan en el diseño roto de entrega, no en la falta de financiamiento.</div>
-        </a>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">3 abr 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Próximamente</span></div>
-          <div class="pa-title">Secuenciación Proporcional en Cuidados de Larga Duración</div>
-          <div class="pa-summary">Cómo reordenar las salvaguardas reduce los retrasos de acceso en programas HCBS sin eliminar la supervisión.</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Revisión anticipada → ping@gfiintel.com</div>
-        </div>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">24 abr 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Próximamente</span></div>
-          <div class="pa-title">Lo que los Sistemas de Beneficios Globales Revelan sobre la Entrega de Políticas</div>
-          <div class="pa-summary">Ruanda, Estonia, Singapur y Canadá demuestran que el diseño de entrega determina los resultados tanto como el diseño de política.</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Revisión anticipada → ping@gfiintel.com</div>
-        </div>
-        <div class="pa-article" style="cursor:default;opacity:.75;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><div class="pa-date">22 may 2026</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;">Próximamente</span></div>
-          <div class="pa-title">Lo que la Ventanilla Única Revela sobre el Problema de Entrega</div>
-          <div class="pa-summary">El modelo de ventanilla única de China ilustra un principio universal: la carga de coordinación debe recaer en los sistemas, no en los ciudadanos.</div>
-          <div style="font-family:var(--mono);font-size:10px;color:#9FE870;margin-top:8px;">Revisión anticipada → ping@gfiintel.com</div>
-        </div>
-      </div>
-    </div>
-  </div></main>
+  </div>
+</div></main>
 </section>
 
 <div class="gate-footer">
