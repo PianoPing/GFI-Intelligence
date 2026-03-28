@@ -1,350 +1,933 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GL helps public agencies evaluate delivery performance using public or operational data only — without internal system access, installation, or integration.">
-<title>Public Sector | GFI Flow Intelligence</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#141d2e;--surf:#1c2740;--surf2:#22304e;
-  --border:rgba(255,255,255,0.08);--text:#edf0f8;
-  --muted:#8fa3c0;--dim:#4a6080;--accent:#c8f542;--blue:#4da3ff;
-  --serif:'DM Serif Display',Georgia,serif;
-  --mono:'DM Mono',monospace;
-  --sans:'DM Sans',system-ui,sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.75;overflow-x:hidden}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Public Sector | GFI Flow Intelligence</title>
+  <meta name="description" content="GL Framework for public sector delivery diagnostics across Traditional Chinese, Simplified Chinese, English, and Spanish." />
+  <meta name="author" content="Ping Xu" />
 
-/* NAV */
-header{position:fixed;inset:0 0 auto 0;z-index:100;height:60px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(20,29,46,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.logo img{height:44px;width:auto}
-nav{display:flex;align-items:center;gap:4px}
-nav a{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px;white-space:nowrap;transition:color .2s,background .2s}
-nav a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
-nav a.active{color:var(--accent)}
-.nav-cta{display:inline-block;padding:8px 16px;background:var(--accent);color:#0d1117;font-size:13px;font-weight:600;border-radius:6px;text-decoration:none;margin-left:8px;white-space:nowrap;transition:opacity .2s}
-.nav-cta:hover{opacity:.85}
-.ham{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;padding:6px;background:none;border:none;cursor:pointer}
-.ham span{display:block;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .2s}
-.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.ham.open span:nth-child(2){opacity:0}
-.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.drawer{display:none;position:fixed;top:60px;left:0;right:0;z-index:99;background:rgba(20,29,46,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:16px 24px 24px;flex-direction:column}
-.drawer.open{display:flex}
-.drawer a{font-size:17px;color:var(--muted);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s}
-.drawer a:hover{color:var(--text)}
-.drawer-cta{display:block;text-align:center;padding:16px;background:var(--accent);color:#0d1117;font-weight:600;font-size:16px;border-radius:8px;text-decoration:none;margin-top:16px;border-bottom:none!important}
+  <meta property="og:title" content="Public Sector | GFI Flow Intelligence" />
+  <meta property="og:description" content="A single metric that explains system delivery performance." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gfiintel.com/government.html" />
+  <meta property="og:image" content="https://gfiintel.com/preview.jpg" />
 
-/* LAYOUT */
-.wrap{max-width:1060px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
-section{padding:clamp(60px,9vh,100px) 0}
-section.band{background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
-h2.stitle{font-family:var(--serif);font-size:clamp(22px,2.8vw,34px);line-height:1.12;letter-spacing:-.02em;margin-bottom:14px}
-.slead{font-size:clamp(16px,1.9vw,18px);color:var(--muted);max-width:680px;line-height:1.8}
+  <link rel="canonical" href="https://gfiintel.com/government.html" />
 
-/* BUTTONS */
-.btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(24px,4vh,36px)}
-.btn-solid{display:inline-flex;align-items:center;padding:13px clamp(20px,2.5vw,30px);background:var(--accent);color:#0d1117;font-weight:600;font-size:clamp(14px,1.6vw,15px);border-radius:8px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s}
-.btn-solid:hover{opacity:.87;transform:translateY(-1px)}
-.btn-ghost{display:inline-flex;align-items:center;padding:13px clamp(20px,2.5vw,30px);border:1px solid var(--border);color:var(--muted);font-size:clamp(14px,1.6vw,15px);border-radius:8px;text-decoration:none;white-space:nowrap;transition:all .2s}
-.btn-ghost:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
-/* ── HERO: two-column ── */
-.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding-top:60px}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse 80% 50% at 50% 0%,black 20%,transparent 75%);pointer-events:none}
-.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(200,245,66,.05) 0%,transparent 70%);top:-150px;right:-150px;pointer-events:none}
-.hero-inner{position:relative;width:100%;padding:clamp(60px,10vh,100px) 0}
-.hero-cols{display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(32px,5vw,64px);align-items:center}
-.hero h1{font-family:var(--serif);font-size:clamp(28px,3.8vw,50px);line-height:1.08;letter-spacing:-.025em;margin-bottom:16px;opacity:0;animation:up .6s .1s forwards}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero-sub{font-size:clamp(16px,1.9vw,19px);color:var(--muted);line-height:1.75;margin-bottom:10px;opacity:0;animation:up .6s .28s forwards}
-.hero-norisk{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--dim);opacity:0;animation:up .6s .38s forwards}
-.hero-aside{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--border);border-radius:20px;padding:clamp(22px,3vw,32px);opacity:0;animation:up .6s .48s forwards}
-.hero-aside-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
-.aside-pts{display:flex;flex-direction:column;gap:12px}
-.aside-pt{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:16px 18px}
-.aside-pt strong{display:block;font-size:15px;color:var(--text);margin-bottom:4px}
-.aside-pt span{font-size:14px;color:var(--muted);line-height:1.55}
-@media(max-width:840px){.hero-cols{grid-template-columns:1fr}.hero-aside{display:none}}
+  <style>
+    :root{
+      --bg:#08111f;
+      --bg2:#0d1728;
+      --panel:#0f1b2d;
+      --line:rgba(255,255,255,.08);
+      --text:#f4f7fb;
+      --muted:#bfd0e6;
+      --soft:#91a7c4;
+      --lime:#c7f000;
+      --lime2:#eaff8f;
+      --max:1180px;
+      --shadow:0 18px 44px rgba(0,0,0,.28);
+    }
 
-/* ── 3 FIELDS ── */
-.fields-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2vw,18px);margin-top:clamp(28px,4vh,40px)}
-.field-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:clamp(20px,3vw,30px);transition:border-color .2s,background .2s}
-.field-card:hover{background:var(--surf2);border-color:rgba(200,245,66,.2)}
-.field-num{font-family:var(--serif);font-style:italic;font-size:clamp(40px,5vw,56px);color:rgba(200,245,66,.18);line-height:1;margin-bottom:10px}
-.field-label{font-family:var(--serif);font-size:clamp(16px,2vw,20px);color:var(--text);margin-bottom:7px;line-height:1.2}
-.field-desc{font-size:clamp(13px,1.5vw,14px);color:var(--muted);line-height:1.6}
-.info-strip{margin-top:clamp(18px,3vh,26px);padding:16px 22px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.025);font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.05em;line-height:1.7}
-@media(max-width:600px){.fields-grid{grid-template-columns:1fr}}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-size:15px;
+      line-height:1.62;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(73,96,255,.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(199,240,0,.08), transparent 24%),
+        linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);
+    }
 
-/* ── ROOM CARDS ── */
-.room-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2vw,18px);margin-top:clamp(28px,4vh,40px)}
-.room-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:clamp(20px,3vw,30px);transition:border-color .2s,background .2s}
-.room-card:hover{background:var(--surf2);border-color:rgba(200,245,66,.18)}
-.room-scenario{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-.room-quote{font-family:var(--serif);font-size:clamp(15px,1.9vw,19px);color:var(--text);line-height:1.4;font-style:italic}
-.room-tag{margin-top:12px;font-size:13px;color:var(--muted);line-height:1.55}
-.room-shift{margin-top:clamp(22px,3vh,32px);padding:clamp(16px,2.5vh,22px) clamp(20px,3vw,32px);border:1px solid var(--border);border-radius:12px;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(16px,2vw,20px);color:var(--muted)}
-.room-shift em{color:var(--text);font-style:normal}
-@media(max-width:600px){.room-grid{grid-template-columns:1fr}}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max), calc(100% - 40px)); margin:0 auto}
 
-/* ── PUBLICATIONS: large type ── */
-.pub-item{padding:clamp(28px,4vh,44px) 0;border-bottom:1px solid var(--border)}
-.pub-item:first-child{border-top:1px solid var(--border)}
-.pub-meta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-.pub-venue{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-.pub-venue.fc{color:var(--blue)}
-.pub-date{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--dim)}
-.pub-status{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:4px}
-.pub-status.published{background:rgba(200,245,66,.1);color:var(--accent);border:1px solid rgba(200,245,66,.2)}
-.pub-status.forthcoming{background:rgba(77,163,255,.1);color:var(--blue);border:1px solid rgba(77,163,255,.2)}
-.pub-title{font-family:var(--serif);font-size:clamp(18px,2vw,24px);line-height:1.25;letter-spacing:-.01em;color:var(--text);margin-bottom:10px}
-.pub-desc{font-size:clamp(14px,1.6vw,16px);color:var(--muted);line-height:1.75;max-width:700px;margin-bottom:16px}
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(12px);
+      background:rgba(8,17,31,.74);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
 
-/* ── FINAL CTA ── */
-.cta-panel{background:radial-gradient(circle at top right,rgba(200,245,66,.08),transparent 30%),linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(200,245,66,.15);border-radius:20px;padding:clamp(32px,5vw,52px);margin-top:clamp(28px,5vh,44px)}
-.cta-panel h3{font-family:var(--serif);font-size:clamp(22px,3vw,36px);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
-.cta-panel p{font-size:clamp(15px,1.8vw,17px);color:var(--muted);max-width:540px;line-height:1.8;margin-bottom:0}
-.cta-privacy{margin-top:clamp(14px,2vh,20px);font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--dim)}
+    .nav{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
 
-/* VIDEO */
-.video-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:14px;overflow:hidden;background:#0d1117;border:1px solid var(--border);margin-top:clamp(24px,3vh,36px)}
-.video-wrap video{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:contain}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.01em;
+    }
 
-footer{padding:clamp(28px,5vh,44px) clamp(20px,5vw,60px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:13px}
-footer a{color:var(--muted);text-decoration:none}
-footer a:hover{color:var(--text)}
-.footer-links{display:flex;gap:24px;flex-wrap:wrap}
+    .brand-mark{
+      width:12px;
+      height:12px;
+      border-radius:999px;
+      background:var(--lime);
+      box-shadow:0 0 18px rgba(199,240,0,.65);
+      flex:0 0 12px;
+    }
 
-@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s,transform .65s}
-.reveal.vis{opacity:1;transform:none}
-@media(max-width:768px){nav{display:none}.ham{display:flex}footer{flex-direction:column;text-align:center}}
-</style>
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      color:var(--soft);
+      font-size:14px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--text);
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .lang-btn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .lang-btn.active,
+    .lang-btn:hover{
+      background:var(--lime);
+      color:#111;
+      border-color:transparent;
+    }
+
+    section{
+      padding:72px 0;
+      border-top:1px solid rgba(255,255,255,.04);
+    }
+
+    .hero{
+      padding:82px 0 66px;
+      border-top:none;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.12fr .88fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:16px;
+      color:var(--lime);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .hero h1{
+      margin:0 0 16px;
+      font-family:"DM Serif Display", serif;
+      font-size:clamp(34px, 4.8vw, 56px);
+      line-height:1.05;
+      letter-spacing:-.02em;
+      max-width:760px;
+    }
+
+    .hero-lead{
+      max-width:720px;
+      margin:0 0 14px;
+      font-size:18px;
+      color:var(--muted);
+    }
+
+    .hero-sub{
+      max-width:720px;
+      margin:0;
+      font-size:15px;
+      color:var(--soft);
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 16px;
+      border-radius:15px;
+      border:1px solid var(--line);
+      color:var(--text);
+      background:transparent;
+      font-weight:700;
+      font-size:14px;
+      transition:.2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.16);
+    }
+
+    .btn-primary{
+      background:linear-gradient(180deg, #eaff8f 0%, #c7f000 100%);
+      color:#101010;
+      border:none;
+      box-shadow:0 10px 26px rgba(199,240,0,.18);
+    }
+
+    .hero-card,
+    .card,
+    .pub-card,
+    .cta-panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.025));
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card h3{
+      margin:0 0 14px;
+      font-size:15px;
+      color:var(--lime);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .hero-points{
+      display:grid;
+      gap:12px;
+    }
+
+    .hero-point{
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .hero-point strong{
+      display:block;
+      margin-bottom:5px;
+      font-size:15px;
+      color:#fff;
+    }
+
+    .hero-point span{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .section-title{
+      margin:0 0 12px;
+      font-family:"DM Serif Display", serif;
+      font-size:clamp(26px, 3.2vw, 40px);
+      line-height:1.1;
+      letter-spacing:-.01em;
+    }
+
+    .section-lead{
+      max-width:760px;
+      margin:0 0 24px;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .card h3,
+    .pub-card h3{
+      margin:0 0 10px;
+      font-family:"DM Serif Display", serif;
+      line-height:1.15;
+    }
+
+    .card h3{
+      font-size:20px;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .num{
+      display:block;
+      margin-bottom:12px;
+      font-family:"DM Serif Display", serif;
+      font-size:34px;
+      line-height:1;
+      color:var(--lime2);
+      font-style:italic;
+    }
+
+    .info-strip{
+      margin-top:20px;
+      padding:16px 18px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .pub-list{
+      display:grid;
+      gap:18px;
+    }
+
+    .pub-meta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+      color:var(--lime);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+
+    .pub-card h3{
+      font-size:24px;
+    }
+
+    .pub-card p{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .cta-panel h2{
+      margin:0 0 10px;
+      font-family:"DM Serif Display", serif;
+      font-size:clamp(28px, 3.6vw, 42px);
+      line-height:1.08;
+      letter-spacing:-.01em;
+    }
+
+    .cta-panel p{
+      margin:0 0 20px;
+      max-width:760px;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .footer{
+      padding:28px 0 40px;
+      border-top:1px solid rgba(255,255,255,.05);
+      color:var(--soft);
+      font-size:13px;
+    }
+
+    [data-lang]{display:none}
+    [data-lang].show{display:block}
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .grid-3{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 720px){
+      .container{width:min(var(--max), calc(100% - 24px))}
+      .nav{
+        min-height:auto;
+        padding:14px 0;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .nav-right{
+        width:100%;
+        justify-content:flex-start;
+      }
+      .cta-row{
+        flex-direction:column;
+      }
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"></span>
+        <span>GFI Flow Intelligence</span>
+      </a>
 
-<header>
-  <a href="index.html" class="logo"><img src="GFILOGO.png" alt="GFI"></a>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="government.html" class="active">Public Sector</a>
-    <a href="enterprise.html">Private Sector</a>
-    <a href="gl-demo.html">GL Demo</a>
-    <a href="about.html">Founder</a>
-    <a href="/cdn-cgi/l/email-protection#6502030c2502030c0c0b1100094b060a08" class="nav-cta">Contact</a>
-  </nav>
-  <button class="ham" id="ham" aria-label="Menu" onclick="toggleDrawer()">
-    <span></span><span></span><span></span>
-  </button>
-</header>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="government.html" class="active">Public Sector</a>
+          <a href="private.html">Private Sector</a>
+          <a href="gl-demo.html">GL Demo</a>
+          <a href="about.html">Researcher</a>
+          <a href="contact.html">Contact</a>
+        </nav>
 
-<div class="drawer" id="drawer">
-  <a href="index.html" onclick="closeDrawer()">Home</a>
-  <a href="government.html" onclick="closeDrawer()">Public Sector</a>
-  <a href="enterprise.html" onclick="closeDrawer()">Private Sector</a>
-  <a href="gl-demo.html" onclick="closeDrawer()">GL Demo</a>
-  <a href="about.html" onclick="closeDrawer()">Founder</a>
-  <a href="/cdn-cgi/l/email-protection#9afdfcf3dafdfcf3f3f4eefff6b4f9f5f7" class="drawer-cta" onclick="closeDrawer()">Contact →</a>
-</div>
-
-<!-- ① HERO: two-column -->
-<div class="hero">
-  <div class="hero-grid"></div><div class="hero-glow"></div>
-  <div class="wrap hero-inner">
-    <div class="hero-cols">
-      <div>
-        <span class="eyebrow" style="opacity:0;animation:up .6s .05s forwards">Public Sector · Government</span>
-        <h1>GL measures how well<br>a system <em>delivers its purpose.</em></h1>
-        <p class="hero-sub">A structural diagnostic built from public administrative data, enabling cross-jurisdictional comparison.</p>
-        <p class="hero-norisk">No internal access &nbsp;·&nbsp; No installation &nbsp;·&nbsp; No system integration</p>
-        <div class="btn-row" style="opacity:0;animation:up .6s .48s forwards">
-          <a href="gl-demo.html" class="btn-solid">Launch GL Demo →</a>
-          <a href="/cdn-cgi/l/email-protection#c7a0a1ae87a0a1aeaea9b3a2abe9a4a8aa" class="btn-ghost">Get in Touch</a>
-          <a href="about.html" class="btn-ghost">About the Researcher</a>
+        <div class="lang-switch">
+          <button class="lang-btn active" data-setlang="en">EN</button>
+          <button class="lang-btn" data-setlang="zh-Hant">繁</button>
+          <button class="lang-btn" data-setlang="zh-Hans">简</button>
+          <button class="lang-btn" data-setlang="es">ES</button>
         </div>
       </div>
-      <aside class="hero-aside">
-        <div class="hero-aside-label">What this page is for</div>
-        <div class="aside-pts">
-          <div class="aside-pt">
-            <strong>Compare delivery performance</strong>
-            <span>Across programs, agencies, or jurisdictions using publicly available data.</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div data-lang="en" class="show">
+            <span class="eyebrow">Public Sector · Government</span>
+            <h1>Measure how well a public system actually delivers.</h1>
+            <p class="hero-lead">A single metric that explains system delivery performance.</p>
+            <p class="hero-sub">Designed for agencies, departments, and public service leaders. No internal access. No installation. No system integration required.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="gl-demo.html">Launch GL Demo →</a>
+              <a class="btn" href="contact.html">Contact</a>
+              <a class="btn" href="about.html">About the Researcher</a>
+            </div>
           </div>
-          <div class="aside-pt">
-            <strong>Identify structural friction</strong>
-            <span>Without entering internal systems or triggering IT integration concerns.</span>
+
+          <div data-lang="zh-Hant">
+            <span class="eyebrow">政府部門</span>
+            <h1>衡量一個公共系統到底交付得好不好。</h1>
+            <p class="hero-lead">用一個指標，解釋系統交付績效。</p>
+            <p class="hero-sub">面向政府機關、部門與公共服務管理者。不需內部系統存取，不需安裝，不需系統整合。</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="gl-demo.html">開啟 GL Demo →</a>
+              <a class="btn" href="contact.html">聯絡</a>
+              <a class="btn" href="about.html">研究者簡介</a>
+            </div>
           </div>
-          <div class="aside-pt">
-            <strong>Support defensible discussion</strong>
-            <span>For budget hearings, oversight reviews, and internal leadership briefings.</span>
+
+          <div data-lang="zh-Hans">
+            <span class="eyebrow">政府部门</span>
+            <h1>衡量一个公共系统到底交付得好不好。</h1>
+            <p class="hero-lead">用一个指标，解释系统交付绩效。</p>
+            <p class="hero-sub">面向政府机构、部门与公共服务管理者。不需内部系统访问，不需安装，不需系统集成。</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="gl-demo.html">打开 GL Demo →</a>
+              <a class="btn" href="contact.html">联系</a>
+              <a class="btn" href="about.html">研究者简介</a>
+            </div>
+          </div>
+
+          <div data-lang="es">
+            <span class="eyebrow">Sector público · Gobierno</span>
+            <h1>Mida qué tan bien un sistema público realmente cumple.</h1>
+            <p class="hero-lead">Una sola métrica que explica el rendimiento de entrega del sistema.</p>
+            <p class="hero-sub">Diseñado para agencias, departamentos y responsables de servicios públicos. Sin acceso interno, sin instalación y sin integración de sistemas.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="gl-demo.html">Abrir GL Demo →</a>
+              <a class="btn" href="contact.html">Contacto</a>
+              <a class="btn" href="about.html">Sobre la investigadora</a>
+            </div>
           </div>
         </div>
-      </aside>
+
+        <aside class="hero-card">
+          <div data-lang="en" class="show">
+            <h3>What GL helps public agencies see</h3>
+            <div class="hero-points">
+              <div class="hero-point">
+                <strong>Where friction is accumulating</strong>
+                <span>Across intake, review, approval, appeal, or service activation.</span>
+              </div>
+              <div class="hero-point">
+                <strong>How delivery compares</strong>
+                <span>Across programs, units, or jurisdictions.</span>
+              </div>
+              <div class="hero-point">
+                <strong>Why outcomes weaken</strong>
+                <span>When time burden and process complexity rise.</span>
+              </div>
+            </div>
+          </div>
+
+          <div data-lang="zh-Hant">
+            <h3>GL 能幫政府看見什麼</h3>
+            <div class="hero-points">
+              <div class="hero-point">
+                <strong>摩擦累積在哪裡</strong>
+                <span>從受理、審查、核准、申訴到服務啟動都看得見。</span>
+              </div>
+              <div class="hero-point">
+                <strong>交付表現如何比較</strong>
+                <span>可跨方案、跨單位、跨轄區觀察。</span>
+              </div>
+              <div class="hero-point">
+                <strong>為什麼結果會變差</strong>
+                <span>當時間負擔與流程複雜度上升時。</span>
+              </div>
+            </div>
+          </div>
+
+          <div data-lang="zh-Hans">
+            <h3>GL 能帮政府看见什么</h3>
+            <div class="hero-points">
+              <div class="hero-point">
+                <strong>摩擦累积在哪里</strong>
+                <span>从受理、审查、核准、申诉到服务启动都看得见。</span>
+              </div>
+              <div class="hero-point">
+                <strong>交付表现如何比较</strong>
+                <span>可跨项目、跨单位、跨辖区观察。</span>
+              </div>
+              <div class="hero-point">
+                <strong>为什么结果会变差</strong>
+                <span>当时间负担与流程复杂度上升时。</span>
+              </div>
+            </div>
+          </div>
+
+          <div data-lang="es">
+            <h3>Lo que GL permite ver al sector público</h3>
+            <div class="hero-points">
+              <div class="hero-point">
+                <strong>Dónde se acumula la fricción</strong>
+                <span>Desde la recepción y revisión hasta la aprobación, apelación o activación del servicio.</span>
+              </div>
+              <div class="hero-point">
+                <strong>Cómo se compara la entrega</strong>
+                <span>Entre programas, unidades o jurisdicciones.</span>
+              </div>
+              <div class="hero-point">
+                <strong>Por qué se debilitan los resultados</strong>
+                <span>Cuando aumentan la carga de tiempo y la complejidad del proceso.</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div data-lang="en" class="show">
+          <span class="eyebrow">Why this matters</span>
+          <h2 class="section-title">Public delivery problems are often structural before they are political.</h2>
+          <p class="section-lead">A program may be well-funded and well-intended, yet still underperform because the path through the process is too slow, too layered, or too difficult to complete.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <span class="eyebrow">為什麼重要</span>
+          <h2 class="section-title">很多公共交付問題，先是結構問題，才是政治問題。</h2>
+          <p class="section-lead">一個方案即使預算充足、目標正確，仍可能表現不佳，因為整個流程太慢、太多層、太難走完。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <span class="eyebrow">为什么重要</span>
+          <h2 class="section-title">很多公共交付问题，首先是结构问题，然后才是政治问题。</h2>
+          <p class="section-lead">一个项目即使预算充足、目标正确，仍可能表现不佳，因为整个流程太慢、层级太多、太难走完。</p>
+        </div>
+
+        <div data-lang="es">
+          <span class="eyebrow">Por qué importa</span>
+          <h2 class="section-title">Muchos problemas de entrega pública son estructurales antes que políticos.</h2>
+          <p class="section-lead">Un programa puede estar bien financiado y bien diseñado, y aun así rendir mal porque el recorrido del proceso es demasiado lento, demasiado fragmentado o demasiado difícil de completar.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <span class="num">01</span>
+            <div data-lang="en" class="show">
+              <h3>Compare delivery performance</h3>
+              <p>GL helps compare how similar public processes perform across programs, agencies, or jurisdictions.</p>
+            </div>
+            <div data-lang="zh-Hant">
+              <h3>比較交付表現</h3>
+              <p>GL 能幫你比較相似公共流程在不同方案、機關或轄區中的表現。</p>
+            </div>
+            <div data-lang="zh-Hans">
+              <h3>比较交付表现</h3>
+              <p>GL 能帮助你比较相似公共流程在不同项目、机构或辖区中的表现。</p>
+            </div>
+            <div data-lang="es">
+              <h3>Comparar el desempeño de entrega</h3>
+              <p>GL ayuda a comparar cómo funcionan procesos públicos similares entre programas, agencias o jurisdicciones.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="num">02</span>
+            <div data-lang="en" class="show">
+              <h3>See friction without system exposure</h3>
+              <p>Analysis can begin with public data, exported CSV, or manually assembled operating figures.</p>
+            </div>
+            <div data-lang="zh-Hant">
+              <h3>不碰內部系統也能看見摩擦</h3>
+              <p>分析可以從公開資料、CSV 匯出或人工整理的營運數字開始。</p>
+            </div>
+            <div data-lang="zh-Hans">
+              <h3>不碰内部系统也能看见摩擦</h3>
+              <p>分析可以从公开数据、CSV 导出或人工整理的运营数字开始。</p>
+            </div>
+            <div data-lang="es">
+              <h3>Ver la fricción sin exponer sistemas internos</h3>
+              <p>El análisis puede comenzar con datos públicos, archivos CSV exportados o cifras operativas organizadas manualmente.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="num">03</span>
+            <div data-lang="en" class="show">
+              <h3>Support leadership discussion</h3>
+              <p>GL provides a clearer basis for discussing delay, burden, rework, and process design risk.</p>
+            </div>
+            <div data-lang="zh-Hant">
+              <h3>支撐領導層討論</h3>
+              <p>GL 能讓延遲、負擔、返工與流程設計風險有更清楚的討論基礎。</p>
+            </div>
+            <div data-lang="zh-Hans">
+              <h3>支撑领导层讨论</h3>
+              <p>GL 能让延迟、负担、返工与流程设计风险有更清楚的讨论基础。</p>
+            </div>
+            <div data-lang="es">
+              <h3>Respaldar la discusión directiva</h3>
+              <p>GL ofrece una base más clara para discutir demoras, carga, retrabajo y riesgos de diseño del proceso.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div data-lang="en" class="show">
+          <span class="eyebrow">How to start</span>
+          <h2 class="section-title">Start with 3 basic operational fields.</h2>
+          <p class="section-lead">An initial directional diagnostic does not require a large technical project. A simple starting file is enough.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <span class="eyebrow">如何開始</span>
+          <h2 class="section-title">從 3 個基本營運欄位開始。</h2>
+          <p class="section-lead">初步方向性診斷，不需要大型技術專案。一份簡單資料就能開始。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <span class="eyebrow">如何开始</span>
+          <h2 class="section-title">从 3 个基本运营字段开始。</h2>
+          <p class="section-lead">初步方向性诊断，不需要大型技术项目。一份简单数据就能开始。</p>
+        </div>
+
+        <div data-lang="es">
+          <span class="eyebrow">Cómo empezar</span>
+          <h2 class="section-title">Empiece con 3 campos operativos básicos.</h2>
+          <p class="section-lead">Un diagnóstico direccional inicial no requiere un gran proyecto técnico. Un archivo simple basta para comenzar.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <span class="num">1</span>
+            <div data-lang="en" class="show">
+              <h3>Total cases or applications</h3>
+              <p>How many people or cases entered the process during the period being measured.</p>
+            </div>
+            <div data-lang="zh-Hant">
+              <h3>總案件量或申請量</h3>
+              <p>在測量期間內，有多少人或案件進入流程。</p>
+            </div>
+            <div data-lang="zh-Hans">
+              <h3>总案件量或申请量</h3>
+              <p>在测量期间内，有多少人或案件进入流程。</p>
+            </div>
+            <div data-lang="es">
+              <h3>Total de casos o solicitudes</h3>
+              <p>Cuántas personas o casos ingresaron al proceso durante el período analizado.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="num">2</span>
+            <div data-lang="en" class="show">
+              <h3>Average processing time</h3>
+              <p>How long it takes for a case to move toward determination, approval, or next action.</p>
+            </div>
+            <div data-lang="zh-Hant">
+              <h3>平均處理時間</h3>
+              <p>一個案件需要多久才能往判定、核准或下一步推進。</p>
+            </div>
+            <div data-lang="zh-Hans">
+              <h3>平均处理时间</h3>
+              <p>一个案件需要多久才能向判定、核准或下一步推进。</p>
+            </div>
+            <div data-lang="es">
+              <h3>Tiempo promedio de procesamiento</h3>
+              <p>Cuánto tarda un caso en avanzar hacia su determinación, aprobación o siguiente acción.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="num">3</span>
+            <div data-lang="en" class="show">
+              <h3>Drop-off, appeal, or rework rate</h3>
+              <p>Where cases stall, fail, require correction, escalate, or move into review.</p>
+            </div>
+            <div data-lang="zh-Hant">
+              <h3>流失、申訴或返工率</h3>
+              <p>案件在哪裡卡住、失敗、需要修正、升高處理或進入複審。</p>
+            </div>
+            <div data-lang="zh-Hans">
+              <h3>流失、申诉或返工率</h3>
+              <p>案件在哪里卡住、失败、需要修正、升级处理或进入复审。</p>
+            </div>
+            <div data-lang="es">
+              <h3>Tasa de abandono, apelación o retrabajo</h3>
+              <p>Dónde los casos se detienen, fallan, requieren corrección, escalan o pasan a revisión.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-strip">
+          <div data-lang="en" class="show">A directional first pass can begin with estimates. You can start with one workflow, one unit, or one program.</div>
+          <div data-lang="zh-Hant">方向性初步診斷可以先用估算值開始。你可以從一條流程、一個單位或一個方案先做。</div>
+          <div data-lang="zh-Hans">方向性初步诊断可以先用估算值开始。你可以先从一条流程、一个单位或一个项目做起。</div>
+          <div data-lang="es">Una primera lectura direccional puede comenzar con estimaciones. Puede empezar con un flujo, una unidad o un programa.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div data-lang="en" class="show">
+          <span class="eyebrow">Writing</span>
+          <h2 class="section-title">Selected public administration writing</h2>
+          <p class="section-lead">Research and commentary focused on administrative friction, policy delivery, and system design.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <span class="eyebrow">文章</span>
+          <h2 class="section-title">公共行政相關文章</h2>
+          <p class="section-lead">聚焦行政摩擦、政策交付與系統設計的研究與評論。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <span class="eyebrow">文章</span>
+          <h2 class="section-title">公共行政相关文章</h2>
+          <p class="section-lead">聚焦行政摩擦、政策交付与系统设计的研究与评论。</p>
+        </div>
+
+        <div data-lang="es">
+          <span class="eyebrow">Publicaciones</span>
+          <h2 class="section-title">Escritos seleccionados sobre administración pública</h2>
+          <p class="section-lead">Investigación y análisis centrados en fricción administrativa, entrega de políticas y diseño de sistemas.</p>
+        </div>
+
+        <div class="pub-list">
+          <article class="pub-card">
+            <div class="pub-meta">
+              <span>PA Times</span>
+              <span>Published</span>
+            </div>
+            <div data-lang="en" class="show">
+              <h3>The Denominator Problem: How Administrative Friction Derails Policy</h3>
+              <p>Introduces the implementation burden lens behind GL and explains why delay and process drag weaken outcomes even in well-funded programs.</p>
+              <a class="btn" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">Read Article</a>
+            </div>
+            <div data-lang="zh-Hant">
+              <h3>分母問題：行政摩擦如何拖垮政策交付</h3>
+              <p>介紹 GL 背後的執行負擔視角，說明為何即使預算充足，延遲與流程拖累仍會削弱結果。</p>
+              <a class="btn" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">閱讀文章</a>
+            </div>
+            <div data-lang="zh-Hans">
+              <h3>分母问题：行政摩擦如何拖垮政策交付</h3>
+              <p>介绍 GL 背后的执行负担视角，说明为何即使预算充足，延迟与流程拖累仍会削弱结果。</p>
+              <a class="btn" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">阅读文章</a>
+            </div>
+            <div data-lang="es">
+              <h3>El problema del denominador: cómo la fricción administrativa descarrila la política pública</h3>
+              <p>Presenta la lógica de carga de implementación detrás de GL y explica por qué la demora y la fricción del proceso debilitan los resultados incluso en programas bien financiados.</p>
+              <a class="btn" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">Leer artículo</a>
+            </div>
+          </article>
+
+          <article class="pub-card">
+            <div class="pub-meta">
+              <span>PA Times</span>
+              <span>Forthcoming</span>
+            </div>
+            <div data-lang="en" class="show">
+              <h3>Proportional Sequencing in Long-Term Care</h3>
+              <p>Examines how process ordering affects access and why safeguards do not need to be removed in order to reduce delay.</p>
+            </div>
+            <div data-lang="zh-Hant">
+              <h3>長期照護中的比例排序</h3>
+              <p>探討流程排序如何影響可近性，以及為何要減少延遲，不必然等於拿掉保障機制。</p>
+            </div>
+            <div data-lang="zh-Hans">
+              <h3>长期照护中的比例排序</h3>
+              <p>探讨流程排序如何影响可及性，以及为何要减少延迟，并不等于必须取消保障机制。</p>
+            </div>
+            <div data-lang="es">
+              <h3>Secuenciación proporcional en el cuidado de largo plazo</h3>
+              <p>Examina cómo el orden del proceso afecta el acceso y por qué no es necesario eliminar salvaguardas para reducir demoras.</p>
+            </div>
+          </article>
+
+          <article class="pub-card">
+            <div class="pub-meta">
+              <span>PA Times</span>
+              <span>Forthcoming</span>
+            </div>
+            <div data-lang="en" class="show">
+              <h3>What Global Benefit Systems Reveal About Policy Delivery</h3>
+              <p>Looks at how administrative design shapes outcomes across national systems and what implementation structure reveals beyond formal policy intent.</p>
+            </div>
+            <div data-lang="zh-Hant">
+              <h3>全球福利制度揭示了什麼交付問題</h3>
+              <p>觀察行政設計如何影響不同國家的結果，以及執行結構如何揭露正式政策目標之外的現實。</p>
+            </div>
+            <div data-lang="zh-Hans">
+              <h3>全球福利制度揭示了什么交付问题</h3>
+              <p>观察行政设计如何影响不同国家的结果，以及执行结构如何揭示正式政策目标之外的现实。</p>
+            </div>
+            <div data-lang="es">
+              <h3>Lo que los sistemas globales de beneficios revelan sobre la entrega de políticas</h3>
+              <p>Analiza cómo el diseño administrativo moldea resultados entre distintos países y qué revela la estructura de implementación más allá de la intención formal de la política.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-panel">
+          <div data-lang="en" class="show">
+            <span class="eyebrow">Next step</span>
+            <h2>Start with one program, one workflow, or one operating unit.</h2>
+            <p>GL is designed to help public leaders discuss delivery performance with more clarity before the problem becomes normalized as routine backlog.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="gl-demo.html">Open Demo</a>
+              <a class="btn" href="contact.html">Contact</a>
+            </div>
+          </div>
+
+          <div data-lang="zh-Hant">
+            <span class="eyebrow">下一步</span>
+            <h2>從一個方案、一條流程或一個營運單位開始。</h2>
+            <p>GL 的設計目的，是讓公共部門領導者能在問題被當成例行積壓之前，更清楚地討論交付表現。</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="gl-demo.html">開啟 Demo</a>
+              <a class="btn" href="contact.html">聯絡</a>
+            </div>
+          </div>
+
+          <div data-lang="zh-Hans">
+            <span class="eyebrow">下一步</span>
+            <h2>从一个项目、一条流程或一个运营单位开始。</h2>
+            <p>GL 的设计目的，是让公共部门领导者能在问题被当成例行积压之前，更清楚地讨论交付表现。</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="gl-demo.html">打开 Demo</a>
+              <a class="btn" href="contact.html">联系</a>
+            </div>
+          </div>
+
+          <div data-lang="es">
+            <span class="eyebrow">Siguiente paso</span>
+            <h2>Empiece con un programa, un flujo o una unidad operativa.</h2>
+            <p>GL está diseñado para ayudar a los líderes públicos a discutir el desempeño de entrega con mayor claridad antes de que el problema se normalice como atraso rutinario.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="gl-demo.html">Abrir Demo</a>
+              <a class="btn" href="contact.html">Contacto</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div data-lang="en" class="show">© 2026 GFI Flow Intelligence. Founder: Ping Xu.</div>
+      <div data-lang="zh-Hant">© 2026 GFI Flow Intelligence。創辦人：Ping Xu。</div>
+      <div data-lang="zh-Hans">© 2026 GFI Flow Intelligence。创办人：Ping Xu。</div>
+      <div data-lang="es">© 2026 GFI Flow Intelligence. Fundadora: Ping Xu.</div>
     </div>
-  </div>
-</div>
+  </footer>
 
-<!-- ② START WITH 3 FIELDS -->
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">Start Here</span>
-    <h2 class="stitle reveal">Start with 3 fields. That's it.</h2>
-    <p class="slead reveal">You can begin with only three operational inputs for an initial directional diagnostic.</p>
-    <div class="fields-grid reveal">
-      <div class="field-card">
-        <div class="field-num">1</div>
-        <div class="field-label">Total applications or cases</div>
-        <div class="field-desc">How many people entered the process in the period being measured.</div>
-      </div>
-      <div class="field-card">
-        <div class="field-num">2</div>
-        <div class="field-label">Average processing time</div>
-        <div class="field-desc">Days or hours from submission to determination or next actionable step.</div>
-      </div>
-      <div class="field-card">
-        <div class="field-num">3</div>
-        <div class="field-label">Drop-off / appeal / manual review rate</div>
-        <div class="field-desc">Share of cases that required rework, escalation, or exceptions.</div>
-      </div>
-    </div>
-    <div class="info-strip reveal">Estimates are acceptable for an initial directional diagnostic &nbsp;·&nbsp; You can start with one program, one unit, or one workflow &nbsp;·&nbsp; Nothing stored without your approval</div>
-    <div class="btn-row reveal">
-      <a href="gl-demo.html" class="btn-solid">Run a Quick Scan →</a>
-      <a href="/cdn-cgi/l/email-protection#b6d1d0dff6d1d0dfdfd8c2d3da98d5d9db" class="btn-ghost">Request a Private Diagnostic</a>
-    </div>
-  </div>
-</section>
+  <script>
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const langBlocks = document.querySelectorAll('[data-lang]');
 
-<!-- ③ USE IT IN THE ROOM -->
-<section>
-  <div class="wrap">
-    <span class="eyebrow reveal">Use It in the Room</span>
-    <h2 class="stitle reveal">Walk into the meeting with numbers.</h2>
-    <p class="slead reveal">When you're asked why things are delayed, you need something you can point to — not an explanation.</p>
-    <div class="room-grid reveal">
-      <div class="room-card">
-        <div class="room-scenario">Budget Hearing</div>
-        <div class="room-quote">"We are not underfunded. We are overloaded at step 3."</div>
-        <div class="room-tag">Turns a resource argument into a structural diagnosis.</div>
-      </div>
-      <div class="room-card">
-        <div class="room-scenario">Oversight Review</div>
-        <div class="room-quote">"Drop-off is happening before eligibility — not after."</div>
-        <div class="room-tag">Shows where the system breaks before anyone assigns fault.</div>
-      </div>
-      <div class="room-card">
-        <div class="room-scenario">Internal Briefing</div>
-        <div class="room-quote">"This is where the process breaks, not where people fail."</div>
-        <div class="room-tag">Protects staff. Focuses leadership on fixable structure.</div>
-      </div>
-    </div>
-    <div class="room-shift reveal">Shifts the conversation from <em>blame</em> to structure.</div>
+    function setLanguage(lang){
+      langBlocks.forEach(el => {
+        el.classList.toggle('show', el.getAttribute('data-lang') === lang);
+      });
 
-    <div class="video-wrap reveal" id="one-stop-video">
-      <video controls playsinline preload="metadata">
-        <source src="one-stop-service.mp4" type="video/mp4">
-      </video>
-    </div>
-    <p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:680px;line-height:1.75" class="reveal">China's one-stop service model: when systems absorb coordination work, access becomes faster and less fragile. The same principle applies to any public delivery system.</p>
-  </div>
-</section>
+      langButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-setlang') === lang);
+      });
 
-<!-- ④ PUBLICATIONS: large type, one block -->
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow reveal">Publications</span>
-    <h2 class="stitle reveal">PA Times · Public Administration Review</h2>
+      localStorage.setItem('gfi_lang', lang);
 
-    <div class="pub-item reveal">
-      <div class="pub-meta">
-        <span class="pub-venue">PA Times</span>
-        <span class="pub-date">March 13, 2026</span>
-        <span class="pub-status published">Published</span>
-      </div>
-      <div class="pub-title">The Denominator Problem: Structural Efficiency Measurement in Public Administrative Systems</div>
-      <p class="pub-desc">Institutional failure is not a resource problem — it is a denominator design problem.</p>
-      <a href="/cdn-cgi/l/email-protection#98fffef1d8fffef1f1f6ecfdf4b6fbf7f5" class="btn-solid">Request Copy →</a>
-    </div>
+      if(lang === 'zh-Hant') document.documentElement.lang = 'zh-Hant';
+      else if(lang === 'zh-Hans') document.documentElement.lang = 'zh-Hans';
+      else if(lang === 'es') document.documentElement.lang = 'es';
+      else document.documentElement.lang = 'en';
+    }
 
-    <div class="pub-item reveal">
-      <div class="pub-meta">
-        <span class="pub-venue fc">PA Times</span>
-        <span class="pub-date">April 3, 2026</span>
-        <span class="pub-status forthcoming">Forthcoming</span>
-      </div>
-      <div class="pub-title">Proportional Sequencing in Long-Term Care: A Process Design Approach for U.S. HCBS</div>
-      <p class="pub-desc">Reordering safeguards reduces entry friction without removing oversight.</p>
-      <a href="/cdn-cgi/l/email-protection#5d3a3b341d3a3b343433293831733e3230" class="btn-ghost">Request Pre-Publication Copy →</a>
-    </div>
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLanguage(btn.getAttribute('data-setlang'));
+      });
+    });
 
-    <div class="pub-item reveal">
-      <div class="pub-meta">
-        <span class="pub-venue fc">PA Times</span>
-        <span class="pub-date">April 24, 2026</span>
-        <span class="pub-status forthcoming">Forthcoming</span>
-      </div>
-      <div class="pub-title">What Global Benefit Systems Reveal About Policy Delivery</div>
-      <p class="pub-desc">Delivery design shapes public outcomes as much as funding or policy intent.</p>
-      <a href="/cdn-cgi/l/email-protection#e0878689a0878689898e94858cce838f8d" class="btn-ghost">Request Advance Review →</a>
-    </div>
-
-    <div class="pub-item reveal">
-      <div class="pub-meta">
-        <span class="pub-venue fc">PA Times</span>
-        <span class="pub-date">May 22, 2026</span>
-        <span class="pub-status forthcoming">Forthcoming</span>
-      </div>
-      <div class="pub-title">What One-Stop Service Reveals About the Delivery Problem</div>
-      <p class="pub-desc">Coordination burden should sit with systems, not citizens.</p>
-      <a href="/cdn-cgi/l/email-protection#3156575871565758585f45545d1f525e5c" class="btn-ghost">Request Advance Review →</a>
-    </div>
-
-    <div class="pub-item reveal" style="border-bottom:none">
-      <div class="pub-meta">
-        <span class="pub-venue">SSRN</span>
-        <span class="pub-date">March 2026</span>
-        <span class="pub-status published">Peer Review</span>
-      </div>
-      <div class="pub-title">The Last Poverty Solution</div>
-      <p class="pub-desc">GCSF Engine and GCV delivery architecture — the policy implementation blueprint behind the GL Framework.</p>
-      <a href="https://ssrn.com/abstract=6050695" target="_blank" rel="noopener" class="btn-ghost">Read on SSRN →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ⑤ FINAL CTA -->
-<section>
-  <div class="wrap">
-    <div class="cta-panel reveal">
-      <span class="eyebrow">Next Step</span>
-      <h3>Start with one workflow, one program, or one agency unit.</h3>
-      <p>GL is designed for directional structural diagnosis using public or operational data — not internal audit exposure. No commitment. No integration.</p>
-      <div class="btn-row">
-        <a href="/cdn-cgi/l/email-protection#ee898887ae89888787809a8b82c08d8183" class="btn-solid">Request a Private Diagnostic →</a>
-        <a href="gl-demo.html" class="btn-ghost">Open GL Demo</a>
-      </div>
-      <div class="cta-privacy">Nothing is shared without your approval &nbsp;·&nbsp; No payment &nbsp;·&nbsp; No vendor registration &nbsp;·&nbsp; No RFP</div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span>© 2026 GFI Flow Intelligence · Boston</span>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="enterprise.html">Private Sector</a>
-    <a href="gl-demo.html">GL Demo</a>
-    <a href="about.html">Founder</a>
-    <a href="/cdn-cgi/l/email-protection#0661606f4661606f6f6872636a2865696b">Contact</a>
-  </div>
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><scrip
+    const savedLang = localStorage.getItem('gfi_lang') || 'en';
+    setLanguage(savedLang);
+  </script>
+</body>
+</html>
