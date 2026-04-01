@@ -225,6 +225,73 @@
       box-shadow:0 10px 24px rgba(0,0,0,.22);
     }
 
+    .free-bridge{
+      width:100%;
+      max-width:860px;
+      margin:0 auto 24px;
+      padding:26px 32px 24px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018));
+      box-shadow:0 8px 24px rgba(0,0,0,.14);
+      text-align:center;
+      opacity:0;
+      animation:up .58s .40s forwards;
+    }
+
+    .free-kicker{
+      font-family:var(--mono);
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#7a90aa;
+      margin-bottom:10px;
+    }
+
+    .free-line{
+      font-size:17px;
+      line-height:1.7;
+      color:#D7E4F2;
+      margin-bottom:10px;
+    }
+
+    .free-note{
+      font-size:13px;
+      color:#98abc2;
+      line-height:1.7;
+      margin-bottom:18px;
+    }
+
+    .free-actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 22px;
+      border-radius:10px;
+      border:1px solid rgba(159,232,112,.28);
+      background:linear-gradient(180deg,rgba(159,232,112,.14),rgba(159,232,112,.07));
+      color:#EDFDE0;
+      text-decoration:none;
+      font-family:var(--mono);
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      border-color:rgba(159,232,112,.48);
+      box-shadow:0 8px 22px rgba(0,0,0,.18);
+    }
+
     .exec-bridge{
       width:100%;
       max-width:780px;
@@ -236,7 +303,7 @@
       box-shadow:0 8px 24px rgba(0,0,0,.14);
       text-align:center;
       opacity:0;
-      animation:up .58s .40s forwards;
+      animation:up .58s .46s forwards;
     }
 
     .exec-kicker{
@@ -293,7 +360,8 @@
 
     .exec-cta:hover .gc-arrow,
     .gate-card:hover .gc-arrow,
-    .research-btn:hover .gc-arrow{
+    .research-btn:hover .gc-arrow,
+    .btn-primary:hover .gc-arrow{
       transform:translateX(4px);
     }
 
@@ -304,7 +372,7 @@
       width:100%;
       max-width:1000px;
       opacity:0;
-      animation:up .6s .48s forwards;
+      animation:up .6s .54s forwards;
     }
 
     .gate-card{
@@ -421,7 +489,7 @@
       max-width:1000px;
       margin:32px auto 0;
       opacity:0;
-      animation:up .6s .52s forwards;
+      animation:up .6s .60s forwards;
     }
 
     .pa-strip-label{
@@ -541,8 +609,9 @@
       .lang-bar{padding:0 16px}
       main{padding:82px 18px 48px}
       .gate-title{font-size:clamp(20px,6.5vw,30px)}
-      .exec-bridge{padding:20px 16px;border-radius:14px}
-      .exec-cta,.research-btn{width:100%;justify-content:center}
+      .free-bridge,.exec-bridge{padding:20px 16px;border-radius:14px}
+      .exec-cta,.research-btn,.btn-primary{width:100%;justify-content:center}
+      .free-actions{flex-direction:column}
       .gate-card{padding:22px 16px 18px;border-radius:16px}
     }
   </style>
@@ -572,6 +641,16 @@
       <div class="research-strip">
         <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">View SSRN Research <span class="gc-arrow">→</span></a>
         <a href="government.html#one-stop-video" class="research-btn">See Government One-Stop Example <span class="gc-arrow">→</span></a>
+      </div>
+
+      <div class="free-bridge">
+        <div class="free-kicker">Free First Step</div>
+        <div class="free-line">See what a GL diagnostic looks like before paying.</div>
+        <div class="free-note">Offer a sample report download or preview here. This is the trust-building step for cold traffic.</div>
+        <div class="free-actions">
+          <a href="sample-diagnostic.pdf" class="btn-primary">Download Sample Diagnostic <span class="gc-arrow">→</span></a>
+          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="research-btn">Request by Email <span class="gc-arrow">→</span></a>
+        </div>
       </div>
 
       <div class="exec-bridge">
@@ -665,6 +744,16 @@
         <a href="government.html#one-stop-video" class="research-btn">查看政府一站式案例 <span class="gc-arrow">→</span></a>
       </div>
 
+      <div class="free-bridge">
+        <div class="free-kicker">免費入口</div>
+        <div class="free-line">先看 GL 診斷長什麼樣，再決定是否付費。</div>
+        <div class="free-note">這裡放樣本診斷報告下載或預覽。冷流量先建立信任，再進入付費。</div>
+        <div class="free-actions">
+          <a href="sample-diagnostic.pdf" class="btn-primary">下載樣本診斷 <span class="gc-arrow">→</span></a>
+          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="research-btn">Email 索取 <span class="gc-arrow">→</span></a>
+        </div>
+      </div>
+
       <div class="exec-bridge">
         <div class="exec-kicker">入門診斷</div>
         <div class="exec-mini">1頁 GL 診斷 · 不需內部系統存取</div>
@@ -754,6 +843,16 @@
       <div class="research-strip">
         <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">查看 SSRN 研究 <span class="gc-arrow">→</span></a>
         <a href="government.html#one-stop-video" class="research-btn">查看政府一站式案例 <span class="gc-arrow">→</span></a>
+      </div>
+
+      <div class="free-bridge">
+        <div class="free-kicker">免费入口</div>
+        <div class="free-line">先看 GL 诊断长什么样，再决定是否付费。</div>
+        <div class="free-note">这里放样本诊断报告下载或预览。冷流量先建立信任，再进入付费。</div>
+        <div class="free-actions">
+          <a href="sample-diagnostic.pdf" class="btn-primary">下载样本诊断 <span class="gc-arrow">→</span></a>
+          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="research-btn">Email 索取 <span class="gc-arrow">→</span></a>
+        </div>
       </div>
 
       <div class="exec-bridge">
@@ -847,6 +946,16 @@
         <a href="government.html#one-stop-video" class="research-btn">Ver ejemplo de ventanilla única <span class="gc-arrow">→</span></a>
       </div>
 
+      <div class="free-bridge">
+        <div class="free-kicker">Primer paso gratuito</div>
+        <div class="free-line">Vea cómo luce un diagnóstico GL antes de pagar.</div>
+        <div class="free-note">Coloque aquí una descarga o vista previa del informe de muestra. Este es el paso de confianza para tráfico frío.</div>
+        <div class="free-actions">
+          <a href="sample-diagnostic.pdf" class="btn-primary">Descargar diagnóstico de muestra <span class="gc-arrow">→</span></a>
+          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="research-btn">Solicitar por email <span class="gc-arrow">→</span></a>
+        </div>
+      </div>
+
       <div class="exec-bridge">
         <div class="exec-kicker">Diagnóstico de entrada</div>
         <div class="exec-mini">Diagnóstico GL de 1 página · Sin acceso interno al sistema</div>
@@ -869,7 +978,7 @@
 
         <a href="enterprise.html" class="gate-card priv">
           <div class="gc-sector">Sector Privado</div>
-          <div class="gc-title">Empresa y Eficiencia de Capital</div>
+          <div class="gc-title">Empresa & Eficiencia de Capital</div>
           <div class="gc-desc">Verifique si la transformación mejora la velocidad del capital o multiplica la fricción.</div>
           <ul class="gc-items">
             <li>Medir la carga operativa tras la automatización</li>
@@ -904,7 +1013,7 @@
               <div class="pa-date">24 abr 2026</div>
               <span class="coming-tag">Próximamente</span>
             </div>
-            <div class="pa-title">Lo que los sistemas globales de beneficios revelan sobre la entrega de políticas</div>
+            <div class="pa-title">What Global Benefit Systems Reveal About Policy Delivery</div>
             <div class="pa-summary">Ruanda, Estonia, Singapur y Canadá muestran que el diseño de entrega determina los resultados tanto como la política.</div>
             <div class="advance">Revisión anticipada → ping@gfiintel.com</div>
           </div>
@@ -914,7 +1023,7 @@
               <div class="pa-date">22 may 2026</div>
               <span class="coming-tag">Próximamente</span>
             </div>
-            <div class="pa-title">Lo que la ventanilla única revela sobre el problema de entrega</div>
+            <div class="pa-title">What One-Stop Service Reveals About the Delivery Problem</div>
             <div class="pa-summary">La carga de coordinación debe recaer en los sistemas, no en los ciudadanos.</div>
             <div class="advance">Revisión anticipada → ping@gfiintel.com</div>
           </div>
