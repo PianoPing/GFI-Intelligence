@@ -1,751 +1,1057 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GFI Flow Intelligence | GL Framework</title>
-  <meta name="description" content="GL Framework measures how systems actually deliver. Diagnose administrative friction, delivery failure, and hidden loss before they become budget, trust, or implementation problems." />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0b1220" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GL Framework — a single metric for system delivery performance. No internal access required. Published on SSRN and PA Times.">
+  <title>GFI Flow Intelligence</title>
 
-  <link rel="canonical" href="https://gfiintel.com/index.html" />
-  <link rel="alternate" hreflang="en" href="https://gfiintel.com/index.html" />
-  <link rel="alternate" hreflang="zh-TW" href="https://gfiintel.com/tw.html" />
-  <link rel="alternate" hreflang="zh-CN" href="https://gfiintel.com/cn.html" />
-  <link rel="alternate" hreflang="es" href="https://gfiintel.com/es.html" />
-  <link rel="alternate" hreflang="x-default" href="https://gfiintel.com/index.html" />
-
-  <meta property="og:title" content="GFI Flow Intelligence | GL Framework" />
-  <meta property="og:description" content="Measure how systems actually deliver. Identify delay, friction, and hidden implementation loss." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://gfiintel.com/index.html" />
-  <meta property="og:image" content="https://gfiintel.com/logo.png" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="GFI Flow Intelligence | GL Framework" />
-  <meta name="twitter:description" content="Measure how systems actually deliver. Identify delay, friction, and hidden implementation loss." />
-  <meta name="twitter:image" content="https://gfiintel.com/logo.png" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#0b1220;
-      --bg2:#10192c;
-      --panel:#111b30;
-      --panel2:#17233d;
+      --bg2:#111827;
+      --border:rgba(255,255,255,.10);
       --text:#f8fbff;
       --muted:#c7d2e3;
-      --sub:#97a8c3;
-      --line:rgba(255,255,255,.10);
-      --accent:#d6e4ff;
-      --btn:#ffffff;
-      --btnText:#0b1220;
-      --btnGhost:rgba(255,255,255,.06);
-      --shadow:0 18px 50px rgba(0,0,0,.24);
-      --radius:20px;
-      --max:1180px;
+      --sub:#9fb0c8;
+      --green:#9FE870;
+      --blue:#7DD3FC;
+      --serif:'DM Serif Display',Georgia,serif;
+      --mono:'DM Mono',monospace;
+      --sans:'DM Sans',system-ui,sans-serif;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     body{
-      margin:0;
-      font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color:var(--text);
       background:
-        radial-gradient(circle at top left, rgba(92,132,255,.12), transparent 28%),
-        linear-gradient(180deg, #09111f 0%, #0b1220 38%, #0c1425 100%);
-      line-height:1.6;
+        radial-gradient(circle at 18% 10%,rgba(159,232,112,.08),transparent 26%),
+        radial-gradient(circle at 85% 80%,rgba(56,189,248,.08),transparent 28%),
+        linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+      color:var(--text);
+      font-family:var(--sans);
+      font-size:15px;
+      line-height:1.75;
+      overflow-x:hidden;
+      min-height:100vh;
     }
 
-    a{color:inherit;text-decoration:none}
-    .container{
-      width:min(calc(100% - 32px), var(--max));
-      margin:0 auto;
+    .bg-grid{
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:56px 56px;
+      mask-image:radial-gradient(ellipse 85% 72% at 50% 42%,black 18%,transparent 82%);
+      pointer-events:none;
+      z-index:0;
     }
 
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter:blur(14px);
-      background:rgba(8,14,25,.72);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-
-    .nav{
+    .lang-bar{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:100;
+      height:62px;
+      padding:0 clamp(18px,5vw,52px);
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:20px;
-      min-height:72px;
+      background:rgba(11,18,32,.82);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
 
-    .brand{
+    .logo{
+      color:#fff;
+      text-decoration:none;
+      font-family:var(--mono);
+      font-size:14px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .lang-grp{
       display:flex;
+      gap:6px;
       align-items:center;
-      gap:12px;
-      font-weight:700;
     }
 
-    .brand-mark{
-      width:38px;
-      height:38px;
-      border-radius:11px;
-      background:linear-gradient(135deg,#ffffff,#b6cbff);
-      color:#09111f;
-      display:grid;
-      place-items:center;
-      font-weight:800;
-      box-shadow:0 10px 26px rgba(255,255,255,.14);
+    .lb-btn{
+      font-family:var(--mono);
+      font-size:11px;
+      letter-spacing:.08em;
+      padding:6px 11px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:6px;
+      background:none;
+      color:var(--sub);
+      cursor:pointer;
+      transition:all .2s ease;
     }
 
-    .brand-text{
+    .lb-btn:hover{
+      color:var(--text);
+      border-color:rgba(255,255,255,.20);
+      background:rgba(255,255,255,.03);
+    }
+
+    .lb-btn.on{
+      color:var(--green);
+      border-color:rgba(159,232,112,.35);
+      background:rgba(159,232,112,.08);
+    }
+
+    .lb{display:none;position:relative;z-index:1}
+    .lb.active{display:block}
+
+    main{
       display:flex;
       flex-direction:column;
-      line-height:1.12;
+      align-items:center;
+      justify-content:flex-start;
+      padding:96px clamp(20px,5vw,60px) 64px;
     }
 
-    .brand-text small{
-      color:#4e77db;
-      font-weight:700;
+    .hero-wrap{
+      width:100%;
+      max-width:1120px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .gate-eyebrow{
+      font-family:var(--mono);
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#AFC3DB;
+      text-align:center;
+      margin-bottom:18px;
+      opacity:0;
+      animation:up .55s .05s forwards;
+    }
+
+    .gate-title{
+      font-family:var(--serif);
+      font-size:clamp(24px,2.8vw,40px);
+      line-height:1.18;
+      letter-spacing:-.02em;
+      text-align:center;
+      max-width:760px;
+      margin-bottom:16px;
+      color:#FFFFFF;
+      opacity:0;
+      animation:up .55s .16s forwards;
+    }
+
+    .gate-title em{
+      font-style:italic;
+      font-family:var(--serif);
+    }
+
+    .hero-definition{
+      max-width:620px;
+      margin:0 auto 10px;
+      text-align:center;
+      font-size:16px;
+      line-height:1.7;
+      color:#C8D8EC;
+      opacity:0;
+      animation:up .55s .22s forwards;
+    }
+
+    .hero-no-risk{
+      max-width:680px;
+      margin:0 auto 12px;
+      text-align:center;
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.06em;
+      color:#7a90aa;
+      opacity:0;
+      animation:up .55s .28s forwards;
+    }
+
+    .hero-built-for{
+      max-width:620px;
+      margin:0 auto 26px;
+      text-align:center;
+      font-family:var(--mono);
+      font-size:11px;
+      letter-spacing:.12em;
+      color:rgba(159,232,112,.68);
+      opacity:0;
+      animation:up .55s .32s forwards;
+    }
+
+    .research-strip{
+      width:100%;
+      max-width:760px;
+      margin:0 auto 24px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
+      opacity:0;
+      animation:up .58s .36s forwards;
+    }
+
+    .research-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:11px 18px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      color:#F5FFE9;
+      text-decoration:none;
+      font-family:var(--mono);
       font-size:11px;
       letter-spacing:.08em;
       text-transform:uppercase;
+      transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
     }
 
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      color:var(--muted);
-      font-size:14px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+    .research-btn:hover{
+      transform:translateY(-2px);
+      border-color:rgba(159,232,112,.30);
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
     }
 
-    .nav-links a:hover{color:#fff}
-
-    .lang-switch{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-left:10px;
-    }
-
-    .lang-pill{
-      padding:6px 10px;
-      border-radius:999px;
+    .free-bridge{
+      width:100%;
+      max-width:860px;
+      margin:0 auto 24px;
+      padding:26px 32px 24px;
       border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:12px;
-      font-weight:700;
+      border-radius:18px;
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018));
+      box-shadow:0 8px 24px rgba(0,0,0,.14);
+      text-align:center;
+      opacity:0;
+      animation:up .58s .40s forwards;
     }
 
-    .lang-pill.active,
-    .lang-pill:hover{
-      color:#0b1220;
-      background:#fff;
-      border-color:#fff;
-    }
-
-    .hero{
-      padding:52px 0 24px;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:22px;
-      align-items:stretch;
-    }
-
-    .hero-card,
-    .panel,
-    .flow-card,
-    .feature-card,
-    .proof-card,
-    .footer-box{
-      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.03));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-
-    .hero-card{
-      padding:30px 28px;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      font-size:11px;
-      letter-spacing:.14em;
+    .free-kicker{
+      font-family:var(--mono);
+      font-size:10px;
+      letter-spacing:.18em;
       text-transform:uppercase;
-      font-weight:700;
-      color:var(--accent);
-      margin-bottom:14px;
+      color:#7a90aa;
+      margin-bottom:10px;
     }
 
-    .eyebrow:before{
-      content:"";
-      width:28px;
-      height:1px;
-      background:rgba(255,255,255,.55);
-      display:block;
+    .free-line{
+      font-size:17px;
+      line-height:1.7;
+      color:#D7E4F2;
+      margin-bottom:10px;
     }
 
-    h1{
-      font-family:"DM Serif Display", Georgia, serif;
-      font-weight:400;
-      font-size:clamp(30px,3.5vw,48px);
-      line-height:1.08;
-      margin:0 0 14px;
-      letter-spacing:-.02em;
+    .free-note{
+      font-size:13px;
+      color:#98abc2;
+      line-height:1.7;
+      margin-bottom:18px;
     }
 
-    .hero-sub{
-      font-size:16px;
-      color:var(--muted);
-      max-width:700px;
-      margin:0 0 18px;
-    }
-
-    .hero-actions{
+    .free-actions{
       display:flex;
-      flex-wrap:wrap;
       gap:12px;
-      margin-top:8px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
       justify-content:center;
-      min-height:46px;
-      padding:0 16px;
-      border-radius:12px;
-      border:1px solid transparent;
-      font-weight:700;
-      font-size:14px;
-      transition:.2s ease;
+      flex-wrap:wrap;
     }
 
     .btn-primary{
-      background:var(--btn);
-      color:var(--btnText);
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 22px;
+      border-radius:10px;
+      border:1px solid rgba(159,232,112,.28);
+      background:linear-gradient(180deg,rgba(159,232,112,.14),rgba(159,232,112,.07));
+      color:#EDFDE0;
+      text-decoration:none;
+      font-family:var(--mono);
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
     }
 
     .btn-primary:hover{
-      transform:translateY(-1px);
-      background:#eef3ff;
+      transform:translateY(-2px);
+      border-color:rgba(159,232,112,.48);
+      box-shadow:0 8px 22px rgba(0,0,0,.18);
     }
 
-    .btn-secondary{
-      background:var(--btnGhost);
-      color:#fff;
-      border-color:rgba(255,255,255,.12);
+    .exec-bridge{
+      width:100%;
+      max-width:780px;
+      margin:0 auto 34px;
+      padding:24px 32px 22px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:linear-gradient(180deg,rgba(255,255,255,.042),rgba(255,255,255,.016));
+      box-shadow:0 8px 24px rgba(0,0,0,.14);
+      text-align:center;
+      opacity:0;
+      animation:up .58s .46s forwards;
     }
 
-    .btn-secondary:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.10);
-    }
-
-    .hero-side{
-      display:grid;
-      gap:18px;
-    }
-
-    .panel{
-      padding:24px 22px;
-    }
-
-    .metric-label{
-      font-size:11px;
-      color:var(--sub);
+    .exec-kicker{
+      font-family:var(--mono);
+      font-size:10px;
+      letter-spacing:.18em;
       text-transform:uppercase;
-      letter-spacing:.12em;
+      color:#7a90aa;
+      margin-bottom:12px;
+    }
+
+    .exec-mini{
+      font-family:var(--mono);
+      font-size:11px;
+      color:#92a7bf;
       margin-bottom:10px;
-      font-weight:700;
     }
 
-    .metric-value{
-      font-family:"DM Serif Display", Georgia, serif;
-      font-size:30px;
-      line-height:1.08;
-      margin-bottom:8px;
+    .exec-line{
+      font-size:16px;
+      line-height:1.7;
+      color:#D7E4F2;
+      margin-bottom:18px;
     }
 
-    .metric-copy{
-      color:var(--muted);
-      font-size:14px;
+    .exec-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 24px;
+      border-radius:10px;
+      border:1px solid rgba(159,232,112,.28);
+      background:linear-gradient(180deg,rgba(159,232,112,.14),rgba(159,232,112,.07));
+      color:#EDFDE0;
+      text-decoration:none;
+      font-family:var(--mono);
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
     }
 
-    .formula-box{
-      padding:16px;
-      border-radius:16px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      margin-top:6px;
-      overflow:auto;
+    .exec-cta:hover{
+      transform:translateY(-2px);
+      border-color:rgba(159,232,112,.48);
+      box-shadow:0 8px 22px rgba(0,0,0,.18);
     }
 
-    .formula-code{
-      font-size:17px;
-      font-weight:700;
-      white-space:nowrap;
-      letter-spacing:.01em;
-    }
-
-    .formula-note{
-      margin-top:10px;
-      color:var(--muted);
+    .gc-arrow{
       font-size:13px;
+      transition:transform .22s ease;
+      display:inline-block;
     }
 
-    .section{
-      padding:20px 0;
+    .exec-cta:hover .gc-arrow,
+    .gate-card:hover .gc-arrow,
+    .research-btn:hover .gc-arrow,
+    .btn-primary:hover .gc-arrow{
+      transform:translateX(4px);
     }
 
-    .section-head{
+    .gate-cards{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      width:100%;
+      max-width:1000px;
+      opacity:0;
+      animation:up .6s .54s forwards;
+    }
+
+    .gate-card{
+      position:relative;
       display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:18px;
+      flex-direction:column;
+      min-height:300px;
+      border-radius:20px;
+      padding:28px 26px 24px;
+      text-decoration:none;
+      overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow:0 12px 36px rgba(0,0,0,.20);
+      transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;
+    }
+
+    .gate-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 16px 44px rgba(0,0,0,.28);
+    }
+
+    .gate-card.gov{
+      background:
+        radial-gradient(circle at top right,rgba(159,232,112,.11),transparent 34%),
+        linear-gradient(180deg,rgba(159,232,112,.055),rgba(255,255,255,.012)),
+        linear-gradient(180deg,#141F18 0%,#121B17 100%);
+      border-color:rgba(159,232,112,.26);
+    }
+
+    .gate-card.priv{
+      background:
+        radial-gradient(circle at top right,rgba(125,211,252,.11),transparent 34%),
+        linear-gradient(180deg,rgba(56,189,248,.055),rgba(255,255,255,.012)),
+        linear-gradient(180deg,#131C2D 0%,#111827 100%);
+      border-color:rgba(125,211,252,.24);
+    }
+
+    .gate-card.gov:hover{border-color:rgba(159,232,112,.48)}
+    .gate-card.priv:hover{border-color:rgba(125,211,252,.44)}
+
+    .gc-sector{
+      font-family:var(--mono);
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+
+    .gate-card.gov .gc-sector{color:var(--green)}
+    .gate-card.priv .gc-sector{color:var(--blue)}
+
+    .gc-title{
+      font-family:var(--serif);
+      font-size:clamp(20px,2vw,26px);
+      line-height:1.2;
+      margin-bottom:12px;
+      max-width:380px;
+    }
+
+    .gate-card.gov .gc-title{color:#F0FFE8}
+    .gate-card.priv .gc-title{color:#EAF5FF}
+
+    .gc-desc{
+      color:#b8cce0;
+      font-size:14px;
+      line-height:1.8;
       margin-bottom:16px;
+      max-width:380px;
     }
 
-    .section-head h2{
-      font-family:"DM Serif Display", Georgia, serif;
-      font-weight:400;
-      font-size:clamp(24px,3vw,34px);
-      line-height:1.1;
-      margin:0;
+    .gc-items{
+      list-style:none;
+      margin-bottom:18px;
     }
 
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-      max-width:650px;
-      font-size:15px;
+    .gc-items li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:7px 0;
+      color:#D4E2F0;
+      font-size:13px;
+      line-height:1.7;
+      border-bottom:1px solid rgba(255,255,255,.05);
     }
 
-    .grid-2{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:18px;
-    }
-
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:18px;
-    }
-
-    .flow-card,
-    .feature-card,
-    .proof-card{
-      padding:22px;
-    }
-
-    .small-kicker{
+    .gc-items li::before{
+      content:"→";
+      font-family:var(--mono);
       font-size:11px;
-      font-weight:700;
+      flex-shrink:0;
+      margin-top:2px;
+    }
+
+    .gate-card.gov .gc-items li::before{color:var(--green)}
+    .gate-card.priv .gc-items li::before{color:var(--blue)}
+
+    .gc-cta{
+      margin-top:auto;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-family:var(--mono);
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
+
+    .gate-card.gov .gc-cta{color:var(--green)}
+    .gate-card.priv .gc-cta{color:var(--blue)}
+
+    .pa-strip{
+      width:100%;
+      max-width:1000px;
+      margin:32px auto 0;
+      opacity:0;
+      animation:up .6s .60s forwards;
+    }
+
+    .pa-strip-label{
+      font-family:var(--mono);
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#7a90aa;
+      margin-bottom:14px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .pa-strip-label::after{
+      content:'';
+      flex:1;
+      height:1px;
+      background:rgba(255,255,255,.08);
+    }
+
+    .pa-articles{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .pa-article{
+      padding:16px 18px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.07);
+      background:rgba(255,255,255,.025);
+      text-decoration:none;
+      transition:border-color .2s ease,background .2s ease;
+    }
+
+    .pa-article:hover{
+      border-color:rgba(159,232,112,.25);
+      background:rgba(159,232,112,.04);
+    }
+
+    .pa-date{
+      font-family:var(--mono);
+      font-size:10px;
+      letter-spacing:.12em;
+      color:#7a90aa;
+      margin-bottom:6px;
+    }
+
+    .pa-title{
+      font-size:13px;
+      font-weight:500;
+      color:#E8F0FA;
+      line-height:1.4;
+      margin-bottom:6px;
+    }
+
+    .pa-summary{
+      font-size:12px;
+      color:#7a90aa;
+      line-height:1.6;
+    }
+
+    .coming-tag{
+      font-family:var(--mono);
+      font-size:9px;
       letter-spacing:.12em;
       text-transform:uppercase;
-      color:var(--accent);
-      margin-bottom:10px;
+      color:#9FE870;
+      background:rgba(159,232,112,.1);
+      border:1px solid rgba(159,232,112,.2);
+      padding:2px 8px;
+      border-radius:4px;
     }
 
-    .flow-card h3,
-    .feature-card h3,
-    .proof-card h3{
-      margin:0 0 10px;
-      font-size:20px;
+    .advance{
+      font-family:var(--mono);
+      font-size:10px;
+      color:#9FE870;
+      margin-top:8px;
     }
 
-    .flow-card p,
-    .feature-card p,
-    .proof-card p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
+    .gate-footer{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      padding:28px 20px 36px;
+      color:#6a7e96;
+      font-size:11px;
+      font-family:var(--mono);
+      letter-spacing:.05em;
     }
 
-    .mini-list{
-      list-style:none;
-      padding:0;
-      margin:14px 0 0;
-      display:grid;
-      gap:10px;
+    .gate-footer a{
+      color:#8faabe;
+      text-decoration:none;
+      transition:color .2s ease;
     }
 
-    .mini-list li{
-      padding:11px 12px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:12px;
-      color:var(--muted);
-      font-size:13px;
+    .gate-footer a:hover{color:#FFFFFF}
+
+    @keyframes up{
+      from{opacity:0;transform:translateY(14px)}
+      to{opacity:1;transform:translateY(0)}
     }
 
-    .snapshot-box{
-      padding:26px;
-      border-radius:22px;
-      background:linear-gradient(135deg,#f8fbff 0%, #e9f1ff 100%);
-      color:#0d1628;
-      box-shadow:0 20px 50px rgba(0,0,0,.16);
-    }
-
-    .snapshot-box h2{
-      font-family:"DM Serif Display", Georgia, serif;
-      font-weight:400;
-      font-size:clamp(26px,3vw,38px);
-      line-height:1.08;
-      margin:0 0 10px;
-    }
-
-    .snapshot-box p{
-      margin:0 0 14px;
-      color:#2e3b53;
-      font-size:15px;
-    }
-
-    .snapshot-points{
-      list-style:none;
-      padding:0;
-      margin:0 0 18px;
-      display:grid;
-      gap:10px;
-    }
-
-    .snapshot-points li{
-      padding:12px 13px;
-      border-radius:12px;
-      border:1px solid rgba(13,22,40,.08);
-      background:rgba(255,255,255,.7);
-      color:#253247;
-      font-size:13px;
-    }
-
-    .footer-cta{
-      padding:20px 0 50px;
-    }
-
-    .footer-box{
-      padding:26px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-
-    .site-footer{
-      border-top:1px solid rgba(255,255,255,.08);
-      padding:24px 0 38px;
-      color:var(--sub);
-      font-size:13px;
-    }
-
-    .footer-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-
-    .footer-links{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .footer-links a:hover{color:#fff}
-
-    @media (max-width: 980px){
-      .hero-grid,
-      .grid-2,
-      .grid-3{
+    @media(max-width:860px){
+      .gate-cards,
+      .pa-articles{
         grid-template-columns:1fr;
+        max-width:640px;
       }
-
-      .nav{
-        align-items:flex-start;
-        padding:14px 0;
-      }
-
-      .nav,
-      .nav-links{
-        flex-direction:column;
-      }
-
-      .nav-links{
-        width:100%;
-        align-items:flex-start;
-      }
+      .gate-card{min-height:unset}
     }
 
-    @media (max-width: 640px){
-      .hero-card,
-      .panel,
-      .flow-card,
-      .feature-card,
-      .proof-card,
-      .snapshot-box,
-      .footer-box{
-        padding:20px 16px;
-      }
-
-      h1{font-size:34px}
-      .hero{padding-top:34px}
+    @media(max-width:640px){
+      .lang-bar{padding:0 16px}
+      main{padding:82px 18px 48px}
+      .gate-title{font-size:clamp(20px,6.5vw,30px)}
+      .free-bridge,.exec-bridge{padding:20px 16px;border-radius:14px}
+      .exec-cta,.research-btn,.btn-primary{width:100%;justify-content:center}
+      .free-actions{flex-direction:column}
+      .gate-card{padding:22px 16px 18px;border-radius:16px}
     }
   </style>
 </head>
 <body>
+<div class="bg-grid"></div>
 
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html">
-        <div class="brand-mark">GL</div>
-        <div class="brand-text">
-          <span>GFI Flow Intelligence</span>
-          <small>Capital Efficiency Verification</small>
-        </div>
-      </a>
+<div class="lang-bar">
+  <a href="index.html" class="logo">GFI Flow Intelligence</a>
+  <div class="lang-grp">
+    <button class="lb-btn on" data-lang="en" type="button">EN</button>
+    <button class="lb-btn" data-lang="tw" type="button">繁</button>
+    <button class="lb-btn" data-lang="cn" type="button">简</button>
+    <button class="lb-btn" data-lang="es" type="button">ES</button>
+  </div>
+</div>
 
-      <div class="nav-links">
-        <a href="#framework">Framework</a>
-        <a href="#pathways">Pathways</a>
-        <a href="#proof">Proof</a>
-        <a href="workbook.html">Snapshot</a>
-        <a href="contact.html">Contact</a>
-
-        <div class="lang-switch">
-          <a class="lang-pill active" href="index.html">EN</a>
-          <a class="lang-pill" href="tw.html">繁中</a>
-          <a class="lang-pill" href="cn.html">简中</a>
-          <a class="lang-pill" href="es.html">ES</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
+<section class="lb active" data-lang="en">
   <main>
+    <div class="hero-wrap">
+      <div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
+      <h1 class="gate-title">Other tools measure <em style="color:#7DD3FC;">what</em> happened.<br>GL measures how systems <em style="color:#9FE870;">actually deliver</em>.</h1>
+      <p class="hero-definition">A single metric for system delivery performance.</p>
+      <p class="hero-no-risk">No system access · No installation · Works with public or CSV data</p>
+      <p class="hero-built-for">Published in PA Times &amp; SSRN</p>
 
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-card">
-          <div class="eyebrow">GL framework</div>
-          <h1>Measure delivery before failure becomes normal.</h1>
-          <p class="hero-sub">
-            GL Framework helps leaders identify where delay, friction, and badly sequenced process design are destroying value.
-          </p>
+      <div class="research-strip">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">View SSRN Research <span class="gc-arrow">→</span></a>
+        <a href="government.html#one-stop-video" class="research-btn">See Government One-Stop Example <span class="gc-arrow">→</span></a>
+      </div>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="government.html">For Government</a>
-            <a class="btn btn-secondary" href="enterprise.html">For Enterprise</a>
-          </div>
+      <div class="free-bridge">
+        <div class="free-kicker">Free First Step</div>
+        <div class="free-line">See what a GL diagnostic looks like before paying.</div>
+        <div class="free-note">Offer a sample report download or preview here. This is the trust-building step for cold traffic.</div>
+        <div class="free-actions">
+          <a href="sample-diagnostic.pdf" class="btn-primary">Download Sample Diagnostic <span class="gc-arrow">→</span></a>
+          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="research-btn">Request by Email <span class="gc-arrow">→</span></a>
         </div>
+      </div>
 
-        <div class="hero-side">
-          <div class="panel">
-            <div class="metric-label">Core claim</div>
-            <div class="metric-value">The denominator matters.</div>
-            <div class="metric-copy">
-              Many systems measure budgets and outputs but ignore the burden of time delay and cognitive friction. That is where delivery quality collapses.
+      <div class="exec-bridge">
+        <div class="exec-kicker">Entry Diagnostic</div>
+        <div class="exec-mini">1-page GL diagnostic · No internal system access required</div>
+        <div class="exec-line">Bring one workflow, program, or service path. Get a number you can put on the table.</div>
+        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="exec-cta" target="_blank" rel="noopener">Start for $299 <span class="gc-arrow">→</span></a>
+      </div>
+
+      <div class="gate-cards">
+        <a href="government.html" class="gate-card gov">
+          <div class="gc-sector">Public Sector</div>
+          <div class="gc-title">Government &amp; Public Administration</div>
+          <div class="gc-desc">Independent structural diagnosis of administrative systems and delivery friction.</div>
+          <ul class="gc-items">
+            <li>Structural efficiency of administrative systems</li>
+            <li>Cross-jurisdiction comparison</li>
+            <li>Public audit dataset analysis</li>
+          </ul>
+          <div class="gc-cta">Enter <span class="gc-arrow">→</span></div>
+        </a>
+
+        <a href="enterprise.html" class="gate-card priv">
+          <div class="gc-sector">Private Sector</div>
+          <div class="gc-title">Enterprise &amp; Capital Efficiency</div>
+          <div class="gc-desc">Verify whether transformation improves capital velocity or multiplies friction.</div>
+          <ul class="gc-items">
+            <li>Measure operational drag after automation</li>
+            <li>Detect hidden rework loops</li>
+            <li>Compare efficiency before and after change</li>
+          </ul>
+          <div class="gc-cta">Enter <span class="gc-arrow">→</span></div>
+        </a>
+      </div>
+
+      <div class="pa-strip">
+        <div class="pa-strip-label">Featured in PA Times · American Society for Public Administration</div>
+        <div class="pa-articles">
+          <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">Mar 13, 2026</div>
+            <div class="pa-title">The Denominator Problem</div>
+            <div class="pa-summary">Why policy failures stem from broken delivery design, not insufficient funding.</div>
+          </a>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">Apr 3, 2026</div>
+              <span class="coming-tag">Coming Soon</span>
             </div>
+            <div class="pa-title">Proportional Sequencing in Long-Term Care</div>
+            <div class="pa-summary">How reordering safeguards reduces access delays in HCBS programs without removing oversight.</div>
+            <div class="advance">Advance review → ping@gfiintel.com</div>
           </div>
 
-          <div class="panel">
-            <div class="metric-label">Diagnostic ratio</div>
-            <div class="formula-box">
-              <div class="formula-code">GL = (Fs × Vn) / (Pd × Cf)</div>
-              <div class="formula-note">
-                Fs = Flow Success Rate · Vn = Strategic Value · Pd = Pain Duration · Cf = Cognitive Friction
-              </div>
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">Apr 24, 2026</div>
+              <span class="coming-tag">Coming Soon</span>
             </div>
+            <div class="pa-title">What Global Benefit Systems Reveal About Policy Delivery</div>
+            <div class="pa-summary">Rwanda, Estonia, Singapore, and Canada show that delivery design determines outcomes as much as policy design.</div>
+            <div class="advance">Advance review → ping@gfiintel.com</div>
+          </div>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">May 22, 2026</div>
+              <span class="coming-tag">Coming Soon</span>
+            </div>
+            <div class="pa-title">What One-Stop Service Reveals About the Delivery Problem</div>
+            <div class="pa-summary">Coordination burden should sit with systems, not citizens.</div>
+            <div class="advance">Advance review → ping@gfiintel.com</div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="pathways">
-      <div class="container grid-2">
-        <div class="flow-card">
-          <div class="small-kicker">Public sector</div>
-          <h3>Government delivery systems</h3>
-          <p>
-            For unemployment systems, benefits delivery, long-term care intake, audit review, appeals, and public-facing administrative processes.
-          </p>
-          <ul class="mini-list">
-            <li>Structural friction in benefits and service delivery</li>
-            <li>Front-end sequencing and documentation burden</li>
-            <li>Audit-ready framing for implementation failure</li>
-          </ul>
-          <div class="hero-actions" style="margin-top:16px;">
-            <a class="btn btn-secondary" href="government.html">Go to Government Page</a>
-          </div>
-        </div>
-
-        <div class="flow-card">
-          <div class="small-kicker">Private sector</div>
-          <h3>Enterprise process efficiency</h3>
-          <p>
-            For CFOs, healthcare operators, education systems, and complex workflows where friction quietly erodes throughput, margin, and execution quality.
-          </p>
-          <ul class="mini-list">
-            <li>Hidden throughput loss across multi-step operations</li>
-            <li>Customer burden, rework, and coordination drag</li>
-            <li>Executive framing for operational waste</li>
-          </ul>
-          <div class="hero-actions" style="margin-top:16px;">
-            <a class="btn btn-secondary" href="enterprise.html">Go to Enterprise Page</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="framework">
-      <div class="container">
-        <div class="section-head">
-          <h2>What GL measures</h2>
-          <p>
-            GL is a diagnostic ratio for implementation efficiency. It highlights where process design, sequencing, and friction undermine throughput, trust, and value.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <div class="feature-card">
-            <div class="small-kicker">01</div>
-            <h3>Delivery quality</h3>
-            <p>
-              Not whether a policy exists on paper, but whether people can move through the system with acceptable speed, clarity, and completion.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="small-kicker">02</div>
-            <h3>Administrative friction</h3>
-            <p>
-              Identifies where documentation burden, sequence overload, and fragmented process design create hidden waste.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="small-kicker">03</div>
-            <h3>Executive signal</h3>
-            <p>
-              Produces a decision-ready frame that leaders can use in briefings, audits, process review, and strategic prioritization.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="snapshot-box">
-          <div class="small-kicker" style="color:#27497d;">Fast entry</div>
-          <h2>Start with a 3-Minute Snapshot</h2>
-          <p>
-            A fast diagnostic entry point for leaders who already suspect something is leaking value but need a cleaner way to frame it.
-          </p>
-
-          <ul class="snapshot-points">
-            <li>No software installation required</li>
-            <li>Useful for agencies, audit teams, and operational leaders</li>
-            <li>Built to surface where friction is structurally embedded</li>
-          </ul>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="workbook.html">Run Snapshot</a>
-            <a class="btn btn-secondary" href="contact.html" style="border-color:rgba(13,22,40,.12); background:#fff; color:#0d1628;">Talk to GFI</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="proof">
-      <div class="container">
-        <div class="section-head">
-          <h2>Why this is credible</h2>
-          <p>
-            The framework is positioned as a diagnostic instrument, not a slogan. It is built for analysis, simulation framing, and implementation review.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <div class="proof-card">
-            <div class="small-kicker">Published framing</div>
-            <h3>SSRN working paper</h3>
-            <p>
-              The GL model has been formalized as a diagnostic ratio for policy implementation efficiency and administrative friction analysis.
-            </p>
-          </div>
-
-          <div class="proof-card">
-            <div class="small-kicker">Practitioner-facing writing</div>
-            <h3>Public administration audience</h3>
-            <p>
-              The denominator problem and delivery-friction framing have been developed for public-sector readers in practitioner-oriented publication.
-            </p>
-          </div>
-
-          <div class="proof-card">
-            <div class="small-kicker">Operational use</div>
-            <h3>Executive-ready interpretation</h3>
-            <p>
-              Built to help leaders discuss system failure in terms of throughput, burden, and implementation quality rather than vague dissatisfaction.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="footer-cta">
-      <div class="container">
-        <div class="footer-box">
-          <div>
-            <div class="small-kicker">Next step</div>
-            <h3 style="margin:0 0 8px; font-size:24px;">Clean signal first. Deep diagnosis second.</h3>
-            <p style="margin:0;color:var(--muted);max-width:680px;font-size:14px;">
-              Start with the Snapshot. Escalate to a fuller diagnostic review if the pattern is real.
-            </p>
-          </div>
-          <div class="hero-actions" style="margin-top:0;">
-            <a class="btn btn-primary" href="workbook.html">Start Snapshot</a>
-            <a class="btn btn-secondary" href="contact.html">Contact GFI</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <div>© 2026 GFI Flow Intelligence. All rights reserved.</div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="government.html">Government</a>
-        <a href="enterprise.html">Enterprise</a>
-        <a href="workbook.html">Workbook</a>
-        <a href="contact.html">Contact</a>
-        <a href="tw.html">繁中</a>
-        <a href="cn.html">简中</a>
-        <a href="es.html">Español</a>
       </div>
     </div>
-  </footer>
+  </main>
+</section>
 
+<section class="lb" data-lang="tw">
+  <main>
+    <div class="hero-wrap">
+      <div class="gate-eyebrow">GFI Flow Intelligence · 波士頓</div>
+      <h1 class="gate-title">其他工具測量<em style="color:#7DD3FC;">發生了什麼</em>。<br>GL 測量系統<em style="color:#9FE870;">實際的交付效能</em>。</h1>
+      <p class="hero-definition">單一指標，衡量系統交付效能。</p>
+      <p class="hero-no-risk">無需系統存取 · 無需安裝 · 使用公開或 CSV 數據</p>
+      <p class="hero-built-for">發表於 PA Times 與 SSRN</p>
+
+      <div class="research-strip">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">查看 SSRN 研究 <span class="gc-arrow">→</span></a>
+        <a href="government.html#one-stop-video" class="research-btn">查看政府一站式案例 <span class="gc-arrow">→</span></a>
+      </div>
+
+      <div class="free-bridge">
+        <div class="free-kicker">免費入口</div>
+        <div class="free-line">先看 GL 診斷長什麼樣，再決定是否付費。</div>
+        <div class="free-note">這裡放樣本診斷報告下載或預覽。冷流量先建立信任，再進入付費。</div>
+        <div class="free-actions">
+          <a href="sample-diagnostic.pdf" class="btn-primary">下載樣本診斷 <span class="gc-arrow">→</span></a>
+          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="research-btn">Email 索取 <span class="gc-arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="exec-bridge">
+        <div class="exec-kicker">入門診斷</div>
+        <div class="exec-mini">1頁 GL 診斷 · 不需內部系統存取</div>
+        <div class="exec-line">帶一條流程、一個方案或一段服務路徑進來。拿走一個可以放上桌的數字。</div>
+        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="exec-cta" target="_blank" rel="noopener">$299 開始 <span class="gc-arrow">→</span></a>
+      </div>
+
+      <div class="gate-cards">
+        <a href="government.html" class="gate-card gov">
+          <div class="gc-sector">公部門</div>
+          <div class="gc-title">政府與公共行政</div>
+          <div class="gc-desc">對行政系統與政策交付摩擦進行獨立結構診斷。</div>
+          <ul class="gc-items">
+            <li>行政系統的結構效率測量</li>
+            <li>跨司法轄區比較</li>
+            <li>公開審計資料分析</li>
+          </ul>
+          <div class="gc-cta">進入 <span class="gc-arrow">→</span></div>
+        </a>
+
+        <a href="enterprise.html" class="gate-card priv">
+          <div class="gc-sector">民間企業</div>
+          <div class="gc-title">企業與資本效率</div>
+          <div class="gc-desc">驗證轉型究竟提升資本速度，還是放大制度摩擦。</div>
+          <ul class="gc-items">
+            <li>衡量自動化後的營運拖累</li>
+            <li>找出隱藏返工迴圈</li>
+            <li>比較變革前後效率差值</li>
+          </ul>
+          <div class="gc-cta">進入 <span class="gc-arrow">→</span></div>
+        </a>
+      </div>
+
+      <div class="pa-strip">
+        <div class="pa-strip-label">刊登於 PA Times · 美國公共行政學會</div>
+        <div class="pa-articles">
+          <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年3月13日</div>
+            <div class="pa-title">分母問題</div>
+            <div class="pa-summary">政策失敗源於交付系統設計失效，而非資源不足。</div>
+          </a>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">2026年4月3日</div>
+              <span class="coming-tag">即將刊出</span>
+            </div>
+            <div class="pa-title">長期照護中的比例排序</div>
+            <div class="pa-summary">在不移除審查機制的前提下重新排序，可減少 HCBS 計畫的入系延誤。</div>
+            <div class="advance">提前閱讀 → ping@gfiintel.com</div>
+          </div>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">2026年4月24日</div>
+              <span class="coming-tag">即將刊出</span>
+            </div>
+            <div class="pa-title">國際福利系統對政策交付的啟示</div>
+            <div class="pa-summary">盧安達、愛沙尼亞、新加坡、加拿大顯示：交付設計與政策設計同等重要。</div>
+            <div class="advance">提前閱讀 → ping@gfiintel.com</div>
+          </div>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">2026年5月22日</div>
+              <span class="coming-tag">即將刊出</span>
+            </div>
+            <div class="pa-title">一站式服務揭示的交付問題</div>
+            <div class="pa-summary">協調負擔應由系統承擔，而非公民。</div>
+            <div class="advance">提前閱讀 → ping@gfiintel.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<section class="lb" data-lang="cn">
+  <main>
+    <div class="hero-wrap">
+      <div class="gate-eyebrow">GFI Flow Intelligence · 波士顿</div>
+      <h1 class="gate-title">其他工具测量<em style="color:#7DD3FC;">发生了什么</em>。<br>GL 测量系统<em style="color:#9FE870;">实际的交付效能</em>。</h1>
+      <p class="hero-definition">单一指标，衡量系统交付效能。</p>
+      <p class="hero-no-risk">无需系统访问 · 无需安装 · 使用公开或 CSV 数据</p>
+      <p class="hero-built-for">发表于 PA Times 与 SSRN</p>
+
+      <div class="research-strip">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">查看 SSRN 研究 <span class="gc-arrow">→</span></a>
+        <a href="government.html#one-stop-video" class="research-btn">查看政府一站式案例 <span class="gc-arrow">→</span></a>
+      </div>
+
+      <div class="free-bridge">
+        <div class="free-kicker">免费入口</div>
+        <div class="free-line">先看 GL 诊断长什么样，再决定是否付费。</div>
+        <div class="free-note">这里放样本诊断报告下载或预览。冷流量先建立信任，再进入付费。</div>
+        <div class="free-actions">
+          <a href="sample-diagnostic.pdf" class="btn-primary">下载样本诊断 <span class="gc-arrow">→</span></a>
+          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="research-btn">Email 索取 <span class="gc-arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="exec-bridge">
+        <div class="exec-kicker">入门诊断</div>
+        <div class="exec-mini">1页 GL 诊断 · 无需内部系统访问</div>
+        <div class="exec-line">带一条流程、一个项目或一段服务路径进来。拿走一个可以放上桌的数字。</div>
+        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="exec-cta" target="_blank" rel="noopener">$299 开始 <span class="gc-arrow">→</span></a>
+      </div>
+
+      <div class="gate-cards">
+        <a href="government.html" class="gate-card gov">
+          <div class="gc-sector">公共部门</div>
+          <div class="gc-title">政府与公共行政</div>
+          <div class="gc-desc">对行政系统与政策交付摩擦进行独立结构诊断。</div>
+          <ul class="gc-items">
+            <li>行政系统的结构效率测量</li>
+            <li>跨司法辖区比较</li>
+            <li>公开审计资料分析</li>
+          </ul>
+          <div class="gc-cta">进入 <span class="gc-arrow">→</span></div>
+        </a>
+
+        <a href="enterprise.html" class="gate-card priv">
+          <div class="gc-sector">民间企业</div>
+          <div class="gc-title">企业与资本效率</div>
+          <div class="gc-desc">验证转型究竟提升资本速度，还是放大制度摩擦。</div>
+          <ul class="gc-items">
+            <li>衡量自动化后的运营拖累</li>
+            <li>找出隐藏返工循环</li>
+            <li>比较变革前后效率差值</li>
+          </ul>
+          <div class="gc-cta">进入 <span class="gc-arrow">→</span></div>
+        </a>
+      </div>
+
+      <div class="pa-strip">
+        <div class="pa-strip-label">刊登于 PA Times · 美国公共行政学会</div>
+        <div class="pa-articles">
+          <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">2026年3月13日</div>
+            <div class="pa-title">分母问题</div>
+            <div class="pa-summary">政策失败源于交付系统设计失效，而非资源不足。</div>
+          </a>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">2026年4月3日</div>
+              <span class="coming-tag">即将刊出</span>
+            </div>
+            <div class="pa-title">长期照护中的比例排序</div>
+            <div class="pa-summary">在不移除审查机制的前提下重新排序，可减少 HCBS 计划的入系延误。</div>
+            <div class="advance">提前阅读 → ping@gfiintel.com</div>
+          </div>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">2026年4月24日</div>
+              <span class="coming-tag">即将刊出</span>
+            </div>
+            <div class="pa-title">国际福利系统对政策交付的启示</div>
+            <div class="pa-summary">卢安达、爱沙尼亚、新加坡、加拿大显示：交付设计与政策设计同等重要。</div>
+            <div class="advance">提前阅读 → ping@gfiintel.com</div>
+          </div>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">2026年5月22日</div>
+              <span class="coming-tag">即将刊出</span>
+            </div>
+            <div class="pa-title">一站式服务揭示的交付问题</div>
+            <div class="pa-summary">协调负担应由系统承担，而非公民。</div>
+            <div class="advance">提前阅读 → ping@gfiintel.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<section class="lb" data-lang="es">
+  <main>
+    <div class="hero-wrap">
+      <div class="gate-eyebrow">GFI Flow Intelligence · Boston</div>
+      <h1 class="gate-title">Otras herramientas miden <em style="color:#7DD3FC;">qué</em> ocurrió.<br>GL mide cómo los sistemas <em style="color:#9FE870;">realmente entregan</em>.</h1>
+      <p class="hero-definition">Una métrica única para el rendimiento de entrega del sistema.</p>
+      <p class="hero-no-risk">Sin acceso a sistemas · Sin instalación · Funciona con datos públicos o CSV</p>
+      <p class="hero-built-for">Publicado en PA Times y SSRN</p>
+
+      <div class="research-strip">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" target="_blank" rel="noopener" class="research-btn">Ver investigación en SSRN <span class="gc-arrow">→</span></a>
+        <a href="government.html#one-stop-video" class="research-btn">Ver ejemplo de ventanilla única <span class="gc-arrow">→</span></a>
+      </div>
+
+      <div class="free-bridge">
+        <div class="free-kicker">Primer paso gratuito</div>
+        <div class="free-line">Vea cómo luce un diagnóstico GL antes de pagar.</div>
+        <div class="free-note">Coloque aquí una descarga o vista previa del informe de muestra. Este es el paso de confianza para tráfico frío.</div>
+        <div class="free-actions">
+          <a href="sample-diagnostic.pdf" class="btn-primary">Descargar diagnóstico de muestra <span class="gc-arrow">→</span></a>
+          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="research-btn">Solicitar por email <span class="gc-arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="exec-bridge">
+        <div class="exec-kicker">Diagnóstico de entrada</div>
+        <div class="exec-mini">Diagnóstico GL de 1 página · Sin acceso interno al sistema</div>
+        <div class="exec-line">Traiga un flujo, un programa o una ruta de servicio. Llévese un número que pueda poner sobre la mesa.</div>
+        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="exec-cta" target="_blank" rel="noopener">Comenzar por $299 <span class="gc-arrow">→</span></a>
+      </div>
+
+      <div class="gate-cards">
+        <a href="government.html" class="gate-card gov">
+          <div class="gc-sector">Sector Público</div>
+          <div class="gc-title">Gobierno y Administración Pública</div>
+          <div class="gc-desc">Diagnóstico estructural independiente de sistemas administrativos y fricción en la entrega.</div>
+          <ul class="gc-items">
+            <li>Eficiencia estructural de sistemas administrativos</li>
+            <li>Comparación entre jurisdicciones</li>
+            <li>Análisis de datos de auditoría pública</li>
+          </ul>
+          <div class="gc-cta">Ingresar <span class="gc-arrow">→</span></div>
+        </a>
+
+        <a href="enterprise.html" class="gate-card priv">
+          <div class="gc-sector">Sector Privado</div>
+          <div class="gc-title">Empresa & Eficiencia de Capital</div>
+          <div class="gc-desc">Verifique si la transformación mejora la velocidad del capital o multiplica la fricción.</div>
+          <ul class="gc-items">
+            <li>Medir la carga operativa tras la automatización</li>
+            <li>Detectar ciclos ocultos de retrabajo</li>
+            <li>Comparar eficiencia antes y después del cambio</li>
+          </ul>
+          <div class="gc-cta">Ingresar <span class="gc-arrow">→</span></div>
+        </a>
+      </div>
+
+      <div class="pa-strip">
+        <div class="pa-strip-label">Publicado en PA Times · Sociedad Americana de Administración Pública</div>
+        <div class="pa-articles">
+          <a href="https://patimes.org/the-denominator-problem/" target="_blank" rel="noopener" class="pa-article">
+            <div class="pa-date">13 mar 2026</div>
+            <div class="pa-title">El problema del denominador</div>
+            <div class="pa-summary">Por qué los fallos de política se originan en el diseño roto de entrega, no en la falta de financiamiento.</div>
+          </a>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">3 abr 2026</div>
+              <span class="coming-tag">Próximamente</span>
+            </div>
+            <div class="pa-title">Secuenciación proporcional en cuidados de larga duración</div>
+            <div class="pa-summary">Reordenar las salvaguardas reduce los retrasos de acceso en programas HCBS sin eliminar la supervisión.</div>
+            <div class="advance">Revisión anticipada → ping@gfiintel.com</div>
+          </div>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">24 abr 2026</div>
+              <span class="coming-tag">Próximamente</span>
+            </div>
+            <div class="pa-title">What Global Benefit Systems Reveal About Policy Delivery</div>
+            <div class="pa-summary">Ruanda, Estonia, Singapur y Canadá muestran que el diseño de entrega determina los resultados tanto como la política.</div>
+            <div class="advance">Revisión anticipada → ping@gfiintel.com</div>
+          </div>
+
+          <div class="pa-article" style="cursor:default;opacity:.78;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="pa-date">22 may 2026</div>
+              <span class="coming-tag">Próximamente</span>
+            </div>
+            <div class="pa-title">What One-Stop Service Reveals About the Delivery Problem</div>
+            <div class="pa-summary">La carga de coordinación debe recaer en los sistemas, no en los ciudadanos.</div>
+            <div class="advance">Revisión anticipada → ping@gfiintel.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
+
+<div class="gate-footer">
+  © 2026 GFI Flow Intelligence · Boston ·
+  <a href="about.html">About</a> ·
+  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll(".lb-btn");
+  const blocks = document.querySelectorAll(".lb");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lang = btn.dataset.lang;
+      buttons.forEach(b => b.classList.remove("on"));
+      blocks.forEach(b => b.classList.remove("active"));
+      btn.classList.add("on");
+      document.querySelector(`.lb[data-lang="${lang}"]`).classList.add("active");
+    });
+  });
+</script>
 </body>
 </html>
