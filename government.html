@@ -41,505 +41,186 @@
     }
 
     .bg-grid{
-      position:fixed;
-      inset:0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      position:fixed;inset:0;
+      background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
       background-size:56px 56px;
       mask-image:radial-gradient(ellipse 85% 72% at 50% 42%,black 18%,transparent 82%);
-      pointer-events:none;
-      z-index:0;
+      pointer-events:none;z-index:0;
     }
 
     .topbar{
-      position:fixed;
-      top:0;left:0;right:0;
-      z-index:100;
-      height:62px;
-      padding:0 clamp(18px,5vw,52px);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      background:rgba(11,18,32,.82);
-      backdrop-filter:blur(14px);
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      height:62px;padding:0 clamp(18px,5vw,52px);
+      display:flex;align-items:center;justify-content:space-between;
+      background:rgba(11,18,32,.82);backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
 
-    .logo{
-      color:#fff;
-      text-decoration:none;
-      font-family:var(--mono);
-      font-size:14px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-    }
+    .logo{color:#fff;text-decoration:none;font-family:var(--mono);font-size:14px;letter-spacing:.16em;text-transform:uppercase;}
 
-    .nav-right{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      flex-wrap:wrap;
-    }
+    .nav-right{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
 
-    .mini-nav{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
+    .mini-nav{display:flex;gap:14px;flex-wrap:wrap;}
+    .mini-nav a{color:var(--sub);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:color .2s ease;}
+    .mini-nav a:hover,.mini-nav a.active{color:#fff}
 
-    .mini-nav a{
-      color:var(--sub);
-      text-decoration:none;
-      font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      transition:color .2s ease;
-    }
-
-    .mini-nav a:hover,
-    .mini-nav a.active{color:#fff}
-
-    .lang-grp{
-      display:flex;
-      gap:6px;
-      align-items:center;
-    }
+    .lang-grp{display:flex;gap:6px;align-items:center;}
 
     .lb-btn{
-      font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.08em;
-      padding:6px 11px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:6px;
-      background:none;
-      color:var(--sub);
-      cursor:pointer;
-      transition:all .2s ease;
+      font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:6px 11px;
+      border:1px solid rgba(255,255,255,.10);border-radius:6px;background:none;color:var(--sub);
+      cursor:pointer;transition:all .2s ease;
     }
-
-    .lb-btn:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.20);
-      background:rgba(255,255,255,.03);
-    }
-
-    .lb-btn.on{
-      color:var(--green);
-      border-color:rgba(159,232,112,.35);
-      background:rgba(159,232,112,.08);
-    }
+    .lb-btn:hover{color:var(--text);border-color:rgba(255,255,255,.20);background:rgba(255,255,255,.03);}
+    .lb-btn.on{color:var(--green);border-color:rgba(159,232,112,.35);background:rgba(159,232,112,.08);}
 
     .lb{display:none;position:relative;z-index:1}
     .lb.active{display:block}
 
-    main{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-start;
-      padding:96px clamp(20px,5vw,60px) 64px;
-    }
+    main{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:96px clamp(20px,5vw,60px) 64px;}
 
-    .wrap{
-      width:100%;
-      max-width:1080px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
+    .wrap{width:100%;max-width:1080px;display:flex;flex-direction:column;align-items:center;}
 
-    .eyebrow{
-      font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:#AFC3DB;
-      text-align:center;
-      margin-bottom:18px;
-      opacity:0;
-      animation:up .55s .05s forwards;
-    }
+    .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#AFC3DB;text-align:center;margin-bottom:18px;opacity:0;animation:up .55s .05s forwards;}
 
-    .title{
-      font-family:var(--serif);
-      font-size:clamp(24px,2.8vw,40px);
-      line-height:1.18;
-      letter-spacing:-.02em;
-      text-align:center;
-      max-width:760px;
-      margin-bottom:14px;
-      color:#FFFFFF;
-      opacity:0;
-      animation:up .55s .16s forwards;
-    }
+    .title{font-family:var(--serif);font-size:clamp(24px,2.8vw,40px);line-height:1.18;letter-spacing:-.02em;text-align:center;max-width:760px;margin-bottom:14px;color:#FFFFFF;opacity:0;animation:up .55s .16s forwards;}
 
-    .definition{
-      max-width:620px;
-      margin:0 auto 10px;
-      text-align:center;
-      font-size:16px;
-      line-height:1.7;
-      color:#C8D8EC;
-      opacity:0;
-      animation:up .55s .22s forwards;
-    }
+    .definition{max-width:620px;margin:0 auto 10px;text-align:center;font-size:16px;line-height:1.7;color:#C8D8EC;opacity:0;animation:up .55s .22s forwards;}
 
-    .subline{
-      max-width:720px;
-      margin:0 auto 26px;
-      text-align:center;
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.06em;
-      color:#7a90aa;
-      opacity:0;
-      animation:up .55s .28s forwards;
-    }
+    .subline{max-width:720px;margin:0 auto 26px;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:#7a90aa;opacity:0;animation:up .55s .28s forwards;}
 
-    .hero-actions{
-      width:100%;
-      max-width:760px;
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:12px;
-      margin-bottom:24px;
-      opacity:0;
-      animation:up .58s .34s forwards;
-    }
+    .hero-actions{width:100%;max-width:760px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:24px;opacity:0;animation:up .58s .34s forwards;}
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:11px 18px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
-      color:#F5FFE9;
-      text-decoration:none;
-      font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:11px 18px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      color:#F5FFE9;text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
       transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
     }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(159,232,112,.30);box-shadow:0 10px 24px rgba(0,0,0,.22);}
+    .btn.primary{border:1px solid rgba(159,232,112,.28);background:linear-gradient(180deg,rgba(159,232,112,.14),rgba(159,232,112,.07));color:#EDFDE0;}
 
-    .btn:hover{
-      transform:translateY(-2px);
-      border-color:rgba(159,232,112,.30);
-      box-shadow:0 10px 24px rgba(0,0,0,.22);
-    }
-
-    .btn.primary{
-      border:1px solid rgba(159,232,112,.28);
-      background:linear-gradient(180deg,rgba(159,232,112,.14),rgba(159,232,112,.07));
-      color:#EDFDE0;
-    }
-
-    .arrow{
-      font-size:13px;
-      transition:transform .22s ease;
-      display:inline-block;
-    }
-
+    .arrow{font-size:13px;transition:transform .22s ease;display:inline-block;}
     .btn:hover .arrow{transform:translateX(4px)}
 
-    .video-block,
-    .free-bridge,
-    .entry-box,
-    .section-block,
-    .pub-list,
-    .final-box,
-    .grid{
-      width:100%;
-    }
+    .video-block,.free-bridge,.section-block,.pub-list,.final-box,.grid{width:100%;}
 
-    .video-block{
-      max-width:900px;
-      margin:0 auto 30px;
-      opacity:0;
-      animation:up .58s .38s forwards;
-    }
+    .video-block{max-width:900px;margin:0 auto 30px;opacity:0;animation:up .58s .38s forwards;}
 
-    .section-label{
-      font-family:var(--mono);
-      font-size:10px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:#7a90aa;
-      margin-bottom:12px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+    .section-label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#7a90aa;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+    .section-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08);}
 
-    .section-label::after{
-      content:'';
-      flex:1;
-      height:1px;
-      background:rgba(255,255,255,.08);
-    }
+    .video-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.10);box-shadow:0 10px 28px rgba(0,0,0,.16);background:rgba(255,255,255,.03);}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;}
 
-    .video-wrap{
-      position:relative;
-      width:100%;
-      padding-top:56.25%;
+    .video-note{margin-top:10px;font-size:14px;color:#9fb0c8;line-height:1.7;}
+
+    /* ── Request Brief Box ── */
+    .brief-box{
+      max-width:860px;margin:0 auto 24px;
+      padding:36px 40px 32px;
+      border:1px solid rgba(159,232,112,.25);
       border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:0 10px 28px rgba(0,0,0,.16);
-      background:rgba(255,255,255,.03);
-    }
-
-    .video-wrap iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-    }
-
-    .video-note{
-      margin-top:10px;
-      font-size:14px;
-      color:#9fb0c8;
-      line-height:1.7;
-    }
-
-    .free-bridge,
-    .entry-box,
-    .final-box{
-      max-width:860px;
-      margin:0 auto 24px;
-      padding:26px 32px 24px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:18px;
-      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018));
+      background:linear-gradient(180deg,rgba(159,232,112,.06),rgba(255,255,255,.018));
       box-shadow:0 8px 24px rgba(0,0,0,.14);
       text-align:center;
+      opacity:0;animation:up .58s .42s forwards;
     }
 
-    .free-bridge{opacity:0;animation:up .58s .42s forwards;}
-    .entry-box{opacity:0;animation:up .58s .46s forwards;}
+    .brief-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#9FE870;margin-bottom:12px;}
+
+    .brief-title{font-family:var(--serif);font-size:clamp(20px,2vw,26px);color:#fff;margin-bottom:10px;line-height:1.2;}
+
+    .brief-desc{font-size:15px;color:#C8D8EC;line-height:1.8;margin-bottom:8px;max-width:620px;margin-left:auto;margin-right:auto;}
+
+    .brief-note{font-family:var(--mono);font-size:11px;color:#7a90aa;margin-bottom:28px;line-height:1.6;}
+
+    .brief-form{display:flex;flex-direction:column;gap:12px;max-width:520px;margin:0 auto 24px;}
+
+    .brief-form input{
+      width:100%;padding:12px 16px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);
+      color:#fff;font-family:var(--sans);font-size:14px;outline:none;
+      transition:border-color .2s ease;
+    }
+    .brief-form input::placeholder{color:#7a90aa;}
+    .brief-form input:focus{border-color:rgba(159,232,112,.4);background:rgba(159,232,112,.04);}
+
+    .brief-submit{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:13px 28px;border-radius:10px;border:1px solid rgba(159,232,112,.35);
+      background:linear-gradient(180deg,rgba(159,232,112,.18),rgba(159,232,112,.09));
+      color:#EDFDE0;font-family:var(--mono);font-size:12px;letter-spacing:.10em;text-transform:uppercase;
+      cursor:pointer;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
+      width:100%;
+    }
+    .brief-submit:hover{transform:translateY(-2px);border-color:rgba(159,232,112,.55);box-shadow:0 8px 22px rgba(0,0,0,.18);}
+
+    .brief-fine{font-family:var(--mono);font-size:10px;color:#6a7e96;margin-top:6px;line-height:1.6;}
+
+    .brief-tagline{
+      margin-top:20px;padding-top:20px;
+      border-top:1px solid rgba(255,255,255,.07);
+      font-family:var(--serif);font-size:16px;color:rgba(255,255,255,.5);
+      font-style:italic;
+    }
+    .brief-tagline span{color:#9FE870;font-style:normal;}
+
+    /* confirmation message */
+    .brief-confirm{display:none;text-align:center;padding:16px;border-radius:10px;background:rgba(159,232,112,.08);border:1px solid rgba(159,232,112,.2);}
+    .brief-confirm p{color:#9FE870;font-family:var(--mono);font-size:13px;line-height:1.7;}
+
+    /* ── end Request Brief Box ── */
+
+    .free-bridge,.final-box{
+      max-width:860px;margin:0 auto 24px;padding:26px 32px 24px;
+      border:1px solid rgba(255,255,255,.10);border-radius:18px;
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018));
+      box-shadow:0 8px 24px rgba(0,0,0,.14);text-align:center;
+    }
+    .free-bridge{opacity:0;animation:up .58s .46s forwards;}
     .final-box{opacity:0;animation:up .62s .66s forwards;margin-top:34px;background:linear-gradient(180deg,rgba(159,232,112,.05),rgba(255,255,255,.016));}
 
-    .free-kicker,
-    .entry-kicker{
-      font-family:var(--mono);
-      font-size:10px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:#7a90aa;
-      margin-bottom:10px;
-    }
+    .free-kicker,.entry-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7a90aa;margin-bottom:10px;}
+    .free-line,.entry-line{font-size:16px;line-height:1.7;color:#D7E4F2;margin-bottom:10px;}
+    .free-note,.entry-mini{font-family:var(--mono);font-size:11px;color:#92a7bf;margin-bottom:18px;}
+    .free-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 
-    .free-line,
-    .entry-line{
-      font-size:16px;
-      line-height:1.7;
-      color:#D7E4F2;
-      margin-bottom:10px;
-    }
+    .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:34px;opacity:0;animation:up .6s .52s forwards;}
 
-    .free-note,
-    .entry-mini{
-      font-family:var(--mono);
-      font-size:11px;
-      color:#92a7bf;
-      margin-bottom:18px;
-    }
+    .card{padding:22px 20px 18px;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.018));box-shadow:0 10px 28px rgba(0,0,0,.16);}
+    .card-num{font-family:var(--serif);font-size:30px;line-height:1;color:var(--green);margin-bottom:10px;}
+    .card-title{font-family:var(--serif);font-size:21px;line-height:1.2;margin-bottom:10px;color:#F3F8FF;}
+    .card-text{font-size:14px;color:#C6D5E5;line-height:1.75;}
 
-    .free-actions{
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
+    .section-block{max-width:960px;margin:0 auto 34px;opacity:0;animation:up .6s .56s forwards;}
+    .section-head{font-family:var(--serif);font-size:30px;line-height:1.2;margin-bottom:10px;color:#fff;}
+    .section-text{font-size:15px;color:#C8D8EC;line-height:1.8;max-width:820px;}
 
-    .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr 1fr;
-      gap:18px;
-      margin-bottom:34px;
-      opacity:0;
-      animation:up .6s .52s forwards;
-    }
+    .pub-list{display:grid;gap:14px;opacity:0;animation:up .6s .60s forwards;}
+    .pub{padding:18px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);}
+    .pub-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px;}
+    .pub-date{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:#7a90aa;text-transform:uppercase;}
+    .tag{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#9FE870;background:rgba(159,232,112,.1);border:1px solid rgba(159,232,112,.2);padding:2px 8px;border-radius:4px;}
+    .pub-title{font-size:17px;color:#EAF2FB;line-height:1.45;margin-bottom:6px;font-weight:500;}
+    .pub-summary{font-size:14px;color:#9fb0c8;line-height:1.75;}
+    .pub-link{display:inline-flex;margin-top:10px;color:var(--green);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
 
-    .card{
-      padding:22px 20px 18px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.018));
-      box-shadow:0 10px 28px rgba(0,0,0,.16);
-    }
+    .final-title{font-family:var(--serif);font-size:28px;line-height:1.2;margin-bottom:10px;color:#fff;}
+    .final-text{font-size:15px;color:#C8D8EC;line-height:1.8;margin-bottom:18px;}
 
-    .card-num{
-      font-family:var(--serif);
-      font-size:30px;
-      line-height:1;
-      color:var(--green);
-      margin-bottom:10px;
-    }
-
-    .card-title{
-      font-family:var(--serif);
-      font-size:21px;
-      line-height:1.2;
-      margin-bottom:10px;
-      color:#F3F8FF;
-    }
-
-    .card-text{
-      font-size:14px;
-      color:#C6D5E5;
-      line-height:1.75;
-    }
-
-    .section-block{
-      max-width:960px;
-      margin:0 auto 34px;
-      opacity:0;
-      animation:up .6s .56s forwards;
-    }
-
-    .section-head{
-      font-family:var(--serif);
-      font-size:30px;
-      line-height:1.2;
-      margin-bottom:10px;
-      color:#fff;
-    }
-
-    .section-text{
-      font-size:15px;
-      color:#C8D8EC;
-      line-height:1.8;
-      max-width:820px;
-    }
-
-    .pub-list{
-      display:grid;
-      gap:14px;
-      opacity:0;
-      animation:up .6s .60s forwards;
-    }
-
-    .pub{
-      padding:18px 20px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.025);
-    }
-
-    .pub-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:8px;
-    }
-
-    .pub-date{
-      font-family:var(--mono);
-      font-size:10px;
-      letter-spacing:.12em;
-      color:#7a90aa;
-      text-transform:uppercase;
-    }
-
-    .tag{
-      font-family:var(--mono);
-      font-size:9px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:#9FE870;
-      background:rgba(159,232,112,.1);
-      border:1px solid rgba(159,232,112,.2);
-      padding:2px 8px;
-      border-radius:4px;
-    }
-
-    .pub-title{
-      font-size:17px;
-      color:#EAF2FB;
-      line-height:1.45;
-      margin-bottom:6px;
-      font-weight:500;
-    }
-
-    .pub-summary{
-      font-size:14px;
-      color:#9fb0c8;
-      line-height:1.75;
-    }
-
-    .pub-link{
-      display:inline-flex;
-      margin-top:10px;
-      color:var(--green);
-      text-decoration:none;
-      font-family:var(--mono);
-      font-size:11px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-
-    .final-title{
-      font-family:var(--serif);
-      font-size:28px;
-      line-height:1.2;
-      margin-bottom:10px;
-      color:#fff;
-    }
-
-    .final-text{
-      font-size:15px;
-      color:#C8D8EC;
-      line-height:1.8;
-      margin-bottom:18px;
-    }
-
-    .footer{
-      position:relative;
-      z-index:1;
-      text-align:center;
-      padding:28px 20px 36px;
-      color:#6a7e96;
-      font-size:11px;
-      font-family:var(--mono);
-      letter-spacing:.05em;
-    }
-
-    .footer a{
-      color:#8faabe;
-      text-decoration:none;
-    }
-
+    .footer{position:relative;z-index:1;text-align:center;padding:28px 20px 36px;color:#6a7e96;font-size:11px;font-family:var(--mono);letter-spacing:.05em;}
+    .footer a{color:#8faabe;text-decoration:none;}
     .footer a:hover{color:#fff}
 
-    @keyframes up{
-      from{opacity:0;transform:translateY(14px)}
-      to{opacity:1;transform:translateY(0)}
-    }
+    @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
-    }
-
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
     @media(max-width:720px){
-      .topbar{padding:0 16px}
-      .nav-right{gap:10px}
-      .mini-nav{display:none}
-      main{padding:82px 18px 48px}
-      .title{font-size:clamp(20px,6.5vw,30px)}
-      .free-bridge,.entry-box,.final-box{padding:20px 16px;border-radius:14px}
-      .hero-actions,.free-actions{flex-direction:column}
-      .btn{width:100%}
+      .topbar{padding:0 16px}.nav-right{gap:10px}.mini-nav{display:none}
+      main{padding:82px 18px 48px}.title{font-size:clamp(20px,6.5vw,30px)}
+      .brief-box,.free-bridge,.final-box{padding:20px 16px;border-radius:14px}
+      .hero-actions,.free-actions{flex-direction:column}.btn{width:100%}
       .section-head{font-size:25px}
     }
   </style>
@@ -565,468 +246,384 @@
   </div>
 </div>
 
-<!-- EN -->
+<!-- ══════════════════════════════════════════ EN ══════════════════════════════════════════ -->
 <section class="lb active" data-lang="en">
-  <main>
-    <div class="wrap">
-      <div class="eyebrow">Public Sector · Government</div>
-      <h1 class="title">GL measures how well a public system actually delivers.</h1>
-      <p class="definition">A single metric for system delivery performance.</p>
-      <p class="subline">No internal access · No installation · Works with public or CSV data</p>
+  <main><div class="wrap">
+    <div class="eyebrow">Public Sector · Government</div>
+    <h1 class="title">GL measures how well a public system actually delivers.</h1>
+    <p class="definition">A single metric for system delivery performance.</p>
+    <p class="subline">No internal access · No installation · Works with public or CSV data</p>
 
-      <div class="hero-actions">
-        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" class="btn" target="_blank" rel="noopener">View SSRN <span class="arrow">→</span></a>
-        <a href="index.html" class="btn">Back to Home <span class="arrow">→</span></a>
+    <div class="hero-actions">
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" class="btn" target="_blank" rel="noopener">View SSRN <span class="arrow">→</span></a>
+      <a href="index.html" class="btn">Back to Home <span class="arrow">→</span></a>
+    </div>
+
+    <div class="video-block" id="one-stop-video">
+      <div class="section-label">GL Framework — What It Is</div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/5jVEHn8-SH0" title="GL Framework — What It Is" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+      <div class="video-note">A practical introduction to how GL Framework diagnoses process load — and where intervention actually changes outcomes.</div>
+    </div>
 
-      <div class="video-block" id="one-stop-video">
-        <div class="section-label">One-Stop Service Example</div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/KHhfAa4jliY" title="One-Stop Service Example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="video-note">A practical example of how coordination burden can be absorbed by the system rather than pushed onto citizens.</div>
+    <!-- Request Brief Box -->
+    <div class="brief-box" id="request-brief">
+      <div class="brief-kicker">Government & Public Sector</div>
+      <div class="brief-title">Request a Diagnostic Brief</div>
+      <div class="brief-desc">We provide a non-attributable process diagnostic using public or shared data.<br>No system access required. No installation.</div>
+      <div class="brief-note">This is not a purchase. This is a starting point.</div>
+
+      <form class="brief-form" id="briefFormEN" onsubmit="submitBrief(event,'EN')">
+        <input type="text" name="agency" placeholder="Agency / Department" required>
+        <input type="text" name="process" placeholder="Process (e.g. UI claims, licensing, case processing)" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit" class="brief-submit">Request Brief <span class="arrow">→</span></button>
+      </form>
+      <div class="brief-confirm" id="confirmEN">
+        <p>Thank you.<br>We will prepare a preliminary diagnostic outline focused on where process load may be accumulating.<br>If appropriate, we will reach out to schedule a short discussion.</p>
       </div>
+      <div class="brief-fine">No payment required · No system access · Response within 2 business days</div>
+      <div class="brief-tagline">Government doesn't buy a service.<br><span>It initiates a process.</span></div>
+    </div>
 
-      <div class="free-bridge">
-        <div class="free-kicker">Free First Step</div>
-        <div class="free-line">Review a sample GL diagnostic before deciding whether to pay.</div>
-        <div class="free-note">Show a sample report here so first-time visitors can see what the deliverable actually looks like.</div>
-        <div class="free-actions">
-          <a href="sample-diagnostic.pdf" class="btn primary">Download Sample Diagnostic <span class="arrow">→</span></a>
-          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="btn">Request by Email <span class="arrow">→</span></a>
-        </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-num">01</div>
+        <div class="card-title">Compare delivery performance</div>
+        <div class="card-text">See how similar public processes perform across programs, units, or jurisdictions.</div>
       </div>
-
-      <div class="entry-box">
-        <div class="entry-kicker">Entry Diagnostic</div>
-        <div class="entry-mini">1-page GL diagnostic · Directional first-pass review</div>
-        <div class="entry-line">Start with one workflow, one program, or one service path. Receive a number you can put on the table.</div>
-        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="btn primary" target="_blank" rel="noopener">Start for $299 <span class="arrow">→</span></a>
+      <div class="card">
+        <div class="card-num">02</div>
+        <div class="card-title">See friction without system exposure</div>
+        <div class="card-text">Start with public data, CSV exports, or manually assembled operating figures.</div>
       </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="card-num">01</div>
-          <div class="card-title">Compare delivery performance</div>
-          <div class="card-text">See how similar public processes perform across programs, units, or jurisdictions.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">02</div>
-          <div class="card-title">See friction without system exposure</div>
-          <div class="card-text">Start with public data, CSV exports, or manually assembled operating figures.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">03</div>
-          <div class="card-title">Support leadership discussion</div>
-          <div class="card-text">Discuss delay, burden, rework, and process design risk with a common metric.</div>
-        </div>
-      </div>
-
-      <div class="section-block">
-        <div class="section-label">Why it matters</div>
-        <div class="section-head">Public delivery problems are often structural before they are political.</div>
-        <div class="section-text">A program can be well-funded and well-intended and still underperform because the path through the process is too slow, too layered, or too difficult to complete.</div>
-      </div>
-
-      <div class="section-block">
-        <div class="section-label">Publications</div>
-        <div class="section-head">Selected public administration writing</div>
-        <div class="section-text">Research and commentary focused on administrative friction, policy delivery, and system design.</div>
-      </div>
-
-      <div class="pub-list">
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · Published</div>
-          </div>
-          <div class="pub-title">The Denominator Problem: How Administrative Friction Derails Policy</div>
-          <div class="pub-summary">Introduces the implementation burden lens behind GL and explains why delay and process drag weaken outcomes even in well-funded programs.</div>
-          <a class="pub-link" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">Read Article →</a>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · Apr 3, 2026</div>
-          </div>
-          <div class="pub-title">Proportional Sequencing in Long-Term Care</div>
-          <div class="pub-summary">Examines how process ordering affects access and why safeguards do not need to be removed in order to reduce delay.</div>
-          <a class="pub-link" href="https://patimes.org/proportional-sequencing-in-long-term-care-a-process-design-approach-for-u-s-hcbs/" target="_blank" rel="noopener">Read Article →</a>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · Apr 24, 2026</div>
-            <div class="tag">Forthcoming</div>
-          </div>
-          <div class="pub-title">What Global Benefit Systems Reveal About Policy Delivery</div>
-          <div class="pub-summary">Looks at how administrative design shapes outcomes across national systems and what implementation structure reveals beyond formal policy intent.</div>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · May 22, 2026</div>
-            <div class="tag">Forthcoming</div>
-          </div>
-          <div class="pub-title">What One-Stop Service Reveals About the Delivery Problem</div>
-          <div class="pub-summary">Shows why coordination burden should sit with systems rather than citizens.</div>
-        </div>
-      </div>
-
-      <div class="final-box">
-        <div class="final-title">Start with one program, one workflow, or one operating unit.</div>
-        <div class="final-text">GL is designed to help public leaders discuss delivery performance with more clarity before the problem becomes normalized as routine backlog.</div>
-        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="btn primary" target="_blank" rel="noopener">Start for $299 <span class="arrow">→</span></a>
+      <div class="card">
+        <div class="card-num">03</div>
+        <div class="card-title">Support leadership discussion</div>
+        <div class="card-text">Discuss delay, burden, rework, and process design risk with a common metric.</div>
       </div>
     </div>
-  </main>
+
+    <div class="section-block">
+      <div class="section-label">Why it matters</div>
+      <div class="section-head">Public delivery problems are often structural before they are political.</div>
+      <div class="section-text">A program can be well-funded and well-intended and still underperform because the path through the process is too slow, too layered, or too difficult to complete.</div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Publications</div>
+      <div class="section-head">Selected public administration writing</div>
+      <div class="section-text">Research and commentary focused on administrative friction, policy delivery, and system design.</div>
+    </div>
+
+    <div class="pub-list">
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · Published</div></div>
+        <div class="pub-title">The Denominator Problem: How Administrative Friction Derails Policy</div>
+        <div class="pub-summary">Introduces the implementation burden lens behind GL and explains why delay and process drag weaken outcomes even in well-funded programs.</div>
+        <a class="pub-link" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">Read Article →</a>
+      </div>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · Apr 3, 2026</div></div>
+        <div class="pub-title">Proportional Sequencing in Long-Term Care</div>
+        <div class="pub-summary">Examines how process ordering affects access and why safeguards do not need to be removed in order to reduce delay.</div>
+        <a class="pub-link" href="https://patimes.org/proportional-sequencing-in-long-term-care-a-process-design-approach-for-u-s-hcbs/" target="_blank" rel="noopener">Read Article →</a>
+      </div>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · Apr 24, 2026</div><div class="tag">Forthcoming</div></div>
+        <div class="pub-title">What Global Benefit Systems Reveal About Policy Delivery</div>
+        <div class="pub-summary">Looks at how administrative design shapes outcomes across national systems and what implementation structure reveals beyond formal policy intent.</div>
+      </div>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · May 22, 2026</div><div class="tag">Forthcoming</div></div>
+        <div class="pub-title">What One-Stop Service Reveals About the Delivery Problem</div>
+        <div class="pub-summary">Shows why coordination burden should sit with systems rather than citizens.</div>
+      </div>
+    </div>
+
+    <div class="final-box">
+      <div class="final-title">Start with one program, one workflow, or one operating unit.</div>
+      <div class="final-text">GL is designed to help public leaders discuss delivery performance with more clarity before the problem becomes normalized as routine backlog.</div>
+      <a href="#request-brief" class="btn primary">Request a Diagnostic Brief <span class="arrow">→</span></a>
+    </div>
+  </div></main>
 </section>
 
-<!-- TW -->
+<!-- ══════════════════════════════════════════ TW ══════════════════════════════════════════ -->
 <section class="lb" data-lang="tw">
-  <main>
-    <div class="wrap">
-      <div class="eyebrow">公部門 · 政府</div>
-      <h1 class="title">GL 衡量一個公共系統到底交付得好不好。</h1>
-      <p class="definition">單一指標，衡量系統交付效能。</p>
-      <p class="subline">不需內部系統存取 · 不需安裝 · 可用公開或 CSV 資料</p>
+  <main><div class="wrap">
+    <div class="eyebrow">公部門 · 政府</div>
+    <h1 class="title">GL 衡量一個公共系統到底交付得好不好。</h1>
+    <p class="definition">單一指標，衡量系統交付效能。</p>
+    <p class="subline">不需內部系統存取 · 不需安裝 · 可用公開或 CSV 資料</p>
 
-      <div class="hero-actions">
-        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" class="btn" target="_blank" rel="noopener">查看 SSRN <span class="arrow">→</span></a>
-        <a href="index.html" class="btn">回首頁 <span class="arrow">→</span></a>
+    <div class="hero-actions">
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" class="btn" target="_blank" rel="noopener">查看 SSRN <span class="arrow">→</span></a>
+      <a href="index.html" class="btn">回首頁 <span class="arrow">→</span></a>
+    </div>
+
+    <div class="video-block">
+      <div class="section-label">GL Framework — 什麼是流程負擔指數</div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/5jVEHn8-SH0" title="GL Framework 介紹" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+      <div class="video-note">GL Framework 如何診斷流程負擔，以及介入在哪裡真正改變結果。</div>
+    </div>
 
-      <div class="video-block" id="one-stop-video">
-        <div class="section-label">一站式服務案例</div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/Hpb8fibUdYw" title="One-Stop Service Example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="video-note">一個實際例子：協調負擔由系統吸收，而不是推回給公民。</div>
+    <!-- Request Brief Box TW -->
+    <div class="brief-box" id="request-brief-tw">
+      <div class="brief-kicker">政府與公共部門</div>
+      <div class="brief-title">申請診斷簡報</div>
+      <div class="brief-desc">我們使用公開或共享資料，提供不具名的流程診斷。<br>不需要系統存取權限，不需要安裝任何軟體。</div>
+      <div class="brief-note">這不是購買。這是一個起點。</div>
+
+      <form class="brief-form" id="briefFormTW" onsubmit="submitBrief(event,'TW')">
+        <input type="text" name="agency" placeholder="機關 / 部門" required>
+        <input type="text" name="process" placeholder="流程（例：失業給付、許可申請、個案處理）" required>
+        <input type="email" name="email" placeholder="電子郵件" required>
+        <button type="submit" class="brief-submit">申請簡報 <span class="arrow">→</span></button>
+      </form>
+      <div class="brief-confirm" id="confirmTW">
+        <p>感謝您的提交。<br>我們將準備一份初步診斷摘要，聚焦在流程負擔可能累積的位置。<br>如有需要，我們將與您安排一次簡短討論。</p>
       </div>
+      <div class="brief-fine">無需付費 · 無需系統存取 · 2 個工作天內回覆</div>
+      <div class="brief-tagline">政府不是買服務。<br><span>政府是啟動一個流程。</span></div>
+    </div>
 
-      <div class="free-bridge">
-        <div class="free-kicker">免費入口</div>
-        <div class="free-line">先看 GL 診斷長什麼樣，再決定是否付費。</div>
-        <div class="free-note">這裡放樣本診斷報告下載或預覽，讓第一次來的訪客先建立信任。</div>
-        <div class="free-actions">
-          <a href="sample-diagnostic.pdf" class="btn primary">下載樣本診斷 <span class="arrow">→</span></a>
-          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="btn">Email 索取 <span class="arrow">→</span></a>
-        </div>
+    <div class="grid">
+      <div class="card"><div class="card-num">01</div><div class="card-title">比較交付表現</div><div class="card-text">比較相似公共流程在不同方案、單位或轄區中的表現。</div></div>
+      <div class="card"><div class="card-num">02</div><div class="card-title">不碰內部系統也能看見摩擦</div><div class="card-text">可以從公開資料、CSV 匯出或人工整理的營運數字開始。</div></div>
+      <div class="card"><div class="card-num">03</div><div class="card-title">支撐領導層討論</div><div class="card-text">用共同指標討論延遲、負擔、返工與流程設計風險。</div></div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">為什麼重要</div>
+      <div class="section-head">很多公共交付問題，先是結構問題，才是政治問題。</div>
+      <div class="section-text">一個方案即使預算充足、目標正確，仍可能表現不佳，因為整個流程太慢、太多層、太難走完。</div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">文章</div>
+      <div class="section-head">公共行政相關文章</div>
+      <div class="section-text">聚焦行政摩擦、政策交付與系統設計的研究與評論。</div>
+    </div>
+
+    <div class="pub-list">
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 已刊登</div></div>
+        <div class="pub-title">分母問題：行政摩擦如何拖垮政策交付</div>
+        <div class="pub-summary">介紹 GL 背後的執行負擔視角，說明為何即使預算充足，延遲與流程拖累仍會削弱結果。</div>
+        <a class="pub-link" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">閱讀文章 →</a>
       </div>
-
-      <div class="entry-box">
-        <div class="entry-kicker">入門診斷</div>
-        <div class="entry-mini">1頁 GL 診斷 · 方向性初步檢視</div>
-        <div class="entry-line">從一條流程、一個方案或一段服務路徑開始。拿到一個可以放上桌的數字。</div>
-        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="btn primary" target="_blank" rel="noopener">$299 開始 <span class="arrow">→</span></a>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 2026年4月3日</div></div>
+        <div class="pub-title">長期照護中的比例排序</div>
+        <div class="pub-summary">探討流程排序如何影響可近性，以及為何要減少延遲，不必然等於拿掉保障機制。</div>
+        <a class="pub-link" href="https://patimes.org/proportional-sequencing-in-long-term-care-a-process-design-approach-for-u-s-hcbs/" target="_blank" rel="noopener">閱讀文章 →</a>
       </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="card-num">01</div>
-          <div class="card-title">比較交付表現</div>
-          <div class="card-text">比較相似公共流程在不同方案、單位或轄區中的表現。</div>
-        </div>
-        <div class="card">
-          <div class="card-num">02</div>
-          <div class="card-title">不碰內部系統也能看見摩擦</div>
-          <div class="card-text">可以從公開資料、CSV 匯出或人工整理的營運數字開始。</div>
-        </div>
-        <div class="card">
-          <div class="card-num">03</div>
-          <div class="card-title">支撐領導層討論</div>
-          <div class="card-text">用共同指標討論延遲、負擔、返工與流程設計風險。</div>
-        </div>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 2026年4月24日</div><div class="tag">即將刊出</div></div>
+        <div class="pub-title">全球福利制度揭示了什麼交付問題</div>
+        <div class="pub-summary">觀察行政設計如何影響不同國家的結果，以及執行結構如何揭露正式政策目標之外的現實。</div>
       </div>
-
-      <div class="section-block">
-        <div class="section-label">為什麼重要</div>
-        <div class="section-head">很多公共交付問題，先是結構問題，才是政治問題。</div>
-        <div class="section-text">一個方案即使預算充足、目標正確，仍可能表現不佳，因為整個流程太慢、太多層、太難走完。</div>
-      </div>
-
-      <div class="section-block">
-        <div class="section-label">文章</div>
-        <div class="section-head">公共行政相關文章</div>
-        <div class="section-text">聚焦行政摩擦、政策交付與系統設計的研究與評論。</div>
-      </div>
-
-      <div class="pub-list">
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 已刊登</div>
-          </div>
-          <div class="pub-title">分母問題：行政摩擦如何拖垮政策交付</div>
-          <div class="pub-summary">介紹 GL 背後的執行負擔視角，說明為何即使預算充足，延遲與流程拖累仍會削弱結果。</div>
-          <a class="pub-link" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">閱讀文章 →</a>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 2026年4月3日</div>
-          </div>
-          <div class="pub-title">長期照護中的比例排序</div>
-          <div class="pub-summary">探討流程排序如何影響可近性，以及為何要減少延遲，不必然等於拿掉保障機制。</div>
-          <a class="pub-link" href="https://patimes.org/proportional-sequencing-in-long-term-care-a-process-design-approach-for-u-s-hcbs/" target="_blank" rel="noopener">閱讀文章 →</a>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 2026年4月24日</div>
-            <div class="tag">即將刊出</div>
-          </div>
-          <div class="pub-title">全球福利制度揭示了什麼交付問題</div>
-          <div class="pub-summary">觀察行政設計如何影響不同國家的結果，以及執行結構如何揭露正式政策目標之外的現實。</div>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 2026年5月22日</div>
-            <div class="tag">即將刊出</div>
-          </div>
-          <div class="pub-title">一站式服務揭示的交付問題</div>
-          <div class="pub-summary">說明為何協調負擔應由系統承擔，而不是丟給公民。</div>
-        </div>
-      </div>
-
-      <div class="final-box">
-        <div class="final-title">從一個方案、一條流程或一個營運單位開始。</div>
-        <div class="final-text">GL 的設計目的，是讓公共部門領導者能在問題被當成例行積壓之前，更清楚地討論交付表現。</div>
-        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="btn primary" target="_blank" rel="noopener">$299 開始 <span class="arrow">→</span></a>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 2026年5月22日</div><div class="tag">即將刊出</div></div>
+        <div class="pub-title">一站式服務揭示的交付問題</div>
+        <div class="pub-summary">說明為何協調負擔應由系統承擔，而不是丟給公民。</div>
       </div>
     </div>
-  </main>
+
+    <div class="final-box">
+      <div class="final-title">從一個方案、一條流程或一個營運單位開始。</div>
+      <div class="final-text">GL 的設計目的，是讓公共部門領導者能在問題被當成例行積壓之前，更清楚地討論交付表現。</div>
+      <a href="#request-brief-tw" class="btn primary">申請診斷簡報 <span class="arrow">→</span></a>
+    </div>
+  </div></main>
 </section>
 
-<!-- CN -->
+<!-- ══════════════════════════════════════════ CN ══════════════════════════════════════════ -->
 <section class="lb" data-lang="cn">
-  <main>
-    <div class="wrap">
-      <div class="eyebrow">公共部门 · 政府</div>
-      <h1 class="title">GL 衡量一个公共系统到底交付得好不好。</h1>
-      <p class="definition">单一指标，衡量系统交付效能。</p>
-      <p class="subline">无需内部系统访问 · 无需安装 · 可用公开或 CSV 数据</p>
+  <main><div class="wrap">
+    <div class="eyebrow">公共部门 · 政府</div>
+    <h1 class="title">GL 衡量一个公共系统到底交付得好不好。</h1>
+    <p class="definition">单一指标，衡量系统交付效能。</p>
+    <p class="subline">无需内部系统访问 · 无需安装 · 可用公开或 CSV 数据</p>
 
-      <div class="hero-actions">
-        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" class="btn" target="_blank" rel="noopener">查看 SSRN <span class="arrow">→</span></a>
-        <a href="index.html" class="btn">回首页 <span class="arrow">→</span></a>
+    <div class="hero-actions">
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" class="btn" target="_blank" rel="noopener">查看 SSRN <span class="arrow">→</span></a>
+      <a href="index.html" class="btn">回首页 <span class="arrow">→</span></a>
+    </div>
+
+    <div class="video-block">
+      <div class="section-label">GL Framework — 什么是流程负担指数</div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/5jVEHn8-SH0" title="GL Framework 介绍" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+      <div class="video-note">GL Framework 如何诊断流程负担，以及介入在哪里真正改变结果。</div>
+    </div>
 
-      <div class="video-block" id="one-stop-video">
-        <div class="section-label">一站式服务案例</div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/Hpb8fibUdYw" title="One-Stop Service Example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="video-note">一个实际例子：协调负担由系统吸收，而不是推回给公民。</div>
+    <!-- Request Brief Box CN -->
+    <div class="brief-box" id="request-brief-cn">
+      <div class="brief-kicker">政府与公共部门</div>
+      <div class="brief-title">申请诊断简报</div>
+      <div class="brief-desc">我们使用公开或共享数据，提供不具名的流程诊断。<br>无需系统访问权限，无需安装任何软件。</div>
+      <div class="brief-note">这不是购买。这是一个起点。</div>
+
+      <form class="brief-form" id="briefFormCN" onsubmit="submitBrief(event,'CN')">
+        <input type="text" name="agency" placeholder="机关 / 部门" required>
+        <input type="text" name="process" placeholder="流程（例：失业给付、许可申请、案件处理）" required>
+        <input type="email" name="email" placeholder="电子邮件" required>
+        <button type="submit" class="brief-submit">申请简报 <span class="arrow">→</span></button>
+      </form>
+      <div class="brief-confirm" id="confirmCN">
+        <p>感谢您的提交。<br>我们将准备一份初步诊断摘要，聚焦在流程负担可能累积的位置。<br>如有需要，我们将与您安排一次简短讨论。</p>
       </div>
+      <div class="brief-fine">无需付费 · 无需系统访问 · 2 个工作日内回复</div>
+      <div class="brief-tagline">政府不是买服务。<br><span>政府是启动一个流程。</span></div>
+    </div>
 
-      <div class="free-bridge">
-        <div class="free-kicker">免费入口</div>
-        <div class="free-line">先看 GL 诊断长什么样，再决定是否付费。</div>
-        <div class="free-note">这里放样本诊断报告下载或预览，让第一次来的访客先建立信任。</div>
-        <div class="free-actions">
-          <a href="sample-diagnostic.pdf" class="btn primary">下载样本诊断 <span class="arrow">→</span></a>
-          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="btn">Email 索取 <span class="arrow">→</span></a>
-        </div>
+    <div class="grid">
+      <div class="card"><div class="card-num">01</div><div class="card-title">比较交付表现</div><div class="card-text">比较相似公共流程在不同项目、单位或辖区中的表现。</div></div>
+      <div class="card"><div class="card-num">02</div><div class="card-title">不碰内部系统也能看见摩擦</div><div class="card-text">可以从公开数据、CSV 导出或人工整理的运营数字开始。</div></div>
+      <div class="card"><div class="card-num">03</div><div class="card-title">支撑领导层讨论</div><div class="card-text">用共同指标讨论延迟、负担、返工与流程设计风险。</div></div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">为什么重要</div>
+      <div class="section-head">很多公共交付问题，首先是结构问题，然后才是政治问题。</div>
+      <div class="section-text">一个项目即使预算充足、目标正确，仍可能表现不佳，因为整个流程太慢、层级太多、太难走完。</div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">文章</div>
+      <div class="section-head">公共行政相关文章</div>
+      <div class="section-text">聚焦行政摩擦、政策交付与系统设计的研究与评论。</div>
+    </div>
+
+    <div class="pub-list">
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 已刊登</div></div>
+        <div class="pub-title">分母问题：行政摩擦如何拖垮政策交付</div>
+        <div class="pub-summary">介绍 GL 背后的执行负担视角，说明为何即使预算充足，延迟与流程拖累仍会削弱结果。</div>
+        <a class="pub-link" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">阅读文章 →</a>
       </div>
-
-      <div class="entry-box">
-        <div class="entry-kicker">入门诊断</div>
-        <div class="entry-mini">1页 GL 诊断 · 方向性初步审视</div>
-        <div class="entry-line">从一条流程、一个项目或一段服务路径开始。拿到一个可以放上桌的数字。</div>
-        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="btn primary" target="_blank" rel="noopener">$299 开始 <span class="arrow">→</span></a>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 2026年4月3日</div></div>
+        <div class="pub-title">长期照护中的比例排序</div>
+        <div class="pub-summary">探讨流程排序如何影响可及性，以及为何要减少延迟，并不等于必须取消保障机制。</div>
+        <a class="pub-link" href="https://patimes.org/proportional-sequencing-in-long-term-care-a-process-design-approach-for-u-s-hcbs/" target="_blank" rel="noopener">阅读文章 →</a>
       </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="card-num">01</div>
-          <div class="card-title">比较交付表现</div>
-          <div class="card-text">比较相似公共流程在不同项目、单位或辖区中的表现。</div>
-        </div>
-        <div class="card">
-          <div class="card-num">02</div>
-          <div class="card-title">不碰内部系统也能看见摩擦</div>
-          <div class="card-text">可以从公开数据、CSV 导出或人工整理的运营数字开始。</div>
-        </div>
-        <div class="card">
-          <div class="card-num">03</div>
-          <div class="card-title">支撑领导层讨论</div>
-          <div class="card-text">用共同指标讨论延迟、负担、返工与流程设计风险。</div>
-        </div>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 2026年4月24日</div><div class="tag">即将刊出</div></div>
+        <div class="pub-title">全球福利系统揭示了什么交付问题</div>
+        <div class="pub-summary">观察行政设计如何影响不同国家的结果，以及执行结构如何揭示正式政策目标之外的现实。</div>
       </div>
-
-      <div class="section-block">
-        <div class="section-label">为什么重要</div>
-        <div class="section-head">很多公共交付问题，首先是结构问题，然后才是政治问题。</div>
-        <div class="section-text">一个项目即使预算充足、目标正确，仍可能表现不佳，因为整个流程太慢、层级太多、太难走完。</div>
-      </div>
-
-      <div class="section-block">
-        <div class="section-label">文章</div>
-        <div class="section-head">公共行政相关文章</div>
-        <div class="section-text">聚焦行政摩擦、政策交付与系统设计的研究与评论。</div>
-      </div>
-
-      <div class="pub-list">
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 已刊登</div>
-          </div>
-          <div class="pub-title">分母问题：行政摩擦如何拖垮政策交付</div>
-          <div class="pub-summary">介绍 GL 背后的执行负担视角，说明为何即使预算充足，延迟与流程拖累仍会削弱结果。</div>
-          <a class="pub-link" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">阅读文章 →</a>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 2026年4月3日</div>
-          </div>
-          <div class="pub-title">长期照护中的比例排序</div>
-          <div class="pub-summary">探讨流程排序如何影响可及性，以及为何要减少延迟，并不等于必须取消保障机制。</div>
-          <a class="pub-link" href="https://patimes.org/proportional-sequencing-in-long-term-care-a-process-design-approach-for-u-s-hcbs/" target="_blank" rel="noopener">阅读文章 →</a>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 2026年4月24日</div>
-            <div class="tag">即将刊出</div>
-          </div>
-          <div class="pub-title">全球福利制度揭示了什么交付问题</div>
-          <div class="pub-summary">观察行政设计如何影响不同国家的结果，以及执行结构如何揭示正式政策目标之外的现实。</div>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 2026年5月22日</div>
-            <div class="tag">即将刊出</div>
-          </div>
-          <div class="pub-title">一站式服务揭示的交付问题</div>
-          <div class="pub-summary">说明为什么协调负担应由系统承担，而不是交给公民。</div>
-        </div>
-      </div>
-
-      <div class="final-box">
-        <div class="final-title">从一个项目、一条流程或一个运营单位开始。</div>
-        <div class="final-text">GL 的设计目的，是让公共部门领导者能在问题被当成例行积压之前，更清楚地讨论交付表现。</div>
-        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="btn primary" target="_blank" rel="noopener">$299 开始 <span class="arrow">→</span></a>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 2026年5月22日</div><div class="tag">即将刊出</div></div>
+        <div class="pub-title">一站式服务揭示的交付问题</div>
+        <div class="pub-summary">说明为什么协调负担应由系统承担，而不是交给公民。</div>
       </div>
     </div>
-  </main>
+
+    <div class="final-box">
+      <div class="final-title">从一个项目、一条流程或一个运营单位开始。</div>
+      <div class="final-text">GL 的设计目的，是让公共部门领导者能在问题被当成例行积压之前，更清楚地讨论交付表现。</div>
+      <a href="#request-brief-cn" class="btn primary">申请诊断简报 <span class="arrow">→</span></a>
+    </div>
+  </div></main>
 </section>
 
-<!-- ES -->
+<!-- ══════════════════════════════════════════ ES ══════════════════════════════════════════ -->
 <section class="lb" data-lang="es">
-  <main>
-    <div class="wrap">
-      <div class="eyebrow">Sector Público · Gobierno</div>
-      <h1 class="title">GL mide qué tan bien un sistema público realmente cumple.</h1>
-      <p class="definition">Una sola métrica para el rendimiento de entrega del sistema.</p>
-      <p class="subline">Sin acceso interno · Sin instalación · Funciona con datos públicos o CSV</p>
+  <main><div class="wrap">
+    <div class="eyebrow">Sector Público · Gobierno</div>
+    <h1 class="title">GL mide qué tan bien un sistema público realmente cumple.</h1>
+    <p class="definition">Una sola métrica para el rendimiento de entrega del sistema.</p>
+    <p class="subline">Sin acceso interno · Sin instalación · Funciona con datos públicos o CSV</p>
 
-      <div class="hero-actions">
-        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" class="btn" target="_blank" rel="noopener">Ver SSRN <span class="arrow">→</span></a>
-        <a href="index.html" class="btn">Volver al inicio <span class="arrow">→</span></a>
+    <div class="hero-actions">
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6178024" class="btn" target="_blank" rel="noopener">Ver SSRN <span class="arrow">→</span></a>
+      <a href="index.html" class="btn">Volver al inicio <span class="arrow">→</span></a>
+    </div>
+
+    <div class="video-block">
+      <div class="section-label">GL Framework — Qué es el Índice de Carga de Procesos</div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/5jVEHn8-SH0" title="GL Framework Introducción" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+      <div class="video-note">Una introducción práctica a cómo GL Framework diagnostica la carga de procesos y dónde la intervención realmente cambia los resultados.</div>
+    </div>
 
-      <div class="video-block" id="one-stop-video">
-        <div class="section-label">Ejemplo de ventanilla única</div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/KHhfAa4jliY" title="One-Stop Service Example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="video-note">Un ejemplo práctico de cómo la carga de coordinación puede ser absorbida por el sistema en lugar de trasladarse a los ciudadanos.</div>
+    <!-- Request Brief Box ES -->
+    <div class="brief-box" id="request-brief-es">
+      <div class="brief-kicker">Gobierno y Sector Público</div>
+      <div class="brief-title">Solicitar un Diagnóstico Preliminar</div>
+      <div class="brief-desc">Proporcionamos un diagnóstico de proceso no atribuible utilizando datos públicos o compartidos.<br>No se requiere acceso al sistema. Sin instalación.</div>
+      <div class="brief-note">Esto no es una compra. Es un punto de partida.</div>
+
+      <form class="brief-form" id="briefFormES" onsubmit="submitBrief(event,'ES')">
+        <input type="text" name="agency" placeholder="Agencia / Departamento" required>
+        <input type="text" name="process" placeholder="Proceso (ej: subsidios, licencias, tramitación de casos)" required>
+        <input type="email" name="email" placeholder="Correo electrónico" required>
+        <button type="submit" class="brief-submit">Solicitar Diagnóstico <span class="arrow">→</span></button>
+      </form>
+      <div class="brief-confirm" id="confirmES">
+        <p>Gracias por su envío.<br>Prepararemos un esquema de diagnóstico preliminar centrado en identificar dónde puede estar acumulándose la carga de procesos.<br>Si es apropiado, coordinaremos una breve conversación para revisar los hallazgos.</p>
       </div>
+      <div class="brief-fine">Sin pago · Sin acceso al sistema · Respuesta en 2 días hábiles</div>
+      <div class="brief-tagline">El gobierno no compra un servicio.<br><span>El gobierno inicia un proceso.</span></div>
+    </div>
 
-      <div class="free-bridge">
-        <div class="free-kicker">Primer paso gratuito</div>
-        <div class="free-line">Revise un diagnóstico GL de muestra antes de decidir pagar.</div>
-        <div class="free-note">Muestre aquí un informe de ejemplo para que el visitante vea cómo luce realmente el entregable.</div>
-        <div class="free-actions">
-          <a href="sample-diagnostic.pdf" class="btn primary">Descargar diagnóstico de muestra <span class="arrow">→</span></a>
-          <a href="mailto:gfi@gfiintel.com?subject=Sample%20Diagnostic%20Request" class="btn">Solicitar por email <span class="arrow">→</span></a>
-        </div>
+    <div class="grid">
+      <div class="card"><div class="card-num">01</div><div class="card-title">Comparar el desempeño de entrega</div><div class="card-text">Compare procesos públicos similares entre programas, unidades o jurisdicciones.</div></div>
+      <div class="card"><div class="card-num">02</div><div class="card-title">Ver fricción sin exponer sistemas</div><div class="card-text">Comience con datos públicos, exportaciones CSV o cifras operativas organizadas manualmente.</div></div>
+      <div class="card"><div class="card-num">03</div><div class="card-title">Respaldar la discusión directiva</div><div class="card-text">Discuta demoras, carga, retrabajo y riesgo de diseño con una métrica común.</div></div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Por qué importa</div>
+      <div class="section-head">Muchos problemas de entrega pública son estructurales antes que políticos.</div>
+      <div class="section-text">Un programa puede estar bien financiado y bien diseñado, y aun así rendir mal porque el recorrido del proceso es demasiado lento, demasiado fragmentado o demasiado difícil de completar.</div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Publicaciones</div>
+      <div class="section-head">Escritos seleccionados sobre administración pública</div>
+      <div class="section-text">Investigación y análisis centrados en fricción administrativa, entrega de políticas y diseño de sistemas.</div>
+    </div>
+
+    <div class="pub-list">
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · Publicado</div></div>
+        <div class="pub-title">El problema del denominador: cómo la fricción administrativa descarrila la política pública</div>
+        <div class="pub-summary">Presenta la lógica de carga de implementación detrás de GL y explica por qué la demora debilita los resultados incluso en programas bien financiados.</div>
+        <a class="pub-link" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">Leer artículo →</a>
       </div>
-
-      <div class="entry-box">
-        <div class="entry-kicker">Diagnóstico de entrada</div>
-        <div class="entry-mini">Diagnóstico GL de 1 página · Revisión direccional inicial</div>
-        <div class="entry-line">Empiece con un flujo, un programa o una ruta de servicio. Reciba un número que pueda poner sobre la mesa.</div>
-        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="btn primary" target="_blank" rel="noopener">Comenzar por $299 <span class="arrow">→</span></a>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 3 abr 2026</div></div>
+        <div class="pub-title">Secuenciación proporcional en el cuidado de largo plazo</div>
+        <div class="pub-summary">Examina cómo el orden del proceso afecta el acceso y por qué no es necesario eliminar salvaguardas para reducir demoras.</div>
+        <a class="pub-link" href="https://patimes.org/proportional-sequencing-in-long-term-care-a-process-design-approach-for-u-s-hcbs/" target="_blank" rel="noopener">Leer artículo →</a>
       </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="card-num">01</div>
-          <div class="card-title">Comparar el desempeño de entrega</div>
-          <div class="card-text">Compare procesos públicos similares entre programas, unidades o jurisdicciones.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">02</div>
-          <div class="card-title">Ver fricción sin exponer sistemas</div>
-          <div class="card-text">Comience con datos públicos, exportaciones CSV o cifras operativas organizadas manualmente.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">03</div>
-          <div class="card-title">Respaldar la discusión directiva</div>
-          <div class="card-text">Discuta demoras, carga, retrabajo y riesgo de diseño con una métrica común.</div>
-        </div>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 24 abr 2026</div><div class="tag">Próximamente</div></div>
+        <div class="pub-title">Lo que los sistemas globales de beneficios revelan sobre la entrega de políticas</div>
+        <div class="pub-summary">Analiza cómo el diseño administrativo moldea resultados más allá de la intención formal de la política.</div>
       </div>
-
-      <div class="section-block">
-        <div class="section-label">Por qué importa</div>
-        <div class="section-head">Muchos problemas de entrega pública son estructurales antes que políticos.</div>
-        <div class="section-text">Un programa puede estar bien financiado y bien diseñado, y aun así rendir mal porque el recorrido del proceso es demasiado lento, demasiado fragmentado o demasiado difícil de completar.</div>
-      </div>
-
-      <div class="section-block">
-        <div class="section-label">Publicaciones</div>
-        <div class="section-head">Escritos seleccionados sobre administración pública</div>
-        <div class="section-text">Investigación y análisis centrados en fricción administrativa, entrega de políticas y diseño de sistemas.</div>
-      </div>
-
-      <div class="pub-list">
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · Publicado</div>
-          </div>
-          <div class="pub-title">El problema del denominador: cómo la fricción administrativa descarrila la política pública</div>
-          <div class="pub-summary">Presenta la lógica de carga de implementación detrás de GL y explica por qué la demora y la fricción del proceso debilitan los resultados incluso en programas bien financiados.</div>
-          <a class="pub-link" href="https://patimes.org/the-denominator-problem-how-administrative-friction-derails-policy/" target="_blank" rel="noopener">Leer artículo →</a>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 3 abr 2026</div>
-          </div>
-          <div class="pub-title">Secuenciación proporcional en el cuidado de largo plazo</div>
-          <div class="pub-summary">Examina cómo el orden del proceso afecta el acceso y por qué no es necesario eliminar salvaguardas para reducir demoras.</div>
-          <a class="pub-link" href="https://patimes.org/proportional-sequencing-in-long-term-care-a-process-design-approach-for-u-s-hcbs/" target="_blank" rel="noopener">Leer artículo →</a>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 24 abr 2026</div>
-            <div class="tag">Próximamente</div>
-          </div>
-          <div class="pub-title">Lo que los sistemas globales de beneficios revelan sobre la entrega de políticas</div>
-          <div class="pub-summary">Analiza cómo el diseño administrativo moldea resultados y qué revela la estructura de implementación más allá de la intención formal de la política.</div>
-        </div>
-
-        <div class="pub">
-          <div class="pub-top">
-            <div class="pub-date">PA Times · 22 may 2026</div>
-            <div class="tag">Próximamente</div>
-          </div>
-          <div class="pub-title">Lo que la ventanilla única revela sobre el problema de entrega</div>
-          <div class="pub-summary">Muestra por qué la carga de coordinación debe recaer en los sistemas y no en los ciudadanos.</div>
-        </div>
-      </div>
-
-      <div class="final-box">
-        <div class="final-title">Empiece con un programa, un flujo o una unidad operativa.</div>
-        <div class="final-text">GL está diseñado para ayudar a los líderes públicos a discutir el desempeño de entrega con mayor claridad antes de que el problema se normalice como atraso rutinario.</div>
-        <a href="https://buy.stripe.com/cNidRb1OqazS7fL1jF3VC04" class="btn primary" target="_blank" rel="noopener">Comenzar por $299 <span class="arrow">→</span></a>
+      <div class="pub">
+        <div class="pub-top"><div class="pub-date">PA Times · 22 may 2026</div><div class="tag">Próximamente</div></div>
+        <div class="pub-title">Lo que la ventanilla única revela sobre el problema de entrega</div>
+        <div class="pub-summary">Muestra por qué la carga de coordinación debe recaer en los sistemas y no en los ciudadanos.</div>
       </div>
     </div>
-  </main>
+
+    <div class="final-box">
+      <div class="final-title">Empiece con un programa, un flujo o una unidad operativa.</div>
+      <div class="final-text">GL está diseñado para ayudar a los líderes públicos a discutir el desempeño de entrega con mayor claridad antes de que el problema se normalice como atraso rutinario.</div>
+      <a href="#request-brief-es" class="btn primary">Solicitar Diagnóstico Preliminar <span class="arrow">→</span></a>
+    </div>
+  </div></main>
 </section>
 
 <div class="footer">
@@ -1036,9 +633,9 @@
 </div>
 
 <script>
+  /* Language switcher */
   const buttons = document.querySelectorAll(".lb-btn");
   const blocks = document.querySelectorAll(".lb");
-
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
       const lang = btn.dataset.lang;
@@ -1048,6 +645,29 @@
       document.querySelector(`.lb[data-lang="${lang}"]`).classList.add("active");
     });
   });
+
+  /* Brief form submission — sends mailto and shows confirmation */
+  function submitBrief(e, lang) {
+    e.preventDefault();
+    const form = e.target;
+    const agency = form.agency.value.trim();
+    const process = form.process.value.trim();
+    const email = form.email.value.trim();
+
+    /* Build mailto */
+    const subject = encodeURIComponent("Diagnostic Brief Request — " + agency);
+    const body = encodeURIComponent(
+      "Agency / Department: " + agency + "\n" +
+      "Process: " + process + "\n" +
+      "Reply to: " + email + "\n\n" +
+      "--- Submitted via gfiintel.com/government"
+    );
+    window.location.href = "mailto:gfi@gfiintel.com?subject=" + subject + "&body=" + body;
+
+    /* Show confirmation */
+    form.style.display = "none";
+    document.getElementById("confirm" + lang).style.display = "block";
+  }
 </script>
 </body>
 </html>
