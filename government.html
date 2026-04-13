@@ -608,10 +608,10 @@
 <div class="footer">
   © 2026 GFI Flow Intelligence · Boston ·
   <a href="about.html">About</a> ·
-  <a href="mailto:ping@gfiintel.com">ping@gfiintel.com</a>
+  <a href="/cdn-cgi/l/email-protection#ef9f868188af88898686819b8a83c18c8082"><span class="__cf_email__" data-cfemail="7000191e1730171619191e04151c5e131f1d">[email&#160;protected]</span></a>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const buttons = document.querySelectorAll(".lb-btn");
   const blocks = document.querySelectorAll(".lb");
   buttons.forEach(btn => {
@@ -632,11 +632,4 @@
     const email = form.email.value.trim();
     const subject = encodeURIComponent("Diagnostic Brief Request — " + agency);
     const body = encodeURIComponent("Agency / Department: " + agency + "\nProcess: " + process + "\nReply to: " + email + "\n\n--- Submitted via gfiintel.com/government.html");
-    const confirmEl = document.getElementById("confirm" + lang);
-    if (confirmEl) { confirmEl.style.display = "block"; }
-    form.style.display = "none";
-    window.location.href = "mailto:ping@gfiintel.com?subject=" + subject + "&body=" + body;
-  }
-</script>
-</body>
-</html>
+    const confirmEl = document.getElem
