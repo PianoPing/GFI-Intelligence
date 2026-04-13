@@ -209,7 +209,7 @@
     .diag-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08);}
     .diag-head{font-family:var(--serif);font-size:30px;line-height:1.2;margin-bottom:8px;color:#fff;}
     .diag-sub{font-size:14px;color:#9fb0c8;line-height:1.7;margin-bottom:22px;max-width:820px;}
-    .diag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:14px;}
+    .diag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:14px;}
     .diag-card{border-radius:16px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.016));overflow:hidden;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;}
     .diag-card:hover{transform:translateY(-3px);border-color:rgba(159,232,112,.22);box-shadow:0 12px 32px rgba(0,0,0,.22);}
     .diag-card-header{padding:16px 18px 12px;border-bottom:1px solid rgba(255,255,255,.07);}
@@ -225,7 +225,7 @@
     .diag-dl{display:inline-flex;align-items:center;gap:6px;color:var(--green);text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;transition:opacity .2s;}
     .diag-dl:hover{opacity:.75;}
     .diag-note{font-family:var(--mono);font-size:10px;color:#6a7e96;margin-top:4px;line-height:1.6;}
-    @media(max-width:900px){.diag-grid{grid-template-columns:1fr;}}
+    @media(max-width:1100px){.diag-grid{grid-template-columns:1fr 1fr;}} @media(max-width:600px){.diag-grid{grid-template-columns:1fr;}}
     @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
     @media(max-width:900px){.grid{grid-template-columns:1fr}}
@@ -371,6 +371,21 @@
             <a class="diag-dl" href="reports/Taiwan_LTC3_GL_Diagnostic_Report_EN.pdf" target="_blank">↓ Download Report</a>
           </div>
         </div>
+        <div class="diag-card">
+          <div class="diag-card-header">
+            <div class="diag-flag">🇺🇸 United States · Iowa</div>
+            <div class="diag-system">Iowa Medicaid Eligibility System</div>
+          </div>
+          <div class="diag-card-body">
+            <div class="diag-score-row">
+              <div class="diag-score-num diag-score-fail">0.082</div>
+              <div class="diag-score-label">Structural Failure</div>
+            </div>
+            <div class="diag-finding">System operated by a major contractor under a $60M+ contract. 72% of 247,522 disenrollments were procedural — the system lacked data, not eligibility evidence. Ex parte renewal rate of 46% lagged the 60% national average. Every new policy layer costs $20M+ to implement. The denominator architecture is the problem.</div>
+            <div class="diag-formula">GL = (0.46 × 1.4) / (2.6 × 3.0) = 0.082</div>
+            <a class="diag-dl" href="reports/Iowa_Medicaid_GL_Diagnostic_Report_EN.pdf" target="_blank">↓ Download Report</a>
+          </div>
+        </div>
       </div>
       <div class="diag-note">All diagnostics use public data only · No internal system access required · Delivery timeline: 2 weeks per report · These are sample reports illustrating GL Framework methodology</div>
     </div>
@@ -493,6 +508,21 @@
             <div class="diag-finding">2017至2023年預算成長三倍，2026年推出重大政策改革，交付效率仍不足15%。前置序列式評估設計——而非資金不足——是主要摩擦來源。服務量擴大了，分母沒有縮小。</div>
             <div class="diag-formula">GL = (0.54 × 1.35) / (2.5 × 2.7) = 0.148</div>
             <a class="diag-dl" href="reports/Taiwan_LTC3_GL_Diagnostic_Report_EN.pdf" target="_blank">↓ 下載報告</a>
+          </div>
+        </div>
+        <div class="diag-card">
+          <div class="diag-card-header">
+            <div class="diag-flag">🇺🇸 美國 · 愛荷華州</div>
+            <div class="diag-system">愛荷華州 Medicaid 資格審查系統</div>
+          </div>
+          <div class="diag-card-body">
+            <div class="diag-score-row">
+              <div class="diag-score-num diag-score-fail">0.082</div>
+              <div class="diag-score-label">結構性失敗</div>
+            </div>
+            <div class="diag-finding">系統由大型承包商以超過6000萬美元合約運營。247,522件取消資格中，72%是程序性失敗——系統缺乏資料，而非申請人不符資格。自動更新率46%低於全國平均60%。每新增一項政策要求，就需花費2000萬美元以上重建。分母架構才是問題所在。</div>
+            <div class="diag-formula">GL = (0.46 × 1.4) / (2.6 × 3.0) = 0.082</div>
+            <a class="diag-dl" href="reports/Iowa_Medicaid_GL_Diagnostic_Report_EN.pdf" target="_blank">↓ 下載報告</a>
           </div>
         </div>
       </div>
@@ -619,6 +649,21 @@
             <a class="diag-dl" href="reports/Taiwan_LTC3_GL_Diagnostic_Report_EN.pdf" target="_blank">↓ 下载报告</a>
           </div>
         </div>
+        <div class="diag-card">
+          <div class="diag-card-header">
+            <div class="diag-flag">🇺🇸 美国 · 爱荷华州</div>
+            <div class="diag-system">爱荷华州 Medicaid 资格审查系统</div>
+          </div>
+          <div class="diag-card-body">
+            <div class="diag-score-row">
+              <div class="diag-score-num diag-score-fail">0.082</div>
+              <div class="diag-score-label">结构性失败</div>
+            </div>
+            <div class="diag-finding">系统由大型承包商以超过6000万美元合同运营。247,522件取消资格中，72%是程序性失败——系统缺乏数据，而非申请人不符资格。自动续期率46%低于全国平均60%。每新增一项政策要求，就需花费2000万美元以上重建。分母架构才是问题所在。</div>
+            <div class="diag-formula">GL = (0.46 × 1.4) / (2.6 × 3.0) = 0.082</div>
+            <a class="diag-dl" href="reports/Iowa_Medicaid_GL_Diagnostic_Report_EN.pdf" target="_blank">↓ 下载报告</a>
+          </div>
+        </div>
       </div>
       <div class="diag-note">所有诊断仅使用公开数据 · 无需内部系统访问 · 每份报告交付时程：两周 · 本报告为样本，展示 GL Framework 方法论</div>
     </div>
@@ -743,6 +788,21 @@
             <a class="diag-dl" href="reports/Taiwan_LTC3_GL_Diagnostic_Report_EN.pdf" target="_blank">↓ Descargar Informe</a>
           </div>
         </div>
+        <div class="diag-card">
+          <div class="diag-card-header">
+            <div class="diag-flag">🇺🇸 EE.UU. · Iowa</div>
+            <div class="diag-system">Sistema de Elegibilidad Medicaid de Iowa</div>
+          </div>
+          <div class="diag-card-body">
+            <div class="diag-score-row">
+              <div class="diag-score-num diag-score-fail">0.082</div>
+              <div class="diag-score-label">Fallo Estructural</div>
+            </div>
+            <div class="diag-finding">Sistema operado por un gran contratista bajo un contrato de $60M+. El 72% de 247,522 cancelaciones fueron por razones procedimentales — el sistema carecía de datos, no de evidencia de inelegibilidad. Tasa de renovación automática del 46%, frente al 60% promedio nacional. Cada nueva capa de política cuesta $20M+ implementar. La arquitectura del denominador es el problema.</div>
+            <div class="diag-formula">GL = (0.46 × 1.4) / (2.6 × 3.0) = 0.082</div>
+            <a class="diag-dl" href="reports/Iowa_Medicaid_GL_Diagnostic_Report_EN.pdf" target="_blank">↓ Descargar Informe</a>
+          </div>
+        </div>
       </div>
       <div class="diag-note">Todos los diagnósticos usan solo datos públicos · Sin acceso interno · Plazo: 2 semanas por informe · Informes de muestra que ilustran la metodología GL Framework</div>
     </div>
@@ -778,10 +838,10 @@
 <div class="footer">
   © 2026 GFI Flow Intelligence · Boston ·
   <a href="about.html">About</a> ·
-  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+  <a href="/cdn-cgi/l/email-protection#f493929db493929d9d9a809198da979b99"><span class="__cf_email__" data-cfemail="6007060920070609090e14050c4e030f0d">[email&#160;protected]</span></a>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const buttons = document.querySelectorAll(".lb-btn");
   const blocks = document.querySelectorAll(".lb");
   buttons.forEach(btn => {
@@ -801,11 +861,4 @@
     const process = form.process.value.trim();
     const email = form.email.value.trim();
     const subject = encodeURIComponent("Diagnostic Brief Request — " + agency);
-    const body = encodeURIComponent("Agency / Department: " + agency + "\nProcess: " + process + "\nReply to: " + email + "\n\n--- Submitted via gfiintel.com/government");
-    window.location.href = "mailto:gfi@gfiintel.com?subject=" + subject + "&body=" + body;
-    form.style.display = "none";
-    document.getElementById("confirm" + lang).style.display = "block";
-  }
-</script>
-</body>
-</html>
+    const body = encodeURIComponent("Agency / Department: " + agency + "\nProcess: " + process + "\nReply to: " + email + "\n\n--- Submitted via gfiintel.com/go
