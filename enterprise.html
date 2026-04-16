@@ -1,530 +1,871 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GL independently verifies whether organizational change increases or decreases capital efficiency.">
-<title>Capital Efficiency Verification | GFI Flow Intelligence</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#141d2e;--surf:#1c2740;--surf2:#22304e;--border:rgba(255,255,255,0.08);--text:#edf0f8;--muted:#8fa3c0;--dim:#4a6080;--accent:#c8f542;--blue:#4da3ff;--serif:'DM Serif Display',Georgia,serif;--mono:'DM Mono',monospace;--sans:'DM Sans',system-ui,sans-serif;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.75;overflow-x:hidden}
-img{max-width:100%;display:block}
-header{position:fixed;inset:0 0 auto 0;z-index:100;height:60px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(20,29,46,0.93);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.logo img{height:44px;width:auto;mix-blend-mode:lighten;border-radius:6px}
-nav{display:flex;align-items:center;gap:4px}
-nav a{font-size:13px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px;white-space:nowrap;transition:color .2s,background .2s}
-nav a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
-.lang-grp{display:flex;gap:3px;margin-left:8px}
-.lb-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:5px 9px;border:1px solid var(--border);border-radius:4px;background:none;color:var(--muted);cursor:pointer;transition:all .2s}
-.lb-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.18)}
-.lb-btn.on{color:var(--accent);border-color:rgba(200,245,66,.35);background:rgba(200,245,66,.06)}
-.nav-cta{display:inline-block;padding:8px 16px;background:var(--accent);color:#0d1117;font-size:13px;font-weight:600;border-radius:6px;text-decoration:none;margin-left:8px;white-space:nowrap;transition:opacity .2s}
-.nav-cta:hover{opacity:.85}
-.ham{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;padding:6px;background:none;border:none;cursor:pointer}
-.ham span{display:block;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .2s}
-.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.ham.open span:nth-child(2){opacity:0}
-.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.drawer{display:none;position:fixed;top:60px;left:0;right:0;z-index:99;background:rgba(20,29,46,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:16px 24px 24px;flex-direction:column}
-.drawer.open{display:flex}
-.drawer a{font-size:17px;color:var(--muted);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--border);transition:color .2s}
-.drawer a:hover{color:var(--text)}
-.drawer-lang{display:flex;gap:8px;padding:16px 0 0}
-.drawer-cta{display:block;text-align:center;padding:16px;background:var(--accent);color:#0d1117;font-weight:600;font-size:16px;border-radius:8px;text-decoration:none;margin-top:16px;border-bottom:none!important}
-.lb{display:none}.lb.on{display:block}
-.wrap{max-width:1060px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse 80% 50% at 50% 0%,black 20%,transparent 75%);pointer-events:none}
-.hero-glow{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(200,245,66,.05) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
-.hero-inner{position:relative;padding:clamp(80px,14vh,140px) 0 clamp(60px,10vh,100px)}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(16px,3vh,24px);opacity:0;animation:up .6s .1s forwards}
-.hero h1{font-family:var(--serif);font-size:clamp(28px,4vw,46px);line-height:1.1;letter-spacing:-.02em;max-width:820px;margin-bottom:clamp(18px,3vh,28px);opacity:0;animation:up .6s .25s forwards}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero-sub{font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:580px;line-height:1.75;margin-bottom:clamp(28px,5vh,44px);opacity:0;animation:up .6s .4s forwards}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;opacity:0;animation:up .6s .55s forwards}
-.btn-solid{display:inline-flex;align-items:center;padding:clamp(13px,2vh,16px) clamp(22px,3vw,34px);background:var(--accent);color:#0d1117;font-weight:600;font-size:clamp(14px,1.8vw,16px);border-radius:8px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s}
-.btn-solid:hover{opacity:.87;transform:translateY(-1px)}
-.btn-ghost{display:inline-flex;align-items:center;padding:clamp(13px,2vh,16px) clamp(22px,3vw,34px);border:1px solid var(--border);color:var(--muted);font-size:clamp(14px,1.8vw,16px);border-radius:8px;text-decoration:none;white-space:nowrap;transition:all .2s}
-.btn-ghost:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
-.hero-stats{display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,52px);margin-top:clamp(40px,7vh,72px);padding-top:clamp(28px,4vh,44px);border-top:1px solid var(--border);opacity:0;animation:up .6s .7s forwards}
-.stat-n{font-family:var(--serif);font-size:clamp(26px,4vw,40px);color:var(--accent);line-height:1}
-.stat-l{font-size:13px;color:var(--muted);margin-top:5px}
-.sector-portal{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,20px);margin-top:clamp(32px,5vh,52px);opacity:0;animation:up .6s .85s forwards}
-.sp-card{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:clamp(22px,3vw,36px);text-decoration:none;transition:border-color .25s,transform .25s,background .25s;display:flex;flex-direction:column;gap:10px}
-.sp-card:hover{border-color:rgba(200,245,66,.3);transform:translateY(-3px);background:var(--surf2)}
-.sp-card.gov{border-color:rgba(200,245,66,.15)}.sp-card.priv{border-color:rgba(77,163,255,.15)}
-.sp-card.gov:hover{border-color:rgba(200,245,66,.45)}.sp-card.priv:hover{border-color:rgba(77,163,255,.45)}
-.sp-tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
-.sp-card.gov .sp-tag{color:var(--accent)}.sp-card.priv .sp-tag{color:var(--blue)}
-.sp-title{font-family:var(--serif);font-size:clamp(17px,2.2vw,24px);color:var(--text);line-height:1.25}
-.sp-desc{font-size:clamp(13px,1.6vw,15px);color:var(--muted);line-height:1.65;flex-grow:1}
-.sp-cta{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
-.sp-card.gov .sp-cta{color:var(--accent)}.sp-card.priv .sp-cta{color:var(--blue)}
-@media(max-width:640px){.sector-portal{grid-template-columns:1fr}}
-section{padding:clamp(60px,10vh,110px) 0}
-section.band{background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-h2.stitle{font-family:var(--serif);font-size:clamp(22px,3.2vw,36px);line-height:1.12;letter-spacing:-.02em;margin-bottom:16px}
-.slead{font-size:clamp(16px,1.9vw,18px);color:var(--muted);max-width:680px;line-height:1.8}
-.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:clamp(28px,5vh,48px)}
-.mc{background:var(--surf);padding:clamp(22px,3vw,34px);transition:background .2s}.mc:hover{background:var(--surf2)}
-.mc-eye{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.12em;margin-bottom:12px}
-.mc h3{font-family:var(--serif);font-size:clamp(16px,2vw,20px);margin-bottom:9px}
-.mc p{color:var(--muted);font-size:clamp(13px,1.7vw,15px);line-height:1.65}
-.fstrip{margin-top:clamp(20px,3vh,32px);padding:clamp(18px,2vw,26px) clamp(20px,3vw,32px);background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:8px;font-family:var(--mono);font-size:clamp(12px,1.6vw,14px);color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:10px;line-height:1.6}
-.fstrip a{font-size:11px;letter-spacing:.1em;color:var(--accent);text-decoration:none;margin-left:auto;white-space:nowrap}
-.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,2vw,20px);margin-top:clamp(28px,5vh,48px)}
-.ba{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:clamp(20px,3vw,32px)}
-.ba.good{border-color:rgba(200,245,66,.18);background:rgba(200,245,66,.025)}
-.ba-head{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
-.ba.good .ba-head{color:var(--accent)}
-.ba ul{list-style:none}
-.ba ul li{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:clamp(13px,1.7vw,15px);color:var(--muted);line-height:1.55}
-.ba.good ul li{color:var(--text)}
-.ba ul li::before{content:'—';color:var(--dim);flex-shrink:0}
-.ba.good ul li::before{content:'✓';color:var(--accent)}
-.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:clamp(12px,2vw,18px);margin-top:clamp(24px,4vh,40px)}
-.mcard{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:clamp(18px,2.6vw,26px)}
-.mkv{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.meq{font-family:var(--mono);color:var(--accent);font-size:14px;line-height:1.7;word-break:break-word}
-.mlist{list-style:none;margin-top:10px}
-.mlist li{padding:10px 0;border-bottom:1px solid var(--border);color:var(--muted);display:flex;gap:10px;font-size:14px}
-.mlist li::before{content:'✓';color:var(--accent);flex:0 0 auto}
-.demo-panel{background:var(--surf);border:1px solid rgba(77,163,255,.2);border-radius:10px;padding:clamp(24px,3vw,36px);margin-top:clamp(28px,5vh,48px)}
-.demo-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
-.demo-title{font-family:var(--serif);font-size:clamp(18px,2.4vw,30px);line-height:1.25;margin-bottom:12px}
-.demo-desc{font-size:clamp(15px,1.8vw,17px);color:var(--muted);line-height:1.8;max-width:760px}
-.demo-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:clamp(12px,2vw,22px);margin-top:clamp(28px,5vh,48px)}
-.pc{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;transition:border-color .2s,transform .25s}
-.pc:hover{border-color:rgba(200,245,66,.2);transform:translateY(-3px)}
-.pc.feat{border-color:rgba(200,245,66,.18);background:rgba(200,245,66,.025)}
-.pc-tier{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-.pc.feat .pc-tier{color:var(--accent)}
-.pc-amt{font-family:var(--serif);font-size:clamp(34px,5vw,48px);line-height:1;margin-bottom:4px}
-.pc-cur{font-family:var(--sans);font-size:17px;vertical-align:top;line-height:1.3;color:var(--muted)}
-.pc-desc{color:var(--muted);font-size:clamp(13px,1.7vw,14px);line-height:1.65;margin:10px 0 20px;flex-grow:1}
-.pc-feats{list-style:none;margin-bottom:24px}
-.pc-feats li{font-size:clamp(13px,1.7vw,14px);color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:9px}
-.pc-feats li::before{content:'→';color:var(--accent);flex-shrink:0}
-.pc-btn{display:block;text-align:center;padding:clamp(12px,1.8vh,14px);border:1px solid var(--border);color:var(--text);text-decoration:none;border-radius:7px;font-size:14px;transition:background .2s,border-color .2s}
-.pc-btn:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.16)}
-.pc.feat .pc-btn{background:var(--accent);color:#0d1117;border-color:transparent;font-weight:600}
-.pc.feat .pc-btn:hover{opacity:.88}
-.qs-wrap{margin-top:clamp(28px,5vh,48px)}
-.qs-step{display:none}.qs-step.active{display:block}
-.qs-q{font-family:var(--serif);font-size:clamp(18px,2.5vw,26px);color:var(--text);line-height:1.35;margin-bottom:clamp(20px,3vh,32px)}
-.qs-sub{font-size:clamp(13px,1.6vw,14px);color:var(--dim);font-family:var(--mono);margin-bottom:clamp(20px,3vh,28px)}
-.qs-opts{display:flex;flex-direction:column;gap:8px}
-.qs-opt{display:flex;align-items:center;gap:14px;padding:clamp(14px,2vh,18px) clamp(16px,2.5vw,22px);background:var(--surf);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:clamp(14px,1.7vw,15px);color:var(--muted);text-align:left;width:100%}
-.qs-opt:hover{background:var(--surf2);border-color:rgba(200,245,66,.25);color:var(--text)}
-.qs-opt.selected{background:rgba(200,245,66,.07);border-color:rgba(200,245,66,.4);color:var(--text)}
-.qs-opt-key{font-family:var(--mono);font-size:10px;letter-spacing:.1em;width:20px;flex-shrink:0;color:var(--accent)}
-.qs-nav{display:flex;align-items:center;gap:12px;margin-top:clamp(20px,3vh,28px)}
-.qs-btn{padding:10px 22px;border-radius:7px;font-size:14px;cursor:pointer;transition:all .2s;border:1px solid var(--border);background:none;color:var(--muted)}
-.qs-btn:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
-.qs-btn.primary{background:var(--accent);color:#0d1117;border-color:transparent;font-weight:600}
-.qs-btn.primary:hover{opacity:.88}
-.qs-btn:disabled{opacity:.3;cursor:default}
-.qs-progress{display:flex;gap:5px;margin-bottom:clamp(20px,3vh,28px)}
-.qs-dot{width:6px;height:6px;border-radius:50%;background:var(--border);transition:background .3s}
-.qs-dot.done{background:var(--accent)}.qs-dot.active{background:rgba(200,245,66,.5)}
-.qs-result{display:none;text-align:center;padding:clamp(32px,5vh,52px) 0}
-.qs-result.show{display:block}
-.qs-gl-display{font-family:var(--serif);font-size:clamp(52px,9vw,88px);line-height:1;margin-bottom:8px}
-.qs-gl-display.hi{color:var(--accent)}.qs-gl-display.mid{color:#ffb347}.qs-gl-display.lo{color:#ff6b6b}
-.qs-gl-label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:clamp(20px,3vh,28px)}
-.qs-verdict{font-family:var(--serif);font-size:clamp(16px,2.2vw,22px);color:var(--text);line-height:1.4;max-width:540px;margin:0 auto clamp(16px,2.5vh,24px)}
-.qs-finding{font-size:clamp(14px,1.7vw,15px);color:var(--muted);line-height:1.8;max-width:580px;margin:0 auto clamp(24px,4vh,36px)}
-.qs-cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.qs-reset{font-family:var(--mono);font-size:11px;color:var(--dim);cursor:pointer;text-decoration:underline;margin-top:16px;display:block;background:none;border:none}
-.qs-reset:hover{color:var(--muted)}
-.pub-list{margin-top:clamp(28px,5vh,48px)}
-.pub-item{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:clamp(16px,2.5vh,24px) 0;border-bottom:1px solid var(--border);transition:opacity .2s}
-.pub-item:hover{opacity:.7}
-.pub-date{font-family:var(--mono);font-size:12px;color:var(--dim);white-space:nowrap;flex-shrink:0}
-.pub-t{font-size:clamp(14px,1.8vw,16px);color:var(--text);text-decoration:none;flex-grow:1;line-height:1.5}
-.pub-tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);white-space:nowrap;flex-shrink:0}
-.contact-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(28px,5vh,44px)}
-.cl{display:inline-flex;align-items:center;gap:8px;padding:clamp(12px,1.8vh,14px) clamp(20px,2.5vw,28px);border:1px solid var(--border);border-radius:8px;color:var(--muted);text-decoration:none;font-size:clamp(14px,1.8vw,15px);transition:all .2s}
-.cl:hover{color:var(--text);border-color:rgba(255,255,255,.18)}
-.cl.primary{background:var(--accent);color:#0d1117;border-color:transparent;font-weight:600}
-.cl.primary:hover{opacity:.88;color:#0d1117}
-footer{padding:clamp(28px,5vh,44px) clamp(20px,5vw,60px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:13px}
-footer a{color:var(--muted);text-decoration:none}
-footer a:hover{color:var(--text)}
-.footer-links{display:flex;gap:24px;flex-wrap:wrap}
-@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s,transform .65s}
-.reveal.vis{opacity:1;transform:none}
-@media(max-width:768px){nav{display:none}.ham{display:flex}.ba-wrap{grid-template-columns:1fr}.pub-date{display:none}footer{flex-direction:column;text-align:center}}
-.mobile-lang{display:none;position:fixed;top:60px;left:0;right:0;z-index:98;background:rgba(20,29,46,0.97);border-bottom:1px solid var(--border);padding:8px 20px;gap:8px;align-items:center;}
-@media(max-width:768px){.mobile-lang{display:flex}.hero{padding-top:40px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GL Framework — verify whether your transformation actually improved capital efficiency. GFI Flow Intelligence, Boston.">
+  <title>Enterprise | GFI Flow Intelligence</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --bg2:#111827;
+      --surf:#1a2438;
+      --border:rgba(255,255,255,.08);
+      --text:#f8fbff;
+      --muted:#9fb0c8;
+      --sub:#7a90aa;
+      --dim:#4a6080;
+      --green:#9FE870;
+      --blue:#7DD3FC;
+      --red:#f87171;
+      --serif:'DM Serif Display',Georgia,serif;
+      --mono:'DM Mono',monospace;
+      --sans:'DM Sans',system-ui,sans-serif;
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      background:
+        radial-gradient(circle at 18% 10%,rgba(125,211,252,.07),transparent 28%),
+        radial-gradient(circle at 85% 80%,rgba(159,232,112,.06),transparent 28%),
+        linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+      color:var(--text);
+      font-family:var(--sans);
+      font-size:15px;
+      line-height:1.75;
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    .bg-grid{
+      position:fixed;inset:0;
+      background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:56px 56px;
+      mask-image:radial-gradient(ellipse 85% 72% at 50% 42%,black 18%,transparent 82%);
+      pointer-events:none;z-index:0;
+    }
+
+    /* ── Topbar ── */
+    .topbar{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      height:62px;padding:0 clamp(18px,5vw,52px);
+      display:flex;align-items:center;justify-content:space-between;
+      background:rgba(11,18,32,.82);backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .logo{color:#fff;text-decoration:none;font-family:var(--mono);font-size:14px;letter-spacing:.16em;text-transform:uppercase;}
+    .nav-right{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+    .mini-nav{display:flex;gap:14px;}
+    .mini-nav a{color:var(--sub);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:color .2s;}
+    .mini-nav a:hover,.mini-nav a.active{color:#fff}
+    .lang-grp{display:flex;gap:6px;}
+    .lb-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:6px 11px;border:1px solid rgba(255,255,255,.10);border-radius:6px;background:none;color:var(--sub);cursor:pointer;transition:all .2s;}
+    .lb-btn:hover{color:var(--text);border-color:rgba(255,255,255,.20);background:rgba(255,255,255,.03);}
+    .lb-btn.on{color:var(--blue);border-color:rgba(125,211,252,.35);background:rgba(125,211,252,.08);}
+
+    .lb{display:none;position:relative;z-index:1}
+    .lb.active{display:block}
+
+    /* ── Layout ── */
+    main{display:flex;flex-direction:column;align-items:center;padding:96px clamp(20px,5vw,60px) 80px;}
+    .wrap{width:100%;max-width:1040px;display:flex;flex-direction:column;align-items:center;}
+
+    /* ── Hero ── */
+    .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#AFC3DB;text-align:center;margin-bottom:18px;opacity:0;animation:up .55s .05s forwards;}
+    .hero-title{font-family:var(--serif);font-size:clamp(24px,2.8vw,42px);line-height:1.15;letter-spacing:-.02em;text-align:center;max-width:780px;margin-bottom:16px;color:#fff;opacity:0;animation:up .55s .16s forwards;}
+    .hero-title em{font-style:italic;color:var(--blue);}
+    .hero-sub{max-width:600px;margin:0 auto 28px;text-align:center;font-size:16px;line-height:1.75;color:var(--muted);opacity:0;animation:up .55s .24s forwards;}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:48px;opacity:0;animation:up .58s .32s forwards;}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      color:#F5FFE9;text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+      transition:transform .22s,border-color .22s,box-shadow .22s;
+    }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(125,211,252,.30);box-shadow:0 10px 24px rgba(0,0,0,.22);}
+    .btn.primary{border:1px solid rgba(125,211,252,.30);background:linear-gradient(180deg,rgba(125,211,252,.14),rgba(125,211,252,.07));color:#E8F6FF;}
+    .btn.primary:hover{border-color:rgba(125,211,252,.52);}
+    .arrow{font-size:13px;transition:transform .22s;display:inline-block;}
+    .btn:hover .arrow{transform:translateX(4px)}
+
+    /* ── Section shared ── */
+    .section{width:100%;max-width:1040px;margin-bottom:64px;opacity:0;animation:up .6s forwards;}
+    .section-label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sub);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+    .section-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08);}
+    .section-head{font-family:var(--serif);font-size:clamp(22px,2.4vw,34px);line-height:1.2;margin-bottom:10px;color:#fff;}
+    .section-text{font-size:15px;color:var(--muted);line-height:1.8;max-width:760px;}
+
+    /* ── Before / After ── */
+    .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
+    .ba-card{padding:24px 22px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.02);}
+    .ba-card.good{border-color:rgba(125,211,252,.2);background:rgba(125,211,252,.03);}
+    .ba-head{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--sub);margin-bottom:16px;}
+    .ba-card.good .ba-head{color:var(--blue);}
+    .ba-list{list-style:none;}
+    .ba-list li{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px;color:var(--muted);line-height:1.55;}
+    .ba-card.good .ba-list li{color:var(--text);}
+    .ba-list li::before{content:'—';color:var(--dim);flex-shrink:0;}
+    .ba-card.good .ba-list li::before{content:'✓';color:var(--blue);}
+
+    /* ── Variables ── */
+    .var-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+    .var-card{padding:22px 20px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.025);}
+    .var-key{font-family:var(--serif);font-size:28px;line-height:1;color:var(--blue);margin-bottom:8px;}
+    .var-label{font-size:14px;font-weight:500;color:#fff;margin-bottom:6px;}
+    .var-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+
+    /* ── Formula bar ── */
+    .formula-bar{width:100%;margin-top:18px;padding:18px 24px;border-radius:12px;border:1px solid rgba(125,211,252,.15);background:rgba(125,211,252,.04);font-family:var(--mono);font-size:14px;color:var(--blue);text-align:center;letter-spacing:.04em;}
+
+    /* ── Quick Scan ── */
+    .qs-wrap{width:100%;margin-top:28px;}
+    .qs-progress{display:flex;gap:6px;margin-bottom:24px;}
+    .qs-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.1);transition:background .3s;}
+    .qs-dot.done{background:var(--blue);}
+    .qs-dot.active{background:rgba(125,211,252,.5);}
+    .qs-step{display:none;}
+    .qs-step.active{display:block;}
+    .qs-sub{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--sub);margin-bottom:10px;}
+    .qs-q{font-family:var(--serif);font-size:clamp(17px,2vw,22px);color:#fff;line-height:1.35;margin-bottom:24px;}
+    .qs-opts{display:flex;flex-direction:column;gap:8px;}
+    .qs-opt{
+      display:flex;align-items:center;gap:14px;padding:14px 18px;
+      background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:10px;
+      cursor:pointer;transition:all .2s;font-size:14px;color:var(--muted);text-align:left;width:100%;
+    }
+    .qs-opt:hover{background:rgba(125,211,252,.05);border-color:rgba(125,211,252,.25);color:var(--text);}
+    .qs-opt.selected{background:rgba(125,211,252,.07);border-color:rgba(125,211,252,.4);color:var(--text);}
+    .qs-opt-key{font-family:var(--mono);font-size:10px;letter-spacing:.1em;width:18px;flex-shrink:0;color:var(--blue);}
+    .qs-nav{display:flex;gap:10px;margin-top:20px;}
+    .qs-btn{padding:10px 20px;border-radius:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:1px solid var(--border);background:none;color:var(--muted);}
+    .qs-btn:hover{color:var(--text);border-color:rgba(255,255,255,.2);}
+    .qs-btn.primary{background:linear-gradient(180deg,rgba(125,211,252,.16),rgba(125,211,252,.08));color:#E8F6FF;border-color:rgba(125,211,252,.3);}
+    .qs-btn.primary:hover{border-color:rgba(125,211,252,.5);}
+    .qs-btn:disabled{opacity:.3;cursor:default;}
+
+    /* Result */
+    .qs-result{display:none;text-align:center;padding:40px 0 20px;}
+    .qs-result.show{display:block;}
+    .qs-score{font-family:var(--serif);font-size:clamp(52px,9vw,80px);line-height:1;margin-bottom:6px;}
+    .qs-score.hi{color:var(--green);}
+    .qs-score.mid{color:#fbbf24;}
+    .qs-score.lo{color:var(--red);}
+    .qs-score-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:24px;}
+    .qs-verdict{font-family:var(--serif);font-size:clamp(16px,2vw,21px);color:#fff;line-height:1.4;max-width:520px;margin:0 auto 12px;}
+    .qs-finding{font-size:14px;color:var(--muted);line-height:1.8;max-width:560px;margin:0 auto 28px;}
+    .qs-cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+    .qs-reset{font-family:var(--mono);font-size:11px;color:var(--dim);cursor:pointer;text-decoration:underline;margin-top:18px;display:block;background:none;border:none;}
+    .qs-reset:hover{color:var(--muted);}
+
+    /* ── Pricing ── */
+    .pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:28px;width:100%;}
+    .pc{padding:26px 22px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.025);display:flex;flex-direction:column;transition:border-color .2s,transform .25s;}
+    .pc:hover{transform:translateY(-3px);}
+    .pc.feat{border-color:rgba(125,211,252,.22);background:rgba(125,211,252,.04);}
+    .pc-tier{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);margin-bottom:12px;}
+    .pc.feat .pc-tier{color:var(--blue);}
+    .pc-amt{font-family:var(--serif);font-size:42px;line-height:1;margin-bottom:4px;}
+    .pc-cur{font-family:var(--sans);font-size:17px;vertical-align:top;line-height:1.3;color:var(--muted);}
+    .pc-desc{font-size:13px;color:var(--muted);line-height:1.65;margin:10px 0 18px;flex-grow:1;}
+    .pc-feats{list-style:none;margin-bottom:22px;}
+    .pc-feats li{font-size:13px;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;}
+    .pc-feats li::before{content:'→';color:var(--blue);flex-shrink:0;}
+    .pc-btn{display:block;text-align:center;padding:12px;border:1px solid var(--border);color:var(--text);text-decoration:none;border-radius:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,border-color .2s;}
+    .pc-btn:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.18);}
+    .pc.feat .pc-btn{background:linear-gradient(180deg,rgba(125,211,252,.18),rgba(125,211,252,.09));border-color:rgba(125,211,252,.35);color:#E8F6FF;}
+    .pc.feat .pc-btn:hover{border-color:rgba(125,211,252,.55);}
+
+    /* ── Footer ── */
+    .footer{position:relative;z-index:1;text-align:center;padding:28px 20px 36px;color:var(--dim);font-size:11px;font-family:var(--mono);letter-spacing:.05em;}
+    .footer a{color:#8faabe;text-decoration:none;}
+    .footer a:hover{color:#fff;}
+
+    @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+    @media(max-width:860px){
+      .ba-grid,.var-grid,.pricing-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:640px){
+      .topbar{padding:0 16px;}.mini-nav{display:none;}
+      main{padding:82px 18px 60px;}
+      .hero-title{font-size:clamp(22px,7vw,30px);}
+      .hero-actions{flex-direction:column;}
+      .btn{width:100%;justify-content:center;}
+    }
+  </style>
 </head>
 <body>
+<div class="bg-grid"></div>
 
-<header>
-  <a href="index.html" class="logo"><img src="GFILOGO.png" alt="GFI Flow Intelligence"></a>
-  <nav>
-    <a href="#measures" onclick="navTo('measures',event)">What GL Measures</a>
-    <a href="cases.html">Cases</a>
-    <a href="government.html">Public Sector</a>
-    <a href="gl-demo.html">GL Demo</a>
-    <a href="#method" onclick="navTo('method',event)">Method</a>
-    <a href="#pricing" onclick="navTo('pricing',event)">Pricing</a>
-    <a href="about.html">Founder</a>
-    <a href="ghost-gdp.html">Ghost GDP</a>
+<div class="topbar">
+  <a href="index.html" class="logo">GFI Flow Intelligence</a>
+  <div class="nav-right">
+    <nav class="mini-nav">
+      <a href="index.html">Home</a>
+      <a href="government.html">Government</a>
+      <a href="enterprise.html" class="active">Enterprise</a>
+      <a href="about.html">About</a>
+    </nav>
     <div class="lang-grp">
-      <button class="lb-btn on" data-lang="en" onclick="setLang('en',this)">EN</button>
-      <button class="lb-btn" data-lang="tw" onclick="setLang('tw',this)">繁</button>
-      <button class="lb-btn" data-lang="cn" onclick="setLang('cn',this)">简</button>
-      <button class="lb-btn" data-lang="es" onclick="setLang('es',this)">ES</button>
-    </div>
-    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="nav-cta" target="_blank" rel="noopener">Start Verification</a>
-  </nav>
-  <button class="ham" id="ham" aria-label="Menu" onclick="toggleDrawer()">
-    <span></span><span></span><span></span>
-  </button>
-</header>
-
-<div class="mobile-lang">
-  <span style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-right:4px">Lang</span>
-  <button class="lb-btn on" data-lang="en" onclick="setLang('en',this)">EN</button>
-  <button class="lb-btn" data-lang="tw" onclick="setLang('tw',this)">繁</button>
-  <button class="lb-btn" data-lang="cn" onclick="setLang('cn',this)">简</button>
-  <button class="lb-btn" data-lang="es" onclick="setLang('es',this)">ES</button>
-</div>
-
-<div class="drawer" id="drawer">
-  <a href="#measures" onclick="navTo('measures',event);closeDrawer()">What GL Measures</a>
-  <a href="cases.html" onclick="closeDrawer()">Cases</a>
-  <a href="government.html" onclick="closeDrawer()">Public Sector</a>
-  <a href="gl-demo.html" onclick="closeDrawer()">GL Demo</a>
-  <a href="#method" onclick="navTo('method',event);closeDrawer()">Method</a>
-  <a href="#pricing" onclick="navTo('pricing',event);closeDrawer()">Pricing</a>
-  <a href="about.html" onclick="closeDrawer()">Founder</a>
-  <a href="ghost-gdp.html" onclick="closeDrawer()">Ghost GDP</a>
-  <div class="drawer-lang">
-    <button class="lb-btn on" data-lang="en" onclick="setLang('en',this)">EN</button>
-    <button class="lb-btn" data-lang="tw" onclick="setLang('tw',this)">繁</button>
-    <button class="lb-btn" data-lang="cn" onclick="setLang('cn',this)">简</button>
-    <button class="lb-btn" data-lang="es" onclick="setLang('es',this)">ES</button>
-  </div>
-  <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="drawer-cta" target="_blank" rel="noopener" onclick="closeDrawer()">Start Verification →</a>
-</div>
-
-<!-- ══ EN ══ -->
-<div class="lb on" data-lang="en">
-<div class="hero">
-  <div class="hero-grid"></div><div class="hero-glow"></div>
-  <div class="wrap hero-inner">
-    <div class="eyebrow">GFI Flow Intelligence · Boston</div>
-    <h1>Does your transformation<br><em>actually</em> improve<br>capital efficiency?</h1>
-    <p class="hero-sub">GL independently verifies whether organizational change increases or decreases capital velocity — before and after transformation.</p>
-    <div class="hero-btns">
-      <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">Start Verification ($999) →</a>
-      <a href="gl-demo.html" class="btn-ghost">Try GL Demo</a>
-      <a href="#method" class="btn-ghost">View Method</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-n">9</div><div class="stat-l">International Cases</div></div>
-      <div><div class="stat-n">GL</div><div class="stat-l">Proprietary Formula</div></div>
-      <div><div class="stat-n">3</div><div class="stat-l">Engagement Tiers</div></div>
-      <div><div class="stat-n">Δ</div><div class="stat-l">Before &amp; After Delta</div></div>
-    </div>
-    <div class="sector-portal">
-      <a href="government.html" class="sp-card gov"><div class="sp-tag">Public Sector</div><div class="sp-title">Government &amp; Public Administration</div><p class="sp-desc">Independent structural diagnosis of government programs — UI systems, audit analysis, cross-state efficiency comparison.</p><div class="sp-cta">Explore →</div></a>
-      <a href="#pricing" onclick="navTo('pricing',event)" class="sp-card priv"><div class="sp-tag">Private Sector</div><div class="sp-title">Enterprise &amp; Capital Efficiency</div><p class="sp-desc">GL independently verifies whether organizational transformation improves capital velocity. For ERP, AI, and digital transformation leaders who need proof, not promises.</p><div class="sp-cta">Explore →</div></a>
+      <button class="lb-btn on" data-lang="en" type="button">EN</button>
+      <button class="lb-btn" data-lang="tw" type="button">繁</button>
+      <button class="lb-btn" data-lang="cn" type="button">简</button>
+      <button class="lb-btn" data-lang="es" type="button">ES</button>
     </div>
   </div>
 </div>
-<section class="band" id="measures"><div class="wrap">
-  <div class="eyebrow">What GL Measures</div>
-  <h2 class="stitle">Capital velocity,<br>structurally verified.</h2>
-  <p class="slead">GL verifies whether capital efficiency actually improved — and where friction moved after change.</p>
-  <div class="mg reveal">
-    <div class="mc"><div class="mc-eye">01 · Fs</div><h3>Flow Success Rate</h3><p>% of eligible processes completing their core workflow without friction-induced failure.</p></div>
-    <div class="mc"><div class="mc-eye">02 · Vn</div><h3>Strategic Value</h3><p>Weighted policy and capital impact scored 0–10 against transformation objectives.</p></div>
-    <div class="mc"><div class="mc-eye">03 · Pd</div><h3>Pain Duration</h3><p>Annual hours consumed by structural friction — approvals, rework loops, bottlenecks.</p></div>
-    <div class="mc"><div class="mc-eye">04 · Cf</div><h3>Cognitive Friction</h3><p>Mental load index (0–10) reflecting complexity imposed on users navigating the system.</p></div>
-  </div>
-  <div class="fstrip reveal"><span>GL = (Fs × Vn) / (Pd × Cf)</span><span style="color:var(--dim)">·</span><span>GL<sub>r</sub> = (Fs × Vn) / (Pd × Cf × SRF)</span><a href="#method">VIEW METHOD →</a></div>
-</div></section>
-<section id="before-after"><div class="wrap">
-  <div class="eyebrow">Why Before &amp; After</div>
-  <h2 class="stitle">Deployment success<br>≠ efficiency gain.</h2>
-  <p class="slead">Automation, ERP, and AI initiatives often increase complexity without improving capital velocity. GL measures the delta that matters.</p>
-  <div class="ba-wrap reveal">
-    <div class="ba"><div class="ba-head">Without GL Verification</div><ul><li>ERP deployed — approval layers multiplied</li><li>AI tools added — decision latency unchanged</li><li>Reorganization done — rework increased</li><li>Digital roadmap launched — capital velocity declined</li><li>Consultants validated deployment — efficiency unmeasured</li></ul></div>
-    <div class="ba good"><div class="ba-head">With GL Verification</div><ul><li>Baseline GL score established pre-transformation</li><li>Friction sources quantified by layer</li><li>Post-change GL delta calculated independently</li><li>Capital efficiency gain or loss documented</li><li>Board-ready verification report delivered</li></ul></div>
-  </div>
-</div></section>
-<section class="band" id="validation"><div class="wrap">
-  <div class="eyebrow">Ghost GDP Diagnostic</div>
-  <h2 class="stitle">Is your AI investment<br>generating Ghost GDP?</h2>
-  <p class="slead">When automation is applied to a misaligned process, it accelerates errors rather than eliminating them. Activity registers as output — but produces no real capital value. This is Ghost GDP.</p>
-  <div class="sector-portal reveal" style="margin-top:clamp(28px,5vh,48px)">
-    <a href="ghost-gdp.html" class="sp-card priv" style="border-color:rgba(255,107,107,.2)"><div class="sp-tag" style="color:#ff7070">Ghost GDP Framework</div><div class="sp-title">Why AI Accelerates Broken Processes</div><p class="sp-desc">Research across 1,500 workers shows AI adoption correlates with a 39% rise in serious errors and 40% spike in attrition — when the denominator is misaligned.</p><div class="sp-cta" style="color:#ff7070">Read the Diagnostic →</div></a>
-    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="sp-card priv" target="_blank" rel="noopener"><div class="sp-tag" style="color:var(--blue)">Start Now</div><div class="sp-title">GL Verification — $999</div><p class="sp-desc">Get a baseline GL score before your next transformation. Identify where your denominator is inflating before AI accelerates the problem.</p><div class="sp-cta" style="color:var(--blue)">Begin Assessment →</div></a>
-  </div>
-  <div class="demo-panel reveal"><div class="demo-kicker">Interactive Demonstration</div><h2 class="demo-title">See the GL diagnostic engine in action.</h2><p class="demo-desc">The public demo shows how GL translates structural variables into scores, sensitivity ranges, friction maps, simulations, and ghost cost estimation.</p><div class="demo-actions"><a href="gl-demo.html" class="btn-solid">Open GL Demo →</a><a href="#quickscan" onclick="navTo('quickscan',event)" class="btn-ghost">Take the Quick Scan</a></div></div>
-</div></section>
-<section id="method"><div class="wrap">
-  <div class="eyebrow">Method</div>
-  <h2 class="stitle">GL Method</h2>
-  <p class="slead">A formula for measuring structural efficiency before and after change.</p>
-  <div class="mgrid reveal">
-    <div class="mcard"><div class="mkv">Formula</div><div class="meq">GL = (Fs × Vn) / (Pd × Cf)</div><div class="meq" style="margin-top:8px">GL<sub>r</sub> = (Fs × Vn) / (Pd × Cf × SRF)</div></div>
-    <div class="mcard"><div class="mkv">Inputs</div><ul class="mlist"><li>Fs: workflow completion success rate</li><li>Vn: strategic value weight (0–10)</li><li>Pd: pain duration in hours</li><li>Cf: cognitive friction index (0–10)</li></ul></div>
-    <div class="mcard"><div class="mkv">Protocol</div><ul class="mlist"><li>Measure baseline GL pre-transformation</li><li>Measure GL again post-transformation</li><li>Compute GL delta (gain or loss)</li><li>Map friction shift by layer</li></ul></div>
-  </div>
-  <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">Start Verification ($999) →</a><a href="gl-demo.html" class="btn-ghost">Try GL Demo</a></div>
-</div></section>
-<section id="quickscan"><div class="wrap">
-  <div class="eyebrow">Quick Scan</div>
-  <h2 class="stitle">Is your AI investment working?</h2>
-  <p class="slead">Four questions. Two minutes. Your preliminary GL score — calculated live.</p>
-  <div class="qs-wrap" id="qs-wrap-en">
-    <div class="qs-progress"><div class="qs-dot active" id="dot-0"></div><div class="qs-dot" id="dot-1"></div><div class="qs-dot" id="dot-2"></div><div class="qs-dot" id="dot-3"></div></div>
-    <div class="qs-step active" id="qs-0"><p class="qs-sub">Fs · Flow Success Rate</p><p class="qs-q">Since your AI or automation rollout, what has happened to your process completion rate?</p><div class="qs-opts"><button class="qs-opt" onclick="selectOpt(this,0,0.92)"><span class="qs-opt-key">A</span>Significantly improved — fewer errors, less rework</button><button class="qs-opt" onclick="selectOpt(this,0,0.72)"><span class="qs-opt-key">B</span>Slightly improved — some gains but inconsistent</button><button class="qs-opt" onclick="selectOpt(this,0,0.50)"><span class="qs-opt-key">C</span>About the same — no measurable change</button><button class="qs-opt" onclick="selectOpt(this,0,0.28)"><span class="qs-opt-key">D</span>Worse — rework and error rates have increased</button></div><div class="qs-nav"><button class="qs-btn primary" onclick="nextStep(1)" id="next-0" disabled>Next →</button></div></div>
-    <div class="qs-step" id="qs-1"><p class="qs-sub">Vn · Strategic Value</p><p class="qs-q">How central is this automated process to your core revenue or customer delivery?</p><div class="qs-opts"><button class="qs-opt" onclick="selectOpt(this,1,9.5)"><span class="qs-opt-key">A</span>Mission critical — directly touches revenue or customer outcome</button><button class="qs-opt" onclick="selectOpt(this,1,7.5)"><span class="qs-opt-key">B</span>Important — supports core operations but not customer-facing</button><button class="qs-opt" onclick="selectOpt(this,1,5.5)"><span class="qs-opt-key">C</span>Moderate — back-office or administrative function</button><button class="qs-opt" onclick="selectOpt(this,1,3.5)"><span class="qs-opt-key">D</span>Peripheral — low strategic weight</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStep(0)">← Back</button><button class="qs-btn primary" onclick="nextStep(2)" id="next-1" disabled>Next →</button></div></div>
-    <div class="qs-step" id="qs-2"><p class="qs-sub">Pd · Pain Duration</p><p class="qs-q">After automation, how much staff time per week is still spent on exceptions, corrections, or manual intervention?</p><div class="qs-opts"><button class="qs-opt" onclick="selectOpt(this,2,1.5)"><span class="qs-opt-key">A</span>Under 2 hours — nearly fully automated</button><button class="qs-opt" onclick="selectOpt(this,2,5.0)"><span class="qs-opt-key">B</span>2–8 hours — occasional intervention needed</button><button class="qs-opt" onclick="selectOpt(this,2,15.0)"><span class="qs-opt-key">C</span>8–20 hours — significant manual handling remains</button><button class="qs-opt" onclick="selectOpt(this,2,35.0)"><span class="qs-opt-key">D</span>20+ hours — more intervention than before automation</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStep(1)">← Back</button><button class="qs-btn primary" onclick="nextStep(3)" id="next-2" disabled>Next →</button></div></div>
-    <div class="qs-step" id="qs-3"><p class="qs-sub">Cf · Cognitive Friction</p><p class="qs-q">How much judgment, coordination, or context-switching does your team still need to complete this process?</p><div class="qs-opts"><button class="qs-opt" onclick="selectOpt(this,3,1.2)"><span class="qs-opt-key">A</span>Minimal — the system handles it, staff just confirm</button><button class="qs-opt" onclick="selectOpt(this,3,2.2)"><span class="qs-opt-key">B</span>Some — staff interpret outputs and make occasional decisions</button><button class="qs-opt" onclick="selectOpt(this,3,3.5)"><span class="qs-opt-key">C</span>High — frequent judgment calls, cross-team coordination</button><button class="qs-opt" onclick="selectOpt(this,3,5.0)"><span class="qs-opt-key">D</span>Very high — automation created new complexity to manage</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStep(2)">← Back</button><button class="qs-btn primary" onclick="calcResult()" id="next-3" disabled>Calculate GL →</button></div></div>
-    <div class="qs-result" id="qs-result"><div class="qs-gl-display" id="qs-score">—</div><div class="qs-gl-label">Your Preliminary GL Score</div><div class="qs-verdict" id="qs-verdict"></div><div class="qs-finding" id="qs-finding"></div><div class="qs-cta-row"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none">Get Full Diagnosis — $999 →</a><a href="gl-demo.html" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">Open GL Demo</a></div><button class="qs-reset" onclick="resetScan()">← Run again</button></div>
-  </div>
-</div></section>
-<section class="band" id="pricing"><div class="wrap">
-  <div class="eyebrow">Engagement</div>
-  <h2 class="stitle">Start verification.</h2>
-  <p class="slead">Three tiers for different stages — from diagnostic assessment to board-ready verification.</p>
-  <div class="pg">
-    <div class="pc"><div class="pc-tier">Diagnostic</div><div class="pc-amt"><span class="pc-cur">$</span>999</div><p class="pc-desc">Baseline GL assessment. Identify friction before committing to transformation.</p><ul class="pc-feats"><li>12-question GL diagnostic</li><li>Friction source identification</li><li>GL score + risk classification</li><li>12-page PDF · 48hr delivery</li></ul><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn" target="_blank" rel="noopener">Begin Assessment →</a></div>
-    <div class="pc feat"><div class="pc-tier">Verification</div><div class="pc-amt"><span class="pc-cur">$</span>4,999</div><p class="pc-desc">Before &amp; after GL measurement. Verify whether transformation improved capital efficiency.</p><ul class="pc-feats"><li>Everything in Diagnostic</li><li>Pre/post GL delta analysis</li><li>Layer-by-layer friction map</li><li>Executive strategy session (2hr)</li><li>30-day follow-up support</li></ul><a href="https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01" class="pc-btn" target="_blank" rel="noopener">Start Verification →</a></div>
-    <div class="pc"><div class="pc-tier">Board-Ready</div><div class="pc-amt"><span class="pc-cur">$</span>9,999</div><p class="pc-desc">Full independent verification for board presentation, investor reporting, or M&amp;A due diligence.</p><ul class="pc-feats"><li>Everything in Verification</li><li>Independent auditor sign-off</li><li>Board presentation format</li><li>Investor / LP summary</li><li>Quarterly tracking</li></ul><a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">Engage →</a></div>
-  </div>
-</div></section>
-<section id="publications"><div class="wrap">
-  <div class="eyebrow">Publications</div>
-  <h2 class="stitle">Intellectual evolution.</h2>
-  <p class="slead">The thinking behind GL — from framework development to international validation.</p>
-  <div class="pub-list reveal">
-    <div class="pub-item"><span class="pub-date">Mar 2026</span><a href="https://ssrn.com/abstract=6050695" target="_blank" rel="noopener" class="pub-t">The Last Poverty Solution: A Global Commons Funding System for Universal Essential Access</a><span class="pub-tag" style="background:rgba(77,163,255,.1);color:var(--blue)">SSRN Published</span></div>
-    <div class="pub-item"><span class="pub-date">Feb 2026</span><a href="#method" class="pub-t">GL Method: Nine International Case Studies — Concept Validation of the Governance Friction Index</a><span class="pub-tag">Method</span></div>
-    <div class="pub-item"><span class="pub-date">Jan 2026</span><a href="#" class="pub-t">Capital Efficiency Verification as an Independent Analytical Category</a><span class="pub-tag">Framework</span></div>
-    <div class="pub-item"><span class="pub-date">Nov 2025</span><a href="#" class="pub-t">Why Automation Success Does Not Guarantee Efficiency Gain</a><span class="pub-tag">Analysis</span></div>
-    <div class="pub-item"><span class="pub-date">Sep 2025</span><a href="#" class="pub-t">Introducing the Governance Friction Index: A Structural Measurement Approach</a><span class="pub-tag">Foundation</span></div>
-  </div>
-</div></section>
-<section id="contact" style="text-align:center"><div class="wrap">
-  <div class="eyebrow">Contact</div>
-  <h2 class="stitle">Initiate a verification.</h2>
-  <p class="slead" style="margin:0 auto;text-align:center">For enterprise scoping, partnership inquiries, or academic collaboration.</p>
-  <div class="contact-links" style="justify-content:center;margin-top:36px">
-    <a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a>
-    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ Start Verification ($999)</a>
-    <a href="gl-demo.html" class="cl">⊞ GL Demo</a>
-    <a href="#method" class="cl">⊞ GL Method</a>
-  </div>
-</div></section>
-</div><!-- /en -->
 
-<!-- ══ TW ══ -->
-<div class="lb" data-lang="tw">
-<div class="hero"><div class="hero-grid"></div><div class="hero-glow"></div><div class="wrap hero-inner">
-  <div class="eyebrow">GFI Flow Intelligence · 波士頓</div>
-  <h1>您的轉型<br><em>真的</em>提升了<br>資本效率嗎？</h1>
-  <p class="hero-sub">GL 獨立驗證組織變革是否提升或降低資本速度——轉型前後皆可量化。</p>
-  <div class="hero-btns"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">啟動驗證（$999）→</a><a href="gl-demo.html" class="btn-ghost">試用 GL Demo</a><a href="#method-tw" class="btn-ghost">查看方法</a></div>
-  <div class="hero-stats"><div><div class="stat-n">9</div><div class="stat-l">國際案例研究</div></div><div><div class="stat-n">GL</div><div class="stat-l">專有效率公式</div></div><div><div class="stat-n">3</div><div class="stat-l">服務層級</div></div><div><div class="stat-n">Δ</div><div class="stat-l">轉型前後差值</div></div></div>
-  <div class="sector-portal"><a href="government.html" class="sp-card gov"><div class="sp-tag">公部門</div><div class="sp-title">政府與公共行政</div><p class="sp-desc">政府計劃的獨立結構診斷——UI 系統、審計分析、跨州效率比較。</p><div class="sp-cta">了解更多 →</div></a><a href="#pricing-tw" onclick="navTo('pricing',event)" class="sp-card priv"><div class="sp-tag">民間企業</div><div class="sp-title">企業與資本效率</div><p class="sp-desc">GL 獨立驗證組織轉型是否提升資本速度。適合需要數據佐證而非空洞承諾的 ERP、AI 與數位轉型領導者。</p><div class="sp-cta">了解更多 →</div></a></div>
-</div></div>
-<section class="band" id="measures-tw"><div class="wrap"><h2 class="stitle">資本速度，<br>結構性驗證。</h2><p class="slead">GL 驗證資本效率是否真正提升，並指出轉型後摩擦轉移到哪一層。</p><div class="mg reveal"><div class="mc"><div class="mc-eye">01 · Fs</div><h3>流程成功率</h3><p>合資格流程在無摩擦失敗情況下完成核心工作流程的百分比。</p></div><div class="mc"><div class="mc-eye">02 · Vn</div><h3>戰略價值</h3><p>加權政策與資本影響，對照轉型目標評分 0–10。</p></div><div class="mc"><div class="mc-eye">03 · Pd</div><h3>痛點持續時間</h3><p>每年因結構摩擦耗費的小時數——審批、返工迴圈、決策瓶頸。</p></div><div class="mc"><div class="mc-eye">04 · Cf</div><h3>認知摩擦指數</h3><p>系統複雜性對使用者造成的心智負荷，標準化為 0–10 指數。</p></div></div><div class="fstrip reveal"><span>GL = (Fs × Vn) / (Pd × Cf)</span><span style="color:var(--dim)">·</span><span>GL<sub>r</sub> = (Fs × Vn) / (Pd × Cf × SRF)</span><a href="#method-tw">查看方法 →</a></div></div></section>
-<section><div class="wrap"><div class="eyebrow">為何需要前後對比</div><h2 class="stitle">部署成功 ≠ 效率提升。</h2><p class="slead">自動化、ERP 和 AI 計劃常常增加複雜性，卻未改善資本速度。GL 測量真正重要的差值。</p><div class="ba-wrap reveal"><div class="ba"><div class="ba-head">沒有 GL 驗證</div><ul><li>ERP 已部署——審批層級增加</li><li>AI 工具已加入——決策延遲未改變</li><li>重組已完成——返工增加</li><li>數位路線圖已啟動——資本速度下降</li><li>顧問驗證了部署——效率未量化</li></ul></div><div class="ba good"><div class="ba-head">有 GL 驗證</div><ul><li>轉型前建立基準 GL 分數</li><li>按層級量化摩擦來源</li><li>獨立計算轉型後 GL 差值</li><li>記錄資本效率提升或下降</li><li>交付董事會級驗證報告</li></ul></div></div></div></section>
-<section class="band" id="validation-tw"><div class="wrap"><div class="eyebrow">幽靈 GDP 診斷</div><h2 class="stitle">您的 AI 投資<br>正在製造幽靈 GDP 嗎？</h2><p class="slead">將自動化套用在結構未對齊的流程上，只會加速錯誤、而非消除它。帳面上有產出，卻沒有創造真實資本價值——這就是幽靈 GDP。</p><div class="sector-portal reveal" style="margin-top:clamp(28px,5vh,48px)"><a href="ghost-gdp.html" class="sp-card priv" style="border-color:rgba(255,107,107,.2)"><div class="sp-tag" style="color:#ff7070">幽靈 GDP 框架</div><div class="sp-title">為什麼 AI 會加速失靈的流程</div><p class="sp-desc">針對 1,500 名工作者的研究顯示，密集導入 AI 與重大失誤率上升 39%、離職率飆升 40% 高度相關。</p><div class="sp-cta" style="color:#ff7070">閱讀診斷報告 →</div></a><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="sp-card priv" target="_blank" rel="noopener"><div class="sp-tag" style="color:var(--blue)">立即開始</div><div class="sp-title">GL 驗證 — $999</div><p class="sp-desc">在下一次轉型前取得 GL 基準分數。找出您的分母在哪裡膨脹，在 AI 加速問題之前先診斷。</p><div class="sp-cta" style="color:var(--blue)">開始評估 →</div></a></div><div class="demo-panel reveal"><div class="demo-kicker">互動展示</div><h2 class="demo-title">直接查看 GL 診斷引擎。</h2><p class="demo-desc">公開 demo 會展示 GL 如何把結構變數轉換成分數、敏感度區間、摩擦地圖、模擬結果與 ghost cost 估算。</p><div class="demo-actions"><a href="gl-demo.html" class="btn-solid">開啟 GL Demo →</a><a href="#quickscan-tw" onclick="navTo('quickscan',event)" class="btn-ghost">先做快速掃描</a></div></div></div></section>
-<section id="method-tw"><div class="wrap"><div class="eyebrow">方法</div><h2 class="stitle">GL 方法</h2><p class="slead">衡量轉型前後資本效率變化的計算方法。</p><div class="mgrid reveal"><div class="mcard"><div class="mkv">公式</div><div class="meq">GL = (Fs × Vn) / (Pd × Cf)</div><div class="meq" style="margin-top:8px">GL<sub>r</sub> = (Fs × Vn) / (Pd × Cf × SRF)</div></div><div class="mcard"><div class="mkv">輸入</div><ul class="mlist"><li>Fs：流程完成成功率</li><li>Vn：戰略價值權重（0–10）</li><li>Pd：痛點耗時（延遲/迴圈）</li><li>Cf：認知摩擦指數（0–10）</li></ul></div><div class="mcard"><div class="mkv">流程</div><ul class="mlist"><li>轉型前建立 GL 基準</li><li>轉型後用同一流程再測</li><li>計算 GL 差值（增益/損失）</li><li>標示摩擦轉移的層級</li></ul></div></div><div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">啟動驗證（$999）→</a><a href="gl-demo.html" class="btn-ghost">試用 GL Demo</a></div></div></section>
-<section id="quickscan-tw"><div class="wrap"><div class="eyebrow">快速掃描</div><h2 class="stitle">您的 AI 投資真的有效嗎？</h2><p class="slead">四個問題。兩分鐘。即時計算您的初步 GL 分數。</p>
-  <div class="qs-wrap" id="qs-wrap-tw">
-    <div class="qs-progress"><div class="qs-dot active" id="tw-dot-0"></div><div class="qs-dot" id="tw-dot-1"></div><div class="qs-dot" id="tw-dot-2"></div><div class="qs-dot" id="tw-dot-3"></div></div>
-    <div class="qs-step active" id="tw-qs-0"><p class="qs-sub">Fs · 流程成功率</p><p class="qs-q">自 AI 或自動化上線後，您的流程完成率發生了什麼變化？</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'tw',0,0.92)"><span class="qs-opt-key">A</span>顯著改善——錯誤更少、返工減少</button><button class="qs-opt" onclick="selectOptLang(this,'tw',0,0.72)"><span class="qs-opt-key">B</span>略有改善——部分成效但不穩定</button><button class="qs-opt" onclick="selectOptLang(this,'tw',0,0.50)"><span class="qs-opt-key">C</span>差不多——沒有可量化的改變</button><button class="qs-opt" onclick="selectOptLang(this,'tw',0,0.28)"><span class="qs-opt-key">D</span>更差——返工與錯誤率上升</button></div><div class="qs-nav"><button class="qs-btn primary" onclick="nextStepLang('tw',1)" id="tw-next-0" disabled>下一題 →</button></div></div>
-    <div class="qs-step" id="tw-qs-1"><p class="qs-sub">Vn · 戰略價值</p><p class="qs-q">這個自動化流程對您的核心營收或客戶交付有多重要？</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'tw',1,9.5)"><span class="qs-opt-key">A</span>關鍵任務——直接影響營收或客戶成果</button><button class="qs-opt" onclick="selectOptLang(this,'tw',1,7.5)"><span class="qs-opt-key">B</span>重要——支援核心運營但非面向客戶</button><button class="qs-opt" onclick="selectOptLang(this,'tw',1,5.5)"><span class="qs-opt-key">C</span>中等——後台或行政功能</button><button class="qs-opt" onclick="selectOptLang(this,'tw',1,3.5)"><span class="qs-opt-key">D</span>邊緣——戰略權重低</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStepLang('tw',0)">← 返回</button><button class="qs-btn primary" onclick="nextStepLang('tw',2)" id="tw-next-1" disabled>下一題 →</button></div></div>
-    <div class="qs-step" id="tw-qs-2"><p class="qs-sub">Pd · 痛點持續時間</p><p class="qs-q">自動化後，員工每週仍花多少時間處理例外、修正或手動介入？</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'tw',2,1.5)"><span class="qs-opt-key">A</span>2 小時以下——幾乎完全自動化</button><button class="qs-opt" onclick="selectOptLang(this,'tw',2,5.0)"><span class="qs-opt-key">B</span>2–8 小時——偶爾需要介入</button><button class="qs-opt" onclick="selectOptLang(this,'tw',2,15.0)"><span class="qs-opt-key">C</span>8–20 小時——仍有大量手動處理</button><button class="qs-opt" onclick="selectOptLang(this,'tw',2,35.0)"><span class="qs-opt-key">D</span>20 小時以上——比自動化前介入更多</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStepLang('tw',1)">← 返回</button><button class="qs-btn primary" onclick="nextStepLang('tw',3)" id="tw-next-2" disabled>下一題 →</button></div></div>
-    <div class="qs-step" id="tw-qs-3"><p class="qs-sub">Cf · 認知摩擦指數</p><p class="qs-q">您的團隊完成此流程仍需要多少判斷、協調或情境切換？</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'tw',3,1.2)"><span class="qs-opt-key">A</span>極少——系統自動處理，員工只需確認</button><button class="qs-opt" onclick="selectOptLang(this,'tw',3,2.2)"><span class="qs-opt-key">B</span>少量——員工解讀輸出並偶爾決策</button><button class="qs-opt" onclick="selectOptLang(this,'tw',3,3.5)"><span class="qs-opt-key">C</span>高——頻繁判斷、跨團隊協調</button><button class="qs-opt" onclick="selectOptLang(this,'tw',3,5.0)"><span class="qs-opt-key">D</span>非常高——自動化製造了新的複雜性</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStepLang('tw',2)">← 返回</button><button class="qs-btn primary" onclick="calcResultLang('tw')" id="tw-next-3" disabled>計算 GL →</button></div></div>
-    <div class="qs-result" id="tw-qs-result"><div class="qs-gl-display" id="tw-qs-score">—</div><div class="qs-gl-label">您的初步 GL 分數</div><div class="qs-verdict" id="tw-qs-verdict"></div><div class="qs-finding" id="tw-qs-finding"></div><div class="qs-cta-row"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none">取得完整診斷 — $999 →</a><a href="gl-demo.html" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">開啟 GL Demo</a></div><button class="qs-reset" onclick="resetScanLang('tw')">← 重新測試</button></div>
-  </div>
-</div></section>
-<section class="band" id="pricing-tw"><div class="wrap"><div class="eyebrow">服務方案</div><h2 class="stitle">啟動驗證。</h2><p class="slead">三個層級，適應轉型的不同階段。</p><div class="pg"><div class="pc"><div class="pc-tier">診斷</div><div class="pc-amt"><span class="pc-cur">$</span>999</div><p class="pc-desc">基準 GL 評估。在承諾轉型前識別摩擦源。</p><ul class="pc-feats"><li>12 題 GL 診斷</li><li>摩擦源識別</li><li>GL 分數 + 風險分類</li><li>12 頁 PDF · 48 小時交付</li></ul><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn" target="_blank" rel="noopener">開始評估 →</a></div><div class="pc feat"><div class="pc-tier">驗證</div><div class="pc-amt"><span class="pc-cur">$</span>4,999</div><p class="pc-desc">轉型前後 GL 測量。驗證您的轉型是否真正提升資本效率。</p><ul class="pc-feats"><li>包含診斷所有內容</li><li>前後 GL 差值分析</li><li>逐層摩擦地圖</li><li>高管策略會議（2 小時）</li><li>30 天後續支援</li></ul><a href="https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01" class="pc-btn" target="_blank" rel="noopener">啟動驗證 →</a></div><div class="pc"><div class="pc-tier">董事會級</div><div class="pc-amt"><span class="pc-cur">$</span>9,999</div><p class="pc-desc">適合董事會報告、投資人呈現或併購盡職調查。</p><ul class="pc-feats"><li>包含驗證所有內容</li><li>獨立審計師簽核</li><li>董事會報告格式</li><li>投資人摘要</li><li>季度持續追蹤</li></ul><a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">聯繫洽詢 →</a></div></div></div></section>
-<section style="text-align:center"><div class="wrap"><div class="eyebrow">聯絡</div><h2 class="stitle">啟動驗證。</h2><p class="slead" style="margin:0 auto;text-align:center">企業範圍評估、合作夥伴諮詢或學術合作。</p><div class="contact-links" style="justify-content:center;margin-top:36px"><a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ 啟動驗證（$999）</a><a href="gl-demo.html" class="cl">⊞ GL Demo</a><a href="#method-tw" class="cl">⊞ GL 方法</a></div></div></section>
-</div><!-- /tw -->
+<!-- ══════════════════════════════════════════ EN ══════════════════════════════════════════ -->
+<section class="lb active" data-lang="en">
+<main><div class="wrap">
 
-<!-- ══ CN ══ -->
-<div class="lb" data-lang="cn">
-<div class="hero"><div class="hero-grid"></div><div class="hero-glow"></div><div class="wrap hero-inner">
-  <div class="eyebrow">GFI Flow Intelligence · 波士顿</div>
-  <h1>您的转型<br><em>真的</em>提升了<br>资本效率吗？</h1>
-  <p class="hero-sub">GL 独立验证组织变革是否提升或降低资本速度——转型前后皆可量化。</p>
-  <div class="hero-btns"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">启动验证（$999）→</a><a href="gl-demo.html" class="btn-ghost">试用 GL Demo</a><a href="#method-cn" class="btn-ghost">查看方法</a></div>
-  <div class="hero-stats"><div><div class="stat-n">9</div><div class="stat-l">国际案例研究</div></div><div><div class="stat-n">GL</div><div class="stat-l">专有效率公式</div></div><div><div class="stat-n">3</div><div class="stat-l">服务层级</div></div><div><div class="stat-n">Δ</div><div class="stat-l">转型前后差值</div></div></div>
-  <div class="sector-portal"><a href="government.html" class="sp-card gov"><div class="sp-tag">公共部门</div><div class="sp-title">政府与公共行政</div><p class="sp-desc">政府项目的独立结构诊断——UI 系统、审计分析、跨州效率比较。</p><div class="sp-cta">了解更多 →</div></a><a href="#pricing-cn" onclick="navTo('pricing',event)" class="sp-card priv"><div class="sp-tag">民间企业</div><div class="sp-title">企业与资本效率</div><p class="sp-desc">GL 独立验证组织转型是否提升资本速度。适合需要数据佐证而非空洞承诺的 ERP、AI 与数字转型领导者。</p><div class="sp-cta">了解更多 →</div></a></div>
-</div></div>
-<section class="band" id="measures-cn"><div class="wrap"><div class="eyebrow">GL 测量什么</div><h2 class="stitle">资本速度，<br>结构性验证。</h2><p class="slead">GL 验证资本效率是否真正提升，并指出转型后摩擦转移到哪一层。</p><div class="mg reveal"><div class="mc"><div class="mc-eye">01 · Fs</div><h3>流程成功率</h3><p>符合条件的流程在无摩擦失败情况下完成核心工作流程的百分比。</p></div><div class="mc"><div class="mc-eye">02 · Vn</div><h3>战略价值</h3><p>加权政策与资本影响，对照转型目标评分 0–10。</p></div><div class="mc"><div class="mc-eye">03 · Pd</div><h3>痛点持续时间</h3><p>每年因结构摩擦耗费的小时数——审批、返工循环、决策瓶颈。</p></div><div class="mc"><div class="mc-eye">04 · Cf</div><h3>认知摩擦指数</h3><p>系统复杂性对用户造成的心智负荷，标准化为 0–10 指数。</p></div></div><div class="fstrip reveal"><span>GL = (Fs × Vn) / (Pd × Cf)</span><span style="color:var(--dim)">·</span><span>GL<sub>r</sub> = (Fs × Vn) / (Pd × Cf × SRF)</span><a href="#method-cn">查看方法 →</a></div></div></section>
-<section><div class="wrap"><div class="eyebrow">为何需要前后对比</div><h2 class="stitle">部署成功 ≠ 效率提升。</h2><p class="slead">自动化、ERP 和 AI 项目常常增加复杂性，却未改善资本速度。GL 测量真正重要的差值。</p><div class="ba-wrap reveal"><div class="ba"><div class="ba-head">没有 GL 验证</div><ul><li>ERP 已部署——审批层级增加</li><li>AI 工具已加入——决策延迟未改变</li><li>重组已完成——返工增加</li><li>数字路线图已启动——资本速度下降</li><li>顾问验证了部署——效率未量化</li></ul></div><div class="ba good"><div class="ba-head">有 GL 验证</div><ul><li>转型前建立基准 GL 分数</li><li>按层级量化摩擦来源</li><li>独立计算转型后 GL 差值</li><li>记录资本效率提升或下降</li><li>交付董事会级验证报告</li></ul></div></div></div></section>
-<section class="band" id="validation-cn"><div class="wrap"><div class="eyebrow">幽灵 GDP 诊断</div><h2 class="stitle">您的 AI 投资<br>正在制造幽灵 GDP 吗？</h2><p class="slead">将自动化套用在结构未对齐的流程上，只会加速错误、而非消除它。账面上有产出，却没有创造真实资本价值——这就是幽灵 GDP。</p><div class="sector-portal reveal" style="margin-top:clamp(28px,5vh,48px)"><a href="ghost-gdp.html" class="sp-card priv" style="border-color:rgba(255,107,107,.2)"><div class="sp-tag" style="color:#ff7070">幽灵 GDP 框架</div><div class="sp-title">为什么 AI 会加速失灵的流程</div><p class="sp-desc">针对 1,500 名工作者的研究显示，密集导入 AI 与重大失误率上升 39%、离职率飙升 40% 高度相关。</p><div class="sp-cta" style="color:#ff7070">阅读诊断报告 →</div></a><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="sp-card priv" target="_blank" rel="noopener"><div class="sp-tag" style="color:var(--blue)">立即开始</div><div class="sp-title">GL 验证 — $999</div><p class="sp-desc">在下一次转型前取得 GL 基准分数。找出您的分母在哪里膨胀，在 AI 加速问题之前先诊断。</p><div class="sp-cta" style="color:var(--blue)">开始评估 →</div></a></div><div class="demo-panel reveal"><div class="demo-kicker">互动展示</div><h2 class="demo-title">直接查看 GL 诊断引擎。</h2><p class="demo-desc">公开 demo 会展示 GL 如何把结构变量转换成分数、敏感度区间、摩擦地图、模拟结果与 ghost cost 估算。</p><div class="demo-actions"><a href="gl-demo.html" class="btn-solid">打开 GL Demo →</a><a href="#quickscan-cn" onclick="navTo('quickscan',event)" class="btn-ghost">先做快速扫描</a></div></div></div></section>
-<section id="method-cn"><div class="wrap"><div class="eyebrow">方法</div><h2 class="stitle">GL 方法</h2><p class="slead">衡量转型前后资本效率变化的计算方法。</p><div class="mgrid reveal"><div class="mcard"><div class="mkv">公式</div><div class="meq">GL = (Fs × Vn) / (Pd × Cf)</div><div class="meq" style="margin-top:8px">GL<sub>r</sub> = (Fs × Vn) / (Pd × Cf × SRF)</div></div><div class="mcard"><div class="mkv">输入</div><ul class="mlist"><li>Fs：流程完成成功率</li><li>Vn：战略价值权重（0–10）</li><li>Pd：痛点耗时（延迟/循环）</li><li>Cf：认知摩擦指数（0–10）</li></ul></div><div class="mcard"><div class="mkv">流程</div><ul class="mlist"><li>转型前建立 GL 基准</li><li>转型后用同一流程再测</li><li>计算 GL 差值（增益/损失）</li><li>标示摩擦转移的层级</li></ul></div></div><div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">启动验证（$999）→</a><a href="gl-demo.html" class="btn-ghost">试用 GL Demo</a></div></div></section>
-<section id="quickscan-cn"><div class="wrap"><div class="eyebrow">快速扫描</div><h2 class="stitle">您的 AI 投资真的有效吗？</h2><p class="slead">四个问题。两分钟。即时计算您的初步 GL 分数。</p>
-  <div class="qs-wrap" id="qs-wrap-cn">
-    <div class="qs-progress"><div class="qs-dot active" id="cn-dot-0"></div><div class="qs-dot" id="cn-dot-1"></div><div class="qs-dot" id="cn-dot-2"></div><div class="qs-dot" id="cn-dot-3"></div></div>
-    <div class="qs-step active" id="cn-qs-0"><p class="qs-sub">Fs · 流程成功率</p><p class="qs-q">自 AI 或自动化上线后，您的流程完成率发生了什么变化？</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'cn',0,0.92)"><span class="qs-opt-key">A</span>显著改善——错误更少、返工减少</button><button class="qs-opt" onclick="selectOptLang(this,'cn',0,0.72)"><span class="qs-opt-key">B</span>略有改善——部分成效但不稳定</button><button class="qs-opt" onclick="selectOptLang(this,'cn',0,0.50)"><span class="qs-opt-key">C</span>差不多——没有可量化的改变</button><button class="qs-opt" onclick="selectOptLang(this,'cn',0,0.28)"><span class="qs-opt-key">D</span>更差——返工与错误率上升</button></div><div class="qs-nav"><button class="qs-btn primary" onclick="nextStepLang('cn',1)" id="cn-next-0" disabled>下一题 →</button></div></div>
-    <div class="qs-step" id="cn-qs-1"><p class="qs-sub">Vn · 战略价值</p><p class="qs-q">这个自动化流程对您的核心营收或客户交付有多重要？</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'cn',1,9.5)"><span class="qs-opt-key">A</span>关键任务——直接影响营收或客户成果</button><button class="qs-opt" onclick="selectOptLang(this,'cn',1,7.5)"><span class="qs-opt-key">B</span>重要——支撑核心运营但非面向客户</button><button class="qs-opt" onclick="selectOptLang(this,'cn',1,5.5)"><span class="qs-opt-key">C</span>中等——后台或行政功能</button><button class="qs-opt" onclick="selectOptLang(this,'cn',1,3.5)"><span class="qs-opt-key">D</span>边缘——战略权重低</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStepLang('cn',0)">← 返回</button><button class="qs-btn primary" onclick="nextStepLang('cn',2)" id="cn-next-1" disabled>下一题 →</button></div></div>
-    <div class="qs-step" id="cn-qs-2"><p class="qs-sub">Pd · 痛点持续时间</p><p class="qs-q">自动化后，员工每周仍花多少时间处理例外、修正或手动介入？</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'cn',2,1.5)"><span class="qs-opt-key">A</span>2 小时以下——几乎完全自动化</button><button class="qs-opt" onclick="selectOptLang(this,'cn',2,5.0)"><span class="qs-opt-key">B</span>2–8 小时——偶尔需要介入</button><button class="qs-opt" onclick="selectOptLang(this,'cn',2,15.0)"><span class="qs-opt-key">C</span>8–20 小时——仍有大量手动处理</button><button class="qs-opt" onclick="selectOptLang(this,'cn',2,35.0)"><span class="qs-opt-key">D</span>20 小时以上——比自动化前介入更多</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStepLang('cn',1)">← 返回</button><button class="qs-btn primary" onclick="nextStepLang('cn',3)" id="cn-next-2" disabled>下一题 →</button></div></div>
-    <div class="qs-step" id="cn-qs-3"><p class="qs-sub">Cf · 认知摩擦指数</p><p class="qs-q">您的团队完成此流程仍需要多少判断、协调或情境切换？</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'cn',3,1.2)"><span class="qs-opt-key">A</span>极少——系统自动处理，员工只需确认</button><button class="qs-opt" onclick="selectOptLang(this,'cn',3,2.2)"><span class="qs-opt-key">B</span>少量——员工解读输出并偶尔决策</button><button class="qs-opt" onclick="selectOptLang(this,'cn',3,3.5)"><span class="qs-opt-key">C</span>高——频繁判断、跨团队协调</button><button class="qs-opt" onclick="selectOptLang(this,'cn',3,5.0)"><span class="qs-opt-key">D</span>非常高——自动化制造了新的复杂性</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStepLang('cn',2)">← 返回</button><button class="qs-btn primary" onclick="calcResultLang('cn')" id="cn-next-3" disabled>计算 GL →</button></div></div>
-    <div class="qs-result" id="cn-qs-result"><div class="qs-gl-display" id="cn-qs-score">—</div><div class="qs-gl-label">您的初步 GL 分数</div><div class="qs-verdict" id="cn-qs-verdict"></div><div class="qs-finding" id="cn-qs-finding"></div><div class="qs-cta-row"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none">获取完整诊断 — $999 →</a><a href="gl-demo.html" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">打开 GL Demo</a></div><button class="qs-reset" onclick="resetScanLang('cn')">← 重新测试</button></div>
+  <div class="eyebrow">Private Sector · Enterprise</div>
+  <h1 class="hero-title">Does your transformation <em>actually</em><br>improve capital efficiency?</h1>
+  <p class="hero-sub">GL independently verifies whether organizational change increases or decreases delivery performance — before and after transformation.</p>
+  <div class="hero-actions">
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn primary" target="_blank" rel="noopener">Start Verification ($999) <span class="arrow">→</span></a>
+    <a href="gl-demo.html" class="btn">Try GL Demo <span class="arrow">→</span></a>
   </div>
-</div></section>
-<section class="band" id="pricing-cn"><div class="wrap"><div class="eyebrow">服务方案</div><h2 class="stitle">启动验证。</h2><p class="slead">三个层级，适应转型的不同阶段。</p><div class="pg"><div class="pc"><div class="pc-tier">诊断</div><div class="pc-amt"><span class="pc-cur">$</span>999</div><p class="pc-desc">基准 GL 评估。在承诺转型前识别摩擦源。</p><ul class="pc-feats"><li>12 题 GL 诊断</li><li>摩擦源识别</li><li>GL 分数 + 风险分类</li><li>12 页 PDF · 48 小时交付</li></ul><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn" target="_blank" rel="noopener">开始评估 →</a></div><div class="pc feat"><div class="pc-tier">验证</div><div class="pc-amt"><span class="pc-cur">$</span>4,999</div><p class="pc-desc">转型前后 GL 测量。验证您的转型是否真正提升资本效率。</p><ul class="pc-feats"><li>包含诊断所有内容</li><li>前后 GL 差值分析</li><li>逐层摩擦地图</li><li>高管策略会议（2 小时）</li><li>30 天后续支持</li></ul><a href="https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01" class="pc-btn" target="_blank" rel="noopener">启动验证 →</a></div><div class="pc"><div class="pc-tier">董事会级</div><div class="pc-amt"><span class="pc-cur">$</span>9,999</div><p class="pc-desc">适合董事会报告、投资人呈现或并购尽职调查。</p><ul class="pc-feats"><li>包含验证所有内容</li><li>独立审计师签核</li><li>董事会报告格式</li><li>投资人摘要</li><li>季度持续追踪</li></ul><a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">联系洽询 →</a></div></div></div></section>
-<section style="text-align:center"><div class="wrap"><div class="eyebrow">联系</div><h2 class="stitle">启动验证。</h2><p class="slead" style="margin:0 auto;text-align:center">企业范围评估、合作伙伴咨询或学术合作。</p><div class="contact-links" style="justify-content:center;margin-top:36px"><a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ 启动验证（$999）</a><a href="gl-demo.html" class="cl">⊞ GL Demo</a><a href="#method-cn" class="cl">⊞ GL 方法</a></div></div></section>
-</div><!-- /cn -->
 
-<!-- ══ ES ══ -->
-<div class="lb" data-lang="es">
-<div class="hero"><div class="hero-grid"></div><div class="hero-glow"></div><div class="wrap hero-inner">
-  <div class="eyebrow">GFI Flow Intelligence · Boston</div>
-  <h1>¿Su transformación<br><em>realmente</em> mejora<br>la eficiencia de capital?</h1>
-  <p class="hero-sub">GL verifica de forma independiente si el cambio organizacional aumenta o disminuye la velocidad del capital — antes y después de la transformación.</p>
-  <div class="hero-btns"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">Iniciar Verificación ($999) →</a><a href="gl-demo.html" class="btn-ghost">Probar GL Demo</a><a href="#method-es" class="btn-ghost">Ver Método</a></div>
-  <div class="hero-stats"><div><div class="stat-n">9</div><div class="stat-l">Casos Internacionales</div></div><div><div class="stat-n">GL</div><div class="stat-l">Fórmula Exclusiva</div></div><div><div class="stat-n">3</div><div class="stat-l">Niveles de Servicio</div></div><div><div class="stat-n">Δ</div><div class="stat-l">Delta Antes y Después</div></div></div>
-  <div class="sector-portal"><a href="government.html" class="sp-card gov"><div class="sp-tag">Sector Público</div><div class="sp-title">Gobierno y Administración Pública</div><p class="sp-desc">Diagnóstico estructural independiente de programas gubernamentales — sistemas de UI, análisis de auditoría, comparación de eficiencia entre jurisdicciones.</p><div class="sp-cta">Explorar →</div></a><a href="#pricing-es" onclick="navTo('pricing',event)" class="sp-card priv"><div class="sp-tag">Sector Privado</div><div class="sp-title">Empresa y Eficiencia de Capital</div><p class="sp-desc">GL verifica de forma independiente si la transformación organizacional mejora la velocidad del capital. Para líderes de ERP, IA y transformación digital que necesitan pruebas, no promesas.</p><div class="sp-cta">Explorar →</div></a></div>
-</div></div>
-<section class="band" id="measures-es"><div class="wrap">
-  <div class="eyebrow">Qué Mide GL</div>
-  <h2 class="stitle">Velocidad de capital,<br>verificada estructuralmente.</h2>
-  <p class="slead">GL verifica si la eficiencia de capital realmente mejoró — y dónde se desplazó la fricción después del cambio.</p>
-  <div class="mg reveal">
-    <div class="mc"><div class="mc-eye">01 · Fs</div><h3>Tasa de Éxito del Flujo</h3><p>% de procesos elegibles que completan su flujo de trabajo sin fallos inducidos por fricción.</p></div>
-    <div class="mc"><div class="mc-eye">02 · Vn</div><h3>Valor Estratégico</h3><p>Impacto ponderado de política y capital, puntuado de 0 a 10 frente a los objetivos de transformación.</p></div>
-    <div class="mc"><div class="mc-eye">03 · Pd</div><h3>Duración del Dolor</h3><p>Horas anuales consumidas por fricción estructural — aprobaciones, ciclos de retrabajo, cuellos de botella.</p></div>
-    <div class="mc"><div class="mc-eye">04 · Cf</div><h3>Fricción Cognitiva</h3><p>Índice de carga mental (0–10) que refleja la complejidad impuesta a los usuarios al navegar el sistema.</p></div>
+  <!-- The Gap -->
+  <div class="section" style="animation-delay:.38s">
+    <div class="section-label">The Problem</div>
+    <div class="section-head">Deployment success ≠ efficiency gain.</div>
+    <p class="section-text">ERP, AI, and automation initiatives are measured by whether they shipped — not whether they improved anything. GL measures the delta that matters.</p>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-head">Without GL Verification</div>
+        <ul class="ba-list">
+          <li>ERP deployed — approval layers multiplied</li>
+          <li>AI tools added — decision latency unchanged</li>
+          <li>Reorganization done — rework increased</li>
+          <li>Digital roadmap launched — capital velocity declined</li>
+          <li>Consultants validated deployment — efficiency unmeasured</li>
+        </ul>
+      </div>
+      <div class="ba-card good">
+        <div class="ba-head">With GL Verification</div>
+        <ul class="ba-list">
+          <li>Baseline GL score established pre-transformation</li>
+          <li>Friction sources quantified by layer</li>
+          <li>Post-change GL delta calculated independently</li>
+          <li>Capital efficiency gain or loss documented</li>
+          <li>Board-ready verification report delivered</li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="fstrip reveal"><span>GL = (Fs × Vn) / (Pd × Cf)</span><span style="color:var(--dim)">·</span><span>GL<sub>r</sub> = (Fs × Vn) / (Pd × Cf × SRF)</span><a href="#method-es">VER MÉTODO →</a></div>
-</div></section>
-<section id="before-after-es"><div class="wrap">
-  <div class="eyebrow">Por Qué Antes y Después</div>
-  <h2 class="stitle">Éxito en el despliegue<br>≠ ganancia en eficiencia.</h2>
-  <p class="slead">Las iniciativas de automatización, ERP e IA suelen aumentar la complejidad sin mejorar la velocidad del capital. GL mide el delta que importa.</p>
-  <div class="ba-wrap reveal">
-    <div class="ba"><div class="ba-head">Sin Verificación GL</div><ul><li>ERP desplegado — capas de aprobación multiplicadas</li><li>Herramientas de IA añadidas — latencia de decisión sin cambios</li><li>Reorganización completada — retrabajo aumentado</li><li>Hoja de ruta digital lanzada — velocidad de capital disminuida</li><li>Consultores validaron el despliegue — eficiencia no medida</li></ul></div>
-    <div class="ba good"><div class="ba-head">Con Verificación GL</div><ul><li>Puntuación GL base establecida antes de la transformación</li><li>Fuentes de fricción cuantificadas por capa</li><li>Delta GL post-cambio calculado de forma independiente</li><li>Ganancia o pérdida de eficiencia de capital documentada</li><li>Informe de verificación listo para el directorio entregado</li></ul></div>
-  </div>
-</div></section>
-<section class="band" id="validation-es"><div class="wrap">
-  <div class="eyebrow">Diagnóstico Ghost GDP</div>
-  <h2 class="stitle">¿Su inversión en IA<br>está generando Ghost GDP?</h2>
-  <p class="slead">Cuando la automatización se aplica a un proceso desalineado, acelera los errores en lugar de eliminarlos. La actividad se registra como producción — pero no genera valor de capital real. Esto es Ghost GDP.</p>
-  <div class="sector-portal reveal" style="margin-top:clamp(28px,5vh,48px)">
-    <a href="ghost-gdp.html" class="sp-card priv" style="border-color:rgba(255,107,107,.2)"><div class="sp-tag" style="color:#ff7070">Marco Ghost GDP</div><div class="sp-title">Por Qué la IA Acelera los Procesos Rotos</div><p class="sp-desc">Investigación con 1.500 trabajadores muestra que la adopción de IA se correlaciona con un aumento del 39% en errores graves y un 40% en rotación — cuando el denominador está desalineado.</p><div class="sp-cta" style="color:#ff7070">Leer el Diagnóstico →</div></a>
-    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="sp-card priv" target="_blank" rel="noopener"><div class="sp-tag" style="color:var(--blue)">Comenzar Ahora</div><div class="sp-title">Verificación GL — $999</div><p class="sp-desc">Obtenga una puntuación GL base antes de su próxima transformación. Identifique dónde su denominador se está inflando antes de que la IA acelere el problema.</p><div class="sp-cta" style="color:var(--blue)">Iniciar Evaluación →</div></a>
-  </div>
-  <div class="demo-panel reveal"><div class="demo-kicker">Demostración Interactiva</div><h2 class="demo-title">Vea el motor de diagnóstico GL en acción.</h2><p class="demo-desc">La demo pública muestra cómo GL traduce variables estructurales en puntuaciones, rangos de sensibilidad, mapas de fricción, simulaciones y estimación de costos fantasma.</p><div class="demo-actions"><a href="gl-demo.html" class="btn-solid">Abrir GL Demo →</a><a href="#quickscan-es" onclick="navTo('quickscan',event)" class="btn-ghost">Hacer el Escaneo Rápido</a></div></div>
-</div></section>
-<section id="method-es"><div class="wrap">
-  <div class="eyebrow">Método</div>
-  <h2 class="stitle">Método GL</h2>
-  <p class="slead">Una fórmula para medir la eficiencia estructural antes y después del cambio.</p>
-  <div class="mgrid reveal">
-    <div class="mcard"><div class="mkv">Fórmula</div><div class="meq">GL = (Fs × Vn) / (Pd × Cf)</div><div class="meq" style="margin-top:8px">GL<sub>r</sub> = (Fs × Vn) / (Pd × Cf × SRF)</div></div>
-    <div class="mcard"><div class="mkv">Entradas</div><ul class="mlist"><li>Fs: tasa de éxito de flujo de trabajo</li><li>Vn: peso del valor estratégico (0–10)</li><li>Pd: duración del dolor en horas</li><li>Cf: índice de fricción cognitiva (0–10)</li></ul></div>
-    <div class="mcard"><div class="mkv">Protocolo</div><ul class="mlist"><li>Medir GL base antes de la transformación</li><li>Medir GL nuevamente después</li><li>Calcular delta GL (ganancia o pérdida)</li><li>Mapear el desplazamiento de fricción por capa</li></ul></div>
-  </div>
-  <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn-solid" target="_blank" rel="noopener">Iniciar Verificación ($999) →</a><a href="gl-demo.html" class="btn-ghost">Probar GL Demo</a></div>
-</div></section>
-<section id="quickscan-es"><div class="wrap">
-  <div class="eyebrow">Escaneo Rápido</div>
-  <h2 class="stitle">¿Su inversión en IA está funcionando?</h2>
-  <p class="slead">Cuatro preguntas. Dos minutos. Su puntuación GL preliminar — calculada en vivo.</p>
-  <div class="qs-wrap" id="qs-wrap-es">
-    <div class="qs-progress"><div class="qs-dot active" id="es-dot-0"></div><div class="qs-dot" id="es-dot-1"></div><div class="qs-dot" id="es-dot-2"></div><div class="qs-dot" id="es-dot-3"></div></div>
-    <div class="qs-step active" id="es-qs-0"><p class="qs-sub">Fs · Tasa de Éxito del Flujo</p><p class="qs-q">Desde el despliegue de su IA o automatización, ¿qué ha ocurrido con su tasa de finalización de procesos?</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'es',0,0.92)"><span class="qs-opt-key">A</span>Mejoró significativamente — menos errores, menos retrabajo</button><button class="qs-opt" onclick="selectOptLang(this,'es',0,0.72)"><span class="qs-opt-key">B</span>Mejoró ligeramente — algunas ganancias pero inconsistentes</button><button class="qs-opt" onclick="selectOptLang(this,'es',0,0.50)"><span class="qs-opt-key">C</span>Igual — sin cambio medible</button><button class="qs-opt" onclick="selectOptLang(this,'es',0,0.28)"><span class="qs-opt-key">D</span>Empeoró — retrabajo y tasas de error han aumentado</button></div><div class="qs-nav"><button class="qs-btn primary" onclick="nextStepLang('es',1)" id="es-next-0" disabled>Siguiente →</button></div></div>
-    <div class="qs-step" id="es-qs-1"><p class="qs-sub">Vn · Valor Estratégico</p><p class="qs-q">¿Qué tan central es este proceso automatizado para sus ingresos principales o la entrega al cliente?</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'es',1,9.5)"><span class="qs-opt-key">A</span>Misión crítica — afecta directamente ingresos o resultado del cliente</button><button class="qs-opt" onclick="selectOptLang(this,'es',1,7.5)"><span class="qs-opt-key">B</span>Importante — apoya operaciones principales pero no orientado al cliente</button><button class="qs-opt" onclick="selectOptLang(this,'es',1,5.5)"><span class="qs-opt-key">C</span>Moderado — función administrativa o de back-office</button><button class="qs-opt" onclick="selectOptLang(this,'es',1,3.5)"><span class="qs-opt-key">D</span>Periférico — bajo peso estratégico</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStepLang('es',0)">← Atrás</button><button class="qs-btn primary" onclick="nextStepLang('es',2)" id="es-next-1" disabled>Siguiente →</button></div></div>
-    <div class="qs-step" id="es-qs-2"><p class="qs-sub">Pd · Duración del Dolor</p><p class="qs-q">Tras la automatización, ¿cuánto tiempo del personal se dedica aún a excepciones, correcciones o intervención manual?</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'es',2,1.5)"><span class="qs-opt-key">A</span>Menos de 2 horas — casi totalmente automatizado</button><button class="qs-opt" onclick="selectOptLang(this,'es',2,5.0)"><span class="qs-opt-key">B</span>2–8 horas — intervención ocasional necesaria</button><button class="qs-opt" onclick="selectOptLang(this,'es',2,15.0)"><span class="qs-opt-key">C</span>8–20 horas — manejo manual significativo persiste</button><button class="qs-opt" onclick="selectOptLang(this,'es',2,35.0)"><span class="qs-opt-key">D</span>Más de 20 horas — más intervención que antes de la automatización</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStepLang('es',1)">← Atrás</button><button class="qs-btn primary" onclick="nextStepLang('es',3)" id="es-next-2" disabled>Siguiente →</button></div></div>
-    <div class="qs-step" id="es-qs-3"><p class="qs-sub">Cf · Fricción Cognitiva</p><p class="qs-q">¿Cuánto juicio, coordinación o cambio de contexto necesita aún su equipo para completar este proceso?</p><div class="qs-opts"><button class="qs-opt" onclick="selectOptLang(this,'es',3,1.2)"><span class="qs-opt-key">A</span>Mínimo — el sistema lo gestiona, el personal solo confirma</button><button class="qs-opt" onclick="selectOptLang(this,'es',3,2.2)"><span class="qs-opt-key">B</span>Algo — el personal interpreta resultados y toma decisiones ocasionales</button><button class="qs-opt" onclick="selectOptLang(this,'es',3,3.5)"><span class="qs-opt-key">C</span>Alto — decisiones frecuentes, coordinación entre equipos</button><button class="qs-opt" onclick="selectOptLang(this,'es',3,5.0)"><span class="qs-opt-key">D</span>Muy alto — la automatización creó nueva complejidad</button></div><div class="qs-nav"><button class="qs-btn" onclick="prevStepLang('es',2)">← Atrás</button><button class="qs-btn primary" onclick="calcResultLang('es')" id="es-next-3" disabled>Calcular GL →</button></div></div>
-    <div class="qs-result" id="es-qs-result"><div class="qs-gl-display" id="es-qs-score">—</div><div class="qs-gl-label">Su Puntuación GL Preliminar</div><div class="qs-verdict" id="es-qs-verdict"></div><div class="qs-finding" id="es-qs-finding"></div><div class="qs-cta-row"><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn feat" target="_blank" rel="noopener" style="padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;background:var(--accent);color:#0d1117;text-decoration:none">Obtener Diagnóstico Completo — $999 →</a><a href="gl-demo.html" class="pc-btn" style="padding:14px 28px;border-radius:8px;font-size:15px;text-decoration:none;border:1px solid var(--border);color:var(--muted)">Abrir GL Demo</a></div><button class="qs-reset" onclick="resetScanLang('es')">← Repetir</button></div>
-  </div>
-</div></section>
-<section class="band" id="pricing-es"><div class="wrap">
-  <div class="eyebrow">Planes de Servicio</div>
-  <h2 class="stitle">Iniciar verificación.</h2>
-  <p class="slead">Tres niveles para diferentes etapas — desde evaluación diagnóstica hasta verificación lista para el directorio.</p>
-  <div class="pg">
-    <div class="pc"><div class="pc-tier">Diagnóstico</div><div class="pc-amt"><span class="pc-cur">$</span>999</div><p class="pc-desc">Evaluación GL base. Identifique la fricción antes de comprometerse con la transformación.</p><ul class="pc-feats"><li>Diagnóstico GL de 12 preguntas</li><li>Identificación de fuentes de fricción</li><li>Puntuación GL + clasificación de riesgo</li><li>PDF de 12 páginas · Entrega en 48 horas</li></ul><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn" target="_blank" rel="noopener">Iniciar Evaluación →</a></div>
-    <div class="pc feat"><div class="pc-tier">Verificación</div><div class="pc-amt"><span class="pc-cur">$</span>4,999</div><p class="pc-desc">Medición GL antes y después. Verifique si la transformación mejoró la eficiencia de capital.</p><ul class="pc-feats"><li>Todo en Diagnóstico</li><li>Análisis delta GL antes/después</li><li>Mapa de fricción capa por capa</li><li>Sesión estratégica ejecutiva (2 hrs)</li><li>Soporte de seguimiento 30 días</li></ul><a href="https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01" class="pc-btn" target="_blank" rel="noopener">Iniciar Verificación →</a></div>
-    <div class="pc"><div class="pc-tier">Listo para Directorio</div><div class="pc-amt"><span class="pc-cur">$</span>9,999</div><p class="pc-desc">Verificación independiente completa para presentación al directorio, informes a inversores o due diligence de M&amp;A.</p><ul class="pc-feats"><li>Todo en Verificación</li><li>Firma de auditor independiente</li><li>Formato de presentación para directorio</li><li>Resumen para inversores</li><li>Seguimiento trimestral</li></ul><a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">Contactar →</a></div>
-  </div>
-</div></section>
-<section style="text-align:center"><div class="wrap">
-  <div class="eyebrow">Contacto</div>
-  <h2 class="stitle">Iniciar una verificación.</h2>
-  <p class="slead" style="margin:0 auto;text-align:center">Para evaluación empresarial, consultas de alianza o colaboración académica.</p>
-  <div class="contact-links" style="justify-content:center;margin-top:36px">
-    <a href="mailto:gfi@gfiintel.com" class="cl">✉ gfi@gfiintel.com</a>
-    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="cl primary" target="_blank" rel="noopener">⟶ Iniciar Verificación ($999)</a>
-    <a href="gl-demo.html" class="cl">⊞ GL Demo</a>
-    <a href="#method-es" class="cl">⊞ Método GL</a>
-  </div>
-</div></section>
-</div><!-- /es -->
 
-<footer>
-  <span>© 2026 GFI Flow Intelligence · Boston</span>
-  <div class="footer-links">
-    <a href="#method">Method</a>
-    <a href="government.html">Public Sector</a>
-    <a href="gl-demo.html">GL Demo</a>
-    <a href="mailto:gfi@gfiintel.com">Contact</a>
+  <!-- The Measurement -->
+  <div class="section" style="animation-delay:.46s">
+    <div class="section-label">The Measurement</div>
+    <div class="section-head">GL = what flows ÷ what it costs to flow.</div>
+    <p class="section-text">A high GL means resources move. A low GL means the system is consuming itself. The formula works with operational data — no internal system access required.</p>
+    <div class="var-grid">
+      <div class="var-card">
+        <div class="var-key">Fs</div>
+        <div class="var-label">Flow Success Rate</div>
+        <div class="var-desc">Share of processes completing their core workflow without friction-induced failure.</div>
+      </div>
+      <div class="var-card">
+        <div class="var-key">Vn</div>
+        <div class="var-label">Strategic Value</div>
+        <div class="var-desc">Weighted capital and operational impact scored 0–10 against transformation objectives.</div>
+      </div>
+      <div class="var-card">
+        <div class="var-key">Pd</div>
+        <div class="var-label">Process Duration</div>
+        <div class="var-desc">Annual hours consumed by structural friction — approvals, rework loops, bottlenecks.</div>
+      </div>
+      <div class="var-card">
+        <div class="var-key">Cf</div>
+        <div class="var-label">Complexity Factor</div>
+        <div class="var-desc">Cognitive load imposed on users navigating the system, scored 0–10.</div>
+      </div>
+    </div>
+    <div class="formula-bar">GL = ( Fs × Vn ) ÷ ( Pd × Cf )</div>
   </div>
-</footer>
+
+  <!-- Quick Scan -->
+  <div class="section" style="animation-delay:.52s">
+    <div class="section-label">Quick Scan</div>
+    <div class="section-head">Is your AI investment working?</div>
+    <p class="section-text">Four questions. Two minutes. Your preliminary GL score — calculated live.</p>
+    <div class="qs-wrap" id="qs-en">
+      <div class="qs-progress">
+        <div class="qs-dot active" id="en-dot-0"></div>
+        <div class="qs-dot" id="en-dot-1"></div>
+        <div class="qs-dot" id="en-dot-2"></div>
+        <div class="qs-dot" id="en-dot-3"></div>
+      </div>
+      <div class="qs-step active" id="en-s0">
+        <p class="qs-sub">Fs · Flow Success Rate</p>
+        <p class="qs-q">Since your AI or automation rollout, what has happened to your process completion rate?</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('en',0,0.92,this)"><span class="qs-opt-key">A</span>Significantly improved — fewer errors, less rework</button>
+          <button class="qs-opt" onclick="pick('en',0,0.72,this)"><span class="qs-opt-key">B</span>Slightly improved — some gains but inconsistent</button>
+          <button class="qs-opt" onclick="pick('en',0,0.50,this)"><span class="qs-opt-key">C</span>About the same — no measurable change</button>
+          <button class="qs-opt" onclick="pick('en',0,0.28,this)"><span class="qs-opt-key">D</span>Worse — rework and error rates have increased</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn primary" id="en-n0" onclick="go('en',1)" disabled>Next <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="en-s1">
+        <p class="qs-sub">Vn · Strategic Value</p>
+        <p class="qs-q">How central is this automated process to your core revenue or customer delivery?</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('en',1,9.5,this)"><span class="qs-opt-key">A</span>Mission critical — directly touches revenue or customer outcome</button>
+          <button class="qs-opt" onclick="pick('en',1,7.5,this)"><span class="qs-opt-key">B</span>Important — supports core operations but not customer-facing</button>
+          <button class="qs-opt" onclick="pick('en',1,5.5,this)"><span class="qs-opt-key">C</span>Moderate — back-office or administrative function</button>
+          <button class="qs-opt" onclick="pick('en',1,3.5,this)"><span class="qs-opt-key">D</span>Peripheral — low strategic weight</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('en',0)">← Back</button><button class="qs-btn primary" id="en-n1" onclick="go('en',2)" disabled>Next <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="en-s2">
+        <p class="qs-sub">Pd · Process Duration</p>
+        <p class="qs-q">After automation, how much staff time per week is still spent on exceptions, corrections, or manual intervention?</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('en',2,1.5,this)"><span class="qs-opt-key">A</span>Under 2 hours — nearly fully automated</button>
+          <button class="qs-opt" onclick="pick('en',2,5.0,this)"><span class="qs-opt-key">B</span>2–8 hours — occasional intervention needed</button>
+          <button class="qs-opt" onclick="pick('en',2,15.0,this)"><span class="qs-opt-key">C</span>8–20 hours — significant manual handling remains</button>
+          <button class="qs-opt" onclick="pick('en',2,35.0,this)"><span class="qs-opt-key">D</span>20+ hours — more intervention than before automation</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('en',1)">← Back</button><button class="qs-btn primary" id="en-n2" onclick="go('en',3)" disabled>Next <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="en-s3">
+        <p class="qs-sub">Cf · Complexity Factor</p>
+        <p class="qs-q">How much judgment, coordination, or context-switching does your team still need to complete this process?</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('en',3,1.2,this)"><span class="qs-opt-key">A</span>Minimal — the system handles it, staff just confirm</button>
+          <button class="qs-opt" onclick="pick('en',3,2.2,this)"><span class="qs-opt-key">B</span>Some — staff interpret outputs and make occasional decisions</button>
+          <button class="qs-opt" onclick="pick('en',3,3.5,this)"><span class="qs-opt-key">C</span>High — frequent judgment calls, cross-team coordination</button>
+          <button class="qs-opt" onclick="pick('en',3,5.0,this)"><span class="qs-opt-key">D</span>Very high — automation created new complexity to manage</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('en',2)">← Back</button><button class="qs-btn primary" id="en-n3" onclick="calc('en')" disabled>Calculate GL →</button></div>
+      </div>
+      <div class="qs-result" id="en-result">
+        <div class="qs-score" id="en-score">—</div>
+        <div class="qs-score-label">Your Preliminary GL Score</div>
+        <div class="qs-verdict" id="en-verdict"></div>
+        <div class="qs-finding" id="en-finding"></div>
+        <div class="qs-cta-row">
+          <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn primary" target="_blank" rel="noopener">Get Full Diagnosis — $999 <span class="arrow">→</span></a>
+          <a href="gl-demo.html" class="btn">Open GL Demo <span class="arrow">→</span></a>
+        </div>
+        <button class="qs-reset" onclick="reset('en')">← Run again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing -->
+  <div class="section" style="animation-delay:.58s">
+    <div class="section-label">Engagement</div>
+    <div class="section-head">Start verification.</div>
+    <p class="section-text">Three tiers — from baseline diagnostic to board-ready verification.</p>
+    <div class="pricing-grid">
+      <div class="pc">
+        <div class="pc-tier">Diagnostic</div>
+        <div class="pc-amt"><span class="pc-cur">$</span>999</div>
+        <p class="pc-desc">Baseline GL assessment. Identify friction before committing to transformation.</p>
+        <ul class="pc-feats">
+          <li>GL diagnostic report</li>
+          <li>Friction source identification</li>
+          <li>GL score + risk classification</li>
+          <li>12-page PDF · 48hr delivery</li>
+        </ul>
+        <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn" target="_blank" rel="noopener">Begin Assessment →</a>
+      </div>
+      <div class="pc feat">
+        <div class="pc-tier">Verification</div>
+        <div class="pc-amt"><span class="pc-cur">$</span>4,999</div>
+        <p class="pc-desc">Before &amp; after GL measurement. Verify whether transformation improved capital efficiency.</p>
+        <ul class="pc-feats">
+          <li>Everything in Diagnostic</li>
+          <li>Pre / post GL delta analysis</li>
+          <li>Layer-by-layer friction map</li>
+          <li>Executive strategy session (2hr)</li>
+          <li>30-day follow-up support</li>
+        </ul>
+        <a href="https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01" class="pc-btn" target="_blank" rel="noopener">Start Verification →</a>
+      </div>
+      <div class="pc">
+        <div class="pc-tier">Board-Ready</div>
+        <div class="pc-amt"><span class="pc-cur">$</span>9,999</div>
+        <p class="pc-desc">Full independent verification for board presentation, investor reporting, or M&amp;A due diligence.</p>
+        <ul class="pc-feats">
+          <li>Everything in Verification</li>
+          <li>Independent auditor sign-off</li>
+          <li>Board presentation format</li>
+          <li>Investor / LP summary</li>
+          <li>Quarterly tracking</li>
+        </ul>
+        <a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">Engage →</a>
+      </div>
+    </div>
+  </div>
+
+</div></main>
+</section>
+
+<!-- ══════════════════════════════════════════ TW ══════════════════════════════════════════ -->
+<section class="lb" data-lang="tw">
+<main><div class="wrap">
+
+  <div class="eyebrow">民間企業 · 資本效率</div>
+  <h1 class="hero-title">您的轉型<em>真的</em><br>提升了資本效率嗎？</h1>
+  <p class="hero-sub">GL 獨立驗證組織變革是否提升或降低交付效能——轉型前後皆可量化。</p>
+  <div class="hero-actions">
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn primary" target="_blank" rel="noopener">啟動驗證（$999）<span class="arrow">→</span></a>
+    <a href="gl-demo.html" class="btn">試用 GL Demo <span class="arrow">→</span></a>
+  </div>
+
+  <div class="section" style="animation-delay:.38s">
+    <div class="section-label">問題所在</div>
+    <div class="section-head">部署成功 ≠ 效率提升。</div>
+    <p class="section-text">ERP、AI 和自動化計劃的成敗，通常只看有沒有上線——而不是有沒有改善任何東西。GL 測量真正重要的差值。</p>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-head">沒有 GL 驗證</div>
+        <ul class="ba-list">
+          <li>ERP 已部署——審批層級增加</li>
+          <li>AI 工具已加入——決策延遲未改變</li>
+          <li>重組已完成——返工增加</li>
+          <li>數位路線圖已啟動——資本速度下降</li>
+          <li>顧問驗證了部署——效率未量化</li>
+        </ul>
+      </div>
+      <div class="ba-card good">
+        <div class="ba-head">有 GL 驗證</div>
+        <ul class="ba-list">
+          <li>轉型前建立基準 GL 分數</li>
+          <li>按層級量化摩擦來源</li>
+          <li>獨立計算轉型後 GL 差值</li>
+          <li>記錄資本效率提升或下降</li>
+          <li>交付董事會級驗證報告</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="animation-delay:.46s">
+    <div class="section-label">測量方法</div>
+    <div class="section-head">GL = 流通的 ÷ 流通的代價。</div>
+    <p class="section-text">GL 高代表資源在流動。GL 低代表系統在消耗自身。公式只需要營運數據——不需要內部系統存取。</p>
+    <div class="var-grid">
+      <div class="var-card"><div class="var-key">Fs</div><div class="var-label">流程成功率</div><div class="var-desc">不因摩擦失敗而完成核心工作流程的比例。</div></div>
+      <div class="var-card"><div class="var-key">Vn</div><div class="var-label">戰略價值</div><div class="var-desc">加權資本與營運影響，對照轉型目標評分 0–10。</div></div>
+      <div class="var-card"><div class="var-key">Pd</div><div class="var-label">流程持續時間</div><div class="var-desc">每年因結構摩擦耗費的小時數——審批、返工迴圈、決策瓶頸。</div></div>
+      <div class="var-card"><div class="var-key">Cf</div><div class="var-label">複雜度係數</div><div class="var-desc">系統對使用者造成的認知負荷，評分 0–10。</div></div>
+    </div>
+    <div class="formula-bar">GL = ( Fs × Vn ) ÷ ( Pd × Cf )</div>
+  </div>
+
+  <div class="section" style="animation-delay:.52s">
+    <div class="section-label">快速掃描</div>
+    <div class="section-head">您的 AI 投資真的有效嗎？</div>
+    <p class="section-text">四個問題。兩分鐘。即時計算您的初步 GL 分數。</p>
+    <div class="qs-wrap" id="qs-tw">
+      <div class="qs-progress">
+        <div class="qs-dot active" id="tw-dot-0"></div><div class="qs-dot" id="tw-dot-1"></div><div class="qs-dot" id="tw-dot-2"></div><div class="qs-dot" id="tw-dot-3"></div>
+      </div>
+      <div class="qs-step active" id="tw-s0">
+        <p class="qs-sub">Fs · 流程成功率</p>
+        <p class="qs-q">自 AI 或自動化上線後，您的流程完成率發生了什麼變化？</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('tw',0,0.92,this)"><span class="qs-opt-key">A</span>顯著改善——錯誤更少、返工減少</button>
+          <button class="qs-opt" onclick="pick('tw',0,0.72,this)"><span class="qs-opt-key">B</span>略有改善——部分成效但不穩定</button>
+          <button class="qs-opt" onclick="pick('tw',0,0.50,this)"><span class="qs-opt-key">C</span>差不多——沒有可量化的改變</button>
+          <button class="qs-opt" onclick="pick('tw',0,0.28,this)"><span class="qs-opt-key">D</span>更差——返工與錯誤率上升</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn primary" id="tw-n0" onclick="go('tw',1)" disabled>下一題 <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="tw-s1">
+        <p class="qs-sub">Vn · 戰略價值</p>
+        <p class="qs-q">這個自動化流程對您的核心營收或客戶交付有多重要？</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('tw',1,9.5,this)"><span class="qs-opt-key">A</span>關鍵任務——直接影響營收或客戶成果</button>
+          <button class="qs-opt" onclick="pick('tw',1,7.5,this)"><span class="qs-opt-key">B</span>重要——支援核心運營但非面向客戶</button>
+          <button class="qs-opt" onclick="pick('tw',1,5.5,this)"><span class="qs-opt-key">C</span>中等——後台或行政功能</button>
+          <button class="qs-opt" onclick="pick('tw',1,3.5,this)"><span class="qs-opt-key">D</span>邊緣——戰略權重低</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('tw',0)">← 返回</button><button class="qs-btn primary" id="tw-n1" onclick="go('tw',2)" disabled>下一題 <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="tw-s2">
+        <p class="qs-sub">Pd · 流程持續時間</p>
+        <p class="qs-q">自動化後，員工每週仍花多少時間處理例外、修正或手動介入？</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('tw',2,1.5,this)"><span class="qs-opt-key">A</span>2 小時以下——幾乎完全自動化</button>
+          <button class="qs-opt" onclick="pick('tw',2,5.0,this)"><span class="qs-opt-key">B</span>2–8 小時——偶爾需要介入</button>
+          <button class="qs-opt" onclick="pick('tw',2,15.0,this)"><span class="qs-opt-key">C</span>8–20 小時——仍有大量手動處理</button>
+          <button class="qs-opt" onclick="pick('tw',2,35.0,this)"><span class="qs-opt-key">D</span>20 小時以上——比自動化前介入更多</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('tw',1)">← 返回</button><button class="qs-btn primary" id="tw-n2" onclick="go('tw',3)" disabled>下一題 <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="tw-s3">
+        <p class="qs-sub">Cf · 複雜度係數</p>
+        <p class="qs-q">您的團隊完成此流程仍需要多少判斷、協調或情境切換？</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('tw',3,1.2,this)"><span class="qs-opt-key">A</span>極少——系統自動處理，員工只需確認</button>
+          <button class="qs-opt" onclick="pick('tw',3,2.2,this)"><span class="qs-opt-key">B</span>少量——員工解讀輸出並偶爾決策</button>
+          <button class="qs-opt" onclick="pick('tw',3,3.5,this)"><span class="qs-opt-key">C</span>高——頻繁判斷、跨團隊協調</button>
+          <button class="qs-opt" onclick="pick('tw',3,5.0,this)"><span class="qs-opt-key">D</span>非常高——自動化製造了新的複雜性</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('tw',2)">← 返回</button><button class="qs-btn primary" id="tw-n3" onclick="calc('tw')" disabled>計算 GL →</button></div>
+      </div>
+      <div class="qs-result" id="tw-result">
+        <div class="qs-score" id="tw-score">—</div>
+        <div class="qs-score-label">您的初步 GL 分數</div>
+        <div class="qs-verdict" id="tw-verdict"></div>
+        <div class="qs-finding" id="tw-finding"></div>
+        <div class="qs-cta-row">
+          <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn primary" target="_blank" rel="noopener">取得完整診斷 — $999 <span class="arrow">→</span></a>
+          <a href="gl-demo.html" class="btn">開啟 GL Demo <span class="arrow">→</span></a>
+        </div>
+        <button class="qs-reset" onclick="reset('tw')">← 重新測試</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="animation-delay:.58s">
+    <div class="section-label">服務方案</div>
+    <div class="section-head">啟動驗證。</div>
+    <p class="section-text">三個層級，適應轉型的不同階段。</p>
+    <div class="pricing-grid">
+      <div class="pc"><div class="pc-tier">診斷</div><div class="pc-amt"><span class="pc-cur">$</span>999</div><p class="pc-desc">基準 GL 評估。在承諾轉型前識別摩擦源。</p><ul class="pc-feats"><li>GL 診斷報告</li><li>摩擦源識別</li><li>GL 分數 + 風險分類</li><li>12 頁 PDF · 48 小時交付</li></ul><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn" target="_blank" rel="noopener">開始評估 →</a></div>
+      <div class="pc feat"><div class="pc-tier">驗證</div><div class="pc-amt"><span class="pc-cur">$</span>4,999</div><p class="pc-desc">轉型前後 GL 測量。驗證您的轉型是否真正提升資本效率。</p><ul class="pc-feats"><li>包含診斷所有內容</li><li>前後 GL 差值分析</li><li>逐層摩擦地圖</li><li>高管策略會議（2 小時）</li><li>30 天後續支援</li></ul><a href="https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01" class="pc-btn" target="_blank" rel="noopener">啟動驗證 →</a></div>
+      <div class="pc"><div class="pc-tier">董事會級</div><div class="pc-amt"><span class="pc-cur">$</span>9,999</div><p class="pc-desc">適合董事會報告、投資人呈現或併購盡職調查。</p><ul class="pc-feats"><li>包含驗證所有內容</li><li>獨立審計師簽核</li><li>董事會報告格式</li><li>投資人摘要</li><li>季度持續追蹤</li></ul><a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">聯繫洽詢 →</a></div>
+    </div>
+  </div>
+
+</div></main>
+</section>
+
+<!-- ══════════════════════════════════════════ CN ══════════════════════════════════════════ -->
+<section class="lb" data-lang="cn">
+<main><div class="wrap">
+
+  <div class="eyebrow">民间企业 · 资本效率</div>
+  <h1 class="hero-title">您的转型<em>真的</em><br>提升了资本效率吗？</h1>
+  <p class="hero-sub">GL 独立验证组织变革是否提升或降低交付效能——转型前后皆可量化。</p>
+  <div class="hero-actions">
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn primary" target="_blank" rel="noopener">启动验证（$999）<span class="arrow">→</span></a>
+    <a href="gl-demo.html" class="btn">试用 GL Demo <span class="arrow">→</span></a>
+  </div>
+
+  <div class="section" style="animation-delay:.38s">
+    <div class="section-label">问题所在</div>
+    <div class="section-head">部署成功 ≠ 效率提升。</div>
+    <p class="section-text">ERP、AI 和自动化项目的成败，通常只看有没有上线——而不是有没有改善任何东西。GL 测量真正重要的差值。</p>
+    <div class="ba-grid">
+      <div class="ba-card"><div class="ba-head">没有 GL 验证</div><ul class="ba-list"><li>ERP 已部署——审批层级增加</li><li>AI 工具已加入——决策延迟未改变</li><li>重组已完成——返工增加</li><li>数字路线图已启动——资本速度下降</li><li>顾问验证了部署——效率未量化</li></ul></div>
+      <div class="ba-card good"><div class="ba-head">有 GL 验证</div><ul class="ba-list"><li>转型前建立基准 GL 分数</li><li>按层级量化摩擦来源</li><li>独立计算转型后 GL 差值</li><li>记录资本效率提升或下降</li><li>交付董事会级验证报告</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section" style="animation-delay:.46s">
+    <div class="section-label">测量方法</div>
+    <div class="section-head">GL = 流通的 ÷ 流通的代价。</div>
+    <p class="section-text">GL 高代表资源在流动。GL 低代表系统在消耗自身。公式只需要运营数据——不需要内部系统访问。</p>
+    <div class="var-grid">
+      <div class="var-card"><div class="var-key">Fs</div><div class="var-label">流程成功率</div><div class="var-desc">不因摩擦失败而完成核心工作流程的比例。</div></div>
+      <div class="var-card"><div class="var-key">Vn</div><div class="var-label">战略价值</div><div class="var-desc">加权资本与运营影响，对照转型目标评分 0–10。</div></div>
+      <div class="var-card"><div class="var-key">Pd</div><div class="var-label">流程持续时间</div><div class="var-desc">每年因结构摩擦耗费的小时数——审批、返工循环、决策瓶颈。</div></div>
+      <div class="var-card"><div class="var-key">Cf</div><div class="var-label">复杂度系数</div><div class="var-desc">系统对用户造成的认知负荷，评分 0–10。</div></div>
+    </div>
+    <div class="formula-bar">GL = ( Fs × Vn ) ÷ ( Pd × Cf )</div>
+  </div>
+
+  <div class="section" style="animation-delay:.52s">
+    <div class="section-label">快速扫描</div>
+    <div class="section-head">您的 AI 投资真的有效吗？</div>
+    <p class="section-text">四个问题。两分钟。即时计算您的初步 GL 分数。</p>
+    <div class="qs-wrap" id="qs-cn">
+      <div class="qs-progress">
+        <div class="qs-dot active" id="cn-dot-0"></div><div class="qs-dot" id="cn-dot-1"></div><div class="qs-dot" id="cn-dot-2"></div><div class="qs-dot" id="cn-dot-3"></div>
+      </div>
+      <div class="qs-step active" id="cn-s0">
+        <p class="qs-sub">Fs · 流程成功率</p>
+        <p class="qs-q">自 AI 或自动化上线后，您的流程完成率发生了什么变化？</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('cn',0,0.92,this)"><span class="qs-opt-key">A</span>显著改善——错误更少、返工减少</button>
+          <button class="qs-opt" onclick="pick('cn',0,0.72,this)"><span class="qs-opt-key">B</span>略有改善——部分成效但不稳定</button>
+          <button class="qs-opt" onclick="pick('cn',0,0.50,this)"><span class="qs-opt-key">C</span>差不多——没有可量化的改变</button>
+          <button class="qs-opt" onclick="pick('cn',0,0.28,this)"><span class="qs-opt-key">D</span>更差——返工与错误率上升</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn primary" id="cn-n0" onclick="go('cn',1)" disabled>下一题 <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="cn-s1">
+        <p class="qs-sub">Vn · 战略价值</p>
+        <p class="qs-q">这个自动化流程对您的核心营收或客户交付有多重要？</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('cn',1,9.5,this)"><span class="qs-opt-key">A</span>关键任务——直接影响营收或客户成果</button>
+          <button class="qs-opt" onclick="pick('cn',1,7.5,this)"><span class="qs-opt-key">B</span>重要——支撑核心运营但非面向客户</button>
+          <button class="qs-opt" onclick="pick('cn',1,5.5,this)"><span class="qs-opt-key">C</span>中等——后台或行政功能</button>
+          <button class="qs-opt" onclick="pick('cn',1,3.5,this)"><span class="qs-opt-key">D</span>边缘——战略权重低</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('cn',0)">← 返回</button><button class="qs-btn primary" id="cn-n1" onclick="go('cn',2)" disabled>下一题 <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="cn-s2">
+        <p class="qs-sub">Pd · 流程持续时间</p>
+        <p class="qs-q">自动化后，员工每周仍花多少时间处理例外、修正或手动介入？</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('cn',2,1.5,this)"><span class="qs-opt-key">A</span>2 小时以下——几乎完全自动化</button>
+          <button class="qs-opt" onclick="pick('cn',2,5.0,this)"><span class="qs-opt-key">B</span>2–8 小时——偶尔需要介入</button>
+          <button class="qs-opt" onclick="pick('cn',2,15.0,this)"><span class="qs-opt-key">C</span>8–20 小时——仍有大量手动处理</button>
+          <button class="qs-opt" onclick="pick('cn',2,35.0,this)"><span class="qs-opt-key">D</span>20 小时以上——比自动化前介入更多</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('cn',1)">← 返回</button><button class="qs-btn primary" id="cn-n2" onclick="go('cn',3)" disabled>下一题 <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="cn-s3">
+        <p class="qs-sub">Cf · 复杂度系数</p>
+        <p class="qs-q">您的团队完成此流程仍需要多少判断、协调或情境切换？</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('cn',3,1.2,this)"><span class="qs-opt-key">A</span>极少——系统自动处理，员工只需确认</button>
+          <button class="qs-opt" onclick="pick('cn',3,2.2,this)"><span class="qs-opt-key">B</span>少量——员工解读输出并偶尔决策</button>
+          <button class="qs-opt" onclick="pick('cn',3,3.5,this)"><span class="qs-opt-key">C</span>高——频繁判断、跨团队协调</button>
+          <button class="qs-opt" onclick="pick('cn',3,5.0,this)"><span class="qs-opt-key">D</span>非常高——自动化制造了新的复杂性</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('cn',2)">← 返回</button><button class="qs-btn primary" id="cn-n3" onclick="calc('cn')" disabled>计算 GL →</button></div>
+      </div>
+      <div class="qs-result" id="cn-result">
+        <div class="qs-score" id="cn-score">—</div>
+        <div class="qs-score-label">您的初步 GL 分数</div>
+        <div class="qs-verdict" id="cn-verdict"></div>
+        <div class="qs-finding" id="cn-finding"></div>
+        <div class="qs-cta-row">
+          <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn primary" target="_blank" rel="noopener">获取完整诊断 — $999 <span class="arrow">→</span></a>
+          <a href="gl-demo.html" class="btn">打开 GL Demo <span class="arrow">→</span></a>
+        </div>
+        <button class="qs-reset" onclick="reset('cn')">← 重新测试</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="animation-delay:.58s">
+    <div class="section-label">服务方案</div>
+    <div class="section-head">启动验证。</div>
+    <p class="section-text">三个层级，适应转型的不同阶段。</p>
+    <div class="pricing-grid">
+      <div class="pc"><div class="pc-tier">诊断</div><div class="pc-amt"><span class="pc-cur">$</span>999</div><p class="pc-desc">基准 GL 评估。在承诺转型前识别摩擦源。</p><ul class="pc-feats"><li>GL 诊断报告</li><li>摩擦源识别</li><li>GL 分数 + 风险分类</li><li>12 页 PDF · 48 小时交付</li></ul><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn" target="_blank" rel="noopener">开始评估 →</a></div>
+      <div class="pc feat"><div class="pc-tier">验证</div><div class="pc-amt"><span class="pc-cur">$</span>4,999</div><p class="pc-desc">转型前后 GL 测量。验证您的转型是否真正提升资本效率。</p><ul class="pc-feats"><li>包含诊断所有内容</li><li>前后 GL 差值分析</li><li>逐层摩擦地图</li><li>高管策略会议（2 小时）</li><li>30 天后续支持</li></ul><a href="https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01" class="pc-btn" target="_blank" rel="noopener">启动验证 →</a></div>
+      <div class="pc"><div class="pc-tier">董事会级</div><div class="pc-amt"><span class="pc-cur">$</span>9,999</div><p class="pc-desc">适合董事会报告、投资人呈现或并购尽职调查。</p><ul class="pc-feats"><li>包含验证所有内容</li><li>独立审计师签核</li><li>董事会报告格式</li><li>投资人摘要</li><li>季度持续追踪</li></ul><a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">联系洽询 →</a></div>
+    </div>
+  </div>
+
+</div></main>
+</section>
+
+<!-- ══════════════════════════════════════════ ES ══════════════════════════════════════════ -->
+<section class="lb" data-lang="es">
+<main><div class="wrap">
+
+  <div class="eyebrow">Sector Privado · Eficiencia de Capital</div>
+  <h1 class="hero-title">¿Su transformación <em>realmente</em><br>mejora la eficiencia de capital?</h1>
+  <p class="hero-sub">GL verifica de forma independiente si el cambio organizacional aumenta o disminuye el rendimiento de entrega — antes y después de la transformación.</p>
+  <div class="hero-actions">
+    <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn primary" target="_blank" rel="noopener">Iniciar Verificación ($999) <span class="arrow">→</span></a>
+    <a href="gl-demo.html" class="btn">Probar GL Demo <span class="arrow">→</span></a>
+  </div>
+
+  <div class="section" style="animation-delay:.38s">
+    <div class="section-label">El Problema</div>
+    <div class="section-head">Éxito en el despliegue ≠ ganancia en eficiencia.</div>
+    <p class="section-text">El éxito de ERP, IA y automatización se mide por si se lanzó — no por si mejoró algo. GL mide el delta que importa.</p>
+    <div class="ba-grid">
+      <div class="ba-card"><div class="ba-head">Sin Verificación GL</div><ul class="ba-list"><li>ERP desplegado — capas de aprobación multiplicadas</li><li>Herramientas de IA añadidas — latencia de decisión sin cambios</li><li>Reorganización completada — retrabajo aumentado</li><li>Hoja de ruta digital lanzada — velocidad de capital disminuida</li><li>Consultores validaron el despliegue — eficiencia no medida</li></ul></div>
+      <div class="ba-card good"><div class="ba-head">Con Verificación GL</div><ul class="ba-list"><li>Puntuación GL base establecida antes de la transformación</li><li>Fuentes de fricción cuantificadas por capa</li><li>Delta GL post-cambio calculado de forma independiente</li><li>Ganancia o pérdida de eficiencia documentada</li><li>Informe de verificación listo para el directorio</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section" style="animation-delay:.46s">
+    <div class="section-label">La Medición</div>
+    <div class="section-head">GL = lo que fluye ÷ lo que cuesta fluir.</div>
+    <p class="section-text">Un GL alto significa que los recursos se mueven. Un GL bajo significa que el sistema se está consumiendo a sí mismo. La fórmula funciona con datos operativos — sin acceso interno al sistema.</p>
+    <div class="var-grid">
+      <div class="var-card"><div class="var-key">Fs</div><div class="var-label">Tasa de Éxito del Flujo</div><div class="var-desc">Proporción de procesos que completan su flujo sin fallos por fricción.</div></div>
+      <div class="var-card"><div class="var-key">Vn</div><div class="var-label">Valor Estratégico</div><div class="var-desc">Impacto ponderado de capital y operaciones, puntuado 0–10.</div></div>
+      <div class="var-card"><div class="var-key">Pd</div><div class="var-label">Duración del Proceso</div><div class="var-desc">Horas anuales consumidas por fricción estructural — aprobaciones, ciclos de retrabajo.</div></div>
+      <div class="var-card"><div class="var-key">Cf</div><div class="var-label">Factor de Complejidad</div><div class="var-desc">Carga cognitiva impuesta a los usuarios al navegar el sistema, puntuada 0–10.</div></div>
+    </div>
+    <div class="formula-bar">GL = ( Fs × Vn ) ÷ ( Pd × Cf )</div>
+  </div>
+
+  <div class="section" style="animation-delay:.52s">
+    <div class="section-label">Escaneo Rápido</div>
+    <div class="section-head">¿Su inversión en IA está funcionando?</div>
+    <p class="section-text">Cuatro preguntas. Dos minutos. Su puntuación GL preliminar — calculada en vivo.</p>
+    <div class="qs-wrap" id="qs-es">
+      <div class="qs-progress">
+        <div class="qs-dot active" id="es-dot-0"></div><div class="qs-dot" id="es-dot-1"></div><div class="qs-dot" id="es-dot-2"></div><div class="qs-dot" id="es-dot-3"></div>
+      </div>
+      <div class="qs-step active" id="es-s0">
+        <p class="qs-sub">Fs · Tasa de Éxito del Flujo</p>
+        <p class="qs-q">Desde el despliegue de su IA, ¿qué ha ocurrido con su tasa de finalización de procesos?</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('es',0,0.92,this)"><span class="qs-opt-key">A</span>Mejoró significativamente — menos errores, menos retrabajo</button>
+          <button class="qs-opt" onclick="pick('es',0,0.72,this)"><span class="qs-opt-key">B</span>Mejoró ligeramente — algunas ganancias pero inconsistentes</button>
+          <button class="qs-opt" onclick="pick('es',0,0.50,this)"><span class="qs-opt-key">C</span>Igual — sin cambio medible</button>
+          <button class="qs-opt" onclick="pick('es',0,0.28,this)"><span class="qs-opt-key">D</span>Empeoró — retrabajo y tasas de error han aumentado</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn primary" id="es-n0" onclick="go('es',1)" disabled>Siguiente <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="es-s1">
+        <p class="qs-sub">Vn · Valor Estratégico</p>
+        <p class="qs-q">¿Qué tan central es este proceso para sus ingresos o entrega al cliente?</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('es',1,9.5,this)"><span class="qs-opt-key">A</span>Misión crítica — afecta directamente ingresos o resultado del cliente</button>
+          <button class="qs-opt" onclick="pick('es',1,7.5,this)"><span class="qs-opt-key">B</span>Importante — apoya operaciones principales pero no orientado al cliente</button>
+          <button class="qs-opt" onclick="pick('es',1,5.5,this)"><span class="qs-opt-key">C</span>Moderado — función administrativa o de back-office</button>
+          <button class="qs-opt" onclick="pick('es',1,3.5,this)"><span class="qs-opt-key">D</span>Periférico — bajo peso estratégico</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('es',0)">← Atrás</button><button class="qs-btn primary" id="es-n1" onclick="go('es',2)" disabled>Siguiente <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="es-s2">
+        <p class="qs-sub">Pd · Duración del Proceso</p>
+        <p class="qs-q">Tras la automatización, ¿cuánto tiempo del personal se dedica aún a excepciones o intervención manual?</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('es',2,1.5,this)"><span class="qs-opt-key">A</span>Menos de 2 horas — casi totalmente automatizado</button>
+          <button class="qs-opt" onclick="pick('es',2,5.0,this)"><span class="qs-opt-key">B</span>2–8 horas — intervención ocasional necesaria</button>
+          <button class="qs-opt" onclick="pick('es',2,15.0,this)"><span class="qs-opt-key">C</span>8–20 horas — manejo manual significativo persiste</button>
+          <button class="qs-opt" onclick="pick('es',2,35.0,this)"><span class="qs-opt-key">D</span>Más de 20 horas — más intervención que antes</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('es',1)">← Atrás</button><button class="qs-btn primary" id="es-n2" onclick="go('es',3)" disabled>Siguiente <span class="arrow">→</span></button></div>
+      </div>
+      <div class="qs-step" id="es-s3">
+        <p class="qs-sub">Cf · Factor de Complejidad</p>
+        <p class="qs-q">¿Cuánto juicio o coordinación necesita aún su equipo para completar este proceso?</p>
+        <div class="qs-opts">
+          <button class="qs-opt" onclick="pick('es',3,1.2,this)"><span class="qs-opt-key">A</span>Mínimo — el sistema lo gestiona, el personal solo confirma</button>
+          <button class="qs-opt" onclick="pick('es',3,2.2,this)"><span class="qs-opt-key">B</span>Algo — el personal interpreta resultados ocasionalmente</button>
+          <button class="qs-opt" onclick="pick('es',3,3.5,this)"><span class="qs-opt-key">C</span>Alto — decisiones frecuentes, coordinación entre equipos</button>
+          <button class="qs-opt" onclick="pick('es',3,5.0,this)"><span class="qs-opt-key">D</span>Muy alto — la automatización creó nueva complejidad</button>
+        </div>
+        <div class="qs-nav"><button class="qs-btn" onclick="go('es',2)">← Atrás</button><button class="qs-btn primary" id="es-n3" onclick="calc('es')" disabled>Calcular GL →</button></div>
+      </div>
+      <div class="qs-result" id="es-result">
+        <div class="qs-score" id="es-score">—</div>
+        <div class="qs-score-label">Su Puntuación GL Preliminar</div>
+        <div class="qs-verdict" id="es-verdict"></div>
+        <div class="qs-finding" id="es-finding"></div>
+        <div class="qs-cta-row">
+          <a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="btn primary" target="_blank" rel="noopener">Obtener Diagnóstico Completo — $999 <span class="arrow">→</span></a>
+          <a href="gl-demo.html" class="btn">Abrir GL Demo <span class="arrow">→</span></a>
+        </div>
+        <button class="qs-reset" onclick="reset('es')">← Repetir</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="animation-delay:.58s">
+    <div class="section-label">Planes de Servicio</div>
+    <div class="section-head">Iniciar verificación.</div>
+    <p class="section-text">Tres niveles para diferentes etapas de transformación.</p>
+    <div class="pricing-grid">
+      <div class="pc"><div class="pc-tier">Diagnóstico</div><div class="pc-amt"><span class="pc-cur">$</span>999</div><p class="pc-desc">Evaluación GL base. Identifique la fricción antes de comprometerse con la transformación.</p><ul class="pc-feats"><li>Informe de diagnóstico GL</li><li>Identificación de fuentes de fricción</li><li>Puntuación GL + clasificación de riesgo</li><li>PDF de 12 páginas · Entrega en 48 horas</li></ul><a href="https://buy.stripe.com/8x25kFbp0dM4gQl0fB3VC00" class="pc-btn" target="_blank" rel="noopener">Iniciar Evaluación →</a></div>
+      <div class="pc feat"><div class="pc-tier">Verificación</div><div class="pc-amt"><span class="pc-cur">$</span>4,999</div><p class="pc-desc">Medición GL antes y después. Verifique si la transformación mejoró la eficiencia de capital.</p><ul class="pc-feats"><li>Todo en Diagnóstico</li><li>Análisis delta GL antes/después</li><li>Mapa de fricción capa por capa</li><li>Sesión estratégica ejecutiva (2 hrs)</li><li>Soporte de seguimiento 30 días</li></ul><a href="https://buy.stripe.com/7sYcN764GdM4arX0fB3VC01" class="pc-btn" target="_blank" rel="noopener">Iniciar Verificación →</a></div>
+      <div class="pc"><div class="pc-tier">Listo para Directorio</div><div class="pc-amt"><span class="pc-cur">$</span>9,999</div><p class="pc-desc">Verificación independiente completa para directorio, inversores o due diligence de M&amp;A.</p><ul class="pc-feats"><li>Todo en Verificación</li><li>Firma de auditor independiente</li><li>Formato de presentación para directorio</li><li>Resumen para inversores</li><li>Seguimiento trimestral</li></ul><a href="https://buy.stripe.com/8x228t3WyazS7fL4vR3VC02" class="pc-btn" target="_blank" rel="noopener">Contactar →</a></div>
+    </div>
+  </div>
+
+</div></main>
+</section>
+
+<div class="footer">
+  © 2026 GFI Flow Intelligence · Boston ·
+  <a href="about.html">About</a> ·
+  <a href="mailto:gfi@gfiintel.com">gfi@gfiintel.com</a>
+</div>
 
 <script>
-function navTo(section,e){e&&e.preventDefault();const lb=document.querySelector('.lb.on');const lang=lb?lb.getAttribute('data-lang'):'en';const sfx=lang==='tw'?'-tw':lang==='cn'?'-cn':lang==='es'?'-es':'';const t=document.getElementById(section+sfx)||document.getElementById(section);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});}
-function setLang(lang,btn){document.querySelectorAll('.lb').forEach(el=>el.classList.remove('on'));document.querySelectorAll('.lb[data-lang="'+lang+'"]').forEach(el=>el.classList.add('on'));document.querySelectorAll('.lb-btn').forEach(b=>{b.classList.toggle('on',b.getAttribute('data-lang')===lang);});closeDrawer();window.scrollTo({top:0,behavior:'smooth'});}
-function toggleDrawer(){document.getElementById('ham').classList.toggle('open');document.getElementById('drawer').classList.toggle('open');}
-function closeDrawer(){document.getElementById('ham').classList.remove('open');document.getElementById('drawer').classList.remove('open');}
-const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  /* Language switcher */
+  const buttons = document.querySelectorAll(".lb-btn");
+  const blocks  = document.querySelectorAll(".lb");
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lang = btn.dataset.lang;
+      buttons.forEach(b => b.classList.remove("on"));
+      blocks.forEach(b  => b.classList.remove("active"));
+      btn.classList.add("on");
+      document.querySelector(`.lb[data-lang="${lang}"]`).classList.add("active");
+    });
+  });
 
-const answers=[null,null,null,null];
-function selectOpt(btn,qIdx,val){btn.closest('.qs-opts').querySelectorAll('.qs-opt').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');answers[qIdx]=val;const nb=document.getElementById('next-'+qIdx);if(nb)nb.disabled=false;}
-function nextStep(idx){document.querySelectorAll('#qs-wrap-en .qs-step').forEach(s=>s.classList.remove('active'));document.getElementById('qs-'+idx).classList.add('active');updateDots('',idx);}
-function prevStep(idx){document.querySelectorAll('#qs-wrap-en .qs-step').forEach(s=>s.classList.remove('active'));document.getElementById('qs-'+idx).classList.add('active');updateDots('',idx);}
-function updateDots(prefix,current){const p=prefix?prefix+'-':'';for(let i=0;i<4;i++){const d=document.getElementById(p+'dot-'+i);if(!d)continue;d.classList.remove('active','done');if(i<current)d.classList.add('done');else if(i===current)d.classList.add('active');}}
-function calcResult(){const fs=answers[0],vn=answers[1],pd=answers[2],cf=answers[3];if(!fs||!vn||!pd||!cf)return;const gl=(fs*vn)/(pd*cf);const glR=Math.round(gl*100)/100;const fPct=Math.min(Math.round((pd*cf)/((fs*vn)+(pd*cf))*100),99);const sEl=document.getElementById('qs-score'),vEl=document.getElementById('qs-verdict'),fEl=document.getElementById('qs-finding');sEl.textContent=glR;let gEl=document.getElementById('qs-ghost');if(!gEl){gEl=document.createElement('div');gEl.id='qs-ghost';gEl.style.cssText='font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--dim);margin-bottom:20px;padding:10px 16px;border:1px solid var(--border);border-radius:6px;display:inline-block';vEl.parentNode.insertBefore(gEl,vEl.nextSibling);}
-if(gl>=1.5){sEl.className='qs-gl-display hi';vEl.textContent='Your process is structurally sound.';gEl.innerHTML='Structural friction absorbing approx. <strong style="color:var(--accent)">'+fPct+'%</strong> of process capacity — within acceptable range.';fEl.textContent='A GL above 1.5 indicates your automation investment is delivering real efficiency.';}else if(gl>=0.5){sEl.className='qs-gl-display mid';vEl.textContent='Warning: your denominator is accumulating.';gEl.innerHTML='Structural friction absorbing approx. <strong style="color:#ffb347">'+fPct+'%</strong> of process capacity — value is leaking.';fEl.textContent='A GL between 0.5 and 1.5 signals friction is absorbing a significant share of your automation investment.';}else{sEl.className='qs-gl-display lo';vEl.textContent='AI is accelerating your errors, not eliminating them.';gEl.innerHTML='Structural friction absorbing approx. <strong style="color:#ff6b6b">'+fPct+'%</strong> of process capacity — Ghost GDP territory.';fEl.textContent='A GL below 0.5 is the signature of Ghost GDP. Automation applied to a misaligned process accelerates friction.';}
-document.getElementById('qs-result').classList.add('show');document.querySelectorAll('#qs-wrap-en .qs-step').forEach(s=>s.classList.remove('active'));}
-function resetScan(){answers.fill(null);document.getElementById('qs-result').classList.remove('show');const g=document.getElementById('qs-ghost');if(g)g.remove();document.querySelectorAll('#qs-wrap-en .qs-opt').forEach(b=>b.classList.remove('selected'));['next-0','next-1','next-2','next-3'].forEach(id=>{const b=document.getElementById(id);if(b)b.disabled=true;});nextStep(0);}
+  /* Quick Scan */
+  const A = { en:[null,null,null,null], tw:[null,null,null,null], cn:[null,null,null,null], es:[null,null,null,null] };
 
-const answersLang={tw:[null,null,null,null],cn:[null,null,null,null],es:[null,null,null,null]};
-function selectOptLang(btn,lang,qIdx,val){btn.closest('.qs-opts').querySelectorAll('.qs-opt').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');answersLang[lang][qIdx]=val;const nb=document.getElementById(lang+'-next-'+qIdx);if(nb)nb.disabled=false;}
-function nextStepLang(lang,idx){document.querySelectorAll('#qs-wrap-'+lang+' .qs-step').forEach(s=>s.classList.remove('active'));document.getElementById(lang+'-qs-'+idx).classList.add('active');updateDots(lang,idx);}
-function prevStepLang(lang,idx){document.querySelectorAll('#qs-wrap-'+lang+' .qs-step').forEach(s=>s.classList.remove('active'));document.getElementById(lang+'-qs-'+idx).classList.add('active');updateDots(lang,idx);}
-function calcResultLang(lang){const a=answersLang[lang];const fs=a[0],vn=a[1],pd=a[2],cf=a[3];if(!fs||!vn||!pd||!cf)return;const gl=(fs*vn)/(pd*cf);const glR=Math.round(gl*100)/100;const sEl=document.getElementById(lang+'-qs-score'),vEl=document.getElementById(lang+'-qs-verdict'),fEl=document.getElementById(lang+'-qs-finding');sEl.textContent=glR;
-if(gl>=1.5){sEl.className='qs-gl-display hi';
-  if(lang==='tw'){vEl.textContent='您的流程結構穩健。';fEl.textContent='自動化投資大致產生了真實效率。完整診斷可確認所有子流程是否同樣健康。';}
-  else if(lang==='cn'){vEl.textContent='您的流程结构稳健。';fEl.textContent='自动化投资大致产生了真实效率。完整诊断可确认所有子流程是否同样健康。';}
-  else{vEl.textContent='Su proceso es estructuralmente sólido.';fEl.textContent='Un GL superior a 1.5 indica que su inversión en automatización está generando eficiencia real.';}
-}else if(gl>=0.5){sEl.className='qs-gl-display mid';
-  if(lang==='tw'){vEl.textContent='警示：您的分母正在累積。';fEl.textContent='流程仍在運作，但效率並不理想。返工、例外處理與人工介入正在吞噬轉型成效。';}
-  else if(lang==='cn'){vEl.textContent='警示：您的分母正在累积。';fEl.textContent='流程仍在运作，但效率并不理想。返工、例外处理与人工介入正在吞噬转型成效。';}
-  else{vEl.textContent='Advertencia: su denominador está acumulándose.';fEl.textContent='Un GL entre 0.5 y 1.5 indica que la fricción está absorbiendo una parte significativa de su inversión en automatización.';}
-}else{sEl.className='qs-gl-display lo';
-  if(lang==='tw'){vEl.textContent='AI 正在加速錯誤，而不是消除錯誤。';fEl.textContent='這是 Ghost GDP 區間。自動化被套用到錯位流程上，只會加速摩擦。';}
-  else if(lang==='cn'){vEl.textContent='AI 正在加速错误，而不是消除错误。';fEl.textContent='这是 Ghost GDP 区间。自动化被套用到错位流程上，只会加速摩擦。';}
-  else{vEl.textContent='La IA está acelerando sus errores, no eliminándolos.';fEl.textContent='Un GL por debajo de 0.5 es la firma del Ghost GDP. La automatización aplicada a un proceso desalineado acelera la fricción.';}
-}
-document.getElementById(lang+'-qs-result').classList.add('show');document.querySelectorAll('#qs-wrap-'+lang+' .qs-step').forEach(s=>s.classList.remove('active'));}
-function resetScanLang(lang){answersLang[lang].fill(null);document.getElementById(lang+'-qs-result').classList.remove('show');document.querySelectorAll('#qs-wrap-'+lang+' .qs-opt').forEach(b=>b.classList.remove('selected'));[0,1,2,3].forEach(i=>{const b=document.getElementById(lang+'-next-'+i);if(b)b.disabled=true;});nextStepLang(lang,0);}
+  function pick(lang, q, val, btn) {
+    btn.closest('.qs-opts').querySelectorAll('.qs-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    A[lang][q] = val;
+    const nb = document.getElementById(lang+'-n'+q);
+    if (nb) nb.disabled = false;
+  }
+
+  function go(lang, idx) {
+    document.querySelectorAll('#qs-'+lang+' .qs-step').forEach(s => s.classList.remove('active'));
+    const s = document.getElementById(lang+'-s'+idx);
+    if (s) s.classList.add('active');
+    for (let i = 0; i < 4; i++) {
+      const d = document.getElementById(lang+'-dot-'+i);
+      if (!d) continue;
+      d.classList.remove('active','done');
+      if (i < idx) d.classList.add('done');
+      else if (i === idx) d.classList.add('active');
+    }
+  }
+
+  const verdicts = {
+    en: {
+      hi: ["Your process is structurally sound.", "GL above 1.5 indicates your automation investment is delivering real efficiency gains."],
+      mid: ["Warning: your denominator is accumulating.", "GL between 0.5 and 1.5 signals friction is absorbing a significant share of your automation investment. Intervention is measurable."],
+      lo: ["Automation is accelerating your errors, not eliminating them.", "GL below 0.5 is the signature of structural failure. Automation applied to a misaligned process accelerates friction rather than removing it."]
+    },
+    tw: {
+      hi: ["您的流程結構穩健。", "GL 高於 1.5 表示自動化投資正在產生真實效率。"],
+      mid: ["警示：您的分母正在累積。", "GL 介於 0.5 和 1.5 之間，表示摩擦正在吸收大量自動化投資的成效。"],
+      lo: ["自動化正在加速您的錯誤，而不是消除它們。", "GL 低於 0.5 是結構失效的特徵。自動化套用在錯位流程上只會加速摩擦。"]
+    },
+    cn: {
+      hi: ["您的流程结构稳健。", "GL 高于 1.5 表示自动化投资正在产生真实效率。"],
+      mid: ["警示：您的分母正在累积。", "GL 介于 0.5 和 1.5 之间，表示摩擦正在吸收大量自动化投资的成效。"],
+      lo: ["自动化正在加速您的错误，而不是消除它们。", "GL 低于 0.5 是结构失效的特征。自动化套用在错位流程上只会加速摩擦。"]
+    },
+    es: {
+      hi: ["Su proceso es estructuralmente sólido.", "Un GL superior a 1.5 indica que su inversión en automatización está generando eficiencia real."],
+      mid: ["Advertencia: su denominador está acumulándose.", "Un GL entre 0.5 y 1.5 indica que la fricción está absorbiendo una parte significativa de su inversión."],
+      lo: ["La automatización está acelerando sus errores, no eliminándolos.", "Un GL por debajo de 0.5 es la firma de fallo estructural. La automatización aplicada a un proceso desalineado acelera la fricción."]
+    }
+  };
+
+  function calc(lang) {
+    const [fs, vn, pd, cf] = A[lang];
+    if (!fs || !vn || !pd || !cf) return;
+    const gl = Math.round((fs * vn) / (pd * cf) * 100) / 100;
+    const sEl = document.getElementById(lang+'-score');
+    const vEl = document.getElementById(lang+'-verdict');
+    const fEl = document.getElementById(lang+'-finding');
+    sEl.textContent = gl;
+    const tier = gl >= 1.5 ? 'hi' : gl >= 0.5 ? 'mid' : 'lo';
+    sEl.className = 'qs-score ' + (tier === 'hi' ? 'hi' : tier === 'mid' ? 'mid' : 'lo');
+    vEl.textContent = verdicts[lang][tier][0];
+    fEl.textContent = verdicts[lang][tier][1];
+    document.getElementById(lang+'-result').classList.add('show');
+    document.querySelectorAll('#qs-'+lang+' .qs-step').forEach(s => s.classList.remove('active'));
+  }
+
+  function reset(lang) {
+    A[lang] = [null,null,null,null];
+    document.getElementById(lang+'-result').classList.remove('show');
+    document.querySelectorAll('#qs-'+lang+' .qs-opt').forEach(b => b.classList.remove('selected'));
+    [0,1,2,3].forEach(i => { const b = document.getElementById(lang+'-n'+i); if(b) b.disabled = true; });
+    go(lang, 0);
+  }
 </script>
 </body>
 </html>
